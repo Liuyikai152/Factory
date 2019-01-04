@@ -36,6 +36,6 @@ namespace SmartFactory.Model
         /// <summary>
         /// 权限id
         /// </summary>
-        public int Pid { get; set; }
+        public string Pid { get; set; }
     }
 }
