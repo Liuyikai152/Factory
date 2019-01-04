@@ -19,14 +19,14 @@ namespace SmartFactory.Model
         /// 主键id
         /// </summary>
         [Key]
-        public int ID { get; set; }
+        public int ID { get; set; }          
 
         /// <summary>
         /// 设备位号
         /// </summary>
         [MaxLength(20)]
         public string LocaName { get; set; }
-      
+        
         /// <summary>
         /// 设备位号
         /// </summary>
