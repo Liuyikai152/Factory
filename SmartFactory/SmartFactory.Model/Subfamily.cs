@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartFactory.Model
 {
+
     /// <summary>
     /// 子系列类表
     /// </summary>
