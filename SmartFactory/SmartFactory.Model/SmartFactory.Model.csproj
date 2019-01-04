@@ -59,13 +59,13 @@
     <Compile Include="Plangroup.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs" />
     <Compile Include="ServiceGroup.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="UsersRole.cs" />
     <Compile Include="Status.cs" />
 
+    <Compile Include="Status.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
