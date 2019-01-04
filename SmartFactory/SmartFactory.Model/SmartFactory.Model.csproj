@@ -46,14 +46,13 @@
     <Compile Include="ApprovalNode.cs" />
     <Compile Include="Business.cs" />
     <Compile Include="CompanyCode.cs" />
-<<<<<<< HEAD
+
     <Compile Include="FactoryEnum.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="MaintenanceOrder.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="PermissionRole.cs" />
-=======
->>>>>>> origin/ytq
+
     <Compile Include="Conditions.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="FactoryArea.cs" />
@@ -63,15 +62,12 @@
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceGroup.cs" />
-<<<<<<< HEAD
+
     <Compile Include="Station.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="UsersRole.cs" />
     <Compile Include="Status.cs" />
 
-=======
-    <Compile Include="Status.cs" />
->>>>>>> origin/ytq
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
