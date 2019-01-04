@@ -44,12 +44,16 @@
   <ItemGroup>
     <Compile Include="Activity.cs" />
     <Compile Include="ApprovalNode.cs" />
+    <Compile Include="BitNumber.cs" />
     <Compile Include="Business.cs" />
     <Compile Include="CompanyCode.cs" />
     <Compile Include="Facility.cs" />
+    <Compile Include="FacilityDetails.cs" />
+    <Compile Include="FacilityLoca.cs" />
+    <Compile Include="FacilityType.cs" />
     <Compile Include="FactoryEnum.cs" />
     <Compile Include="Host.cs" />
-    <Compile Include="Location.cs" />
+    <Compile Include="LocaTion.cs" />
     <Compile Include="locatype.cs" />
     <Compile Include="MaintenanceOrder.cs" />
     <Compile Include="Permission.cs" />
@@ -65,6 +69,7 @@
     <Compile Include="Pump.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="ServiceGroup.cs" />
+    <Compile Include="Specification.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="Subfamily.cs" />
     <Compile Include="Unit.cs" />
