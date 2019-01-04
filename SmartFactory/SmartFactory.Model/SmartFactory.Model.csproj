@@ -42,12 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity.cs" />
+    <Compile Include="ApprovalNode.cs" />
+    <Compile Include="Business.cs" />
     <Compile Include="CompanyCode.cs" />
+    <Compile Include="Conditions.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="FactoryArea.cs" />
+    <Compile Include="History.cs" />
     <Compile Include="Planfactory.cs" />
     <Compile Include="Plangroup.cs" />
+    <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceGroup.cs" />
+    <Compile Include="Status.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

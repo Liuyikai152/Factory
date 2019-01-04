@@ -10,28 +10,32 @@ namespace SmartFactory.Model
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// 计划员组表
+    /// 审批流程表
     /// </summary>
-    [Table("Plangroup")]
-    public class Plangroup
+    [Table("Process")]
+    public class Process
     {
         /// <summary>
-        /// 工厂区域主键
+        /// 审批流程主键
         /// </summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
-        /// 员组名称
+        /// 流程名称
         /// </summary>
         [MaxLength(20)]
-        public string PlangroupName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// 员组编号
+        /// 创建人
         /// </summary>
         [MaxLength(20)]
-        public string PlangroupNumber { get; set; }
+        public string Creator { get; set; }
 
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; }
     }
 }

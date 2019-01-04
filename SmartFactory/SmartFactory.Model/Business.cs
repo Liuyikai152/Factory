@@ -24,12 +24,12 @@ namespace SmartFactory.Model
         /// 业务名称
         /// </summary>
         [MaxLength(20)]
-        public string Name { get; set; }
+        public string BusionessName { get; set; }
 
         /// <summary>
         /// 业务编号
         /// </summary>
         [MaxLength(20)]
-        public string Number { get; set; }
+        public string BusionessNumber { get; set; }
     }
 }

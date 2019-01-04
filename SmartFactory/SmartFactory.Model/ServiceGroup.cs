@@ -23,11 +23,11 @@ namespace SmartFactory.Model
         /// <summary>
         /// 班组名称
         /// </summary>
-        public string Name { get; set; }
+        public string ServiceName { get; set; }
 
         /// <summary>
         /// 班组编号
         /// </summary>
-        public string Number { get; set; }
+        public string ServiceNumber { get; set; }
     }
 }

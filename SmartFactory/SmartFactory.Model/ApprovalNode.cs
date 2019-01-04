@@ -8,30 +8,34 @@ namespace SmartFactory.Model
 {
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
-
+ 
     /// <summary>
-    /// 计划员组表
+    /// 审批节点表
     /// </summary>
-    [Table("Plangroup")]
-    public class Plangroup
+    [Table("ApprovalNode")]
+    public class ApprovalNode
     {
         /// <summary>
-        /// 工厂区域主键
+        /// 审批节点主键
         /// </summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
-        /// 员组名称
+        /// 节点名称
         /// </summary>
         [MaxLength(20)]
-        public string PlangroupName { get; set; }
+        public int NodeName { get; set; }
 
         /// <summary>
-        /// 员组编号
+        /// 创建人
         /// </summary>
         [MaxLength(20)]
-        public string PlangroupNumber { get; set; }
+        public string Creator { get; set; }
 
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; }
     }
 }
