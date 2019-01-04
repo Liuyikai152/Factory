@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartFactory.Model
 {
     /// <summary>
     /// 机组表
     /// </summary>
+    [Table("Unit")]
     public class Unit
     {
         /// <summary>
@@ -61,6 +65,6 @@ namespace SmartFactory.Model
         /// <summary>
         /// 是否报警
         /// </summary>
-        public int IsSiren { get; set; }
+        public FactoryEnum IsSiren { get; set; }
     }
 }
