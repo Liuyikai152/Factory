@@ -8,30 +8,28 @@ namespace SmartFactory.Model
 {
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
-
     /// <summary>
-    /// 计划员组表
+    /// 设备业务表
     /// </summary>
-    [Table("Plangroup")]
-    public class Plangroup
+    [Table("Business")]
+    public  class Business
     {
         /// <summary>
-        /// 工厂区域主键
+        /// 主键id
         /// </summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
-        /// 员组名称
+        /// 业务名称
         /// </summary>
         [MaxLength(20)]
-        public string PlangroupName { get; set; }
+        public string BusionessName { get; set; }
 
         /// <summary>
-        /// 员组编号
+        /// 业务编号
         /// </summary>
         [MaxLength(20)]
-        public string PlangroupNumber { get; set; }
-
+        public string BusionessNumber { get; set; }
     }
 }
