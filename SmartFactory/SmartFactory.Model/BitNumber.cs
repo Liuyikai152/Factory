@@ -24,6 +24,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 设备位号
         /// </summary>
+        [MaxLength(30)]
         public string BitNumbers { get; set; }
     }
 }

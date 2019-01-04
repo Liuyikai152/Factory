@@ -25,31 +25,37 @@ namespace SmartFactory.Model
         /// <summary>
         /// 机组编号
         /// </summary>
+        [MaxLength(50)]
         public string UnitNumber{ get; set; }
 
         /// <summary>
         /// 机组名称
         /// </summary>
+        [MaxLength(50)]
         public string UnitName { get; set; }
 
         /// <summary>
         /// 机组负责人
         /// </summary>
+        [MaxLength(50)]
         public string CrewLeader { get; set; }
 
         /// <summary>
         /// 机组图片
         /// </summary>
+        [MaxLength(50)]
         public string ChartImg { get; set; }
 
         /// <summary>
         /// 机组描述
         /// </summary>
+        [MaxLength(50)]
         public string Describe { get; set; }
 
         /// <summary>
         /// 所属装置
         /// </summary>
+        [MaxLength(50)]
         public string Device { get; set; }
 
         /// <summary>

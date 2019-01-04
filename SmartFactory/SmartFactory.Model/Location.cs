@@ -23,46 +23,55 @@ namespace SmartFactory.Model
         /// <summary>
         /// 位置编码
         /// </summary>
+        [MaxLength(20)]
         public string LocaNumber { get; set; }
 
         /// <summary>
         /// 位置名称
         /// </summary>
+        [MaxLength(20)]
         public string LocaName { get; set; }
 
         /// <summary>
         /// 公司编号
         /// </summary>
+        [MaxLength(20)]
         public string CompanyCode { get; set; }
 
         /// <summary>
         /// 计划工厂
         /// </summary>
+        [MaxLength(20)]
         public string PlanFactory { get; set; }
 
         /// <summary>
         /// 维护工厂
         /// </summary>
+        [MaxLength(20)]
         public string MaintainFactory { get; set; }
 
         /// <summary>
         /// 工作区域
         /// </summary>
+        [MaxLength(20)]
         public string FactoryArea { get; set; }
 
         /// <summary>
         /// 计划员组
         /// </summary>
+        [MaxLength(20)]
         public string PlanGroup { get; set; }
 
         /// <summary>
         /// 成本中心
         /// </summary>
+        [MaxLength(20)]
         public string CostConter { get; set; }
 
         /// <summary>
         /// 位置类型
         /// </summary>
+        [MaxLength(20)]
         public string LocaType { get; set; }
 
         /// <summary>
@@ -83,6 +92,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 业务范围
         /// </summary>
+        [MaxLength(20)]
         public string BusinessLine { get; set; }
 
         /// <summary>
@@ -98,6 +108,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 维护班组编号
         /// </summary>
+        [MaxLength(20)]
         public string ServiceNumber { get; set; }
     }
 }

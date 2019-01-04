@@ -23,17 +23,19 @@ namespace SmartFactory.Model
         /// <summary>
         /// 角色名称
         /// </summary>
+        [MaxLength(50)]
         public string RoleName { get; set; }
 
 
         /// <summary>
         /// 角色权限
         /// </summary>
+        [MaxLength(50)]
         public string Permission { get; set; }
 
         /// <summary>
         /// 权限id
         /// </summary>
-        public string Pid { get; set; }
+        public int Pid { get; set; }
     }
 }

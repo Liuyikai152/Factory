@@ -26,26 +26,31 @@ namespace SmartFactory.Model
         /// <summary>
         /// 编号
         /// </summary>
+        [MaxLength(50)]
         public string UnitNumber { get; set; }
 
         /// <summary>
         /// 子系统名称
         /// </summary>
+        [MaxLength(50)]
         public string Name { get; set; }
 
         /// <summary>
         /// 功能描述
         /// </summary>
+        [MaxLength(50)]
         public string Describe { get; set; }
 
         /// <summary>
         /// 结构图片
         /// </summary>
+        [MaxLength(50)]
         public string ChartImg  { get; set; }
 
         /// <summary>
         /// 系统编号
         /// </summary>
+        [MaxLength(50)]
         public string SubfamilyNumber { get; set; }
 
         /// <summary>

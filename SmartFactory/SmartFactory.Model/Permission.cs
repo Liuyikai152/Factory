@@ -24,16 +24,18 @@ namespace SmartFactory.Model
         /// <summary>
         /// 页面名称
         /// </summary>
+        [MaxLength(50)]
         public string PermissionName { get; set; }
 
         /// <summary>
         /// 权限地址
         /// </summary>
+        [MaxLength(50)]
         public string PermissionUrl { get; set; }
 
         /// <summary>
         /// 是否启用
         /// </summary>
-        public string IsUser { get; set; }
+        public int IsUser { get; set; }
     }
 }

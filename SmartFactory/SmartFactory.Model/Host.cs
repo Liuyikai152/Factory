@@ -27,21 +27,25 @@ namespace SmartFactory.Model
         /// <summary>
         /// 编号
         /// </summary>
+        [MaxLength(20)]
         public string UnitNumber { get; set; }
 
         /// <summary>
         /// 类型
         /// </summary>
+        [MaxLength(20)]
         public string Type { get; set; }
 
         /// <summary>
         /// 设备名称
         /// </summary>
+        [MaxLength(20)]
         public string FacilityName { get; set; }
 
         /// <summary>
         /// 设备位号
         /// </summary>
+        [MaxLength(20)]
         public string BitNumber { get; set; }
 
         /// <summary>
