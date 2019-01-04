@@ -15,6 +15,7 @@ namespace SmartFactory.Model
     [Table("LocaType")]
     public class Locatype
     {
+
         /// <summary>
         /// 主键id
         /// </summary>

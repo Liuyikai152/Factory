@@ -11,8 +11,8 @@ namespace SmartFactory.Model
     /// <summary>
     /// 功能位置表
     /// </summary>
-    [Table("Location")]
-    public class Location
+    [Table("LocaTion")]
+    public class LocaTion
     {
         /// <summary>
         /// 主键ID
