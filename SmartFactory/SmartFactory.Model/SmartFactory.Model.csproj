@@ -77,5 +77,10 @@
     <Compile Include="UsersRole.cs" />
     <Compile Include="Status.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
