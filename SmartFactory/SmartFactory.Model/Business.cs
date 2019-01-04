@@ -9,25 +9,27 @@ namespace SmartFactory.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
     /// <summary>
-    /// 权限角色关系表
+    /// 设备业务表
     /// </summary>
-    [Table("PermissionRole")]
-    public class PermissionRole
+    [Table("Business")]
+    public  class Business
     {
         /// <summary>
-        /// id
+        /// 主键id
         /// </summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
-        /// 角色id
+        /// 业务名称
         /// </summary>
-        public int RoleId { get; set; }
+        [MaxLength(20)]
+        public string BusionessName { get; set; }
 
         /// <summary>
-        /// 权限id
+        /// 业务编号
         /// </summary>
-        public int PermissionId { get; set; }
+        [MaxLength(20)]
+        public string BusionessNumber { get; set; }
     }
 }

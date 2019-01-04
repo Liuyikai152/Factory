@@ -25,13 +25,13 @@ namespace SmartFactory.Model
         /// 员组名称
         /// </summary>
         [MaxLength(20)]
-        public string Name { get; set; }
+        public string PlangroupName { get; set; }
 
         /// <summary>
         /// 员组编号
         /// </summary>
         [MaxLength(20)]
-        public string Number { get; set; }
+        public string PlangroupNumber { get; set; }
 
     }
 }

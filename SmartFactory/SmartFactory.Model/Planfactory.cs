@@ -25,13 +25,13 @@ namespace SmartFactory.Model
         /// 工厂名称
         /// </summary>
         [MaxLength(20)]
-        public string Name { get; set; }
+        public string FactoryName { get; set; }
       
         /// <summary>
         /// 工厂编号
         /// </summary>
         [MaxLength(20)]
-        public string Number { get; set; }
+        public string FactoryNumber { get; set; }
     
         /// <summary>
         /// 关联ID
