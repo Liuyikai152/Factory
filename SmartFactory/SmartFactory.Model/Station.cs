@@ -15,6 +15,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 主键id
         /// </summary>
+        
         public int ID { get; set; }
 
         /// <summary>
