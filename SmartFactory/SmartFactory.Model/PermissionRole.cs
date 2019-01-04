@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace SmartFactory.Model
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     /// <summary>
     /// 权限角色关系表
     /// </summary>
+    [Table("PermissionRole")]
     public class PermissionRole
     {
         /// <summary>
         /// id
         /// </summary>
+        [Key]
         public int ID { get; set; }
 
         /// <summary>

@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace SmartFactory.Model
 {
-
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
     /// <summary>
     /// 维修工单表
     /// </summary>
-   public class MaintenanceOrder
+    [Table("MaintenanceOrder")]
+    public class MaintenanceOrder
     {
         /// <summary>
         /// 主键ID
         /// </summary>
+        [Key]
         public int ID { get; set; }
 
         /// <summary>

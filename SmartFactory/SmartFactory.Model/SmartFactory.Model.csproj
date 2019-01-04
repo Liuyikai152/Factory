@@ -43,14 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompanyCode.cs" />
-
     <Compile Include="FactoryEnum.cs" />
     <Compile Include="Location.cs" />
-
     <Compile Include="MaintenanceOrder.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="PermissionRole.cs" />
-
     <Compile Include="Planfactory.cs" />
     <Compile Include="Plangroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
