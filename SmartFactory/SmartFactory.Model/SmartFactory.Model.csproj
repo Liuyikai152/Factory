@@ -77,11 +77,10 @@
     <Compile Include="UsersRole.cs" />
     <Compile Include="Status.cs" />
   </ItemGroup>
-<<<<<<< HEAD
-=======
+
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
->>>>>>> fk
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
