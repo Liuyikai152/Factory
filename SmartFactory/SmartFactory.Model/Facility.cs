@@ -9,6 +9,9 @@ namespace SmartFactory.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// 设备/零件表
+    /// </summary>
     [Table("Facility")]
    public class Facility
     {
