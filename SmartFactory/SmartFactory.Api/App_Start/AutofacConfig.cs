@@ -40,7 +40,6 @@ namespace SmartFactory.Api
         /// <param name="builder"></param>
         public static void SetupResolveRules(ContainerBuilder container)
         {
-            container.RegisterType<UsersServices>().As<IUsersServices>();
 
             container.RegisterType<UsersServices>().As<IUsersServices>();          
             container.RegisterType<CompanyCodeServices>().As<ICompanyCodeServices>();
