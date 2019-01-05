@@ -66,6 +66,8 @@
     <Compile Include="IPermissionServices.cs" />
     <Compile Include="IUsersRoleServices.cs" />
     <Compile Include="IUsersServices.cs" />
+    <Compile Include="IFacilityManuFacturer.cs" />
+    <Compile Include="IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRoleServices.cs" />
   </ItemGroup>

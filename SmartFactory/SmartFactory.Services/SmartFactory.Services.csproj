@@ -62,6 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FacilityGeneralServices.cs" />
+    <Compile Include="FacilityManuFacturerServices.cs" />
     <Compile Include="FactoryDBcontext.cs" />
     <Compile Include="PermissionRoleServices.cs" />
     <Compile Include="PermissionServices.cs" />
