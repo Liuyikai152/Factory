@@ -10,43 +10,43 @@ namespace SmartFactory.Services
     using SmartFactory.IServices;
 
     /// <summary>
-    /// 位置信息方法
+    /// 设备种类实现类
     /// </summary>
-    public class FacilityLocaServices:IFacilityLoca
+    public class FacilityTypeServices:IFacilityType
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
         /// <summary>
-        /// 添加位置信息
+        /// 添加设备种类
         /// </summary>
         /// <param name="facilitymanu"></param>
         /// <returns></returns>
-        public int AddFacilityLoca(FacilityLoca facilityloca)
+        public int AddFacilityType(FacilityType facilitytype)
         {
-            factoryDBcontext.FacilityLoca.Add(facilityloca);
+            factoryDBcontext.FacilityType.Add(facilitytype);
             return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 查看位置信息
+        /// 查看设备种类
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<FacilityLoca> GetFacilityLoca()
+        public List<FacilityType> GetFacilityType()
         {
-            var getFacilityLoca = from facilityloca in factoryDBcontext.FacilityLoca.ToList() select facilityloca;
-            return getFacilityLoca.ToList();
+            var getFacilityType = from facilitytype in factoryDBcontext.FacilityType.ToList() select facilitytype;
+            return getFacilityType.ToList();
         }
 
         /// <summary>
-        /// 删除位置信息
+        /// 删除设备种类
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeleteFacilityLoca(int id)
+        public int DeleteFacilityType(int id)
         {
-            FacilityLoca facilityloca = factoryDBcontext.FacilityLoca.Find(id);
-            factoryDBcontext.FacilityLoca.Remove(facilityloca);
+            FacilityType facilitytype = factoryDBcontext.FacilityType.Find(id);
+            factoryDBcontext.FacilityType.Remove(facilitytype);
             return factoryDBcontext.SaveChanges();
         }
     }

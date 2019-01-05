@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 技术参数实现类
     /// </summary>
-    public class SpeciFicationServices
+    public class SpeciFicationServices:ISpecification
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
@@ -49,7 +49,7 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeleteFacilityGeneral(int id)
+        public int DeleteSpecification(int id)
         {
             Specification specification = factoryDBcontext.Specification.Find(id);
             factoryDBcontext.Specification.Remove(specification);

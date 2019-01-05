@@ -10,44 +10,45 @@ namespace SmartFactory.Services
     using SmartFactory.IServices;
 
     /// <summary>
-    /// 位置信息方法
+    /// 审批流程配置实现类
     /// </summary>
-    public class FacilityLocaServices:IFacilityLoca
+    public class ConfigurationServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
         /// <summary>
-        /// 添加位置信息
+        /// 添加审批流程配置
         /// </summary>
         /// <param name="facilitymanu"></param>
         /// <returns></returns>
-        public int AddFacilityLoca(FacilityLoca facilityloca)
+        public int AddConfiguration(Configuration configuration)
         {
-            factoryDBcontext.FacilityLoca.Add(facilityloca);
+            factoryDBcontext.Configurations.Add(configuration);
             return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 查看位置信息
+        /// 查看审批活动
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
-        public List<FacilityLoca> GetFacilityLoca()
+        public List<Configuration> GetActivities()
         {
-            var getFacilityLoca = from facilityloca in factoryDBcontext.FacilityLoca.ToList() select facilityloca;
-            return getFacilityLoca.ToList();
+            var configurationList = factoryDBcontext.Database.SqlQuery<Configuration>("").ToList();
+            return configurationList;
         }
 
         /// <summary>
-        /// 删除位置信息
+        /// 删除审批活动
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeleteFacilityLoca(int id)
+        public int DeleteConfiguration(int id)
         {
-            FacilityLoca facilityloca = factoryDBcontext.FacilityLoca.Find(id);
-            factoryDBcontext.FacilityLoca.Remove(facilityloca);
+            Configuration configuration = factoryDBcontext.Configurations.Find(id);
+            factoryDBcontext.Configurations.Remove(configuration);
             return factoryDBcontext.SaveChanges();
         }
+
+
     }
 }

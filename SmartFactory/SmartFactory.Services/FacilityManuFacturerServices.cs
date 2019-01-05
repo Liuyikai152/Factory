@@ -32,7 +32,7 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public FacilityManuFacturer GetWareHouseByID(string facilityNumber)
+        public FacilityManuFacturer GetFacilityManuByID(string facilityNumber)
         {
             try
             {

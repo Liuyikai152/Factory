@@ -7,31 +7,26 @@ using System.Threading.Tasks;
 namespace SmartFactory.IServices
 {
     using SmartFactory.Model;
-
-    /// <summary>
-    /// 技术参数接口
-    /// </summary>
-    public interface ISpecification
+    public interface IConfigurations
     {
         /// <summary>
-        /// 添加技术参数
+        /// 添加审批流程配置
         /// </summary>
         /// <param name="facilitymanu"></param>
         /// <returns></returns>
-        int AddSpecification(Specification specification);
+        int AddConfiguration(Configuration configuration);
 
         /// <summary>
-        /// 根据ID查技术参数
+        /// 查看审批活动
+        /// </summary>
+        /// <returns></returns>
+        List<Configuration> GetActivities();
+
+        /// <summary>
+        /// 删除审批活动
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Specification GetSpecificationByID(string facilityNumber);
-
-        /// <summary>
-        /// 删除技术参数
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        int DeleteSpecification(int id);
+        int DeleteConfiguration(int id);
     }
 }

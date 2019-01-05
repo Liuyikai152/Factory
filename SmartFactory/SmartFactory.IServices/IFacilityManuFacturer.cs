@@ -25,7 +25,7 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        FacilityManuFacturer GetWareHouseByID(string facilityNumber);
+        FacilityManuFacturer GetFacilityManuByID(string facilityNumber);
 
         /// <summary>
         /// 删除制造商
