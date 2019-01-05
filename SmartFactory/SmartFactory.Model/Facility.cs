@@ -8,9 +8,6 @@ namespace SmartFactory.Model
 {
     using System.ComponentModel.DataAnnotations.Schema;
     using System.ComponentModel.DataAnnotations;
-
-    
-    
     [Table("Facility")]
    public class Facility
     {
