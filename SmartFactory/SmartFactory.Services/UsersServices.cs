@@ -11,7 +11,8 @@ namespace SmartFactory.Services
 {
     public class UsersServices : IUsers
     {
-        public int Add()
+
+        public int Add(Users user)
         {
             return 1;
         }
