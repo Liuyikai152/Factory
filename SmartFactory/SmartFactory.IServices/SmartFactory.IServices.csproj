@@ -69,5 +69,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartFactory.Model\SmartFactory.Model.csproj">
+      <Project>{B6449FC4-687E-45C5-B53D-263AFC40CE1D}</Project>
+      <Name>SmartFactory.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
