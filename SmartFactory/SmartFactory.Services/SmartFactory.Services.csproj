@@ -64,12 +64,17 @@
   <ItemGroup>
     <Compile Include="FactoryDBcontext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsersServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SmartFactory.IServices\SmartFactory.IServices.csproj">
+      <Project>{0a005af9-719c-4858-871d-0a20b0716c99}</Project>
+      <Name>SmartFactory.IServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SmartFactory.Model\SmartFactory.Model.csproj">
       <Project>{b6449fc4-687e-45c5-b53d-263afc40ce1d}</Project>
       <Name>SmartFactory.Model</Name>
