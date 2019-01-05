@@ -13,7 +13,7 @@ namespace SmartFactory.Model
     /// 位置类型表
     /// </summary>
     [Table("LocaType")]
-    public class Locatype
+    public class LocaType
     {
 
         /// <summary>
