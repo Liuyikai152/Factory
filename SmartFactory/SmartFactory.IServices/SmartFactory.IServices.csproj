@@ -62,8 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUsers.cs" />
+    <Compile Include="IPermissionRoleServices.cs" />
+    <Compile Include="IPermissionServices.cs" />
+    <Compile Include="IUsersRoleServices.cs" />
+    <Compile Include="IUsersServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IRoleServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

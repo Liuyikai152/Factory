@@ -15,13 +15,13 @@ namespace SmartFactory.Api.Controllers
     public class UsersController : ApiController
     {
 
-        public IUsers userservices { get; set; }
+        public IUsersServices userservices { get; set; }
 
         [Route("UsersAdd")]
         [HttpPost]
         public int UsersAdd(Users user)
         {
-            int i= userservices.Add(user);
+            int i= userservices.AddUsers(user);
             return i;
         }
     }

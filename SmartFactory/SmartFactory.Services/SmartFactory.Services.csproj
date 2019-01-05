@@ -63,7 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FactoryDBcontext.cs" />
+    <Compile Include="PermissionRoleServices.cs" />
+    <Compile Include="PermissionServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleServices.cs" />
+    <Compile Include="UsersRoleServices.cs" />
     <Compile Include="UsersServices.cs" />
   </ItemGroup>
   <ItemGroup>
