@@ -41,7 +41,8 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<UsersRole> GetUsersRoles()
         {
-            return factoryDBcontext.UsersRole.ToList();
+            var usersRoleList= factoryDBcontext.UsersRole.ToList();
+            return usersRoleList;
         }
 
         /// <summary>

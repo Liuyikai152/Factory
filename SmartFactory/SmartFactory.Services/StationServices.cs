@@ -8,39 +8,40 @@ using SmartFactory.Model;
 
 namespace SmartFactory.Services
 {
-    public class PermissionServices : IPermissionServices
+    public class StationServices : IStationServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
         /// <summary>
-        /// 添加权限
+        /// 添加主机/附机
         /// </summary>
-        /// <param name="permission"></param>
+        /// <param name="station"></param>
         /// <returns></returns>
-        public int AddPermission(Permission permission)
+        public int AddStation(Station station)
         {
-            factoryDBcontext.Permission.Add(permission);
+            factoryDBcontext.Station.Add(station);
             return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 删除权限
+        /// 删除主机/附机
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeletePermission(int id)
+        public int DeleteStation(int id)
         {
-            throw new NotImplementedException();
+            factoryDBcontext.Station.Remove(GetById(id));
+            return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 获取权限id
+        /// 获取单个id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Permission GetByID(int id)
+        public Station GetById(int id)
         {
-            var i= factoryDBcontext.Permission.Find(id);
+            var i= factoryDBcontext.Station.Find(id);
             return i;
         }
 
@@ -48,20 +49,21 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
-        public List<Permission> GetPermissions()
+        public List<Station> GetStations()
         {
-            var permissionList= factoryDBcontext.Permission.ToList();
-            return permissionList;
+            var stationList= factoryDBcontext.Station.ToList();
+            return stationList;
         }
 
+
         /// <summary>
-        /// 修改权限
+        /// 修改
         /// </summary>
-        /// <param name="permission"></param>
+        /// <param name="station"></param>
         /// <returns></returns>
-        public int UpdatePermission(Permission permission)
+        public int UpdateStation(Station station)
         {
-            factoryDBcontext.Entry(permission).State = System.Data.Entity.EntityState.Modified;
+            factoryDBcontext.Entry(station).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
     }

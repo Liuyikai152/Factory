@@ -8,29 +8,29 @@ using SmartFactory.Model;
 
 namespace SmartFactory.Services
 {
-    public class RoleServices : IRoleServices
+    public class HostServices : IHostServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
         /// <summary>
-        /// 添加用户
+        /// 添加机组
         /// </summary>
-        /// <param name="role"></param>
+        /// <param name="host"></param>
         /// <returns></returns>
-        public int AddRole(Role role)
+        public int AddHost(Host host)
         {
-            factoryDBcontext.Role.Add(role);
+            factoryDBcontext.Host.Add(host);
             return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 删除角色
+        /// 删除主机/附机
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeleteRole(int id)
+        public int DeleteHost(int id)
         {
-            factoryDBcontext.Role.Find(GetByID(id));
+            factoryDBcontext.Host.Remove(GetByID(id));
             return factoryDBcontext.SaveChanges();
         }
 
@@ -39,30 +39,26 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Role GetByID(int id)
+        public Host GetByID(int id)
         {
-            var i= factoryDBcontext.Role.Find(id);
+            var i = factoryDBcontext.Host.Find(id);
             return i;
         }
 
-        /// <summary>
-        /// 显示
-        /// </summary>
-        /// <returns></returns>
-        public List<Role> GetRoles()
+        public List<Host> GetHost()
         {
-            var roleList= factoryDBcontext.Role.ToList();
-            return roleList;
+            var hostList = factoryDBcontext.Host.ToList();
+            return hostList;
         }
 
         /// <summary>
-        /// 修改角色
+        /// 修改
         /// </summary>
-        /// <param name="role"></param>
+        /// <param name="host"></param>
         /// <returns></returns>
-        public int UpdateRole(Role role)
+        public int UpdateHost(Host host)
         {
-            factoryDBcontext.Entry(role).State = System.Data.Entity.EntityState.Modified;
+            factoryDBcontext.Entry(host).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
     }

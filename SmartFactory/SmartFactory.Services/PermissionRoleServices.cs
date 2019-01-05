@@ -36,7 +36,8 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<PermissionRole> GetPermissionRoles()
         {
-            return factoryDBcontext.PermissionRole.ToList();
+            var permissionRoleList= factoryDBcontext.PermissionRole.ToList();
+            return permissionRoleList;
         }
 
         /// <summary>

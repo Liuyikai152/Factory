@@ -8,60 +8,61 @@ using SmartFactory.Model;
 
 namespace SmartFactory.Services
 {
-    public class PermissionServices : IPermissionServices
+    public class UnitServices : IUnitServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
         /// <summary>
-        /// 添加权限
+        /// 添加机组
         /// </summary>
-        /// <param name="permission"></param>
+        /// <param name="unit"></param>
         /// <returns></returns>
-        public int AddPermission(Permission permission)
+        public int AddUnit(Unit unit)
         {
-            factoryDBcontext.Permission.Add(permission);
+            factoryDBcontext.Unit.Add(unit);
             return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 删除权限
+        /// 删除机组
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeletePermission(int id)
+        public int DeleteUnit(int id)
         {
-            throw new NotImplementedException();
+            factoryDBcontext.Unit.Remove(GetByID(id));
+            return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 获取权限id
+        /// 获取单个id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Permission GetByID(int id)
+        public Unit GetByID(int id)
         {
-            var i= factoryDBcontext.Permission.Find(id);
+            var i= factoryDBcontext.Unit.Find(id);
             return i;
         }
 
         /// <summary>
-        /// 显示
+        /// 显示机组
         /// </summary>
         /// <returns></returns>
-        public List<Permission> GetPermissions()
+        public List<Unit> GetHost()
         {
-            var permissionList= factoryDBcontext.Permission.ToList();
-            return permissionList;
+            var uintList= factoryDBcontext.Unit.ToList();
+            return uintList;
         }
 
         /// <summary>
-        /// 修改权限
+        /// 修改机组
         /// </summary>
-        /// <param name="permission"></param>
+        /// <param name="unit"></param>
         /// <returns></returns>
-        public int UpdatePermission(Permission permission)
+        public int UpdateUnit(Unit unit)
         {
-            factoryDBcontext.Entry(permission).State = System.Data.Entity.EntityState.Modified;
+            factoryDBcontext.Entry(unit).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
     }

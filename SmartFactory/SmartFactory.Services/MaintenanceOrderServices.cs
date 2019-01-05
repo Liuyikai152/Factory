@@ -8,40 +8,40 @@ using SmartFactory.Model;
 
 namespace SmartFactory.Services
 {
-    public class RoleServices : IRoleServices
+    public class MaintenanceOrderServices : IMaintenanceOrderServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
         /// <summary>
-        /// 添加用户
+        /// 添加工单
         /// </summary>
-        /// <param name="role"></param>
+        /// <param name="maintenanceOrder"></param>
         /// <returns></returns>
-        public int AddRole(Role role)
+        public int AddMaintenanceOrder(MaintenanceOrder maintenanceOrder)
         {
-            factoryDBcontext.Role.Add(role);
+            factoryDBcontext.MaintenanceOrder.Add(maintenanceOrder);
             return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 删除角色
+        /// 删除维修工单
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeleteRole(int id)
+        public int DeleteMaintenanceOrder(int id)
         {
-            factoryDBcontext.Role.Find(GetByID(id));
+            factoryDBcontext.MaintenanceOrder.Remove(GetById(id));
             return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 获取单个id
+        /// 获取单个ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Role GetByID(int id)
+        public MaintenanceOrder GetById(int id)
         {
-            var i= factoryDBcontext.Role.Find(id);
+            var i = factoryDBcontext.MaintenanceOrder.Find(id);
             return i;
         }
 
@@ -49,20 +49,20 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
-        public List<Role> GetRoles()
+        public List<MaintenanceOrder> GetMaintenanceOrders()
         {
-            var roleList= factoryDBcontext.Role.ToList();
-            return roleList;
+            var maintenanceList = factoryDBcontext.MaintenanceOrder.ToList();
+            return maintenanceList;
         }
 
         /// <summary>
-        /// 修改角色
+        /// 修改
         /// </summary>
-        /// <param name="role"></param>
+        /// <param name="maintenanceOrder"></param>
         /// <returns></returns>
-        public int UpdateRole(Role role)
+        public int UpdateMaintenanceOrder(MaintenanceOrder maintenanceOrder)
         {
-            factoryDBcontext.Entry(role).State = System.Data.Entity.EntityState.Modified;
+            factoryDBcontext.Entry(maintenanceOrder).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
     }

@@ -42,7 +42,8 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public Users GetByID(int id)
         {
-           return factoryDBcontext.Users.Find(id);
+           var i= factoryDBcontext.Users.Find(id);
+            return i;
         }
 
         /// <summary>
@@ -61,7 +62,8 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<Users> GetUsers()
         {
-            return factoryDBcontext.Users.ToList();
+            var userList= factoryDBcontext.Users.ToList();
+            return userList;
         }
 
         /// <summary>

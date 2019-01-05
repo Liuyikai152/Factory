@@ -8,39 +8,40 @@ using SmartFactory.Model;
 
 namespace SmartFactory.Services
 {
-    public class PermissionServices : IPermissionServices
+    public class SubfamilyServices : ISubfamilyServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
         /// <summary>
-        /// 添加权限
+        /// 添加子关系
         /// </summary>
-        /// <param name="permission"></param>
+        /// <param name="subfamily"></param>
         /// <returns></returns>
-        public int AddPermission(Permission permission)
+        public int AddSubfamily(Subfamily subfamily)
         {
-            factoryDBcontext.Permission.Add(permission);
+            factoryDBcontext.Subfamily.Add(subfamily);
             return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 删除权限
+        /// 删除子关系
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeletePermission(int id)
+        public int DeleteSubfamily(int id)
         {
-            throw new NotImplementedException();
+            factoryDBcontext.Subfamily.Remove(GetById(id));
+            return factoryDBcontext.SaveChanges();
         }
 
         /// <summary>
-        /// 获取权限id
+        /// 获取单个ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Permission GetByID(int id)
+        public Subfamily GetById(int id)
         {
-            var i= factoryDBcontext.Permission.Find(id);
+            var i= factoryDBcontext.Subfamily.Find(id);
             return i;
         }
 
@@ -48,20 +49,20 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
-        public List<Permission> GetPermissions()
+        public List<Subfamily> GetSubfamilies()
         {
-            var permissionList= factoryDBcontext.Permission.ToList();
-            return permissionList;
+            var subfamilyList= factoryDBcontext.Subfamily.ToList();
+            return subfamilyList;
         }
 
         /// <summary>
-        /// 修改权限
+        /// 修改子关系
         /// </summary>
-        /// <param name="permission"></param>
+        /// <param name="subfamily"></param>
         /// <returns></returns>
-        public int UpdatePermission(Permission permission)
+        public int UpdateSubfamily(Subfamily subfamily)
         {
-            factoryDBcontext.Entry(permission).State = System.Data.Entity.EntityState.Modified;
+            factoryDBcontext.Entry(subfamily).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
     }

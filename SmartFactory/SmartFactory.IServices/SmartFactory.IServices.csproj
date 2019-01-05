@@ -62,17 +62,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
+    <Compile Include="IFacilityGeneral.cs" />
+    <Compile Include="IHostServices.cs" />
+    <Compile Include="IMaintenanceOrderServices.cs" />
     <Compile Include="IPermissionRoleServices.cs" />
     <Compile Include="IPermissionServices.cs" />
+    <Compile Include="IPumpServices.cs" />
+    <Compile Include="ISpecification.cs" />
+    <Compile Include="IStationServices.cs" />
+    <Compile Include="ISubfamilyServices.cs" />
     <Compile Include="IUsersRoleServices.cs" />
     <Compile Include="IUsersServices.cs" />
-
     <Compile Include="IFacilityManuFacturer.cs" />
-    <Compile Include="IUsers.cs" />
-
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRoleServices.cs" />
+    <Compile Include="IUnitServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
