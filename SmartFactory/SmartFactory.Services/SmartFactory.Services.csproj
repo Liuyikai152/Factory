@@ -62,7 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyCodeServices.cs" />
     <Compile Include="FactoryDBcontext.cs" />
+    <Compile Include="PlanfactoryServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersServices.cs" />
   </ItemGroup>

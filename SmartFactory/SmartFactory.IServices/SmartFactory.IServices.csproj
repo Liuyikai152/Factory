@@ -62,6 +62,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IActivityServices.cs" />
+    <Compile Include="IApprovalNodeServices.cs" />
+    <Compile Include="IBusinesServices.cs" />
+    <Compile Include="ICompanyCodeServices.cs" />
+    <Compile Include="IFactoryAreaServices.cs" />
+    <Compile Include="ILocalionServices.cs" />
+    <Compile Include="ILocaTypeServices.cs" />
+    <Compile Include="IPlanfactoryServices.cs" />
+    <Compile Include="IPlangroupServices.cs" />
+    <Compile Include="IServiceGroupServices.cs" />
     <Compile Include="IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
