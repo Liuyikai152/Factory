@@ -149,5 +149,14 @@ namespace SmartFactory.Services
         /// 用户角色关系表
         /// </summary>
         public DbSet<UsersRole> UsersRole { get; set; }
+        /// <summary>
+        /// 设备制造商数据表
+        /// </summary>
+        public DbSet<FacilityManuFacturer> FacilityManuFacturer { get; set; }
+        /// <summary>
+        /// 设备制造商数据表
+        /// </summary>
+        public DbSet<FacilityGeneral> FacilityGeneral { get; set; }
+        
     }
 }
