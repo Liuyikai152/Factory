@@ -33,7 +33,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<LocaTion> GetLocations()
         {
-            var locationList = factoryDBcontext.Database.SqlQuery<LocaTion>("").ToList();
+            var locationList = factoryDBcontext.Database.SqlQuery<LocaTion>("CALL Pro_GetLonTion").ToList();
             return locationList;
         }
     }
