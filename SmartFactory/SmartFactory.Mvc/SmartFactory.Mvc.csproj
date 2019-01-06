@@ -56,6 +56,7 @@
     <Reference Include="MySql.Data.Entity.EF6, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.Entity.6.10.8\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Drawing.Design" />
@@ -420,6 +421,9 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\images\music.png" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\images\upload.png" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\zh-cn.js" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\Bin\Newtonsoft.Json.pdb" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\Bin\Newtonsoft.Json.xml" />
+
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\net.sln" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\php\action_crawler.php" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\php\action_list.php" />
