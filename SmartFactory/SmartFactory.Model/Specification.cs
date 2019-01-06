@@ -23,25 +23,21 @@ namespace SmartFactory.Model
         /// <summary>
         /// 设备编号
         /// </summary>
-        [MaxLength(20)]
         public string FacilityNumber { get; set; }
 
         /// <summary>
         /// 检验年度
         /// </summary>
-        [MaxLength(30)]
         public string AnnualInspection { get; set; }
 
         /// <summary>
         /// 额定电流
         /// </summary>
-        [MaxLength(20)]
         public string RatedCurrent { get; set; }
 
         /// <summary>
         /// 额定电压
         /// </summary>
-        [MaxLength(20)]
         public string NominalVoltage { get; set; }
 
         /// <summary>

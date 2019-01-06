@@ -22,6 +22,7 @@ namespace SmartFactory.Services
         {
             factoryDBcontext.Users.Add(user);
             return factoryDBcontext.SaveChanges();
+
         }
 
         /// <summary>
