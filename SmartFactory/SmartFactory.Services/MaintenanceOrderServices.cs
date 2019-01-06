@@ -51,7 +51,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<MaintenanceOrder> GetMaintenanceOrders()
         {
-            var maintenanceList = factoryDBcontext.MaintenanceOrder.ToList();
+            var maintenanceList = factoryDBcontext.Database.SqlQuery<MaintenanceOrder>("call Pro_GetMaintenanceOrder").ToList();
             return maintenanceList;
         }
 

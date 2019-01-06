@@ -110,7 +110,7 @@
     <Content Include="Global.asax" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\404.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-add.html" />
-    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-list.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\maintenanceorder-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-role-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-role.html" />
@@ -421,11 +421,9 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\images\music.png" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\images\upload.png" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\zh-cn.js" />
-
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\Bin\Newtonsoft.Json.dll" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\Bin\Newtonsoft.Json.pdb" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\Bin\Newtonsoft.Json.xml" />
-
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\net.sln" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\php\action_crawler.php" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\php\action_list.php" />
