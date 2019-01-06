@@ -11,7 +11,7 @@ namespace SmartFactory.IServices
     /// <summary>
     /// 设备/零件数据接口
     /// </summary>
-    public interface IFacility
+    public interface IFacilityServices
     {
         /// <summary>
         /// 查看设备/零件数据

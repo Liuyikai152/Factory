@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 技术参数实现类
     /// </summary>
-    public class SpeciFicationServices:ISpecification
+    public class SpeciFicationServices:ISpecificationServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 

@@ -10,7 +10,7 @@ namespace SmartFactory.IServices
     /// <summary>
     /// 设备位号实现类
     /// </summary>
-    public interface IBitNumber
+    public interface IBitNumberServices
     {
         /// <summary>
         /// 添加设备位号

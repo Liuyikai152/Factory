@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 制造商实现类
     /// </summary>
-    public class FacilityManuFacturerServices:IFacilityManuFacturer
+    public class FacilityManuFacturerServices:IFacilityManuFacturerServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
