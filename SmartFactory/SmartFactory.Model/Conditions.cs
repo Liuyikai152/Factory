@@ -24,7 +24,6 @@ namespace SmartFactory.Model
         /// <summary>
         /// 审批条件
         /// </summary>
-        [MaxLength(20)]
         public string Condition { get; set; }
        
         /// <summary>

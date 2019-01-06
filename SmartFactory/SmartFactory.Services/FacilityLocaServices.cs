@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 位置信息方法
     /// </summary>
-    public class FacilityLocaServices:IFacilityLoca
+    public class FacilityLocaServices:IFacilityLocaServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 

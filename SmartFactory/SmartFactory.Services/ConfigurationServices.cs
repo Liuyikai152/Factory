@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 审批流程配置实现类
     /// </summary>
-    public class ConfigurationServices
+    public class ConfigurationServices:IConfigurationsServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 

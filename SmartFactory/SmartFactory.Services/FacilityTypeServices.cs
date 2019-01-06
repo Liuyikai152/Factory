@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 设备种类实现类
     /// </summary>
-    public class FacilityTypeServices:IFacilityType
+    public class FacilityTypeServices:IFacilityTypeServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 

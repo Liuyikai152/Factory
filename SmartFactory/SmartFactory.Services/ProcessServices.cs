@@ -9,7 +9,7 @@ namespace SmartFactory.Services
     using SmartFactory.Model;
     using SmartFactory.IServices;
 
-    public class ProcessServices:IProcess
+    public class ProcessServices:IProcessServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 

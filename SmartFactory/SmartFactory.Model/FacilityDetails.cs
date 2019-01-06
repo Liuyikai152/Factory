@@ -23,25 +23,21 @@ namespace SmartFactory.Model
         /// <summary>
         /// 设备编号
         /// </summary>
-        [MaxLength(20)]
         public string FacilityNumber { get; set; }
 
         /// <summary>
         /// 设备位号
         /// </summary>
-        [MaxLength(30)]
         public string BitNumber { get; set; }
 
         /// <summary>
         /// 设备种类
         /// </summary>
-        [MaxLength(20)]
         public string FacilityKind { get; set; }
 
         /// <summary>
         /// ABC标识
         /// </summary>
-        [MaxLength(20)]
         public string ABCSign { get; set; }
 
         /// <summary>
@@ -57,7 +53,6 @@ namespace SmartFactory.Model
         /// <summary>
         /// 特殊分类
         /// </summary>
-        [MaxLength(20)]
         public string SpecialType { get; set; }
 
         /// <summary>

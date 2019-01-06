@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 审批状态实现类
     /// </summary>
-    public class StatusServices:IStatus
+    public class StatusServices:IStatusServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 

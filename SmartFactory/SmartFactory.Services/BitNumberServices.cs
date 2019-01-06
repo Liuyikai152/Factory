@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 设备位号实现类
     /// </summary>
-    public class BitNumberServices:IBitNumber
+    public class BitNumberServices:IBitNumberServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 

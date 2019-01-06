@@ -29,7 +29,6 @@ namespace SmartFactory.Model
         /// <summary>
         /// 创建人
         /// </summary>
-        [MaxLength(20)]
         public string Creator { get; set; }
 
         /// <summary>

@@ -24,13 +24,11 @@ namespace SmartFactory.Model
         /// <summary>
         /// 区域名称
         /// </summary>
-        [MaxLength(20)]
         public string AreaName { get; set; }
 
         /// <summary>
         /// 区域编号
         /// </summary>
-        [MaxLength(20)]
         public string AreaNumber { get; set; }
     }
 }

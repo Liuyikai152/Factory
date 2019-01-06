@@ -34,7 +34,6 @@ namespace SmartFactory.Model
         /// <summary>
         /// 配置流程编码
         /// </summary>
-        [MaxLength(20)]
         public string ProcessCode { get; set; }
 
         /// <summary>
@@ -70,7 +69,6 @@ namespace SmartFactory.Model
         /// <summary>
         /// 创建人
         /// </summary>
-        [MaxLength(20)]
         public string Creator { get; set; }
 
         /// <summary>
