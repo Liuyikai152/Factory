@@ -69,6 +69,7 @@
     <Compile Include="CompanyCode.cs" />
     <Compile Include="Facility.cs" />
     <Compile Include="FacilityDetails.cs" />
+    <Compile Include="FacilityGeneral.cs" />
     <Compile Include="FacilityLoca.cs" />
     <Compile Include="FacilityManuFacturer.cs" />
     <Compile Include="FacilityType.cs" />
