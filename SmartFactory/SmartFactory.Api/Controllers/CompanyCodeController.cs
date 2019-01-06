@@ -15,7 +15,9 @@ using SmartFactory.Services;
 
 namespace SmartFactory.Api.Controllers
 {
-
+    /// <summary>
+    /// 公司编号
+    /// </summary>
     public class CompanyCodeController : ApiController
     {
          public ICompanyCodeServices companyCodeServices { get; set; }
