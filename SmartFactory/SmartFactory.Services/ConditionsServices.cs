@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 审批条件实现类
     /// </summary>
-    public class ConditionsServices:IConditions
+    public class ConditionsServices:IConditionsServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 

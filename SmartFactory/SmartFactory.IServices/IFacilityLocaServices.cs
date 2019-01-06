@@ -7,26 +7,31 @@ using System.Threading.Tasks;
 namespace SmartFactory.IServices
 {
     using SmartFactory.Model;
-    public interface IConfigurations
+
+    /// <summary>
+    /// 设备位置接口
+    /// </summary>
+    public interface IFacilityLocaServices
     {
         /// <summary>
-        /// 添加审批流程配置
+        /// 添加位置信息
         /// </summary>
         /// <param name="facilitymanu"></param>
         /// <returns></returns>
-        int AddConfiguration(Configuration configuration);
+        int AddFacilityLoca(FacilityLoca facilityloca);
 
         /// <summary>
-        /// 查看审批活动
-        /// </summary>
-        /// <returns></returns>
-        List<Configuration> GetActivities();
-
-        /// <summary>
-        /// 删除审批活动
+        /// 查看位置信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        int DeleteConfiguration(int id);
+        List<FacilityLoca> GetFacilityLoca();
+
+        /// <summary>
+        /// 删除位置信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        int DeleteFacilityLoca(int id);
     }
 }

@@ -11,7 +11,7 @@ namespace SmartFactory.IServices
     /// <summary>
     /// 审批状态接口
     /// </summary>
-   public interface IStatus
+   public interface IStatusServices
     {
         /// <summary>
         /// 显示审批状态

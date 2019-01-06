@@ -10,7 +10,7 @@ namespace SmartFactory.IServices
     /// <summary>
     /// 
     /// </summary>
-    public interface IFacilityDetails
+    public interface IFacilityDetailsServices
     {
         /// <summary>
         /// 查询设备/零件详情

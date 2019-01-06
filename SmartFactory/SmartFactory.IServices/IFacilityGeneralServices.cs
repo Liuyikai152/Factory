@@ -3,35 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SmartFactory.Model;
 namespace SmartFactory.IServices
 {
     using SmartFactory.Model;
-
-    /// <summary>
-    /// 设备位置接口
-    /// </summary>
-    public interface IFacilityLoca
+   public interface IFacilityGeneralServices
     {
         /// <summary>
-        /// 添加位置信息
+        /// 添加制造商
         /// </summary>
-        /// <param name="facilitymanu"></param>
+        /// <param name="facilitygeneral"></param>
         /// <returns></returns>
-        int AddFacilityLoca(FacilityLoca facilityloca);
+        int AddFacilityGeneral(FacilityGeneral facilitygeneral);
 
         /// <summary>
-        /// 查看位置信息
+        /// 根据ID查制造商
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        List<FacilityLoca> GetFacilityLoca();
+        FacilityGeneral GetFacilityGeneralByID(string facilityNumber);
 
         /// <summary>
-        /// 删除位置信息
+        /// 删除制造商
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        int DeleteFacilityLoca(int id);
+        int DeleteFacilityGeneral(int id);
     }
 }

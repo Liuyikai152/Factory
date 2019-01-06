@@ -11,7 +11,7 @@ namespace SmartFactory.IServices
     /// <summary>
     /// 审批条件接口
     /// </summary>
-    public interface IConditions
+    public interface IConditionsServices
     {
         /// <summary>
         /// 显示审批条件

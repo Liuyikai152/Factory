@@ -11,7 +11,7 @@ namespace SmartFactory.IServices
     /// <summary>
     /// 审批流程接口
     /// </summary>
-    public interface IProcess
+    public interface IProcessServices
     {
         /// <summary>
         /// 显示审批流程

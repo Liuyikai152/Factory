@@ -7,31 +7,26 @@ using System.Threading.Tasks;
 namespace SmartFactory.IServices
 {
     using SmartFactory.Model;
-
-    /// <summary>
-    /// 制造商接口
-    /// </summary>
-    public interface IFacilityManuFacturer
+    public interface IConfigurationsServices
     {
         /// <summary>
-        /// 添加制造商
+        /// 添加审批流程配置
         /// </summary>
         /// <param name="facilitymanu"></param>
         /// <returns></returns>
-        int AddFacilityManu(FacilityManuFacturer facilitymanu);
+        int AddConfiguration(Configuration configuration);
 
         /// <summary>
-        /// 根据ID查制造商
+        /// 查看审批活动
+        /// </summary>
+        /// <returns></returns>
+        List<Configuration> GetActivities();
+
+        /// <summary>
+        /// 删除审批活动
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        FacilityManuFacturer GetFacilityManuByID(string facilityNumber);
-
-        /// <summary>
-        /// 删除制造商
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        int DeleteFacilityManu(int id);
+        int DeleteConfiguration(int id);
     }
 }
