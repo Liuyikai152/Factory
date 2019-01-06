@@ -9,29 +9,29 @@ namespace SmartFactory.IServices
     using SmartFactory.Model;
 
     /// <summary>
-    /// 制造商接口
+    /// 技术参数接口
     /// </summary>
-    public interface IFacilityManuFacturer
+    public interface ISpecificationServices
     {
         /// <summary>
-        /// 添加制造商
+        /// 添加技术参数
         /// </summary>
         /// <param name="facilitymanu"></param>
         /// <returns></returns>
-        int AddFacilityManu(FacilityManuFacturer facilitymanu);
+        int AddSpecification(Specification specification);
 
         /// <summary>
-        /// 根据ID查制造商
+        /// 根据ID查技术参数
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        FacilityManuFacturer GetWareHouseByID(string facilityNumber);
+        Specification GetSpecificationByID(string facilityNumber);
 
         /// <summary>
-        /// 删除制造商
+        /// 删除技术参数
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        int DeleteFacilityManu(int id);
+        int DeleteSpecification(int id);
     }
 }

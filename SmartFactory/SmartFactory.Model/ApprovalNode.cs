@@ -24,13 +24,11 @@ namespace SmartFactory.Model
         /// <summary>
         /// 节点名称
         /// </summary>
-        [MaxLength(20)]
         public int NodeName { get; set; }
 
         /// <summary>
         /// 创建人
         /// </summary>
-        [MaxLength(20)]
         public string Creator { get; set; }
 
         /// <summary>

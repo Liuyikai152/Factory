@@ -3,32 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SmartFactory.Model;
 namespace SmartFactory.IServices
 {
     using SmartFactory.Model;
-
-    /// <summary>
-    /// 技术参数接口
-    /// </summary>
-    public interface ISpecification
+   public interface IFacilityGeneralServices
     {
         /// <summary>
-        /// 添加技术参数
+        /// 添加制造商
         /// </summary>
-        /// <param name="facilitymanu"></param>
+        /// <param name="facilitygeneral"></param>
         /// <returns></returns>
-        int AddSpecification(Specification specification);
+        int AddFacilityGeneral(FacilityGeneral facilitygeneral);
 
         /// <summary>
-        /// 根据ID查技术参数
+        /// 根据ID查制造商
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Specification GetSpecificationByID(string facilityNumber);
+        FacilityGeneral GetFacilityGeneralByID(string facilityNumber);
 
         /// <summary>
-        /// 删除技术参数
+        /// 删除制造商
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

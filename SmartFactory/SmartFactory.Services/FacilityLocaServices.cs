@@ -12,7 +12,7 @@ namespace SmartFactory.Services
     /// <summary>
     /// 位置信息方法
     /// </summary>
-    public class FacilityLocaServices
+    public class FacilityLocaServices:IFacilityLocaServices
     {
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
@@ -21,7 +21,7 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="facilitymanu"></param>
         /// <returns></returns>
-        public int AddSpecification(FacilityLoca facilityloca)
+        public int AddFacilityLoca(FacilityLoca facilityloca)
         {
             factoryDBcontext.FacilityLoca.Add(facilityloca);
             return factoryDBcontext.SaveChanges();
@@ -32,7 +32,7 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<FacilityLoca> GetFacilityloca()
+        public List<FacilityLoca> GetFacilityLoca()
         {
             var getFacilityLoca = from facilityloca in factoryDBcontext.FacilityLoca.ToList() select facilityloca;
             return getFacilityLoca.ToList();

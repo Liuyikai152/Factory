@@ -25,13 +25,11 @@ namespace SmartFactory.Model
         /// <summary>
         /// 位置名称
         /// </summary>
-        [MaxLength(20)]
         public string LocalName { get; set; }
 
         /// <summary>
         /// 位置名称
         /// </summary>
-        [MaxLength(20)]
         public string LocalNumber { get; set; }
     }
 }

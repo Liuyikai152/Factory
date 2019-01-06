@@ -23,37 +23,31 @@ namespace SmartFactory.Model
         /// <summary>
         /// 机泵编号
         /// </summary>
-        [MaxLength(50)]
         public string PumpNumber { get; set; }
 
         /// <summary>
         /// 机泵名称
         /// </summary>
-        [MaxLength(50)]
         public string PumpName { get; set; }
 
         /// <summary>
         /// 机泵负责人
         /// </summary>
-        [MaxLength(50)]
         public string Principal { get; set; }
 
         /// <summary>
         /// 机泵图片
         /// </summary>
-        [MaxLength(50)]
         public string StructureImg { get; set; }
 
         /// <summary>
         /// 机泵描述
         /// </summary>
-        [MaxLength(50)]
         public string Describe { get; set; }
 
         /// <summary>
         /// 所属装置
         /// </summary>
-        [MaxLength(50)]
         public string Device { get; set; }
 
         /// <summary>

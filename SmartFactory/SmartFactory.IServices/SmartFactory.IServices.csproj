@@ -62,9 +62,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IFacilityManuFacturer.cs" />
-    <Compile Include="IUsers.cs" />
+    <Compile Include="IBitNumberServices.cs" />
+    <Compile Include="IConditionsServices.cs" />
+    <Compile Include="IConfigurationsServices.cs" />
+    <Compile Include="IFacilityServices.cs" />
+    <Compile Include="IFacilityDetailsServices.cs" />
+    <Compile Include="IFacilityGeneralServices.cs" />
+    <Compile Include="IFacilityLocaServices.cs" />
+    <Compile Include="IFacilityTypeServices.cs" />
+    <Compile Include="IHostServices.cs" />
+    <Compile Include="IMaintenanceOrderServices.cs" />
+    <Compile Include="IPermissionRoleServices.cs" />
+    <Compile Include="IPermissionServices.cs" />
+    <Compile Include="IProcessServices.cs" />
+    <Compile Include="IPumpServices.cs" />
+    <Compile Include="ISpecificationServices.cs" />
+    <Compile Include="IStationServices.cs" />
+    <Compile Include="IStatusServices.cs" />
+    <Compile Include="ISubfamilyServices.cs" />
+    <Compile Include="IUsersRoleServices.cs" />
+    <Compile Include="IUsersServices.cs" />
+    <Compile Include="IFacilityManuFacturerServices.cs" />
+    <Compile Include="IActivityServices.cs" />
+    <Compile Include="IApprovalNodeServices.cs" />
+    <Compile Include="IBusinesServices.cs" />
+    <Compile Include="ICompanyCodeServices.cs" />
+    <Compile Include="IFactoryAreaServices.cs" />
+    <Compile Include="ILocalionServices.cs" />
+    <Compile Include="ILocaTypeServices.cs" />
+    <Compile Include="IPlanfactoryServices.cs" />
+    <Compile Include="IPlangroupServices.cs" />
+    <Compile Include="IServiceGroupServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IRoleServices.cs" />
+    <Compile Include="IUnitServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

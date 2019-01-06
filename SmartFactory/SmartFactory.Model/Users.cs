@@ -28,31 +28,26 @@ namespace SmartFactory.Model
         /// <summary>
         /// 用户密码
         /// </summary>
-        [MaxLength(50)]
         public string PassWord { get; set; }
 
         /// <summary>
         /// 角色id
         /// </summary>
-        [MaxLength(50)]
         public string RoleId { get; set; }
 
         /// <summary>
         /// 角色名
         /// </summary>
-        [MaxLength(50)]
         public string RoleName { get; set; }
 
         /// <summary>
         /// 权限路径
         /// </summary>
-        [MaxLength(100)]
         public string PermissionUrl { get; set; }
 
         /// <summary>
         /// 权限名称
         /// </summary>
-        [MaxLength(50)]
         public string Name { get; set; }
     }
 }

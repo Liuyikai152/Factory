@@ -24,13 +24,11 @@ namespace SmartFactory.Model
         /// <summary>
         /// 工厂名称
         /// </summary>
-        [MaxLength(20)]
         public string FactoryName { get; set; }
       
         /// <summary>
         /// 工厂编号
         /// </summary>
-        [MaxLength(20)]
         public string FactoryNumber { get; set; }
     
         /// <summary>

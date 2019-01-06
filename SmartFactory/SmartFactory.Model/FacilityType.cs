@@ -20,10 +20,11 @@ namespace SmartFactory.Model
         [Key]
         public int ID { get; set; }
 
+        public string FacilityNumber { get; set; }
+
         /// <summary>
         /// 设备位号
         /// </summary>
-        [MaxLength(20)]
         public string TypeName { get; set; }
     }
 }
