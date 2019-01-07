@@ -63,7 +63,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<Users> GetUsers()
         {
-            var userList= factoryDBcontext.Users.ToList();
+            var userList= factoryDBcontext.Database.SqlQuery<Users>("call Pro_GetUsers").ToList();
             return userList;
         }
 

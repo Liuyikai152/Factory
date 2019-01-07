@@ -33,12 +33,22 @@ namespace SmartFactory.Api.Controllers
         [HttpGet]
         public List<MaintenanceOrder> GetMaintenanceOrders()
         {
-
             var mainlist = maintenanceOrderServices.GetMaintenanceOrders();
             return mainlist;
         }
 
-
+        /// <summary>
+        /// 获取单个ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("GetById")]
+        [HttpGet]
+        public MaintenanceOrder GetById(int id)
+        {
+            var i = maintenanceOrderServices.GetById(id);
+            return i;
+        }
 
     }
 }

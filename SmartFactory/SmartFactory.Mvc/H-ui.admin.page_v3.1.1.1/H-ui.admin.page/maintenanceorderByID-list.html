@@ -2,83 +2,31 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="Bookmark" href="favicon.ico">
-    <link rel="Shortcut Icon" href="favicon.ico" />
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="lib/html5.js"></script>
-    <script type="text/javascript" src="lib/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
-    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
-    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
-    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
-    <style>
-        .page-bar {
-            margin: 40px;
-        }
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="favicon.ico" >
+<link rel="Shortcut Icon" href="favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
 
-        ul, li {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        li {
-            list-style: none
-        }
-
-        .page-bar li:first-child > a {
-            margin-left: 0px
-        }
-
-        .page-bar a {
-            border: 1px solid #ddd;
-            text-decoration: none;
-            position: relative;
-            float: left;
-            padding: 6px 12px;
-            margin-left: -1px;
-            line-height: 1.42857143;
-            color: #337ab7;
-            cursor: pointer
-        }
-
-            .page-bar a:hover {
-                background-color: #eee;
-            }
-
-            .page-bar a.banclick {
-                cursor: not-allowed;
-            }
-
-        .page-bar .active a {
-            color: #fff;
-            cursor: default;
-            background-color: #337ab7;
-            border-color: #337ab7;
-        }
-
-        .page-bar i {
-            font-style: normal;
-            color: #d44950;
-            margin: 0px 4px;
-            font-size: 12px;
-        }
-    </style>
-    <!--[if IE 6]>
-    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-    <script>DD_belatedPNG.fix('*');</script>
-    <![endif]-->
-    <!--/meta 作为公共模版分离出去-->
-
-    <title>管理员列表 - 管理员列表 - H-ui.admin v3.0</title>
-    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+<title>管理员列表 - 管理员列表 - H-ui.admin v3.0</title>
+<meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
     <!--_header 作为公共模版分离出去-->
@@ -263,7 +211,7 @@
                             <th width="100">故障位置</th>
                             <th width="100">故障发生时间</th>
                             <th width="100">处理完成时间</th>
-                            <th width="100">停机时间</th>
+                            <th width="100">停机时间(h)</th>
                             <th width="150">故障现象及处理过程</th>
                             <th width="100">操作</th>
                         </tr>
@@ -281,23 +229,10 @@
                             <th>{{test.CompletionTime}}</th>
                             <th>{{test.DownTime}}</th>
                             <th>{{test.HandlingMethod}}</th>
-                            <th><a href='maintenanceorderByID-list.html?id={{test.ID}}' >查看</a></th>
+                            <th><a href="#">查看</a></th>
                         </tr>
                     </thead>
                 </table>
-
-                <div class="page-bar">
-                    <ul>
-                        <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
-                        <li v-if="cur==1"><a class="banclick">上一页</a></li>
-                        <li v-for="index in indexs" v-bind:class="{ 'active': cur == index}">
-                            <a v-on:click="btnClick(index)">{{ index }}</a>
-                        </li>
-                        <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
-                        <li v-if="cur == all"><a class="banclick">下一页</a></li>
-                        <li><a>共<i>{{all}}</i>页</a></li>
-                    </ul>
-                </div>
             </article>
         </div>
     </section>
@@ -312,17 +247,16 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-
+    <script src="../../Scripts/GetParse.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
     <script type="text/javascript">
-
+    
         var vm = new Vue({
             el: "#app",
             data: {
-                all: 8,
-                cur:1,
+                mainId: getPar("id"),
                 apiUrl: 'http://localhost:8066/MaintenanceOrder/',
                 testdata: {}
             },
@@ -331,44 +265,17 @@
             },
             methods: {
                 getTests: function () {
-                    this.$http.get(this.apiUrl +'GetMaintenanceOrders', function (data) {
+                    this.$http.get(this.apiUrl + 'GetById?id=' + this.mainId, function (data) {
                         this.$set('tests', data);
                     })
                 },
 
 
             },
-            //计算属性
-            computed: {
-                indexs: function () {
-                    var left = 1;
-                    var right = this.all;
-                    var ar = [];
-                    if (this.all >= 5) {
-                        if (this.cur > 3 && this.cur < this.all - 2) {
-                            left = this.cur - 2
-                            right = this.cur + 2
-                        } else {
-                            if (this.cur <= 3) {
-                                left = 1
-                                right = 5
-                            } else {
-                                right = this.all
-                                left = this.all - 4
-                            }
-                        }
-                    }
-                    while (left <= right) {
-                        ar.push(left)
-                        left++
-                    }
-                    return ar
-                }
 
-            }
         });
 
-      
+
         /*
             参数解释：
             title	标题
@@ -391,7 +298,7 @@
             });
         }
         /*管理员-编辑*/
-        function admin_edit(title, url, w, h) {
+        function admin_edit(title, url, id, w, h) {
             layer_show(title, url, w, h);
         }
         /*管理员-停用*/
