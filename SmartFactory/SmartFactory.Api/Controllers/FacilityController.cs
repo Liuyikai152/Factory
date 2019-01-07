@@ -23,15 +23,12 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetFacility")]
-        public string GetFacility(int  Page=1)
+        public List<FacilityNotMapp> GetFacility()
         {
-            var List<Facility> facilitiesList = FacilityServices.GetFacility();
-            PageBox pagebox = new PageBox();
-            pagebox.PageIndex = Page;
-            pagebox.PageCount = facilitiesList.Count / PAGESIZE + (facilitiesList.Count % PAGESIZE == 0 ? 0 : 1);
-            pagebox.Data = facilitiesList.Skip((Page - 1) * PAGESIZE).Take(PAGESIZE);
-            var json = JsonConvert.SerializeObject(pagebox);
-            return json;
-        }
+
+            var facilitylist = FacilityServices.GetFacility();
+            return facilitylist;
+
+        }   
     }
 }
