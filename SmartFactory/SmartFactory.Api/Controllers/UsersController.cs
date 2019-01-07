@@ -15,7 +15,7 @@ namespace SmartFactory.Api.Controllers
     public class UsersController : ApiController
     {
 
-        public IUsersServices userservices { get; set; }
+        public IUsersServices usersServices { get; set; }
 
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace SmartFactory.Api.Controllers
         [HttpGet]
         public List<Users> GetUsers()
         {
-            var userList = userservices.GetUsers();
+            var userList = usersServices.GetUsers();
             return userList;
         }
 
@@ -40,7 +40,7 @@ namespace SmartFactory.Api.Controllers
         [HttpGet]
         public int Login(string userName, string passWord)
         {
-            int result = userservices.Login(userName, passWord);
+            int result = usersServices.Login(userName, passWord);
             return result;
         }
     }
