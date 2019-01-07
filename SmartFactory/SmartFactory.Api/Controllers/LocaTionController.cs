@@ -22,11 +22,24 @@ namespace SmartFactory.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetLocaTion")]
-        public List<LocaTion> GetLocaTion()
+        [Route("GetLocaTions")]
+        public List<LocationNotMapped> GetLocaTions()
         {
             var locaTionList = localionServices.GetLocations();
             return locaTionList;
+        }
+
+        /// <summary>
+        /// 查看单个位置详情
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetLocationById")]
+        public LocationNotMapped GetLocationById(int id)
+        {
+            var i = localionServices.GetLocationById(id);
+            return i;
         }
     }
 }
