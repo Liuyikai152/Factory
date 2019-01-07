@@ -72,6 +72,7 @@
     <Compile Include="FacilityGeneral.cs" />
     <Compile Include="FacilityLoca.cs" />
     <Compile Include="FacilityManuFacturer.cs" />
+    <Compile Include="FacilityNotMapp.cs" />
     <Compile Include="FacilityType.cs" />
     <Compile Include="FactoryEnum.cs" />
     <Compile Include="Host.cs" />
