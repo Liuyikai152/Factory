@@ -83,7 +83,6 @@
     <Compile Include="PermissionRoleServices.cs" />
     <Compile Include="PermissionServices.cs" />
     <Compile Include="CompanyCodeServices.cs" />
-   
     <Compile Include="PlanfactoryServices.cs" />
     <Compile Include="PlangroupServices.cs" />
     <Compile Include="ProcessServices.cs" />
