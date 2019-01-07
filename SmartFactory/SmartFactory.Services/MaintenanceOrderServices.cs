@@ -23,25 +23,16 @@ namespace SmartFactory.Services
             return factoryDBcontext.SaveChanges();
         }
 
-        /// <summary>
-        /// 删除维修工单
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int DeleteMaintenanceOrder(int id)
-        {
-            factoryDBcontext.MaintenanceOrder.Remove(GetById(id));
-            return factoryDBcontext.SaveChanges();
-        }
+     
 
         /// <summary>
         /// 获取单个ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public MaintenanceOrder GetById(int id)
+        public MaintenanceOrderNotMap GetById(int id)
         {
-            var i = factoryDBcontext.Database.SqlQuery<MaintenanceOrder>("call Pro_GetMaintenanceOrder").Where(n => n.ID.Equals(id)).FirstOrDefault() ;
+            var i = factoryDBcontext.Database.SqlQuery<MaintenanceOrderNotMap>("call Pro_GetMaintenanceOrder").Where(n => n.ID.Equals(id)).FirstOrDefault() ;
             return i;
         }
 
@@ -49,9 +40,9 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
-        public List<MaintenanceOrder> GetMaintenanceOrders()
+        public List<MaintenanceOrderNotMap> GetMaintenanceOrders()
         {
-            var maintenanceList = factoryDBcontext.Database.SqlQuery<MaintenanceOrder>("call Pro_GetMaintenanceOrder").ToList();
+            var maintenanceList = factoryDBcontext.Database.SqlQuery<MaintenanceOrderNotMap> ("call Pro_GetMaintenanceOrder").ToList();
             return maintenanceList;
         }
 
