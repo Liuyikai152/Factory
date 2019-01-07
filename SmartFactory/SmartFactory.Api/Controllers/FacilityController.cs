@@ -25,8 +25,10 @@ namespace SmartFactory.Api.Controllers
         [Route("GetFacility")]
         public List<FacilityNotMapp> GetFacility()
         {
+
             var facilitylist = FacilityServices.GetFacility();
             return facilitylist;
+
         }
     }
 }
