@@ -20,9 +20,10 @@ namespace SmartFactory.Services
         /// 查看设备/零件数据
         /// </summary>
         /// <returns></returns>
-        List<FacilityNotMapp> IFacilityServices.GetFacility()
+        public List<FacilityNotMapp> GetFacility()
         {
-            throw new NotImplementedException();
+            var facilitylist = factoryDBcontext.Database.SqlQuery<FacilityNotMapp>("CALL pro_getFacilitys").ToList();
+            return facilitylist;
         }
     }
 }
