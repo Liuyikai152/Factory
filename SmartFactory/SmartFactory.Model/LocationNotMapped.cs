@@ -65,6 +65,10 @@ namespace SmartFactory.Model
         public string ServiceName { get; set; }
 
         /// <summary>
+        /// 工厂区域
+        /// </summary>
+        public string FactoryArea { get; set; }
+        /// <summary>
         /// 成本工厂
         /// </summary>
         public string FactoryName3 { get; set; }
