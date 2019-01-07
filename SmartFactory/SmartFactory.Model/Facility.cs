@@ -64,12 +64,12 @@ namespace SmartFactory.Model
         /// <summary>
         /// 位置类型
         /// </summary>
-        public string LocaType { get; set; }
+        //public string LocaType { get; set; }
 
         /// <summary>
         /// 位置状态
         /// </summary>
-        public FactoryEnum LocaState { get; set; }
+        //public FactoryEnum LocaState { get; set; }
 
         /// <summary>
         /// 开始日期
@@ -101,5 +101,20 @@ namespace SmartFactory.Model
         /// </summary>
 
         public string ServiceNumber { get; set; }
+
+        /// <summary>
+        /// 是否报警
+        /// </summary>
+        public int IsSiren { get; set; }
+
+        /// <summary>
+        /// 设备种类
+        /// </summary>
+        public string FacilityType { get; set; }
+
+        /// <summary>
+        /// 设备安装位置
+        /// </summary>
+        public string FacilityLoca { get; set; }
     }
 }
