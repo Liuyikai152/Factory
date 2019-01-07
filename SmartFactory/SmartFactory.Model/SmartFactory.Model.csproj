@@ -76,6 +76,7 @@
     <Compile Include="FactoryEnum.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="LocaTion.cs" />
+    <Compile Include="LocationNotMapped.cs" />
     <Compile Include="LocaType.cs" />
     <Compile Include="MaintenanceOrder.cs" />
     <Compile Include="PageBox.cs" />

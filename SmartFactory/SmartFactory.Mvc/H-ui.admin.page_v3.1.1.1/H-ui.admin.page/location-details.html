@@ -23,9 +23,7 @@
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>会员列表 - 会员管理 - H-ui.admin v3.0</title>
-    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+    <title>品牌管理</title>
 </head>
 <body>
     <!--_header 作为公共模版分离出去-->
@@ -96,10 +94,10 @@
                 </dd>
             </dl>
             <dl id="menu-product">
-                <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-                <dd>
+                <dt class="selected"><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dd style="display: block;">
                     <ul>
-                        <li><a href="product-brand.html" title="品牌管理">品牌管理</a></li>
+                        <li class="current"><a href="product-brand.html" title="品牌管理">品牌管理</a></li>
                         <li><a href="product-category.html" title="分类管理">分类管理</a></li>
                         <li><a href="product-list.html" title="产品管理">产品管理</a></li>
                     </ul>
@@ -115,10 +113,10 @@
                 </dd>
             </dl>
             <dl id="menu-member">
-                <dt class="selected"><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-                <dd style="display: block;">
+                <dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dd>
                     <ul>
-                        <li class="current"><a href="member-list.html" title="会员列表">会员列表</a></li>
+                        <li><a href="member-list.html" title="会员列表">会员列表</a></li>
                         <li><a href="member-del.html" title="删除的会员">删除的会员</a></li>
                         <li><a href="member-level.html" title="等级管理">等级管理</a></li>
                         <li><a href="member-scoreoperation.html" title="积分管理">积分管理</a></li>
@@ -170,39 +168,60 @@
     <!--/_menu 作为公共模版分离出去-->
 
     <section class="Hui-article-box">
-        <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 会员列表<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+        <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 品牌管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
         <div class="Hui-article" id="app">
             <article class="cl pd-20">
+                <a href="location-list.html" class="btn btn-primary radius"><i class="Hui-iconfont"></i>返 回</a>
                 <div class="mt-20">
-                    <table class="table table-border table-bordered table-hover table-bg table-sort" >
-                        <thead>
-                            <tr class="text-c">
-                                <th width="80">位置编码</th>
-                                <th width="80">位置名称</th>
-                                <th width="80">公司名称</th>
-                                <th width="80">计划工厂</th>
-                                <th width="80">维护工厂</th>
-                                <th width="80">工厂区域</th>
-                                <th width="80">计划员组</th>
-                                <th width="80">维护班组</th>
-                                <th width="80">成本工厂</th>
-                                <th width="80">查看</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-c" v-for="test in tests">
-                                <td>{{test.LocaNumber}}</td>
-                                <td>{{test.LocalName}}</td>
-                                <td>{{test.CompanyName}}</td>
-                                <td>{{test.FactoryName1}}</td>
-                                <td>{{test.FactoryName2}}</td>
-                                <td>{{test.AreaName}}</td>
-                                <td>{{test.GroupName}}</td>
-                                <td>{{test.ServiceName}}</td>
-                                <td>{{test.FactoryName3}}</td>
-                                <td><a href="location-details.html?id={{test.ID}}">查看</a></td>
-                            </tr>
-                        </tbody>
+                    <table class="table table-border table-bordered table-hover table-bg table-sort">
+                        <tr class="text-c">
+                            <td>位置编码:</td>
+                            <td>{{test.LocaNumber}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>公司名称:</td>
+                            <td>{{test.CompanyName}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>计划工厂:</td>
+                            <td>{{test.FactoryName1}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>工厂区域:</td>
+                            <td>{{test.AreaName}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>开始日期:</td>
+                            <td>{{test.StartDate}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>位置名称:</td>
+                            <td>{{test.AreaName}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>维护工厂:</td>
+                            <td>{{test.FactoryName2}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>计划员组:</td>
+                            <td>{{test.GroupName}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>维护班组:</td>
+                            <td>{{test.ServiceName}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>位置状态:</td>
+                            <td>{{test.LocaState==1?"启用":"禁用"}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>成本工厂:</td>
+                            <td>{{test.FactoryName3}}</td>
+                        </tr>
+                        <tr class="text-c">
+                            <td>允许安装位置:</td>
+                            <td>{{test.IsInstall==1?"是":"否"}}</td>
+                        </tr>
                     </table>
                 </div>
             </article>
@@ -218,16 +237,17 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+    <script src="../../Scripts/GetParse.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
     <script type="text/javascript">
         $(function () {
-           // Vue.http.options.emulateJSON = false;
             var demo = new Vue({
                 el: '#app',
                 data: {
-                    tests: [],
-                    apiUrl: 'http://localhost:8066/LocaTion/GetLocaTions',
+
+                    mainId: getPar("id"),
+                    apiUrl: 'http://localhost:8066/LocaTion/',
                     testdata: {}
                 },
                 ready: function () {
@@ -235,13 +255,14 @@
                 },
                 methods: {
                     getTests: function () {
-                        this.$http.get(this.apiUrl, function (data) {
-                            this.$set('tests', data);
+                        this.$http.get(this.apiUrl + 'GetLocationById?id=' + this.mainId, function (data) {
+                            this.$set('test', data);
                         })
                     }
                 }
             })
         });
+
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
