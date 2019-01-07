@@ -187,52 +187,49 @@
             <span class="c-gray en">&gt;</span>
             管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
         </nav>
-        <div class="Hui-article" id="app">
+        <div class="Hui-article" id="app" style="background-color:azure">
             <article class="cl pd-20">
-                <div class="text-c">
-                    日期范围：
-                    <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
-                    -
-                    <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-                    <input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="" name="">
-                    <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
-                </div>
+               
 
-                <table class="table table-border table-bordered table-bg">
-                    <thead>
-                        <tr class="text-c">
-                            <!--<th width="25"><input type="checkbox" name="" value=""></th>-->
-                            <th width="40">序号</th>
-                            <th width="90">通知单号</th>
-                            <th width="90">所属机组/机泵</th>
-                            <th width="90">设备编号</th>
-                            <th width="90">设备名称</th>
-                            <th width="100">故障名称</th>
-                            <th width="100">故障位置</th>
-                            <th width="100">故障发生时间</th>
-                            <th width="100">处理完成时间</th>
-                            <th width="100">停机时间(h)</th>
-                            <th width="150">故障现象及处理过程</th>
-                            <th width="100">操作</th>
-                        </tr>
-                    </thead>
-                    <thead>
-                        <tr v-for="test in tests" class="text-c">
-                            <th>{{test.ID}}</th>
-                            <th>{{test.OrderNumber}}</th>
-                            <th>{{test.Belongs}}</th>
-                            <th>{{test.DeviceNumber}}</th>
-                            <th>{{test.DeviceName}}</th>
-                            <th>{{test.FaultName}}</th>
-                            <th>{{test.FaultPart}}</th>
-                            <th>{{test.HappenTime}}</th>
-                            <th>{{test.CompletionTime}}</th>
-                            <th>{{test.DownTime}}</th>
-                            <th>{{test.HandlingMethod}}</th>
-                            <th><a href="#">查看</a></th>
-                        </tr>
-                    </thead>
-                </table>
+              
+                <div style="margin:100px  auto  auto 150px;">
+
+
+                    <h3><span>所属机组/机泵：</span>{{test.FacilityName}}</h3>
+                    <p style="font-size:18px;">
+                        <span>工单编号：</span> {{test.OrderNumber}} &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>设备编号：</span>{{test.FacilityNumber}} &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>位置编码：</span>{{test.LocaNumber}}
+                    </p>
+                    <h3><span>公司名称：</span>{{test.CompanyName}} </h3>
+                    <p style="font-size:18px;">
+                        <span>计划员组：</span>{{test.GroupName}}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>工厂区域：</span>{{test.AreaName}}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>计划工厂名称：</span>{{test.FactoryName1}} &nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                        <br />
+                        <span>维护班组名称：</span>{{test.ServiceName}}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>成本工厂：</span>{{test.FactoryName3}} &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>维护工厂：</span>{{test.FactoryName2}}
+                    </p>
+
+                    <p style="font-size:18px;">
+                        <span>设备名称：</span>{{test.DeviceName}}  &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>故障名称：</span>{{test.FaultName}} &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>故障部位：</span>{{test.FaultPart}}
+                    </p>
+
+
+                    <p style="font-size:18px;"><span>故障现象及处理过程：</span>{{test.HandlingMethod}}</p>
+
+                    <h3>维修时间</h3>
+                    <p style="font-size:18px;">
+                        <span>故障发生时间：</span>{{test.HappenTime}}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>处理完成时间：</span>{{test.CompletionTime}}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>停机时间：</span>{{test.DownTime}}
+                    </p>
+                </div>
+              
             </article>
         </div>
     </section>
@@ -266,7 +263,7 @@
             methods: {
                 getTests: function () {
                     this.$http.get(this.apiUrl + 'GetById?id=' + this.mainId, function (data) {
-                        this.$set('tests', data);
+                        this.$set('test', data);
                     })
                 },
 

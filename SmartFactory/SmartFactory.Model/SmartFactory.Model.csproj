@@ -80,6 +80,7 @@
     <Compile Include="LocaType.cs" />
     <Compile Include="MaintenanceOrder.cs" />
     <Compile Include="PageBox.cs" />
+    <Compile Include="MaintenanceOrderNotMap.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="PermissionRole.cs" />
     <Compile Include="Conditions.cs" />
