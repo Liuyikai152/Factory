@@ -18,7 +18,7 @@ namespace SmartFactory.Api.Controllers
         public ILocalionServices localionServices { get; set; }
 
         /// <summary>
-        /// 查询所有公司编号
+        /// 查询功能位置信息
         /// </summary>
         /// <returns></returns>
         [HttpGet]
