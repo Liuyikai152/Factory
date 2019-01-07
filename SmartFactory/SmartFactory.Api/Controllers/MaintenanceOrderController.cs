@@ -17,8 +17,6 @@ namespace SmartFactory.Api.Controllers
     /// <summary>
     /// 维修工单
     /// </summary>
-
-
     [RoutePrefix("MaintenanceOrder")]
     public class MaintenanceOrderController : ApiController
     {
