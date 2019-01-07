@@ -17,14 +17,17 @@ namespace SmartFactory.Api.Controllers
 
         public IUsersServices userservices { get; set; }
 
-        [Route("UsersAdd")]
+
+        /// <summary>
+        /// 显示
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetUsers")]
         [HttpGet]
-        public int UsersAdd()
+        public List<Users> GetUsers()
         {
-            Users user = new Users();
-            
-            int i= userservices.AddUsers(user);
-            return i;
+            var userList = userservices.GetUsers();
+            return userList;
         }
     }
 }

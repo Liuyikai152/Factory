@@ -41,7 +41,7 @@ namespace SmartFactory.Api
         public static void SetupResolveRules(ContainerBuilder container)
         {
 
-            container.RegisterType<UsersServices>().As<IUsersServices>();          
+           container.RegisterType<UsersServices>().As<IUsersServices>();          
             container.RegisterType<CompanyCodeServices>().As<ICompanyCodeServices>();
             container.RegisterType<PlanfactoryServices>().As<IPlanfactoryServices>();
             container.RegisterType<FactoryAreaServices>().As<IFactoryAreaServices>();
