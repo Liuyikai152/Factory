@@ -41,7 +41,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public MaintenanceOrder GetById(int id)
         {
-            var i = factoryDBcontext.MaintenanceOrder.Find(id);
+            var i = factoryDBcontext.Database.SqlQuery<MaintenanceOrder>("call Pro_GetMaintenanceOrder").Where(n => n.ID.Equals(id)).FirstOrDefault() ;
             return i;
         }
 
