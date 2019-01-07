@@ -29,5 +29,19 @@ namespace SmartFactory.Api.Controllers
             var userList = userservices.GetUsers();
             return userList;
         }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="passWord"></param>
+        /// <returns></returns>
+        [Route("Login")]
+        [HttpGet]
+        public int Login(string userName, string passWord)
+        {
+            int result = userservices.Login(userName, passWord);
+            return result;
+        }
     }
 }

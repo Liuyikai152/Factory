@@ -51,7 +51,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<Role> GetRoles()
         {
-            var roleList= factoryDBcontext.Role.ToList();
+            var roleList = factoryDBcontext.Database.SqlQuery<Role>("call Pro_GetRole").ToList();
             return roleList;
         }
 
