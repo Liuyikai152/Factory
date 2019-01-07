@@ -31,7 +31,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("GetMaintenanceOrders")]
         [HttpGet]
-        public List<MaintenanceOrder> GetMaintenanceOrders()
+        public List<MaintenanceOrderNotMap> GetMaintenanceOrders()
         {
             var mainlist = maintenanceOrderServices.GetMaintenanceOrders();
             return mainlist;
@@ -44,7 +44,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("GetById")]
         [HttpGet]
-        public MaintenanceOrder GetById(int id)
+        public MaintenanceOrderNotMap GetById(int id)
         {
             var i = maintenanceOrderServices.GetById(id);
             return i;
