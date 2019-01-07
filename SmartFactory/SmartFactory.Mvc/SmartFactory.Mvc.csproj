@@ -56,7 +56,10 @@
     <Reference Include="MySql.Data.Entity.EF6, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.Entity.6.10.8\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SmartFactory.Common\Common\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Drawing.Design" />
@@ -110,7 +113,7 @@
     <Content Include="Global.asax" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\404.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-add.html" />
-    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-list.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\maintenanceorder-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-role-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-role.html" />
@@ -421,11 +424,9 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\images\music.png" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\images\upload.png" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\lang\zh-cn\zh-cn.js" />
-
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\Bin\Newtonsoft.Json.dll" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\Bin\Newtonsoft.Json.pdb" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\Bin\Newtonsoft.Json.xml" />
-
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\net\net.sln" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\php\action_crawler.php" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\ueditor\1.4.3\php\action_list.php" />
@@ -954,13 +955,13 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\login.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-del.html" />
-    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-list.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\location-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-record-browse.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-record-download.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-record-share.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-show.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\picture-add.html" />
-    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\picture-list.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\Facility-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\picture-show.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\product-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\product-brand.html" />

@@ -23,22 +23,23 @@ namespace SmartFactory.Services
         public List<Facility> GetFacility()
         {
 
+            var result = factoryDBcontext.Facility.ToList();
+            return result;
+            //var getFacility = from a in factoryDBcontext.Facility.ToList()
+            //                  join b in factoryDBcontext.FacilityType on
+            //                  a.FacilityNumber equals b.FacilityNumber
+            //                  join c in factoryDBcontext.BitNumber on
+            //                  a.FacilityNumber equals c.FacilityNumber 
+            //                  join d in factoryDBcontext.FacilityLoca on
+            //                  a.FacilityNumber equals d.FacilityNumber
+            //                  join e in factoryDBcontext.Specification on
+            //                  a.FacilityNumber equals e.FacilityNumber
+            //                  join f in factoryDBcontext.FacilityGeneral on
+            //                  a.FacilityNumber equals f.FacilityNumber 
+            //                  join g in factoryDBcontext.FacilityManuFacturer on
+            //                  a.FacilityNumber equals g.FacilityNumber
+            //                  select a;
 
-            var getFacility = from a in factoryDBcontext.Facility.ToList()
-                              join b in factoryDBcontext.FacilityType on
-                              a.FacilityNumber equals b.FacilityNumber
-                              join c in factoryDBcontext.BitNumber on
-                              a.FacilityNumber equals c.FacilityNumber 
-                              join d in factoryDBcontext.FacilityLoca on
-                              a.FacilityNumber equals d.FacilityNumber
-                              join e in factoryDBcontext.Specification on
-                              a.FacilityNumber equals e.FacilityNumber
-                              join f in factoryDBcontext.FacilityGeneral on
-                              a.FacilityNumber equals f.FacilityNumber 
-                              join g in factoryDBcontext.FacilityManuFacturer on
-                              a.FacilityNumber equals g.FacilityNumber
-                              select a;
-            return getFacility.ToList();
         }
     }
 }

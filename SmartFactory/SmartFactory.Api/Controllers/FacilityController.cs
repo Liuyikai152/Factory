@@ -5,28 +5,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-
 using SmartFactory.IServices;
 using SmartFactory.Model;
 using SmartFactory.Services;
-
 namespace SmartFactory.Api.Controllers
 {
-    [RoutePrefix("LocaTion")]
-    public class LocaTionController : ApiController
+    [RoutePrefix("Facility")]
+    public class FacilityController : ApiController
     {
-        public ILocalionServices localionServices { get; set; }
-
+        public IFacilityServices FacilityServices { get; set; }
         /// <summary>
-        /// 查询功能位置信息
+        /// 查看所有零件
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetLocaTion")]
-        public List<LocaTion> GetLocaTion()
+        [Route("GetFacility")]
+        public List<Facility> GetFacility()
         {
-            var locaTionList = localionServices.GetLocations();
-            return locaTionList;
+
+            var getFacility = FacilityServices.GetFacility();
+            return getFacility;
         }
     }
 }

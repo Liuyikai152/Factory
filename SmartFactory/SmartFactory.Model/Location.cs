@@ -43,7 +43,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 维护工厂
         /// </summary>
-        public string MaintainFactory { get; set; }
+        public string MaintainFactory  { get; set; }
 
         /// <summary>
         /// 工作区域
