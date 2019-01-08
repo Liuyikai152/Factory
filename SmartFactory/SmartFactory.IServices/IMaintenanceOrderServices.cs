@@ -35,6 +35,6 @@ namespace SmartFactory.IServices
         /// 显示维修工单
         /// </summary>
         /// <returns></returns>
-        List<MaintenanceOrderNotMap> GetMaintenanceOrders();
+        List<MaintenanceOrderNotMap> GetMaintenanceOrders(string UnitOrPump);
     }
 }

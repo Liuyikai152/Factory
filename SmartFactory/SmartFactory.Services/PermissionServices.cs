@@ -50,7 +50,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<Permission> GetPermissions()
         {
-            var permissionList = factoryDBcontext.Database.SqlQuery<Permission>("call Pro_Getpermission").ToList();
+            var permissionList= factoryDBcontext.Permission.ToList();
             return permissionList;
         }
 

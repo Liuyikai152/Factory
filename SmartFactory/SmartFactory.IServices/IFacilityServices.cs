@@ -17,6 +17,7 @@ namespace SmartFactory.IServices
         /// 查看设备/零件数据
         /// </summary>
         /// <returns></returns>
+
         List<FacilityNotMapp> GetFacility();
 
 
@@ -26,6 +27,8 @@ namespace SmartFactory.IServices
         /// <param name="id"></param>
         /// <returns></returns>
         FacilityNotMapp GetById(int id);
+
+
 
     }
 }
