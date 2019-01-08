@@ -171,7 +171,7 @@
     <!--/_menu 作为公共模版分离出去-->
 
     <section class="Hui-article-box">
-
+        <button id="btnD">导入</button>
         <div class="Hui-article" id="app">
             <article class="cl pd-20">
 
@@ -190,8 +190,7 @@
                                 <th width="80">维护工厂</th>
                                 <th width="80">工厂区域</th>
                                 <th width="80">计划员组</th>
-                                <th width="80">设备种类</th>
-                                <th width="80">设备安装位置</th>
+                                <th width="80">设备种类</th>                         
                                 <th width="80">是否报警</th>
                                 <th width="80">操作</th>
                             </tr>
@@ -208,7 +207,7 @@
                                 <th>{{test.GroupName}}</th>
                                 <th>{{test.TypeName}}</th>
                                 <th>{{test.IsSiren==0?"正常":"警示"}} </th>
-                                <th><a href="#">查看</a></th>
+                                <th><a href='FacilityByID.html?id={{test.ID}}' >查看</a></th>
                             </tr>
 
                     </table>

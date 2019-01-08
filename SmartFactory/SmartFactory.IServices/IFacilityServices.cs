@@ -18,5 +18,14 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <returns></returns>
         List<FacilityNotMapp> GetFacility();
+
+
+        /// <summary>
+        /// 获取单个ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        FacilityNotMapp GetById(int id);
+
     }
 }

@@ -31,5 +31,17 @@ namespace SmartFactory.Api.Controllers
             return facilitylist;
 
         }
+        
+        /// <summary>
+        /// 根据ID查一个
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("GetById")]
+        public FacilityNotMapp GetById(int id)
+        {
+            var falist = FacilityServices.GetById(id);
+            return falist;
+        }
     }
 }

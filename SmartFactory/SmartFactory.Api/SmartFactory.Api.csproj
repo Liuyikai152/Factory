@@ -137,6 +137,7 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
+    <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\MaintenanceOrderController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\LocaTionController.cs" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Permission\" />
     <Folder Include="Views\Role\" />

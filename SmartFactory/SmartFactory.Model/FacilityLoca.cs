@@ -11,13 +11,13 @@ namespace SmartFactory.Model
 
     /// <summary>
     /// 设备安装位置表
-    /// </summary>
+    
     [Table("FacilityLoca")]
     public class FacilityLoca
     {
         /// <summary>
         /// 主键id
-        /// </summary>
+        
         [Key]
         public int ID { get; set; }
 
@@ -25,12 +25,12 @@ namespace SmartFactory.Model
 
         /// <summary>
         /// 设备位号
-        /// </summary>
+        
         public string LocaName { get; set; }
         
         /// <summary>
         /// 设备位号
-        /// </summary>
+        
         public string LocaCode { get; set; }
     }
 }

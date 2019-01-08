@@ -11,12 +11,12 @@ namespace SmartFactory.Model
 
     /// <summary>
     /// 设备种类表
-    /// </summary>
+    
     public class FacilityType
     {
         /// <summary>
         /// 主键id
-        /// </summary>
+        
         [Key]
         public int ID { get; set; }
 
@@ -24,7 +24,7 @@ namespace SmartFactory.Model
 
         /// <summary>
         /// 设备位号
-        /// </summary>
+        
         public string TypeName { get; set; }
     }
 }
