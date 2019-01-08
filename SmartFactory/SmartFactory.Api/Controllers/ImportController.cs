@@ -20,8 +20,10 @@ using System.Web;
 
 namespace SmartFactory.Api.Controllers
 {
+  
     public class ImportController : ApiController
     {
+        [HttpPost]
         public int Imports()
         {
             FactoryDBcontext dBcontext = new FactoryDBcontext();
@@ -35,6 +37,7 @@ namespace SmartFactory.Api.Controllers
                     getFile.SaveAs(fileName);
                 //把Excel当做数据源连接
                 string connStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties=Excel 12.0;";
+
                 //打开Excel
                 OleDbConnection conn = new OleDbConnection(connStr);
                 conn.Open();

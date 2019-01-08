@@ -170,8 +170,18 @@
     <!--/_menu 作为公共模版分离出去-->
 
     <section class="Hui-article-box">
-        <button id="btnD">导入</button>
-        <div class="Hui-article" id="app">
+        <form class="form form-horizontal" id="formData">
+            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
+            <div>
+                <p id="alert" style="color:red"></p>
+            </div>
+            <div>
+                <div>
+                    <input type="button" id="btnS" value="提交" style="width:100px;" />
+                </div>
+            </div>
+        </form>
+        <div class="Hui-article" id="app" style="margin-top:50px;">
             <article class="cl pd-20">
 
 
@@ -189,7 +199,7 @@
                                 <th width="80">维护工厂</th>
                                 <th width="80">工厂区域</th>
                                 <th width="80">计划员组</th>
-                                <th width="80">设备种类</th>                         
+                                <th width="80">设备种类</th>
                                 <th width="80">是否报警</th>
                                 <th width="80">操作</th>
                             </tr>
@@ -206,7 +216,7 @@
                                 <th>{{test.GroupName}}</th>
                                 <th>{{test.TypeName}}</th>
                                 <th>{{test.IsSiren==0?"正常":"警示"}} </th>
-                                <th><a href='FacilityByID.html?id={{test.ID}}' >查看</a></th>
+                                <th><a href='FacilityByID.html?id={{test.ID}}'>查看</a></th>
 
                             </tr>
 
@@ -215,6 +225,9 @@
             </article>
         </div>
     </section>
+
+
+
 
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
@@ -226,7 +239,49 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.datatables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
+
     <script type="text/javascript">
+        $(function () {
+            $("#btnS").click(function () {
+                alert($("#formData")[0])
+                $.ajax({
+                    url: "http://localhost:8066/api/Import/Import",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: new FormData($("#formData")[0]),
+                    type: 'POST',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#alert").text("导入成功");
+                        }
+                    }
+                })
+
+            })
+        });
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                apiUrl: "http://localhost:8066/Facility/",
+                testdata: {}
+            },
+            ready: function () {
+                this.getTests()
+            },
+            methods: {
+                getTests: function () {
+                    this.$http.get(this.apiUrl + 'GetFacility', function (data) {
+                        this.$set('tests', data);
+                    })
+                },
+            }
+
+        })
+
         $('.table-sort').dataTable({
             "aaSorting": [[1, "desc"]],//默认第几个排序
             "bStateSave": true,//状态保存
@@ -314,32 +369,8 @@
             });
         }
     </script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-
-    <script type="text/javascript">
-        var vm = new Vue({
-            el: "#app",
-            data: {
-                apiUrl: "http://localhost:8066/Facility/",
-                testdata: {}
-            },
-            ready: function () {
-                this.getTests()
-            },
-            methods: {
-                getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetFacility', function (data) {
-                        this.$set('tests', data);
-                    })
-                },
-            }
-
-        })
 
 
-
-    </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 
