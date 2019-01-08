@@ -195,40 +195,24 @@
                 <div style="margin:100px  auto  auto 150px;">
 
 
-                    <h3><span>所属机组/机泵：</span>{{test.FacilityName}}</h3>
+                    <h3><span>序号：</span>{{test.ID}}</h3>
                     <p style="font-size:18px;">
-                        <span>工单编号：</span> {{test.OrderNumber}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>设备编号：</span>{{test.FacilityNumber}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>位置编码：</span>{{test.LocaNumber}}
+                        <span>设备编码：</span> {{test.FacilityNumber}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>设备名称：</span>{{test.FacilityName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>设备位号：</span>{{test.BitNumbers}}
                     </p>
                     <h3><span>公司名称：</span>{{test.CompanyName}} </h3>
+                    <br />
                     <p style="font-size:18px;">
-                        <span>计划员组：</span>{{test.GroupName}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>工厂区域：</span>{{test.AreaName}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>计划工厂名称：</span>{{test.FactoryName1}} &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>计划工厂：</span>{{test.FactoryName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>维护工厂：</span>{{test.FactoryName1}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>工厂区域：</span>{{test.AreaName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <br />
                         <br />
-                        <span>维护班组名称：</span>{{test.ServiceName}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>成本工厂：</span>{{test.FactoryName3}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>维护工厂：</span>{{test.FactoryName2}}
+                        <span>计划员组：</span>{{test.GroupName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>设备种类：</span>{{test.TypeName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>是否报警：</span>{{test.IsSiren==0?"正常":"警示"}}
                     </p>
-
-                    <p style="font-size:18px;">
-                        <span>设备名称：</span>{{test.DeviceName}}  &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>故障名称：</span>{{test.FaultName}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>故障部位：</span>{{test.FaultPart}}
-                    </p>
-
-
-                    <p style="font-size:18px;"><span>故障现象及处理过程：</span>{{test.HandlingMethod}}</p>
-
-                    <h3>维修时间</h3>
-                    <p style="font-size:18px;">
-                        <span>故障发生时间：</span>{{test.HappenTime}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>处理完成时间：</span>{{test.CompletionTime}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>停机时间：</span>{{test.DownTime}}
-                    </p>
-                </div>
               
             </article>
         </div>

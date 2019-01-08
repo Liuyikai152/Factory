@@ -11,29 +11,29 @@ namespace SmartFactory.Model
 
     /// <summary>
     /// 审批条件表
-    /// </summary>
+    
     [Table("Conditions")]
     public class Conditions
     {
         /// <summary>
         /// 审批条件主键
-        /// </summary>
+        
         [Key]
         public int ID { get; set; }
 
         /// <summary>
         /// 审批条件
-        /// </summary>
+        
         public string Condition { get; set; }
        
         /// <summary>
         /// 创建时间
-        /// </summary>
+        
         public DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 编辑时间
-        /// </summary>
+        
         public DateTime Edittime { get; set; }
     }
 }
