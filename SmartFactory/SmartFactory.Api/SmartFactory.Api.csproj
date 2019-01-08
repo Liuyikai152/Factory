@@ -137,12 +137,11 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
-
     <Compile Include="Controllers\MaintenanceOrderController.cs" />
-
     <Compile Include="Controllers\FacilityController.cs" />
-
     <Compile Include="Controllers\LocaTionController.cs" />
+    <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -161,6 +160,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Permission\" />
+    <Folder Include="Views\Role\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartFactory.IServices\SmartFactory.IServices.csproj">

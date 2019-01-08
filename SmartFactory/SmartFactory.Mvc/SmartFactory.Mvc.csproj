@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -113,6 +114,7 @@
     <Content Include="Global.asax" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\404.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-add.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\maintenanceorderByID-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\maintenanceorder-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission.html" />
@@ -965,7 +967,7 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\Facility-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\picture-show.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\product-add.html" />
-    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\product-brand.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\location-details.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\product-category-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\product-category.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\product-list.html" />

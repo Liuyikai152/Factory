@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using SmartFactory.Model;
 using SmartFactory.IServices;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace SmartFactory.Services
 {
@@ -43,7 +45,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public Users GetByID(int id)
         {
-           var i= factoryDBcontext.Users.Find(id);
+            var i = factoryDBcontext.Users.Find(id);
             return i;
         }
 
@@ -63,7 +65,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<Users> GetUsers()
         {
-            var userList= factoryDBcontext.Users.ToList();
+            var userList = factoryDBcontext.Database.SqlQuery<Users>("call Pro_GetUsers").ToList();
             return userList;
         }
 
@@ -75,9 +77,18 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int Login(string userName, string passWord)
         {
-            throw new NotImplementedException();
+            MySqlParameter[] parameters = new MySqlParameter[2]
+                {
+                   new MySqlParameter("@name", userName),
+                   new MySqlParameter("@pwd", passWord)
+                };
+            var loginList = factoryDBcontext.Database.SqlQuery<Users>("call Pro_Login(@name,@pwd)", parameters).ToList();
+            if (loginList.Count() > 0)
+            {
+                return loginList[0].ID;
+            }
+            return 0;
         }
-
         /// <summary>
         /// 修改用户
         /// </summary>

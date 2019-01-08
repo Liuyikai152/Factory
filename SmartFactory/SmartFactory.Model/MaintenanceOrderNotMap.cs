@@ -92,7 +92,9 @@ namespace SmartFactory.Model
         /// <summary>
         /// 公司名称
         /// </summary>
-        public string CompanyName { get; set; }
+        public string CompanyName { get; set; }
+
+
         /// <summary>
         /// 计划工厂名称
         /// </summary>
@@ -111,7 +113,8 @@ namespace SmartFactory.Model
         /// <summary>
         /// 位置状态
         /// </summary>
-        public FactoryEnum LocaState { get; set; }
+        public FactoryEnum LocaState { get; set; }
+
         /// <summary>
         /// 包含 删除
         /// </summary>

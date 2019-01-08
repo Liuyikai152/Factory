@@ -9,6 +9,7 @@ using System.Web.Http;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 using SmartFactory.Services;
+using Newtonsoft.Json;
 
 namespace SmartFactory.Api.Controllers
 {
@@ -22,11 +23,29 @@ namespace SmartFactory.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetLocaTion")]
-        public List<LocaTion> GetLocaTion()
+        [Route("GetLocaTions")]
+        public PageBox GetLocaTions(int PAGESIZE=5,int page=1)
         {
-            var locaTionList = localionServices.GetLocations();
-            return locaTionList;
+            List<LocationNotMapped> list = localionServices.GetLocations();
+            PageBox pageBox = new PageBox();
+            pageBox.PageIndex = page;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount=list.Count / PAGESIZE + (list.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data= list.Skip((page - 1) * PAGESIZE).Take(PAGESIZE);
+            return pageBox;
+        }
+
+        /// <summary>
+        /// 查看单个位置详情
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetLocationById")]
+        public LocationNotMapped GetLocationById(int id)
+        {
+            var i = localionServices.GetLocationById(id);
+            return i;
         }
     }
 }
