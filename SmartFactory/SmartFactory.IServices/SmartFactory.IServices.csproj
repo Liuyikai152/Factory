@@ -65,6 +65,8 @@
     <Compile Include="IBitNumberServices.cs" />
     <Compile Include="IConditionsServices.cs" />
     <Compile Include="IConfigurationsServices.cs" />
+    <Compile Include="IFacilityGeneral.cs" />
+    <Compile Include="IFacilityManuFacturer.cs" />
     <Compile Include="IFacilityServices.cs" />
     <Compile Include="IFacilityDetailsServices.cs" />
     <Compile Include="IFacilityGeneralServices.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="IPermissionServices.cs" />
     <Compile Include="IProcessServices.cs" />
     <Compile Include="IPumpServices.cs" />
+    <Compile Include="ISpecification.cs" />
     <Compile Include="ISpecificationServices.cs" />
     <Compile Include="IStationServices.cs" />
     <Compile Include="IStatusServices.cs" />
