@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
 
 using SmartFactory.IServices;
@@ -12,14 +13,11 @@ using SmartFactory.Services;
 namespace SmartFactory.Api.Controllers
 {
     [RoutePrefix("Role")]
-    public class RoleController : Controller
+    public class RoleController : ApiController
     {
         public IRoleServices  roleServices { get; set; }
         // GET: Role
-        public ActionResult Index()
-        {
-            return View();
-        }
+  
 
 
         /// <summary>
