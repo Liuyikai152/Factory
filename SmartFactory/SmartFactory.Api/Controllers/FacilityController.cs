@@ -22,13 +22,11 @@ namespace SmartFactory.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetFacility")]
+        
         public List<FacilityNotMapp> GetFacility()
         {
-
-            var facilitylist = FacilityServices.GetFacility();
-            return facilitylist;
-
+            var acilityList = FacilityServices.GetFacility();
+            return acilityList;
         }
     }
 }
