@@ -20,7 +20,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetFacility")]
-        public List<Facility> GetFacility()
+        public List<FacilityNotMapp> GetFacility()
         {
 
             var getFacility = FacilityServices.GetFacility();
@@ -48,5 +48,7 @@ namespace SmartFactory.Api.Controllers
             return json;
 
         }
+        
+
     }
 }
