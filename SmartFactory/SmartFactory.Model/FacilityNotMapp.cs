@@ -91,5 +91,10 @@ namespace SmartFactory.Model
         /// 设备安装位置
         /// </summary>
         public string FacilityLoca { get; set; }
+
+        /// <summary>
+        /// 设备种类
+        /// </summary>
+        public string TypeName { get; set; }
     }
 }
