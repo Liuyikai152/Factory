@@ -39,13 +39,7 @@ namespace SmartFactory.Api.Controllers
             var falist = FacilityServices.GetById(id);
             return falist;
 
-           var  facilitiesList = FacilityServices.GetFacility();
-            PageBox pagebox = new PageBox();
-            pagebox.PageIndex = Page;
-            pagebox.PageCount = facilitiesList.Count / PAGESIZE + (facilitiesList.Count % PAGESIZE == 0 ? 0 : 1);
-            pagebox.Data = facilitiesList.Skip((Page - 1) * PAGESIZE).Take(PAGESIZE);
-            var json = JsonConvert.SerializeObject(pagebox);
-            return json;
+           
 
         }
         
