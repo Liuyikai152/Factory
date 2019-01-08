@@ -247,7 +247,7 @@
                     -
                     <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
                     <input type="text" class="input-text" style="width:250px" placeholder="输入所属机组/机泵" id="Unit" name="">
-                    <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i>查询</button>
+                    <button type="submit" class="btn btn-success" id="" name="" onclick="getTestsMo()"><i class="Hui-iconfont">&#xe665;</i>查询</button>
                 </div>
 
                 <table class="table table-border table-bordered table-bg">
@@ -321,28 +321,26 @@
         var vm = new Vue({
             el: "#app",
             data: {
-
+                StartDate:'',
+                EndDate: '',
+                UnitOrPump:'',
                 all: 8,
                 cur: 1,
                 apiUrl: 'http://localhost:8066/MaintenanceOrder/',
-                testdata: {}
             },
             ready: function () {
                 this.getTests()
             },
             methods: {
-               
-
                 getTests: function () {
-             
-                    
                         this.$http.get(this.apiUrl + 'GetMaintenanceOrders', function (data) {
                             this.$set('tests', data);
                         })
-                  
-                  
                 },
+                getTestsMo: function ()
+                {
 
+                }
 
             },
             //计算属性
