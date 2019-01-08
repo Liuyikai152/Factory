@@ -139,9 +139,7 @@
     <Compile Include="Controllers\CompanyCodeController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\MaintenanceOrderController.cs" />
-
     <Compile Include="Controllers\FacilityController.cs" />
-
     <Compile Include="Controllers\LocaTionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -150,6 +148,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\新建 Microsoft Excel 工作表.xlsx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -160,7 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
