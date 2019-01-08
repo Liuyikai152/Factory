@@ -174,7 +174,7 @@
         <div class="Hui-article" id="app">
             <article class="cl pd-20">
                 <div class="mt-20">
-                    <table class="table table-border table-bordered table-hover table-bg table-sort" >
+                    <table class="table table-border table-bordered table-hover table-bg table-sort" v-cloak>
                         <thead>
                             <tr class="text-c">
                                 <th width="80">位置编码</th>
@@ -185,22 +185,22 @@
                                 <th width="80">工厂区域</th>
                                 <th width="80">计划员组</th>
                                 <th width="80">维护班组</th>
-                                <th width="80">成本工厂</th>
-                                <th width="80">查看</th>
+                                <th width="80">成本中心</th>
+                                <th width="80">上一级功能位置</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="text-c" v-for="test in tests">
                                 <td>{{test.LocaNumber}}</td>
-                                <td>{{test.LocalName}}</td>
-                                <td>{{test.CompanyName}}</td>
-                                <td>{{test.FactoryName1}}</td>
-                                <td>{{test.FactoryName2}}</td>
-                                <td>{{test.AreaName}}</td>
-                                <td>{{test.GroupName}}</td>
-                                <td>{{test.ServiceName}}</td>
-                                <td>{{test.FactoryName3}}</td>
-                                <td><a href="location-details.html?id={{test.ID}}">查看</a></td>
+                                <td>{{test.LocaName}}</td>
+                                <td>{{test.CompanyCode}}</td>
+                                <td>{{test.PlanFactory}}</td>
+                                <td>{{test.MaintainFactory}}</td>
+                                <td>{{test.FactoryArea}}</td>
+                                <td>{{test.PlanGroup}}</td>
+                                <td>{{test.CostConter}}</td>
+                                <td>{{test.LocaType}}</td>
+                                <td>{{test.LocaState==1?"启用":"禁用"}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -208,6 +208,7 @@
             </article>
         </div>
     </section>
+
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
@@ -226,8 +227,32 @@
             var demo = new Vue({
                 el: '#app',
                 data: {
+                    test: [{
+                        name: 'ID',
+                        isKey: true
+                    }, {
+                        name: 'LocaNumber'
+                    }, {
+                        name: 'LocaName'
+                    }, {
+                        name: 'CompanyCode'
+                    }, {
+                        name: 'PlanFactory'
+                    }, {
+                        name: 'MaintainFactory'
+                    }, {
+                        name: 'FactoryArea'
+                    }, {
+                        name: 'PlanGroup'
+                    }, {
+                        name: 'CostConter'
+                    }, {
+                        name: 'LocaType'
+                    }, {
+                        name: 'LocaState'
+                    }],
                     tests: [],
-                    apiUrl: 'http://localhost:8066/LocaTion/GetLocaTions',
+                    apiUrl: 'http://localhost:8066/LocaTion/GetLocaTion',
                     testdata: {}
                 },
                 ready: function () {
@@ -242,6 +267,19 @@
                 }
             })
         });
+        /*用户-添加*/
+        function member_add(title, url, w, h) {
+            layer_show(title, url, w, h);
+        }
+        /*用户-查看*/
+        function member_show(title, url, id, w, h) {
+            layer_show(title, url, w, h);
+        }
+        /*用户-编辑*/
+        function member_edit(title, url, id, w, h) {
+            layer_show(title, url, w, h);
+        }
+
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>

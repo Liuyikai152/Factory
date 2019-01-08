@@ -26,6 +26,7 @@ namespace SmartFactory.Model
         public string LocaNumber { get; set; }
 
         /// <summary>
+
         /// 位置关联
         
         public string LocaNamess { get; set; }
@@ -35,6 +36,11 @@ namespace SmartFactory.Model
         
         [NotMapped]
         public string LocalName { get; set; }
+
+        /// 位置名称
+        /// </summary>
+        public string LocaName { get; set; }
+
 
         /// <summary>
         /// 公司编号
@@ -68,13 +74,12 @@ namespace SmartFactory.Model
         
         [NotMapped]
         public string FactoryName2 { get; set; }
+
         /// <summary>
         /// 工作区域
         
         public string FactoryArea { get; set; }
 
-        [NotMapped]
-        public string AreaName { get; set; }
         /// <summary>
         /// 计划员组
         
@@ -144,5 +149,6 @@ namespace SmartFactory.Model
         
         public int IsDelete { get; set; }
 
+     
     }
 }

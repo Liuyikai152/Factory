@@ -40,10 +40,19 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
-        public List<MaintenanceOrderNotMap> GetMaintenanceOrders()
+        public List<MaintenanceOrderNotMap> GetMaintenanceOrders(string UnitOrPump)
         {
-            var maintenanceList = factoryDBcontext.Database.SqlQuery<MaintenanceOrderNotMap> ("call Pro_GetMaintenanceOrder").ToList();
-            return maintenanceList;
+            var maintenanceList =factoryDBcontext.Database.SqlQuery<MaintenanceOrderNotMap>("call Pro_GetMaintenanceOrder");
+
+            if (UnitOrPump!=null)
+            {
+               var  zmaintenanceList=maintenanceList.Where(n => n.FacilityName.Contains(UnitOrPump)).ToList();
+
+                return zmaintenanceList;
+            }
+           
+       
+            return maintenanceList.ToList();
         }
 
         /// <summary>
