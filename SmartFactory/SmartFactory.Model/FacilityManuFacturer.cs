@@ -48,7 +48,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 修改日期
         /// </summary>
-       
+
         public DateTime DateChanged { get; set; }
     }
 }

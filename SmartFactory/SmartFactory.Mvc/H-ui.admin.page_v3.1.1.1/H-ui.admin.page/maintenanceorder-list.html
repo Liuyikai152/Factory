@@ -227,7 +227,7 @@
         </div>
     </aside>
     <div class="dislpayArrow hidden-xs">
-    <a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
+        <a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
     </div>
     <!--/_menu 作为公共模版分离出去-->
 
@@ -242,12 +242,12 @@
         <div class="Hui-article" id="app">
             <article class="cl pd-20">
                 <div class="text-c">
-                    日期范围：
-                    <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
+                    <!--日期范围：
+                    <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;"  V-model="datemin">
                     -
-                    <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-                    <input type="text" class="input-text" style="width:250px" placeholder="输入所属机组/机泵" id="Unit" name="">
-                    <button type="submit" class="btn btn-success" id="" name="" onclick="getTestsMo()"><i class="Hui-iconfont">&#xe665;</i>查询</button>
+                    <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;"  V-model="datemax">-->
+                    <input type="text" class="input-text" style="width:250px" placeholder="输入所属机组/机泵" value=""  V-model="Unit">
+                    <button type="submit" class="btn btn-success"  id="" name="" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i>查询</button>
                 </div>
 
                 <table class="table table-border table-bordered table-bg">
@@ -281,7 +281,7 @@
                             <th>{{test.CompletionTime}}</th>
                             <th>{{test.DownTime}}</th>
                             <th>{{test.HandlingMethod}}</th>
-                            <th><a href='maintenanceorderByID-list.html?id={{test.ID}}' >查看</a></th>
+                            <th><a href='maintenanceorderByID-list.html?id={{test.ID}}'>查看</a></th>
                         </tr>
                     </thead>
                 </table>
@@ -312,7 +312,8 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-
+    <script src="../../Scripts/vue.min.js"></script>
+    <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
@@ -321,9 +322,6 @@
         var vm = new Vue({
             el: "#app",
             data: {
-                StartDate:'',
-                EndDate: '',
-                UnitOrPump:'',
                 all: 8,
                 cur: 1,
                 apiUrl: 'http://localhost:8066/MaintenanceOrder/',
@@ -332,15 +330,15 @@
                 this.getTests()
             },
             methods: {
+     
                 getTests: function () {
-                        this.$http.get(this.apiUrl + 'GetMaintenanceOrders', function (data) {
-                            this.$set('tests', data);
-                        })
-                },
-                getTestsMo: function ()
-                {
 
-                }
+                    this.$http.get(this.apiUrl + 'GetMaintenanceOrders', { UnitOrPump: this.Unit}, function (data) {
+                        this.$set('tests', data);
+                    })
+                },
+
+            
 
             },
             //计算属性
@@ -373,7 +371,7 @@
             }
         });
 
-      
+
         /*
             参数解释：
             title	标题

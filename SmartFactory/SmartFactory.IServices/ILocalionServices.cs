@@ -17,7 +17,7 @@ namespace SmartFactory.IServices
         /// 查看功能位置
         /// </summary>
         /// <returns></returns>
-        List<LocationNotMapped> GetLocations();
+        List<LocaTion> GetLocations();
 
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        LocationNotMapped GetLocationById(int id);
+        LocaTion GetLocation(int ID);
 
 
 

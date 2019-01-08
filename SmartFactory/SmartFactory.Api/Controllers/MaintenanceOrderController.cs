@@ -9,7 +9,7 @@ using System.Web.Http;
 using SmartFactory.Model;
 using SmartFactory.IServices;
 using SmartFactory.Services;
-
+using Newtonsoft.Json;
 
 namespace SmartFactory.Api.Controllers
 {
@@ -28,11 +28,15 @@ namespace SmartFactory.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetMaintenanceOrders")]
-        [HttpGet]
-        public List<MaintenanceOrderNotMap> GetMaintenanceOrders()
+        [HttpGet][HttpPost]
+        public string GetMaintenanceOrders(string UnitOrPump)
         {
-            var mainlist = maintenanceOrderServices.GetMaintenanceOrders();
-            return mainlist;
+            if (UnitOrPump == null) {
+                UnitOrPump = "";
+            }
+            
+            List<MaintenanceOrderNotMap> mainlist = maintenanceOrderServices.GetMaintenanceOrders(UnitOrPump);
+            return JsonConvert.SerializeObject(mainlist);
         }
 
         /// <summary>
