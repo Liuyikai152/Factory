@@ -25,7 +25,7 @@ namespace SmartFactory.Api.Controllers
         [Route("GetFacility")]
         public string GetFacility(int  Page=1)
         {
-            List<Facility> facilitiesList = FacilityServices.GetFacility();
+           var  facilitiesList = FacilityServices.GetFacility();
             PageBox pagebox = new PageBox();
             pagebox.PageIndex = Page;
             pagebox.PageCount = facilitiesList.Count / PAGESIZE + (facilitiesList.Count % PAGESIZE == 0 ? 0 : 1);

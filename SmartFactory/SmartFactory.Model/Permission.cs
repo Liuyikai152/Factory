@@ -34,6 +34,6 @@ namespace SmartFactory.Model
         /// <summary>
         /// 是否启用
         /// </summary>
-        public int IsUser { get; set; }
+        public string IsUser { get; set; }
     }
 }
