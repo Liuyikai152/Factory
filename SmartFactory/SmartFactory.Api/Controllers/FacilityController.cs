@@ -20,7 +20,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetFacility")]
-        public List<Facility> GetFacility()
+        public List<FacilityNotMapp> GetFacility()
         {
 
             var getFacility = FacilityServices.GetFacility();
@@ -39,16 +39,6 @@ namespace SmartFactory.Api.Controllers
             return falist;
         }
         
-        /// <summary>
-        /// 根据ID查一个
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [Route("GetById")]
-        public FacilityNotMapp GetById(int id)
-        {
-            var falist = FacilityServices.GetById(id);
-            return falist;
-        }
+
     }
 }

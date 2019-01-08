@@ -15,7 +15,7 @@ namespace SmartFactory.IServices
     {
         /// <summary>
         /// 查看设备/零件数据
-        /// </summary>
+        /// </summary> 
         /// <returns></returns>
 
         List<FacilityNotMapp> GetFacility();
