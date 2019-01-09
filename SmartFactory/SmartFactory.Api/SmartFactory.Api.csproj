@@ -68,6 +68,9 @@
     <Reference Include="MySql.Data.Entity.EF6, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.Entity.6.10.8\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\SmartFactory.Common\Common\NPOI.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Drawing.Design" />
@@ -137,9 +140,8 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
-
+    <Compile Include="Controllers\ExcelController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
-
     <Compile Include="Controllers\MaintenanceOrderController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\LocaTionController.cs" />
@@ -166,6 +168,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SmartFactory.Common\SmartFactory.Common.csproj">
+      <Project>{b9006487-e699-45ed-9051-95b04eb8f80b}</Project>
+      <Name>SmartFactory.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SmartFactory.IServices\SmartFactory.IServices.csproj">
       <Project>{0a005af9-719c-4858-871d-0a20b0716c99}</Project>
       <Name>SmartFactory.IServices</Name>
