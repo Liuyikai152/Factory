@@ -26,6 +26,58 @@
     <title>图片列表</title>
 </head>
 <body>
+    <style>
+        .page-bar {
+            margin: 40px;
+        }
+
+        ul, li {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        li {
+            list-style: none
+        }
+
+        .page-bar li:first-child > a {
+            margin-left: 0px
+        }
+
+        .page-bar a {
+            border: 1px solid #ddd;
+            text-decoration: none;
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            cursor: pointer
+        }
+
+            .page-bar a:hover {
+                background-color: #eee;
+            }
+
+            .page-bar a.banclick {
+                cursor: not-allowed;
+            }
+
+        .page-bar .active a {
+            color: #fff;
+            cursor: default;
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+
+        .page-bar i {
+            font-style: normal;
+            color: #d44950;
+            margin: 0px 4px;
+            font-size: 12px;
+        }
+    </style>
     <!--_header 作为公共模版分离出去-->
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
@@ -184,45 +236,55 @@
         <div class="Hui-article" id="app" style="margin-top:50px;">
             <article class="cl pd-20">
 
+                <table class="table table-border table-bordered table-bg table-hover table-sort">
+                    <thead>
+                        <tr class="text-c">
 
-                <div class="mt-20">
-                    <table class="table table-border table-bordered table-bg table-hover table-sort">
-                        <thead>
-                            <tr class="text-c">
+                            <th width="80">序号</th>
+                            <th width="80">设备编码</th>
+                            <th width="80">设备名称</th>
+                            <th width="80">设备位号</th>
+                            <th width="80">公司编号</th>
+                            <th width="80">计划工厂</th>
+                            <th width="80">维护工厂</th>
+                            <th width="80">工厂区域</th>
+                            <th width="80">计划员组</th>
+                            <th width="80">设备种类</th>
+                            <th width="80">是否报警</th>
+                            <th width="80">操作</th>
+                        </tr>
 
-                                <th width="80">序号</th>
-                                <th width="80">设备编码</th>
-                                <th width="80">设备名称</th>
-                                <th width="80">设备位号</th>
-                                <th width="80">公司编号</th>
-                                <th width="80">计划工厂</th>
-                                <th width="80">维护工厂</th>
-                                <th width="80">工厂区域</th>
-                                <th width="80">计划员组</th>
-                                <th width="80">设备种类</th>
-                                <th width="80">是否报警</th>
-                                <th width="80">操作</th>
-                            </tr>
+                        <tr v-for="test in tests" class="text-c">
+                            <th>{{test.ID}}</th>
+                            <th>{{test.FacilityNumber}}</th>
+                            <th>{{test.FacilityName}}</th>
+                            <th>{{test.BitNumbers}}</th>
+                            <th>{{test.CompanyName}}</th>
+                            <th>{{test.FactoryName}}</th>
+                            <th>{{test.FactoryName1}}</th>
+                            <th>{{test.AreaName}}</th>
+                            <th>{{test.GroupName}}</th>
+                            <th>{{test.TypeName}}</th>
+                            <th>{{test.IsSiren==0?"正常":"警示"}} </th>
+                            <th><a href='FacilityByID.html?id={{test.ID}}'>查看</a></th>
 
-                            <tr v-for="test in tests" class="text-c">
-                                <th>{{test.ID}}</th>
-                                <th>{{test.FacilityNumber}}</th>
-                                <th>{{test.FacilityName}}</th>
-                                <th>{{test.BitNumbers}}</th>
-                                <th>{{test.CompanyName}}</th>
-                                <th>{{test.FactoryName}}</th>
-                                <th>{{test.FactoryName1}}</th>
-                                <th>{{test.AreaName}}</th>
-                                <th>{{test.GroupName}}</th>
-                                <th>{{test.TypeName}}</th>
-                                <th>{{test.IsSiren==0?"正常":"警示"}} </th>
-                                <th><a href='FacilityByID.html?id={{test.ID}}'>查看</a></th>
+                        </tr>
 
-                            </tr>
-
-                    </table>
+                </table>
+                <div class="page-bar">
+                    <ul>
+                        <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
+                        <li v-if="cur==1"><a class="banclick">上一页</a></li>
+                        <li v-for="index in indexs" v-bind:class="{ 'active': cur == index}">
+                            <a v-on:click="btnClick(index)">{{ index }}</a>
+                        </li>
+                        <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
+                        <li v-if="cur == all"><a class="banclick">下一页</a></li>
+                        <li><a>共<i>{{all}}</i>页</a></li>
+                    </ul>
                 </div>
             </article>
+
         </div>
     </section>
 
@@ -239,6 +301,8 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.datatables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+    <script src="../../Scripts/vue.min.js"></script>
+    <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
@@ -266,6 +330,8 @@
         var vm = new Vue({
             el: "#app",
             data: {
+                all: 8,
+                cur: 1,
                 apiUrl: "http://localhost:8066/Facility/",
                 testdata: {}
             },
@@ -274,100 +340,58 @@
             },
             methods: {
                 getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetFacility', function (data) {
-                        this.$set('tests', data);
+                    this.$http.get(this.apiUrl + 'GetFacility', { PageIndex: this.cur }, function (data) {
+
+                        this.cur = data.PageIndex;
+                        this.all = data.PageCount;
+                        this.$set('tests', data.Data);
                     })
                 },
-            }
+                btnClick: function (data) {//页码点击事件
+                    if (data != this.cur) {
+                        this.cur = data;
+                        this.getTests(data);
 
+
+                    }
+                },
+                pageClick: function () {
+                    //console.log('现在在' + this.cur + '页');
+                    this.getTests(this.cur);
+                },
+            },
+            //计算属性
+            computed: {
+                indexs: function () {
+                    var left = 1;
+                    var right = this.all;
+                    var ar = [];
+                    if (this.all >= 5) {
+                        if (this.cur > 3 && this.cur < this.all - 2) {
+                            left = this.cur - 2
+                            right = this.cur + 2
+                        } else {
+                            if (this.cur <= 3) {
+                                left = 1
+                                right = 5
+                            } else {
+                                right = this.all
+                                left = this.all - 4
+                            }
+                        }
+                    }
+                    while (left <= right) {
+                        ar.push(left)
+                        left++
+                    }
+                    return ar
+                }
+
+            }
         })
 
-        $('.table-sort').dataTable({
-            "aaSorting": [[1, "desc"]],//默认第几个排序
-            "bStateSave": true,//状态保存
-            "aoColumnDefs": [
-                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-                { "orderable": false, "aTargets": [0, 8] }// 制定列不参与排序
-            ]
-        });
-        /*图片-添加*/
-        function picture_add(title, url) {
-            var index = layer.open({
-                type: 2,
-                title: title,
-                content: url
-            });
-            layer.full(index);
-        }
-        /*图片-查看*/
-        function picture_show(title, url, id) {
-            var index = layer.open({
-                type: 2,
-                title: title,
-                content: url
-            });
-            layer.full(index);
-        }
-        /*图片-审核*/
-        function picture_shenhe(obj, id) {
-            layer.confirm('审核文章？', {
-                btn: ['通过', '不通过'],
-                shade: false
-            },
-                function () {
-                    $(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="picture_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-                    $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-                    $(obj).remove();
-                    layer.msg('已发布', { icon: 6, time: 1000 });
-                },
-                function () {
-                    $(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="picture_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-                    $(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-                    $(obj).remove();
-                    layer.msg('未通过', { icon: 5, time: 1000 });
-                });
-        }
-        /*图片-下架*/
-        function picture_stop(obj, id) {
-            layer.confirm('确认要下架吗？', function (index) {
-                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-                $(obj).remove();
-                layer.msg('已下架!', { icon: 5, time: 1000 });
-            });
-        }
 
-        /*图片-发布*/
-        function picture_start(obj, id) {
-            layer.confirm('确认要发布吗？', function (index) {
-                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-                $(obj).remove();
-                layer.msg('已发布!', { icon: 6, time: 1000 });
-            });
-        }
-        /*图片-申请上线*/
-        function picture_shenqing(obj, id) {
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-            $(obj).parents("tr").find(".td-manage").html("");
-            layer.msg('已提交申请，耐心等待审核!', { icon: 1, time: 2000 });
-        }
-        /*图片-编辑*/
-        function picture_edit(title, url, id) {
-            var index = layer.open({
-                type: 2,
-                title: title,
-                content: url
-            });
-            layer.full(index);
-        }
-        /*图片-删除*/
-        function picture_del(obj, id) {
-            layer.confirm('确认要删除吗？', function (index) {
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', { icon: 1, time: 1000 });
-            });
-        }
+
     </script>
 
 

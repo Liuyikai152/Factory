@@ -18,13 +18,19 @@ namespace SmartFactory.Api.Controllers
         /// 查看所有零件
         /// </summary>
         /// <returns></returns>
+        public const int PAGESIZE = 2;
         [HttpGet]
         [Route("GetFacility")]
-        public List<FacilityNotMapp> GetFacility()
-        {
-
-            var getFacility = FacilityServices.GetFacility();
-            return getFacility;
+        public PageBox GetFacility(int PageIndex = 1)
+        {      
+            PageBox pageBox = new PageBox();
+            List<FacilityNotMapp> facility = FacilityServices.GetFacility();
+            pageBox.PageIndex = PageIndex;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount = facility.Count / PAGESIZE + (facility.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = facility.Skip((PageIndex - 1) * PAGESIZE).Take(PageIndex);
+            return pageBox;
+            
         }
         
         /// <summary>
