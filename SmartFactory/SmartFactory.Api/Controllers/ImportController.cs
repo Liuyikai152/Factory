@@ -21,9 +21,12 @@ using System.Web;
 namespace SmartFactory.Api.Controllers
 {
   
+    [RoutePrefix("Import")]
     public class ImportController : ApiController
     {
+   
         [HttpPost]
+        [Route("Imports")]
         public int Imports()
         {
             FactoryDBcontext dBcontext = new FactoryDBcontext();
@@ -54,10 +57,11 @@ namespace SmartFactory.Api.Controllers
                 DataTable dt = ds.Tables[0];
                 Facility facility = new Facility();
 
-                using (MySqlConnection mySqlConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["connString"].ConnectionString))
+                using (MySqlConnection mySqlConnection = new MySqlConnection(ConfigurationManager.ConnectionStrings["ArtLineDbContext"].ConnectionString))
                 {
                     MySqlCommand mySqlCommand = new MySqlCommand();
                     mySqlCommand.Connection = mySqlConnection;
+                    mySqlConnection.Open();
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         //获得添加的sql语句 并执行
@@ -67,7 +71,7 @@ namespace SmartFactory.Api.Controllers
                         var addpowers = mySqlCommand.ExecuteNonQuery();
 
                     }
-
+                    mySqlConnection.Close();
                 }
                 conn.Close();
 

@@ -1,0 +1,207 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <style>
+        .page-bar {
+            margin: 40px;
+        }
+
+        ul, li {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .page-bar li:first-child > a {
+            margin-left: 0px;
+        }
+
+        .page-bar a {
+            border: 1px solid #ddd;
+            text-decoration: none;
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            cursor: pointer;
+        }
+
+            .page-bar a:hover {
+                background-color: #eee;
+            }
+
+            .page-bar a.banclick {
+                cursor: not-allowed;
+            }
+
+        .page-bar .active a {
+            color: #fff;
+            cursor: default;
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+
+        .page-bar i {
+            font-style: normal;
+            color: #d44950;
+            margin: 0px 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="app">
+          
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="80">位置编码</th>
+                                <th width="80">位置名称</th>
+                                <th width="80">公司名称</th>
+                                <th width="80">计划工厂</th>
+                                <th width="80">维护工厂</th>
+                                <th width="80">工厂区域</th>
+                                <th width="80">计划员组</th>
+                                <th width="80">维护班组</th>
+                                <th width="80">成本工厂</th>
+                                <th width="80">查看</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  v-for="item in list">
+                                <td>{{item.LocaNumber}}</td>
+                                <td>{{item.LocalName}}</td>
+                                <td>{{item.CompanyName}}</td>
+                                <td>{{item.FactoryName1}}</td>
+                                <td>{{item.FactoryName2}}</td>
+                                <td>{{item.AreaName}}</td>
+                                <td>{{item.GroupName}}</td>
+                                <td>{{item.ServiceName}}</td>
+                                <td>{{item.FactoryName3}}</td>
+                                <td><a href="location-details.html?id={{item.ID}}">查看</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            <div class="page-bar">
+                <ul>
+                    <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
+                    <li v-if="cur==1"><a class="banclick">上一页</a></li>
+                    <li v-for="index in indexs" v-bind:class="{ 'active': cur == index}">
+                        <a v-on:click="btnClick(index)">{{ index }}</a>
+                    </li>
+                    <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
+                    <li v-if="cur == all"><a class="banclick">下一页</a></li>
+                    <li><a>共<i>{{all}}</i>页</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../../Scripts/vue.js"></script>
+<script src="../../Scripts/axios.js"></script>
+<script>
+  var vue=new Vue({
+            el: "#app",
+            data: {
+                list: [],
+                cha1: "",
+                all: 2,
+                cur: 1
+            },
+            watch: {
+                cur: function (oldValue, newValue) {
+                   
+                }
+            },
+      ready() {
+                alert(0)
+                this.getList();
+
+            },
+            methods: {
+                btnClick: function (data) {//页码点击事件
+                    var that = this;
+                    if (data != that.cur) {
+                        that.cur = data;
+                        that.getList();
+                    }
+                },
+                pageClick: function () {
+
+                    this.getList();
+                },
+                getList: function () {
+                    alert(0)
+                    var that = this;
+                    axios.get('http://localhost:8066/LocaTion/GetLocaTions?currentpage=' + that.cur).then((response) => {
+
+                        this.list = [];
+                        this.cur = response.data.PageIndex;
+                        this.all = response.data.PageCount;
+                        console.log(response.data.Data);
+                        for (var i = 0; i < response.data.Data.length; i++) {
+                            this.list.push(response.data.Data[i]);
+                        }
+                        console.log(that.list);
+                    },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
+                computed: {
+                    indexs: function () {
+                        var that = this;
+                        var left = 1;
+                        var right = that.all;
+                        var ar = [];
+                        if (this.all >= 5) {
+                            if (that.cur > 3 && that.cur < that.all - 2) {
+                                left = that.cur - 2
+                                right = that.cur + 2
+                            } else {
+                                if (that.cur <= 3) {
+                                    left = 1
+                                    right = 5
+                                } else {
+                                    right = that.all
+                                    left = that.all - 4
+                                }
+                            }
+                        }
+                        while (left <= right) {
+                            ar.push(left)
+                            left++
+                        }
+                        return ar
+                    }
+
+                }
+            },
+        })
+
+
+</script>
