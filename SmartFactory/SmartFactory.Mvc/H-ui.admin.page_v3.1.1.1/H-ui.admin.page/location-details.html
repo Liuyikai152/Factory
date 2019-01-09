@@ -254,7 +254,9 @@
                     this.getTests()
                 },
                 methods: {
+                   
                     getTests: function () {
+                       
                         this.$http.get(this.apiUrl + 'GetLocationById?id=' + this.mainId, function (data) {
                             this.$set('test', data);
                         })

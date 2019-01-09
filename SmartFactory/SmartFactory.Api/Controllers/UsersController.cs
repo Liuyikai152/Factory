@@ -15,16 +15,33 @@ namespace SmartFactory.Api.Controllers
     public class UsersController : ApiController
     {
 
-        public IUsersServices userservices { get; set; }
+        public IUsersServices usersServices { get; set; }
 
-        [Route("UsersAdd")]
+
+        /// <summary>
+        /// 显示
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetUsers")]
         [HttpGet]
-        public int UsersAdd()
+        public List<Users> GetUsers()
         {
-            Users user = new Users();
-            
-            int i= userservices.AddUsers(user);
-            return i;
+            var userList = usersServices.GetUsers();
+            return userList;
+        }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="passWord"></param>
+        /// <returns></returns>
+        [Route("Login")]
+        [HttpGet]
+        public int Login(string userName, string passWord)
+        {
+            int result = usersServices.Login(userName, passWord);
+            return result;
         }
     }
 }

@@ -18,11 +18,62 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
-    <!--[if IE 6]>
-    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-    <script>DD_belatedPNG.fix('*');</script><![endif]-->
-    <!--/meta 作为公共模版分离出去-->
 
+
+
+
+    <style>
+        .page-bar {
+            margin: 40px;
+        }
+
+        ul, li {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .page-bar li:first-child > a {
+            margin-left: 0px;
+        }
+
+        .page-bar a {
+            border: 1px solid #ddd;
+            text-decoration: none;
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            cursor: pointer;
+        }
+
+            .page-bar a:hover {
+                background-color: #eee;
+            }
+
+            .page-bar a.banclick {
+                cursor: not-allowed;
+            }
+
+        .page-bar .active a {
+            color: #fff;
+            cursor: default;
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+
+        .page-bar i {
+            font-style: normal;
+            color: #d44950;
+            margin: 0px 4px;
+            font-size: 12px;
+        }
+    </style>
     <title>会员列表 - 会员管理 - H-ui.admin v3.0</title>
     <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
     <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
@@ -171,42 +222,65 @@
 
     <section class="Hui-article-box">
         <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 会员列表<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-        <div class="Hui-article" id="app">
-            <article class="cl pd-20">
-                <div class="mt-20">
-                    <table class="table table-border table-bordered table-hover table-bg table-sort" v-cloak>
-                        <thead>
-                            <tr class="text-c">
-                                <th width="80">位置编码</th>
-                                <th width="80">位置名称</th>
-                                <th width="80">公司名称</th>
-                                <th width="80">计划工厂</th>
-                                <th width="80">维护工厂</th>
-                                <th width="80">工厂区域</th>
-                                <th width="80">计划员组</th>
-                                <th width="80">维护班组</th>
-                                <th width="80">成本中心</th>
-                                <th width="80">上一级功能位置</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-c" v-for="test in tests">
-                                <td>{{test.LocaNumber}}</td>
-                                <td>{{test.LocaName}}</td>
-                                <td>{{test.CompanyCode}}</td>
-                                <td>{{test.PlanFactory}}</td>
-                                <td>{{test.MaintainFactory}}</td>
-                                <td>{{test.FactoryArea}}</td>
-                                <td>{{test.PlanGroup}}</td>
-                                <td>{{test.CostConter}}</td>
-                                <td>{{test.LocaType}}</td>
-                                <td>{{test.LocaState==1?"启用":"禁用"}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+        <div id="app">
+            <div>
+                <div class="text-c">               
+                    <input type="text" id="CompanyName"  v-model="searchVal" placeholder="产品名称" class="input-text">
+
+                    <input id="Button1" type="button" value="搜索" v-on:click="searchUser(searchVal)" />
+                    <button id="Button1" class="btn btn-success" type="submit" v-on:click="searchLoca(searchVal)">
+                       <i class="Hui-iconfont">&#xe665;</i> 搜 索 
+                    </button>
                 </div>
-            </article>
+                <table class="table table-border table-bordered table-bg table-hover table-sort">
+                    <thead>
+                        <tr class="text-c">
+                            <th width="80">位置编码</th>
+                            <th width="80">位置名称</th>
+                            <th width="80">公司名称</th>
+                            <th width="80">计划工厂</th>
+                            <th width="80">维护工厂</th>
+                            <th width="80">工厂区域</th>
+                            <th width="80">计划员组</th>
+                            <th width="80">维护班组</th>
+                            <th width="80">成本工厂</th>
+                            <th width="80">查看</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list" class="text-c">
+                            <td>{{item.LocaNumber}}</td>
+                            <td>{{item.LocalName}}</td>
+                            <td>{{item.CompanyName}}</td>
+                            <td>{{item.FactoryName1}}</td>
+                            <td>{{item.FactoryName2}}</td>
+                            <td>{{item.AreaName}}</td>
+                            <td>{{item.GroupName}}</td>
+                            <td>{{item.ServiceName}}</td>
+                            <td>{{item.FactoryName3}}</td>
+                            <td><a href="location-details.html?id={{item.ID}}" class="btn btn-primary radius"><i class="Hui-iconfont"></i>查 看</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="page-bar">
+                <ul>
+                    <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
+                    <li v-if="cur==1"><a class="banclick">上一页</a></li>
+                    <li v-for="index in indexs" v-bind:class="{ 'active': cur == index}">
+                        <a v-on:click="btnClick(index)">{{ index }}</a>
+                    </li>
+                    <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
+                    <li v-if="cur == all"><a class="banclick">下一页</a></li>
+                    <li><a>共<i>{{all}}</i>页</a></li>
+                </ul>
+            </div>
         </div>
+
+
+
     </section>
 
     <!--_footer 作为公共模版分离出去-->
@@ -214,73 +288,103 @@
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
-    <!--/_footer /作为公共模版分离出去-->
+    <!--/_footer /作为公共模版分离出去
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-    <script type="text/javascript">
-        $(function () {
-           // Vue.http.options.emulateJSON = false;
-            var demo = new Vue({
-                el: '#app',
-                data: {
-                    test: [{
-                        name: 'ID',
-                        isKey: true
-                    }, {
-                        name: 'LocaNumber'
-                    }, {
-                        name: 'LocaName'
-                    }, {
-                        name: 'CompanyCode'
-                    }, {
-                        name: 'PlanFactory'
-                    }, {
-                        name: 'MaintainFactory'
-                    }, {
-                        name: 'FactoryArea'
-                    }, {
-                        name: 'PlanGroup'
-                    }, {
-                        name: 'CostConter'
-                    }, {
-                        name: 'LocaType'
-                    }, {
-                        name: 'LocaState'
-                    }],
-                    tests: [],
-                    apiUrl: 'http://localhost:8066/LocaTion/GetLocaTion',
-                    testdata: {}
-                },
-                ready: function () {
-                    this.getTests()
-                },
-                methods: {
-                    getTests: function () {
-                        this.$http.get(this.apiUrl, function (data) {
-                            this.$set('tests', data);
-                        })
-                    }
+
+    <script src="../../Scripts/vue.js"></script>
+    <script src="../../Scripts/axios.js"></script>
+
+    <script>
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                list: [],
+                cha1: "",
+                all: 2,
+                cur: 1
+            },
+            watch: {
+                cur: function (oldValue, newValue) {
+
                 }
-            })
-        });
-        /*用户-添加*/
-        function member_add(title, url, w, h) {
-            layer_show(title, url, w, h);
-        }
-        /*用户-查看*/
-        function member_show(title, url, id, w, h) {
-            layer_show(title, url, w, h);
-        }
-        /*用户-编辑*/
-        function member_edit(title, url, id, w, h) {
-            layer_show(title, url, w, h);
-        }
+            },
+            ready() {
+   
+                this.getList();
+
+            },
+            methods: {
+                btnClick: function (data) {//页码点击事件
+                    var that = this;
+                    if (data != that.cur) {
+                        that.cur = data;
+                        that.getList();
+                    }
+                },
+                pageClick: function () {
+
+                    this.getList();
+                },
+                getList: function () {
+                   
+                    var that = this;
+                    axios.get('http://localhost:8066/LocaTion/GetLocaTions?currentpage=' + that.cur).then((response) => {
+
+                        this.list = [];
+                        this.cur = response.data.PageIndex;
+                        this.all = response.data.PageCount;
+                     
+                        for (var i = 0; i < response.data.Data.length; i++) {
+                            this.list.push(response.data.Data[i]);
+                        }
+                    },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
+                computed: {
+                    indexs: function () {
+                        var that = this;
+                        var left = 1;
+                        var right = that.all;
+                        var ar = [];
+                        if (this.all >= 5) {
+                            if (that.cur > 3 && that.cur < that.all - 2) {
+                                left = that.cur - 2
+                                right = that.cur + 2
+                            } else {
+                                if (that.cur <= 3) {
+                                    left = 1
+                                    right = 5
+                                } else {
+                                    right = that.all
+                                    left = that.all - 4
+                                }
+                            }
+                        }
+                        while (left <= right) {
+                            ar.push(left)
+                            left++
+                        }
+                        return ar
+                    }
+
+                }
+            },
+        })
+
+
 
     </script>
+
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+

@@ -320,6 +320,7 @@
     <script type="text/javascript">
 
         var vm = new Vue({
+           
             el: "#app",
             data: {
                 all: 8,
@@ -332,10 +333,26 @@
             methods: {
      
                 getTests: function () {
-
-                    this.$http.get(this.apiUrl + 'GetMaintenanceOrders', { UnitOrPump: this.Unit}, function (data) {
-                        this.$set('tests', data);
+                    
+                    this.$http.get(this.apiUrl + 'GetMaintenanceOrders', { UnitOrPump: this.Unit, PageIndex: this.cur }, function (data) {
+                        
+                        this.cur =data.PageIndex;
+                        this.all = data.PageCount; 
+                        this.$set('tests', data.Data);
                     })
+                },
+
+                btnClick: function (data) {//页码点击事件
+                    if (data != this.cur) {
+                        this.cur = data;
+                        this.getTests(data);
+
+
+                    }
+                },
+                pageClick: function () {
+                    //console.log('现在在' + this.cur + '页');
+                    this.getTests(this.cur);
                 },
 
             

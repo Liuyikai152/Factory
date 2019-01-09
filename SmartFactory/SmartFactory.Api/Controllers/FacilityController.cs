@@ -35,8 +35,12 @@ namespace SmartFactory.Api.Controllers
         [Route("GetById")]
         public FacilityNotMapp GetById(int id)
         {
+
             var falist = FacilityServices.GetById(id);
             return falist;
+
+           
+
         }
         
 

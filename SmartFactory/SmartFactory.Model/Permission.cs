@@ -17,23 +17,24 @@ namespace SmartFactory.Model
 
         /// <summary>
         /// 权限id
-        
+        /// <summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
         /// 页面名称
-        
+        /// <summary>
         public string PermissionName { get; set; }
 
         /// <summary>
         /// 权限地址
-        
+        /// <summary>
         public string PermissionUrl { get; set; }
 
         /// <summary>
         /// 是否启用
-        
-        public int IsUser { get; set; }
+        /// </summary>
+        public string IsUser { get; set; }
+
     }
 }
