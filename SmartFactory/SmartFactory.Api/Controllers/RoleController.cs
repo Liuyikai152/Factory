@@ -31,5 +31,16 @@ namespace SmartFactory.Api.Controllers
             var userList = roleServices.GetRoles();
             return userList;
         }
+
+        /// <summary>
+        /// 添加角色
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        public int AddRole(Role role)
+        {
+            var result = roleServices.AddRole(role);
+            return result;
+        }
     }
 }
