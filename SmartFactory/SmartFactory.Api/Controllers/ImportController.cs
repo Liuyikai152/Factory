@@ -21,9 +21,12 @@ using System.Web;
 namespace SmartFactory.Api.Controllers
 {
   
+    [RoutePrefix("Import")]
     public class ImportController : ApiController
     {
+   
         [HttpPost]
+        [Route("Imports")]
         public int Imports()
         {
             FactoryDBcontext dBcontext = new FactoryDBcontext();
