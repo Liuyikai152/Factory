@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 
@@ -34,23 +35,12 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
-        /// 获取权限id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public Permission GetByID(int id)
-        {
-            var i= factoryDBcontext.Permission.Find(id);
-            return i;
-        }
-
-        /// <summary>
         /// 显示
         /// </summary>
         /// <returns></returns>
         public List<Permission> GetPermissions()
         {
-            var permissionList = factoryDBcontext.Database.SqlQuery<Permission>("call Pro_Getpermission").ToList();
+            var permissionList= factoryDBcontext.Permission.ToList();
             return permissionList;
         }
 
@@ -63,6 +53,22 @@ namespace SmartFactory.Services
         {
             factoryDBcontext.Entry(permission).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
+        }
+
+        /// <summary>
+        /// 获取权限id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        List<Permission> IPermissionServices.GetByID(int id)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[1]
+                   {
+                   new MySqlParameter("@sid", id)
+
+                   };
+            var loginList = factoryDBcontext.Database.SqlQuery<Permission>("call Pro_GetAllPermission(@sid)", parameters).ToList();
+            return loginList;
         }
     }
 }

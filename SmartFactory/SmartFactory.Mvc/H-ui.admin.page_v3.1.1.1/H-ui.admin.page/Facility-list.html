@@ -25,7 +25,6 @@
 
     <title>图片列表</title>
 </head>
-
 <body>
     <!--_header 作为公共模版分离出去-->
     <header class="navbar-wrapper">
@@ -171,8 +170,18 @@
     <!--/_menu 作为公共模版分离出去-->
 
     <section class="Hui-article-box">
-
-        <div class="Hui-article" id="app">
+        <form class="form form-horizontal" id="formData">
+            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
+            <div>
+                <p id="alert" style="color:red"></p>
+            </div>
+            <div>
+                <div>
+                    <input type="button" id="btnS" value="提交" style="width:100px;" />
+                </div>
+            </div>
+        </form>
+        <div class="Hui-article" id="app" style="margin-top:50px;">
             <article class="cl pd-20">
 
 
@@ -191,7 +200,6 @@
                                 <th width="80">工厂区域</th>
                                 <th width="80">计划员组</th>
                                 <th width="80">设备种类</th>
-                                <th width="80">设备安装位置</th>
                                 <th width="80">是否报警</th>
                                 <th width="80">操作</th>
                             </tr>
@@ -208,103 +216,80 @@
                                 <th>{{test.GroupName}}</th>
                                 <th>{{test.TypeName}}</th>
                                 <th>{{test.IsSiren==0?"正常":"警示"}} </th>
-                                <th><a href="#">查看</a></th>
+                                <th><a href='FacilityByID.html?id={{test.ID}}'>查看</a></th>
+
                             </tr>
 
                     </table>
-                    <div class="page-bar">
-                        <ul>
-                            <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
-                            <li v-if="cur==1"><a class="banclick">上一页</a></li>
-                            <li v-for="index in indexs" v-bind:class="{ 'active': cur == index}">
-                                <a v-on:click="btnClick(index)">{{ index }}</a>
-                            </li>
-                            <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
-                            <li v-if="cur == all"><a class="banclick">下一页</a></li>
-                            <li><a>共<i>{{all}}</i>页</a></li>
-                        </ul>
-                    </div>
                 </div>
             </article>
-
-
         </div>
     </section>
-    <style>
-        .page-bar {
-            margin: 40px;
-        }
 
-        ul, li {
-            margin: 0px;
-            padding: 0px;
-        }
 
-        li {
-            list-style: none
-        }
 
-        .page-bar li:first-child > a {
-            margin-left: 0px
-        }
 
-        .page-bar a {
-            border: 1px solid #ddd;
-            text-decoration: none;
-            position: relative;
-            float: left;
-            padding: 6px 12px;
-            margin-left: -1px;
-            line-height: 1.42857143;
-            color: #337ab7;
-            cursor: pointer
-        }
-
-            .page-bar a:hover {
-                background-color: #eee;
-            }
-
-            .page-bar a.banclick {
-                cursor: not-allowed;
-            }
-
-        .page-bar .active a {
-            color: #fff;
-            cursor: default;
-            background-color: #337ab7;
-            border-color: #337ab7;
-        }
-
-        .page-bar i {
-            font-style: normal;
-            color: #d44950;
-            margin: 0px 4px;
-            font-size: 12px;
-        }
-    </style>
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.datatables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-    <script type="text/javascript">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
-        //$('.table-sort').dataTable({
-        //    "aaSorting": [[1, "desc"]],//默认第几个排序
-        //    "bStateSave": true,//状态保存
-        //    "aoColumnDefs": [
-        //        //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-        //        { "orderable": false, "aTargets": [0, 8] }// 制定列不参与排序
-        //    ]
-        //});
+    <script type="text/javascript">
+        $(function () {
+            $("#btnS").click(function () {
+                alert($("#formData")[0])
+                $.ajax({
+                    url: "http://localhost:8066/Import/Imports",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: new FormData($("#formData")[0]),
+                    type: 'POST',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#alert").text("导入成功");
+                        }
+                    }
+                })
+
+            })
+        });
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                apiUrl: "http://localhost:8066/Facility/",
+                testdata: {}
+            },
+            ready: function () {
+                this.getTests()
+            },
+            methods: {
+                getTests: function () {
+                    this.$http.get(this.apiUrl + 'GetFacility', function (data) {
+                        this.$set('tests', data);
+                    })
+                },
+            }
+
+        })
+
+        $('.table-sort').dataTable({
+            "aaSorting": [[1, "desc"]],//默认第几个排序
+            "bStateSave": true,//状态保存
+            "aoColumnDefs": [
+                //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+                { "orderable": false, "aTargets": [0, 8] }// 制定列不参与排序
+            ]
+        });
         /*图片-添加*/
         function picture_add(title, url) {
             var index = layer.open({
@@ -383,57 +368,9 @@
                 layer.msg('已删除!', { icon: 1, time: 1000 });
             });
         }
-
-        var vm = new Vue({
-            el: "#app",
-            data: {
-                all: 8,
-                cur:1,
-                apiUrl: "http://localhost:8066/Facility/",
-                testdata: {}
-            },
-            ready: function () {
-                this.getTests()
-            },
-            methods: {
-                getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetFacility', function (data) {
-                        this.$set('tests', data);
-                    })
-                },
-            },
-            //计算属性
-            computed: {
-                indexs: function () {
-                    var left = 1;
-                    var right = this.all;
-                    var ar = [];
-                    if (this.all >= 5) {
-                        if (this.cur > 3 && this.cur < this.all - 2) {
-                            left = this.cur - 2
-                            right = this.cur + 2
-                        } else {
-                            if (this.cur <= 3) {
-                                left = 1
-                                right = 5
-                            } else {
-                                right = this.all
-                                left = this.all - 4
-                            }
-                        }
-                    }
-                    while (left <= right) {
-                        ar.push(left)
-                        left++
-                    }
-                    return ar
-                }
-
-            }
-        });
     </script>
 
- 
+
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 

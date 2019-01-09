@@ -11,29 +11,29 @@ namespace SmartFactory.Model
 
     /// <summary>
     /// 工厂表
-    /// </summary>
+    
     [Table("Planfactory")]
     public class Planfactory
     {
         /// <summary>
         /// 工厂主键
-        /// </summary>
+        
         [Key]
         public int ID { get; set; }
       
         /// <summary>
         /// 工厂名称
-        /// </summary>
+        
         public string FactoryName { get; set; }
       
         /// <summary>
         /// 工厂编号
-        /// </summary>
+        
         public string FactoryNumber { get; set; }
     
         /// <summary>
         /// 关联ID
-        /// </summary>
+        
         public int Pid { get; set; }
     }
 }

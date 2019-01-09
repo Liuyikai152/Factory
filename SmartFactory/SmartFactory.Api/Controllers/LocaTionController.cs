@@ -9,7 +9,6 @@ using System.Web.Http;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 using SmartFactory.Services;
-using Newtonsoft.Json;
 
 namespace SmartFactory.Api.Controllers
 {
@@ -24,6 +23,7 @@ namespace SmartFactory.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+
         [HttpPost]
         [Route("GetLocaTions")]
         public PageBox GetLocaTions(string currentpage,string companyname)
@@ -55,11 +55,12 @@ namespace SmartFactory.Api.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetLocationById")]
-        public LocationNotMapped GetLocationById(int id)
+        [Route("GetLocaTion")]
+        public List<LocaTion> GetLocaTion()
         {
-            var i = localionServices.GetLocationById(id);
-            return i;
+            var locaTionList = localionServices.GetLocations();
+            return locaTionList;
+
         }
     }
 }

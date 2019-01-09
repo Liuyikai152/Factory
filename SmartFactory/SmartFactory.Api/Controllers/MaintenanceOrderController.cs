@@ -9,7 +9,7 @@ using System.Web.Http;
 using SmartFactory.Model;
 using SmartFactory.IServices;
 using SmartFactory.Services;
-
+using Newtonsoft.Json;
 
 namespace SmartFactory.Api.Controllers
 {
@@ -17,24 +17,32 @@ namespace SmartFactory.Api.Controllers
     /// <summary>
     /// 维修工单
     /// </summary>
-
-
     [RoutePrefix("MaintenanceOrder")]
     public class MaintenanceOrderController : ApiController
     {
 
         public IMaintenanceOrderServices maintenanceOrderServices { get; set; }
 
+       public const int  PAGESIZE=3;
         /// <summary>
         /// 显示所有维修工单
         /// </summary>
         /// <returns></returns>
         [Route("GetMaintenanceOrders")]
-        [HttpGet]
-        public List<MaintenanceOrderNotMap> GetMaintenanceOrders()
+        [HttpGet][HttpPost]
+        public PageBox GetMaintenanceOrders(string UnitOrPump,int PageIndex=1)
         {
-            var mainlist = maintenanceOrderServices.GetMaintenanceOrders();
-            return mainlist;
+            if (UnitOrPump == null) {
+                UnitOrPump = "";
+            }
+
+            PageBox pageBox = new PageBox();
+            List<MaintenanceOrderNotMap> mainlist = maintenanceOrderServices.GetMaintenanceOrders(UnitOrPump);
+            pageBox.PageIndex = PageIndex;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount = mainlist.Count / PAGESIZE + (mainlist.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = mainlist.Skip((PageIndex-1)*PAGESIZE).Take(PageIndex);
+            return pageBox;
         }
 
         /// <summary>

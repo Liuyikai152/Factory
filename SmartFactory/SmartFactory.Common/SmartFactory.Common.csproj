@@ -67,29 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Common\BootstrapSouce\css\bootstrap-theme.css.map" />
-    <None Include="Common\BootstrapSouce\css\bootstrap-theme.min.css.map" />
-    <None Include="Common\BootstrapSouce\css\bootstrap.css.map" />
-    <None Include="Common\BootstrapSouce\css\bootstrap.min.css.map" />
-    <None Include="Common\BootstrapSouce\fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Common\BootstrapSouce\fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="Common\BootstrapSouce\fonts\glyphicons-halflings-regular.woff" />
-    <None Include="Common\BootstrapSouce\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Common\BootstrapSouce\css\bootstrap-theme.css" />
-    <Content Include="Common\BootstrapSouce\css\bootstrap-theme.min.css" />
-    <Content Include="Common\BootstrapSouce\css\bootstrap.css" />
-    <Content Include="Common\BootstrapSouce\css\bootstrap.min.css" />
-    <Content Include="Common\BootstrapSouce\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Common\BootstrapSouce\js\bootstrap.js" />
-    <Content Include="Common\BootstrapSouce\js\bootstrap.min.js" />
-    <Content Include="Common\BootstrapSouce\js\html5shiv.js" />
-    <Content Include="Common\BootstrapSouce\js\jquery.js" />
-    <Content Include="Common\BootstrapSouce\js\jquery.min.js" />
-    <Content Include="Common\BootstrapSouce\js\npm.js" />
-    <Content Include="Common\BootstrapSouce\js\respond.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

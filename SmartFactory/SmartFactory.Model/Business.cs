@@ -10,25 +10,25 @@ namespace SmartFactory.Model
     using System.ComponentModel.DataAnnotations;
     /// <summary>
     /// 设备业务表
-    /// </summary>
+    
     [Table("Business")]
     public  class Business
     {
         /// <summary>
         /// 主键id
-        /// </summary>
+        
         [Key]
         public int ID { get; set; }
 
         /// <summary>
         /// 业务名称
-        /// </summary>
+        
 
         public string BusionessName { get; set; }
 
         /// <summary>
         /// 业务编号
-        /// </summary>
+        
         public string BusionessNumber { get; set; }
     }
 }
