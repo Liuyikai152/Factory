@@ -40,6 +40,6 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Permission GetByID(int id);
+        List<Permission> GetByID(int id);
     }
 }

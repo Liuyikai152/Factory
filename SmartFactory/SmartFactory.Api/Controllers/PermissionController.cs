@@ -54,7 +54,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("GetByID")]
         [HttpGet]
-        public Permission GetByID(int id)
+        public List<Permission> GetByID(int id)
         {
             var result = permissionServices.GetByID(id);
             return result;
