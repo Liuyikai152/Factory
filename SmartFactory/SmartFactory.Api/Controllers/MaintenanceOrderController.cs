@@ -29,7 +29,7 @@ namespace SmartFactory.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetMaintenanceOrders")]
-        [HttpGet][HttpPost]
+        [HttpGet]
         public PageBox GetMaintenanceOrders(string UnitOrPump,int PageIndex=1)
         {
             if (UnitOrPump == null) {
