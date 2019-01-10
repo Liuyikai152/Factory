@@ -10,7 +10,7 @@
     <link rel="Bookmark" href="favicon.ico">
     <link rel="Shortcut Icon" href="favicon.ico" />
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/html5.js"></scri76 pt>
     <script type="text/javascript" src="lib/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
@@ -232,9 +232,27 @@
                     <input type="button" id="btnS" value="提交" style="width:100px;" />
                 </div>
             </div>
+
         </form>
         <div class="Hui-article" id="app" style="margin-top:50px;">
             <article class="cl pd-20">
+                <div>
+
+                    <input type="text" class="input-text" style="width:150px" placeholder="设备编码" value="" V-model="FacilityNumber">
+                    <input type="text" class="input-text" style="width:150px" placeholder="公司名称" value="" V-model="BitNumbers">
+                    <input type="text" class="input-text" style="width:150px" placeholder="计划工厂" value="" V-model="CompanyName">
+                    <input type="text" class="input-text" style="width:150px" placeholder="维护工厂" value="" V-model="FactoryName">
+                    <input type="text" class="input-text" style="width:150px" placeholder="设备种类" value="" V-model="TypeName">
+                    <span class="select-box inline">
+                        <select name="" style="width:150px" class="input-text" V-model="IsSiren">
+                            <option selected="selected" value="0">是否报警</option>
+                            <option value="3">警示</option>
+                            <option value="4">正常</option>
+                        </select>
+                    </span>
+
+                    <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
+                </div>
 
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
@@ -265,7 +283,7 @@
                             <th>{{test.AreaName}}</th>
                             <th>{{test.GroupName}}</th>
                             <th>{{test.TypeName}}</th>
-                            <th>{{test.IsSiren==0?"正常":"警示"}} </th>
+                            <th>{{test.IsSiren==3?"警示":"正常"}} </th>
                             <th><a href='FacilityByID.html?id={{test.ID}}'>查看</a></th>
 
                         </tr>
@@ -330,23 +348,30 @@
         var vm = new Vue({
             el: "#app",
             data: {
+                FacilityNumber: "",
+                BitNumbers: "",
+                companyname: "",
+                FactoryName: "",
+                TypeName: "",
+                IsSiren: "",
                 all: 8,
                 cur: 1,
                 apiUrl: "http://localhost:8066/Facility/",
-                testdata: {}
+                
             },
             ready: function () {
                 this.getTests()
             },
             methods: {
                 getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetFacility', { PageIndex: this.cur }, function (data) {
+                    this.$http.get(this.apiUrl + 'GetFacility', { BitNumbers: this.BitNumbers, CompanyName: this.BitNumbers, FactoryName: this.FactoryName, TypeName: this.TypeName, FacilityNumber: this.FacilityNumber, IsSiren: this.IsSiren, PageIndex: this.cur, }, function (data) {
 
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;
                         this.$set('tests', data.Data);
                     })
                 },
+               
                 btnClick: function (data) {//页码点击事件
                     if (data != this.cur) {
                         this.cur = data;

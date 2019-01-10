@@ -21,14 +21,40 @@ namespace SmartFactory.Api.Controllers
         public const int PAGESIZE = 2;
         [HttpGet]
         [Route("GetFacility")]
-        public PageBox GetFacility(int PageIndex = 1)
-        {      
+        public PageBox GetFacility(FactoryEnum IsSiren,string BitNumbers, string CompanyName, string FactoryName, string TypeName,string FacilityNumber, int PageIndex = 1)
+        {
+            List<FacilityNotMapp> facilitylist = FacilityServices.GetFacility();
+            if (IsSiren != 0)
+            {
+                facilitylist = facilitylist.Where(n => n.IsSiren.Equals(IsSiren)).ToList();
+            }
+            if (FacilityNumber != null)
+            {
+                facilitylist = facilitylist.Where(n => n.FacilityNumber.Equals(FacilityNumber)).ToList();
+            }
+            if (BitNumbers != null)
+            {
+                facilitylist = facilitylist.Where(n => n.BitNumbers.Equals(BitNumbers)).ToList();
+            }
+            if (CompanyName != null)
+            {
+                facilitylist = facilitylist.Where(n => n.CompanyName.Equals(CompanyName)).ToList();
+            }
+            if (FactoryName != null)
+            {
+                facilitylist = facilitylist.Where(n => n.FactoryName.Equals(FactoryName)).ToList();
+            }
+            if (TypeName != null)
+            {
+                facilitylist = facilitylist.Where(n => n.TypeName.Equals(TypeName)).ToList();
+            }
+
             PageBox pageBox = new PageBox();
-            List<FacilityNotMapp> facility = FacilityServices.GetFacility();
+           
             pageBox.PageIndex = PageIndex;
             pageBox.PageSize = PAGESIZE;
-            pageBox.PageCount = facility.Count / PAGESIZE + (facility.Count % PAGESIZE == 0 ? 0 : 1);
-            pageBox.Data = facility.Skip((PageIndex - 1) * PAGESIZE).Take(PAGESIZE);
+            pageBox.PageCount = facilitylist.Count / PAGESIZE + (facilitylist.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = facilitylist.Skip((PageIndex - 1) * PAGESIZE).Take(PAGESIZE);
             return pageBox;
             
         }
