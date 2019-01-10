@@ -35,10 +35,8 @@ namespace SmartFactory.Services
         /// 查看功能位置
         /// </summary>
         /// <returns></returns>
-        public List<LocaTion> GetLocations()
         public List<LocationNotMapped> GetLocations()
         {
-            var locationList = factoryDBcontext.Database.SqlQuery<LocaTion>("CALL Pro_GetLonTion").ToList();
             var locationList = factoryDBcontext.Database.SqlQuery<LocationNotMapped>("CALL Pro_GetLonTion").ToList();
             return locationList;
         }
