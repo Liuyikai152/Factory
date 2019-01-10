@@ -212,12 +212,20 @@
         <div class="Hui-article" id="app">
             <article class="cl pd-20">
                 <div class="text-c">
+                    <form class="form form-horizontal" id="formData">
+                        <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" style="margin-left:100px;" />
+                        &nbsp;&nbsp;
+
+                        <input type="button" id="btnS" value="导入" style="margin-left:100px; width:100px;height:30px;" />
+                        <input type="button" id="btnOut" value="导出" style="margin-left:100px; width:100px;height:30px;" />
+                        <p id="alert" style="color:red"></p>
+                    </form>
                     <!--日期范围：
-                    <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;"  V-model="datemin">
-                    -
-                    <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;"  V-model="datemax">-->
-                    <input type="text" class="input-text" style="width:250px" placeholder="输入所属机组/机泵" value=""  V-model="Unit">
-                    <button type="submit" class="btn btn-success"  id="" name="" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i>查询</button>
+    <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;"  V-model="datemin">
+    -
+    <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;"  V-model="datemax">-->
+                    <input type="text" class="input-text" style="width:250px" placeholder="输入所属机组/机泵" value="" V-model="Unit">
+                    <button type="submit" class="btn btn-success" id="" name="" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i>查询</button>
                 </div>
 
                 <table class="table table-border table-bordered table-bg">
@@ -288,6 +296,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
     <script type="text/javascript">
+
+        $(function () {
+            $("#btnS").click(function () {
+            
+                $.ajax({
+                    url: "http://localhost:8066/Excel/ImportsExcel",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: new FormData($("#formData")[0]),
+                    type: 'POST',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#alert").text("导入成功");
+                        }
+                    }
+                })
+
+            })
+
+
+            $("#btnOut").click(function () {
+              
+                $.ajax({
+                    url: "http://localhost:8066/Excel/OutsExcel",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: new FormData($("#formData")[0]),
+                    type: 'POST',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#alert").text("导入成功");
+                        }
+                    }
+                })
+
+            })
+        });
 
         var vm = new Vue({
            
