@@ -37,7 +37,6 @@ namespace SmartFactory.IServices
         /// 查看
         /// </summary>
         /// <returns></returns>
-        List<Users> GetUsers();
         List<UserInfo> GetUsers();
 
         /// <summary>

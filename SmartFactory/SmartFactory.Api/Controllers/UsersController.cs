@@ -24,7 +24,6 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("GetUsers")]
         [HttpGet]
-        public List<Users> GetUsers()
         public List<UserInfo> GetUsers()
         {
             var userList = usersServices.GetUsers();

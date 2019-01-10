@@ -26,7 +26,6 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("GetRoles")]
         [HttpGet]
-        public List<Role> GetRoles()
         public List<Roles> GetRoles()
         {
             var roleList = roleServices.GetRoles();
