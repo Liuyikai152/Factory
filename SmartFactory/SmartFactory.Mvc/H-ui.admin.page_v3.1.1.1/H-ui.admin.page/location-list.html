@@ -223,15 +223,34 @@
     <section class="Hui-article-box">
         <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 会员列表<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 
-        <div id="app">
+        <form class="form form-horizontal" id="formData">
+            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
             <div>
-                <div class="text-c">               
-                    <input type="text" id="CompanyName"  v-model="searchVal" placeholder="产品名称" class="input-text">
+                <span id="alert"  style="color:red"></span>
+                <button type="button" id="btnS"><i class="Hui-iconfont">&#xe600;</i>导入数据</button>
+            </div>
+        </form>
 
-                    <input id="Button1" type="button" value="搜索" v-on:click="searchUser(searchVal)" />
-                    <button id="Button1" class="btn btn-success" type="submit" v-on:click="searchLoca(searchVal)">
-                       <i class="Hui-iconfont">&#xe665;</i> 搜 索 
-                    </button>
+        <div id="app">
+
+            <div>
+                <div class="text-c">
+                    <input type="text" class="input-text" style="width:150px" placeholder="位置编码" value="" V-model="locanumber">
+                    <input type="text" class="input-text" style="width:150px" placeholder="公司名称" value="" V-model="companyname">
+                    <input type="text" class="input-text" style="width:150px" placeholder="计划工厂" value="" V-model="factoryname1">
+                    <input type="text" class="input-text" style="width:150px" placeholder="维护工厂" value="" V-model="factoryname2">
+                    <span class="select-box inline">
+                        <select name="" style="width:150px" class="input-text" V-model="locastate">
+                            <option selected="selected" value="0">位置状态</option>
+                            <option value="1">启用</option>
+                            <option value="2">禁用</option>
+                        </select>
+                    </span>
+
+                    <span class="select-box inline">
+                        <input type="checkbox" value="1" V-model="isdelete">
+                    </span>
+                    <button type="submit" class="btn btn-success" v-on:click="getList"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
                 </div>
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
@@ -279,8 +298,6 @@
             </div>
         </div>
 
-
-
     </section>
 
     <!--_footer 作为公共模版分离出去-->
@@ -293,17 +310,42 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-
     <script src="../../Scripts/vue.js"></script>
     <script src="../../Scripts/axios.js"></script>
 
     <script>
+        $(function () {
+            $("#btnS").click(function () {
+              
+                $.ajax({
+                    url: "http://localhost:8066/Import/LocaTion",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: new FormData($("#formData")[0]),
+                    type: 'POST',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#alert").text("导入成功");
+                        }
+                    }
+                })
+
+            })
+        });
+
         var vue = new Vue({
             el: "#app",
             data: {
                 list: [],
-                cha1: "",
-                all: 2,
+                locastate: "",
+                isdelete: "",
+                companyname: "",
+                locanumber: "",
+                factoryname1: "",
+                factoryname2: "",
+
+                all: 0,
                 cur: 1
             },
             watch: {
@@ -330,13 +372,10 @@
                 },
                 getList: function () {
                    
-                    var that = this;
-                    axios.get('http://localhost:8066/LocaTion/GetLocaTions?currentpage=' + that.cur).then((response) => {
-
+                    axios.get('http://localhost:8066/LocaTion/GetLocaTions?locastate=' + this.locastate + '&&isdelete=' + this.isdelete + '&&currentpage=' + this.cur + '&&companyname=' + this.companyname + '&&locanumber=' + this.locanumber + '&&factoryname1=' + this.factoryname1 + '&&factoryname2=' + this.factoryname2).then((response) => {
                         this.list = [];
                         this.cur = response.data.PageIndex;
                         this.all = response.data.PageCount;
-                     
                         for (var i = 0; i < response.data.Data.length; i++) {
                             this.list.push(response.data.Data[i]);
                         }
@@ -379,7 +418,6 @@
                 }
             },
         })
-
 
 
     </script>
