@@ -15,10 +15,6 @@ using SmartFactory.Services;
 using SmartFactory.Model;
 using System.Configuration;
 using System.Web;
-
-using SmartFactory.Services;
-using SmartFactory.IServices;
-using SmartFactory.Model;
 using Newtonsoft.Json;
 
 namespace SmartFactory.Api.Controllers
@@ -96,16 +92,14 @@ namespace SmartFactory.Api.Controllers
         /// <summary>
         /// 将数据导出到指定的Excel文件中
         /// </summary>
-        /// <param name="listView">System.Windows.Forms.ListView,指定要导出的数据源</param>
         /// <param name="destFileName">指定目标文件路径</param>
         /// <param name="tableName">要导出到的表名称</param>
-        /// <param name="overWrite">指定是否覆盖已存在的表</param>
         /// <returns>导出的记录的行数</returns>
         [HttpPost]
         [Route("ExportToExcel")]
-        public static int ExportToExcel(System.Data.DataTable dt, string destFileName, string tableName)
-
+        public static int ExportToExcel(DataTable dt,string destFileName, string tableName)
         {
+            
 
             if (File.Exists(destFileName)) 
             {
@@ -118,10 +112,9 @@ namespace SmartFactory.Api.Controllers
 
             string szValues = "";
 
-            for (int i = 0; i < dt.Columns.Count; i++)
+            for (int i = 1; i < dt.Columns.Count; i++)
 
             {
-
                 szFields += "[" + dt.Columns[i] + "],";
 
             }
@@ -203,9 +196,10 @@ namespace SmartFactory.Api.Controllers
 
                     szValues = szValues.TrimEnd(',');
 
-                    //组合成SQL语句并执行
 
-                    string szSql = "INSERT INTO [" + tableName + "](" + szFields + ") VALUES(" + szValues + ")";
+                        //组合成SQL语句并执行
+
+                        string szSql = "INSERT INTO [" + tableName + "](" + szFields + ") VALUES(" + szValues + ")";
 
                     command.CommandText = szSql;
 
@@ -232,39 +226,23 @@ namespace SmartFactory.Api.Controllers
         //得到连接字符串
 
         private static String GetConnectionString(string fullPath)
-
         {
-
             string szConnection;
-
             szConnection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fullPath + ";Extended Properties=Excel 12.0;";
-
             return szConnection;
 
         }
 
- 
-
- 
-
         //得到创建表的SQL语句
 
         private static string GetCreateTableSql(string tableName, string[] fields)
-
         {
-
             string szSql = "CREATE TABLE " + tableName + "(";
-
             for (int i = 0; i < fields.Length; i++)
-
             {
-
-                szSql += fields[i] + " VARCHAR(200),";
-
+                szSql += fields[i] + " Text,";
             }
-
-            szSql = szSql.TrimEnd(',') + ")";
-
+            szSql = szSql.TrimEnd(',') + ")";      
             return szSql;
 
         }
@@ -276,90 +254,83 @@ namespace SmartFactory.Api.Controllers
         #endregion
 
 
-        [Route("OutExcel")]
-        [HttpPost]
-        public  string OutExcel()
-        {
-
-            DataTable dt = GetDataTable();
 
 
 
-            string FileName = Guid.NewGuid().ToString() + ".xls";
 
-            string sNewFullFile = HttpContext.Current.Request.MapPath(FileName);
-            try
-            {
-                File.Copy(HttpContext.Current.Request.MapPath("format.xls"), sNewFullFile);
-            }
-            catch (Exception er)
-            {
-                return er.Message;
-                
-            }
-
-            string strConn = GetConnectionString(sNewFullFile);
-            System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(strConn);
-            OleDbCommand cmd = null;
-
-            bool bRet = false;
-            try
-            {
-                conn.Open();
-                cmd = new OleDbCommand("create table [sheet1]([通知单号] Text,[所属机组/机泵] Text,[设备编号] Text,[设备名称] Text,[故障名称] Text,[故障部位] Text,[故障发生时间] Text,[处理完成时间] Text,[停机时间] Text,[故障处理方法] Text)", conn);
-                cmd.ExecuteNonQuery();
-
-
-
-                string strSQL = "INSERT INTO [Sheet1$] ([通知单号], [所属机组/机泵],[设备编号],[设备名称],[故障名称],[故障部位],[故障发生时间],[处理完成时间],[停机时间],[故障处理方法]) VALUES (?, ?, ?)";
-
-                cmd = new OleDbCommand(strSQL, conn);
-
-                for (int i = 0; i < 3; i++)
-                {
-                    cmd.Parameters.Add(i.ToString(), OleDbType.VarChar);
-                }
-
-
-
-                DataView dv = dt.DefaultView;
-                foreach (DataRowView row in dv)
+        #region  导出固定位置
+                 [Route("OutExcel")]
+                [HttpPost]
+                public   int OutExcel()
                 {
 
-                    cmd.Parameters[0].Value = row["OrderNumber"].ToString();
-                    cmd.Parameters[1].Value = (int)row["age"];
-                    cmd.Parameters[2].Value = row["phone"].ToString();
-                    cmd.ExecuteNonQuery();
+                    DataTable dt = GetDataTable();
+
+
+
+                    string FileName = Guid.NewGuid().ToString().Substring(8) + ".xlsx";
+
+                    string sNewFullFile = "D:\\Users\\Administrator\\Desktop\\"+ FileName;
+           
+                    string strConn = GetConnectionString(sNewFullFile);
+                    System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(strConn);
+                    OleDbCommand cmd = null;
+  
+                    try
+                    {
+                        conn.Open();
+                        cmd = new OleDbCommand("create table [Sheet1]([通知单号] Text,[所属机组/机泵] Text,[设备编号] Text,[设备名称] Text,[故障名称] Text,[故障部位] Text,[故障发生时间] Text,[处理完成时间] Text,[停机时间] Text,[故障处理方法] Text)", conn);
+                        cmd.ExecuteNonQuery();
+
+               
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+                            var sRows = "INSERT INTO [Sheet1$] ([通知单号], [所属机组/机泵],[设备编号],[设备名称],[故障名称],[故障部位],[故障发生时间],[处理完成时间],[停机时间],[故障处理方法]) VALUES (";
+                            for (int j = 1; j < dt.Columns.Count; j++)
+                            {
+                                sRows += "'" + dt.Rows[i][j] + "',";
+                            }
+                            sRows = sRows.TrimEnd(',');
+
+                            string strSQL = sRows + ")";
+                            cmd = new OleDbCommand(strSQL, conn);
+                            cmd.ExecuteNonQuery();
+                        }
+           
+               
+                        return 1;
+
+                    }
+                    catch (Exception er)
+                    {
+                         throw er;
+                    }
+                    finally
+                    {
+                        if (cmd != null)
+                        {
+                            cmd.Dispose();
+                        }
+                        conn.Dispose();
+
+                    }
+           
+
+
+
                 }
-                bRet = true;
+
+        #endregion
 
 
-            }
-            catch (Exception er)
-            {
-                 return er.Message;
-            }
-            finally
-            {
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                conn.Dispose();
-
-            }
-            if (bRet)
-                return  FileName;
-
-
-
-            return FileName;
-        }
 
         public IMaintenanceOrderServices maintenanceOrderServices { get; set; }
 
-        public DataTable GetDataTable() {
-            var list = maintenanceOrderServices.GetMaintenanceOrders(null);
+        public static DataTable GetDataTable() {
+            FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
+
+            var list = factoryDBcontext.MaintenanceOrder.ToList();
 
             return JsonConvert.DeserializeObject<DataTable>(JsonConvert.SerializeObject(list));
 

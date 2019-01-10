@@ -4,13 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
+using CommonCache;
 
-namespace CommonCache
-{
-    /// <summary>
-    /// Redis缓存操作类
-    /// </summary>
-    public class RedisHelper
+/// <summary>
+/// Redis缓存操作类
+/// </summary>
+public class RedisHelper
     {
         /// <summary>
         /// 判断某个数据是否已经被缓存
@@ -344,4 +344,3 @@ namespace CommonCache
         }
     }
 
-}

@@ -10,23 +10,23 @@ namespace SmartFactory.Model
     {
         /// <summary>
         /// 启用
-        
-        Enable=1,
+        /// <summary>
+        Enable = 1,
 
         /// <summary>
         /// 禁用
-        
-        Prohibit=2,
-        
+        /// <summary>
+        Prohibit = 2,
+
         /// <summary>
         /// 警示
-        
-        Caution=3,
-        
+        /// <summary>
+        Caution = 3,
+
         /// <summary>
         /// 正常
-        
-        Normal=4,
+        /// <summary>
+        Normal = 4,
 
     }
 }

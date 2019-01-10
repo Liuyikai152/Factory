@@ -10,7 +10,7 @@ namespace SmartFactory.Model
     using System.ComponentModel.DataAnnotations;
     /// <summary>
     /// 权限表
-    
+    /// <summary>
     [Table("Permission")]
     public class Permission
     {
