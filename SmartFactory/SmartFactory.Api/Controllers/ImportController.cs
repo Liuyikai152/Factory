@@ -69,7 +69,6 @@ namespace SmartFactory.Api.Controllers
                         string stuSQL = string.Format("insert into facility(FacilityNumber,FacilityName,BitNumber, CompanyCode,PlanFactory,MaintainFactory,FactoryArea,PlanGroup,CostConter,FacilityType,FacilityLoca,StartDate,DateChanged,BusinessLine,IsInstall,IsDelete,ServiceNumber,IsSiren) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}')", dt.Rows[i]["设备编号"], dt.Rows[i]["设备名称"], dt.Rows[i]["设备位号"], dt.Rows[i]["公司编号"], dt.Rows[i]["计划工厂"], dt.Rows[i]["维护工厂"], dt.Rows[i]["工厂区域"], dt.Rows[i]["计划员组"], dt.Rows[i]["成本中心"], dt.Rows[i]["设备种类"], dt.Rows[i]["设备安装位置"], dt.Rows[i]["开始日期"], dt.Rows[i]["修改日期"], dt.Rows[i]["业务范围"], dt.Rows[i]["是否安装位置"], dt.Rows[i]["包含删除"], dt.Rows[i]["维护班组编号"], dt.Rows[i]["是否报警"]);
                         mySqlCommand.CommandText = stuSQL;
                         var addpowers = mySqlCommand.ExecuteNonQuery();
-
                     }
                     mySqlConnection.Close();
                 }
