@@ -175,6 +175,7 @@
         <div class="Hui-article" id="app">
             <article class="cl pd-20">
                 <div class="cl pd-5 bg-1 bk-gray"> <span class="l"> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加角色','admin-role-add.html','800')"><i class="Hui-iconfont">&#xe600;</i> 添加角色</a> </span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+                <div class="cl pd-5 bg-1 bk-gray"><a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加角色','admin-role-add.html','800')"><i class="Hui-iconfont">&#xe600;</i> 添加角色</a> </span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
                 <div class="mt-10">
                     <table class="table table-border table-bordered table-hover table-bg">
                         <thead>
@@ -189,13 +190,14 @@
                                 <th width="100">修改</th>
                             </tr>
                         </thead>
+                       
                         <tbody>
                             <tr v-for="test in tests" class="text-c">
                                 <th>{{test.ID}}</th>
                                 <th>{{test.RoleName}}</th>
                                 <th>{{test.Permission}}</th>
-                                <th><a href="#">删除</a></th>
-                                <th><a href="#">修改</a></th>
+                                <th><a href="javascript:;" onclick="del({{test.ID}})" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>删除</a></th>
+                                <th><a href="javascript:;" onclick="admin_role_edit({{test.ID}})" class="btn btn-primary radius"><i class="Hui-iconfont"></i> 修改</a></th>
                             </tr>
                         </tbody>
                     </table>
@@ -250,18 +252,31 @@
             layer_show(title, url, w, h);
         }
         /*管理员-角色-编辑*/
-        function admin_role_edit(title, url, id, w, h) {
-            layer_show(title, url, w, h);
+        function admin_role_edit(id) {
+            layer_show("编辑权限", "admin-role-update.html?id=" + id, 300, 500);
         }
         /*管理员-角色-删除*/
-        function admin_role_del(obj, id) {
-            layer.confirm('角色删除须谨慎，确认要删除吗？', function (index) {
-                //此处请求后台程序，下方是成功后的前台处理……
+        function del(id, obj) {
+            if (confirm("确定删除吗?")) {
+                $.ajax({
+                    url: 'http://localhost:8066/Role/DeleteRole?id=' + id,
+                    type: 'get',
+                    data: {
+                        //ID: ID
+                    },
+                    success: function (data) {
 
-
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', { icon: 1, time: 1000 });
-            });
+                        if (data > 0) {
+                            alert("删除成功");
+                            $(obj).parent().parent().remove();
+                            location.href = "admin-role.html";
+                        }
+                        else {
+                            alert("删除失败");
+                        }
+                    }
+                })
+            }
         }
     </script>
     <!--/请在上方写此页面业务相关的脚本-->

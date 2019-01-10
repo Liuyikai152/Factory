@@ -1,3 +1,4 @@
+﻿<!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -41,13 +42,7 @@
                     <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="PassWord" name="PassWord">
                 </div>
             </div>
-            <!--<div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色id：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" placeholder="角色ID" id="RoleId"
-                           name="RoleId">
-                </div>
-            </div>-->
+
 
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3">角色名称：</label>
@@ -59,7 +54,7 @@
             </div>
             <div class="row cl">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                    <input class="btn btn-primary radius" onclick="update()" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
                 </div>
             </div>
         </form>
@@ -76,75 +71,76 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
-
-    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
-
-    <script type="text/javascript">
-        $(function () {
-            $.ajax({
-                url: 'http://localhost:8066/Role/GetRoles',
-                type: 'get',
-                data: {},
-                success: function (res) {
-                    console.log(res);
-                    $(res).each(function (index, data) {
-                        $(".check-box").append('<input type="checkbox" class="cks" id="' + data.ID + '" name="RoleName" value="' + data.ID + '"  />' + data.RoleName)
-                    })
-
-                }
-            })
-        })
-        function add() {
-            var role = "";
-            $(".cks:checked").each(function () {
-                role += $(this).val() + ",";
-            })
-            role = role.substring(0, role.lastIndexOf(','));
-            alert(role);
-            $.ajax({
-                url: "http://localhost:8066/Users/AddUsers?userName=" + $("#UserName").val() + '&&passWord=' + $("#PassWord").val() + '&&roleId=' + role,
-                type: "post",
-                data: {
-                    //userName: $("#UserName").val(),
-                    //passWord: $("#PassWord").val(),
-                    //roleId: role
-                },
-                success: function (data) {
-
-                    if (data > 0) {
-                        alert("添加成功")
-                    }
-                    else {
-                        alert("添加失败")
-                    }
-                }
-            })
-        }
+    <script src="../../Scirpt/jquery-1.10.2.min.js"></script>
+    <script src="../Scirpt/GetParse.js"></script>
 
 
 
-    </script>
-
-    <!--<script type="text/javascript">
-        function add() {
-            $.ajax({
-                url: "http://localhost:24380/TUsers/AddTUsers",
-                type: "post",
-                data: { UserName: $("#adminName").val(), PassWord: $("#password").val(), RoleID: $("#Role").val() },
-                success: function (data) {
-                    if (data > 0) {
-                        alert("添加成功")
-
-
-                    }
-                    else {
-                        alert("添加失败")
-                    }
-                }
-            })
-        }
-
-    </script>-->
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+<script type="text/javascript">
+
+    var id = getPar("id");
+    $(function () {
+        $.ajax({
+            url: 'http://localhost:24380/Role/GetRoles',
+            type: 'get',
+            async: false,
+            data: {},
+            success: function (res) {
+                
+                $(res).each(function (index, data) {
+                    $(".check-box").append('<input type="checkbox" class="cks" id="' + data.ID + '" name="RoleName" value="' + data.ID + '"  />' + data.Name)
+                })
+
+            }
+        }),
+            //反填
+            $.ajax({
+                url: 'http://localhost:24380/TUsers/GetByID?id=' + id,
+               
+                type: "get",
+                success: function (data) {
+                    $("input[name=ID]").val(data[0].ID);
+                    $("input[name=UserName]").val(data[0].UserName);
+                    $("input[name=PassWord]").val(data[0].PassWord);
+                
+                    $(data[0].RoleId.split(',')).each(function (index, data) {
+                        $("input[name=RoleName][value=" + this + "]").prop("checked", true);
+                    })
+                   
+
+                }
+            })
+    })
+
+
+
+
+    function update() {
+        var ids = "";
+        $(".cks:checked").each(function () {
+            ids += $(this).val() + ",";
+        })
+        ids = ids.substring(0, ids.lastIndexOf(','));
+      
+        $.ajax({
+            url: "http://localhost:24380/TUsers/UpdateUsers?userName=" + $("input[name=UserName]").val() + '&passWord=' + $("input[name=PassWord]").val() + '&roleId=' + ids + '&id=' + id,
+            type: "post",
+            async: false,
+            success: function (data) {
+
+                if (data > 0) {
+                    alert("修改成功")
+                }
+                else {
+                    alert("修改失败")
+                }
+            }
+        })
+    }
+
+
+
+</script>

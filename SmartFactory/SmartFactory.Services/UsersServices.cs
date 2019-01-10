@@ -22,9 +22,46 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int AddUsers(Users user)
         {
-            factoryDBcontext.Users.Add(user);
-            return factoryDBcontext.SaveChanges();
 
+            MySqlParameter[] parameters = new MySqlParameter[]
+                  {
+                   new MySqlParameter("@uname", user.UserName)
+
+                  };
+            var userList = factoryDBcontext.Database.SqlQuery<Users>("CALL Pro_Getusername(@uname)", parameters).ToList();
+            int result = -1;
+            if (userList.Count() == 0)
+            {
+                MySqlParameter[] parameters1 = new MySqlParameter[3]
+                 {
+                   new MySqlParameter("@uname", user.UserName),
+                   new MySqlParameter("@pwd", user.PassWord),
+                   new MySqlParameter("@roleids", user.RoleId)
+                 };
+
+                int result2 = factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_AddUsers (@uname,@pwd,@roleids)", parameters1);
+
+                var ids = factoryDBcontext.Database.SqlQuery<Users>("CALL Pro_Getusername(@uname)", parameters).FirstOrDefault();
+
+                var roles = user.RoleId.Split(',');
+
+                for (int i = 0; i < roles.Length; i++)
+                {
+                    UsersRole usersRole = new UsersRole();
+                    usersRole.UserId = ids.ID;
+                    usersRole.RoleId = Convert.ToInt32(roles[i]);
+
+                    MySqlParameter[] parameters2 = new MySqlParameter[2]
+                   {
+                   new MySqlParameter("@uid", usersRole.UserId),
+                   new MySqlParameter("@rid", usersRole.RoleId)
+                   };
+                    result = factoryDBcontext.Database.ExecuteSqlCommand("Call Pro_AddUserRole(@uid,@rid)", parameters2);
+                }
+
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -63,9 +100,9 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
-        public List<Users> GetUsers()
+        public List<UserInfo> GetUsers()
         {
-            var userList = factoryDBcontext.Database.SqlQuery<Users>("call Pro_GetUsers").ToList();
+            var userList = factoryDBcontext.Database.SqlQuery<UserInfo>("call Pro_GetUsers").ToList();
             return userList;
         }
 

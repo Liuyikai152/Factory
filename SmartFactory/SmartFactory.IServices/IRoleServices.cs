@@ -34,6 +34,7 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <returns></returns>
         List<Role> GetRoles();
+        List<Roles> GetRoles();
 
         /// <summary>
         /// 获取id
