@@ -222,10 +222,19 @@
 
     <section class="Hui-article-box">
         <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 会员列表<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+
+        <form class="form form-horizontal" id="formData">
+            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
+            <div>
+                <span id="alert"  style="color:red"></span>
+                <button type="button" id="btnS"><i class="Hui-iconfont">&#xe600;</i>导入数据</button>
+            </div>
+        </form>
+
         <div id="app">
+
             <div>
                 <div class="text-c">
-
                     <input type="text" class="input-text" style="width:150px" placeholder="位置编码" value="" V-model="locanumber">
                     <input type="text" class="input-text" style="width:150px" placeholder="公司名称" value="" V-model="companyname">
                     <input type="text" class="input-text" style="width:150px" placeholder="计划工厂" value="" V-model="factoryname1">
@@ -239,9 +248,9 @@
                     </span>
 
                     <span class="select-box inline">
-                        <input type="checkbox"  value="1" V-model="isdelete">
+                        <input type="checkbox" value="1" V-model="isdelete">
                     </span>
-                        <button type="submit" class="btn btn-success" v-on:click="getList"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
+                    <button type="submit" class="btn btn-success" v-on:click="getList"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
                 </div>
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
@@ -305,6 +314,26 @@
     <script src="../../Scripts/axios.js"></script>
 
     <script>
+        $(function () {
+            $("#btnS").click(function () {
+              
+                $.ajax({
+                    url: "http://localhost:8066/Import/LocaTion",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: new FormData($("#formData")[0]),
+                    type: 'POST',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#alert").text("导入成功");
+                        }
+                    }
+                })
+
+            })
+        });
+
         var vue = new Vue({
             el: "#app",
             data: {
