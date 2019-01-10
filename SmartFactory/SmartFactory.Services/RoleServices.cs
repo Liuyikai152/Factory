@@ -20,9 +20,45 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int AddRole(Role role)
         {
-         
-            factoryDBcontext.Role.Add(role);
-            return factoryDBcontext.SaveChanges();
+            MySqlParameter[] parameters = new MySqlParameter[]
+                  {
+                   new MySqlParameter("@rname", role.RoleName)
+
+                  };
+            var roleList = factoryDBcontext.Database.SqlQuery<Role>("CALL Pro_GetRoleName(@rname)", parameters).ToList();
+            int result = -1;
+            if (roleList.Count() == 0)
+            {
+                MySqlParameter[] parameters1 = new MySqlParameter[2]
+                 {
+                   new MySqlParameter("@rname", role.RoleName),
+                
+                   new MySqlParameter("@pids", role.Pid)
+                 };
+
+                int result2 = factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_AddRole (@rname,@pids)", parameters1);
+
+                var ids = factoryDBcontext.Database.SqlQuery<Role>("CALL Pro_GetRoleName(@rname)", parameters).FirstOrDefault();
+
+                var roles = role.Pid.Split(',');
+
+                for (int i = 0; i < roles.Length; i++)
+                {
+                    PermissionRole permissionRole = new PermissionRole();
+                    permissionRole.RoleId = ids.ID;
+                    permissionRole.PermissionId = Convert.ToInt32(roles[i]);
+
+                    MySqlParameter[] parameters2 = new MySqlParameter[2]
+                   {
+                   new MySqlParameter("@roleids", permissionRole.RoleId),
+                   new MySqlParameter("@permissids", permissionRole.PermissionId)
+                   };
+                    result = factoryDBcontext.Database.ExecuteSqlCommand("Call Pro_Addpermissionrole(@roleids,@permissids)", parameters2);
+                }
+
+            }
+
+            return result;
         }
 
 

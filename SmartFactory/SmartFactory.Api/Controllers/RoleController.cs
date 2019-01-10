@@ -37,8 +37,13 @@ namespace SmartFactory.Api.Controllers
         /// </summary>
         /// <param name="role"></param>
         /// <returns></returns>
-        public int AddRole(Role role)
+        [Route("AddRole")]
+        [HttpPost]
+        public int AddRole(string roleName, string pId)
         {
+            Role role = new Role();
+            role.RoleName = roleName;
+            role.Pid = pId;
             var result = roleServices.AddRole(role);
             return result;
         }

@@ -29,6 +29,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 角色权限
         /// </summary>
+        [NotMapped]
         public string Permission { get; set; }
 
         /// <summary>

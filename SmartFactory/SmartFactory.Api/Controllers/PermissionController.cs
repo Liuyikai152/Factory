@@ -41,17 +41,17 @@ namespace SmartFactory.Api.Controllers
         }
 
 
-        ///// <summary>
-        ///// 显示权限
-        ///// </summary>
-        ///// <returns></returns>
-        //[Route("GetPermission")]
-        //[HttpGet]
-        //public List<Permission> GetPermission()
-        //{
-        //    var permissionsList = permissionServices.GetPermissions();
-        //    return permissionsList;
-        //}
+        /// <summary>
+        /// 显示权限
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetPermission")]
+        [HttpGet]
+        public List<Permission> GetPermission()
+        {
+            var permissionsList = permissionServices.GetPermissions();
+            return permissionsList;
+        }
 
 
         /// <summary>
