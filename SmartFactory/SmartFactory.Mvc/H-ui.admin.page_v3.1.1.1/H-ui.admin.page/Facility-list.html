@@ -364,7 +364,7 @@
             },
             methods: {
                 getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetFacility', { BitNumbers: this.BitNumbers, CompanyName: this.BitNumbers, FactoryName: this.FactoryName, TypeName: this.TypeName, FacilityNumber: this.FacilityNumber, IsSiren: this.IsSiren, PageIndex: this.cur, }, function (data) {
+                    this.$http.get(this.apiUrl + 'GetFacility', { IsSiren: this.IsSiren, BitNumbers: this.BitNumbers, CompanyName: this.CompanyName, FactoryName: this.FactoryName, TypeName: this.TypeName, FacilityNumber: this.FacilityNumber, PageIndex: this.cur, }, function (data) {
 
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;
