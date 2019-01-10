@@ -275,6 +275,7 @@ namespace SmartFactory.Api.Controllers
 
         #endregion
 
+
         [Route("OutExcel")]
         [HttpPost]
         public  string OutExcel()
