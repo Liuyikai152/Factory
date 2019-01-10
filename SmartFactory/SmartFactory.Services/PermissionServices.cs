@@ -67,8 +67,8 @@ namespace SmartFactory.Services
                    new MySqlParameter("@sid", id)
 
                    };
-            var loginList = factoryDBcontext.Database.SqlQuery<Permission>("call Pro_GetAllPermission(@sid)", parameters).ToList();
-            return loginList;
+            var permissionList = factoryDBcontext.Database.SqlQuery<Permission>("call Pro_GetAllPermission(@sid)", parameters).ToList();
+            return permissionList;
         }
     }
 }

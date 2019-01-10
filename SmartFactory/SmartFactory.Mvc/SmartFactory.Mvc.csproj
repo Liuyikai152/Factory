@@ -116,6 +116,7 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\404.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-list.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-role-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\FacilityByID.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission-update.html" />
@@ -124,7 +125,6 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\location-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\maintenanceorderByID-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\maintenanceorder-list.html" />
-    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-role-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-role.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\article-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\article-list.html" />
@@ -961,7 +961,6 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\zTree\v3\js\jquery.ztree.exedit.js" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\zTree\v3\js\jquery.ztree.exhide-3.5.js" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\lib\zTree\v3\js\jquery.ztree.exhide-3.5.min.js" />
-    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\login.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-del.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\member-record-browse.html" />
@@ -1230,6 +1229,7 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\_menu.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\_meta.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\【开发必读】文档目录.txt" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\login.html" />
     <Content Include="Scripts\axios.js" />
     <Content Include="Scripts\axios.min.js" />
     <Content Include="Scripts\echarts.min.js" />

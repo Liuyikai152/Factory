@@ -21,6 +21,26 @@ namespace SmartFactory.Api.Controllers
         // GET: Permission
 
 
+        public const int PAGESIZE = 3;
+        /// <summary>
+        /// 显示权限
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetPermissions")]
+        [HttpGet]
+        [HttpPost]
+        public PageBox GetPermissions( int PageIndex = 1)
+        {
+            PageBox pageBox = new PageBox();
+            List<Permission> mainlist = permissionServices.GetPermissions();
+            pageBox.PageIndex = PageIndex;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount = mainlist.Count / PAGESIZE + (mainlist.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = mainlist.Skip((PageIndex - 1) * PAGESIZE).Take(PAGESIZE);
+            return pageBox;
+        }
+
+
         /// <summary>
         /// 显示权限
         /// </summary>

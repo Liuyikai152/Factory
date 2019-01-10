@@ -138,8 +138,10 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
-    <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\LocaTionController.cs" />
+
+    <Compile Include="Controllers\ExcelController.cs" />
+    <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\MaintenanceOrderController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
@@ -152,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\新建 Microsoft Excel 工作表.xlsx" />
+    <Content Include="Content\维修工单.xlsx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -165,6 +168,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SmartFactory.Common\SmartFactory.Common.csproj">
+      <Project>{b9006487-e699-45ed-9051-95b04eb8f80b}</Project>
+      <Name>SmartFactory.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SmartFactory.IServices\SmartFactory.IServices.csproj">
       <Project>{0a005af9-719c-4858-871d-0a20b0716c99}</Project>
       <Name>SmartFactory.IServices</Name>

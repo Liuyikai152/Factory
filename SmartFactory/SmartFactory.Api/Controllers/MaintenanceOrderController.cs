@@ -41,7 +41,7 @@ namespace SmartFactory.Api.Controllers
             pageBox.PageIndex = PageIndex;
             pageBox.PageSize = PAGESIZE;
             pageBox.PageCount = mainlist.Count / PAGESIZE + (mainlist.Count % PAGESIZE == 0 ? 0 : 1);
-            pageBox.Data = mainlist.Skip((PageIndex-1)*PAGESIZE).Take(PageIndex);
+            pageBox.Data = mainlist.Skip((PageIndex-1)*PAGESIZE).Take(PAGESIZE);
             return pageBox;
         }
 

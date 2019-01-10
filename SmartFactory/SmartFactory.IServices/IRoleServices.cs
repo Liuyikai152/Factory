@@ -40,6 +40,6 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Role GetByID(int id);
+        List<Role> GetByID(int id);
     }
 }

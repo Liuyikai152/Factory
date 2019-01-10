@@ -28,46 +28,49 @@
     <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
-    <article class="cl pd-20">
-        <form action="" method="post" class="form form-horizontal" id="form">
-            <!--<input type="hidden" name="ID" />-->
-            <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
-            <input type="hidden" name="ID" value="@Request.QueryString[" id"]" />
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="Name" name="Name">
-                </div>
-            </div>
-
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">权限URL：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="url" name="URL">
-                </div>
-            </div>
-        
-
-
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">是否启用：</label>
-                <div class="check-box">
-                    <input type="radio" id="IsUser" name="IsUser" value="启用" />
-                    启用
-                </div>
-                <div class="check-box">
-                    <input type="radio" id="IsUser" name="IsUser" value="停用" />
-                    停用
-                </div>
-            </div>
-            <div class="row cl">
-                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <input class="btn btn-primary radius" onclick="update()" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+    <div class="Hui-article" id="app">
+        <article class="cl pd-20">
+            <form action="" method="post" class="form form-horizontal" id="form">
+                <!--<input type="hidden" name="ID" />-->
+                <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
+                <input type="hidden" name="ID" v-model="test[0].ID" />
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="Name" name="PermissionName" v-model="test[0].PermissionName">
+                    </div>
                 </div>
 
-            </div>
-        </form>
-    </article>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">权限URL：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="url" name="PermissionUrl" v-model="test[0].PermissionUrl">
+                    </div>
+                </div>
+
+
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">是否启用：</label>
+                    <div class="check-box">
+                        <input type="radio" id="IsUser" name="IsUser" v-model="test[0].IsUser" value="启用" checked="checked" />
+                        启用
+                        <!--value="启用"value="停用"-->
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="IsUser" name="IsUser" v-model="test[0].IsUser" value="停用" />
+                        停用
+                    </div>
+                </div>
+                <div class="row cl">
+                    <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                        <input class="btn btn-primary radius" v-on:click="update(test[0].ID,test[0].PermissionName,test[0].PermissionUrl,test[0].IsUser)" type="button" value="提交">
+                    </div>
+
+                </div>
+            </form>
+        </article>
+    </div>
 
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
@@ -80,52 +83,143 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
-    <script src="../Scirpt/GetParse.js"></script>
-    <script src="../Scirpt/jquery-1.10.2.min.js"></script>
+
+    <script src="../../Scripts/GetParse.js"></script>
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
+    <script src="../../Scripts/axios.js"></script>
+
     <script type="text/javascript">
 
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                mainId: getPar("id"),
+                apiUrl: 'http://localhost:8066/Permission/',
+                testdata: {}
+            },
+            ready: function () {
+                this.GetPermission()
+            },
+            methods: {
+                GetPermission: function () {
+                    this.$http.get(this.apiUrl + 'GetById?id=' + this.mainId, function (data) {
+                        this.$set('test', data);
 
-        var id = getPar("id");
-        $(function () {
-         
-            //反填
-            $.ajax({
-                url: 'http://localhost:24380/Permission/GetByID?id=' + id,
-                async: false,
-                type: "get",
-              //  data: { id: getUrlParam("id")},
-            success: function (data) {
-                $("input[name=ID]").val(data[0].ID);
-                $("input[name=Name]").val(data[0].Name);
-                $("input[name=Discription]").val(data[0].Discription);
-                $("input[name=URL]").val(data[0].URL);
-                $("input[name=IsUser][value='" + data[0].IsUser + "']").attr("checked", "checked")
+                    })
+                },
+                update: function (ID, PermissionName, PermissionUrl, Isuser) {
 
+                    var params = new URLSearchParams();
+                    params.append('ID', ID);
+                    params.append('PermissionName', PermissionName);
+                    params.append('PermissionUrl', PermissionUrl);
+                    params.append('Isuser', Isuser);
+
+                    axios.post('http://localhost:8066/Permission/UpdatePermission', params).then(
+                        (response) => {
+                            console.log(response.data);
+                            if (response.data > 0) {
+                                alert("修改成功!!!");
+
+                            }
+                            //console.info(this.list);
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+                
             }
-            })
-        
-            })
- 
 
-        function update() {
-            $.ajax({
-                url: "http://localhost:24380/Permission/updatePermission",
-                type: "post",
-                data: $("#form").serialize(),
-                //data: { ID: $("input[name=ID]").val(), Name: $("#Name").val(), Discription: $("#Discription").val(), URL: $("#url").val(), IsUser: $("IsUser").val() },
-                success: function (data) {
-             
-                    if (data > 0) {
-                        alert("修改成功");
-                       
-                       
-                    }
-                    else {
-                        alert("修改失败")
-                    }
-                }
-            })
-        }
+        });
+
+            //var id = getPar("id");
+            //$(function () {
+            //    alert(id);
+            //    //反填
+            //    $.ajax({
+            //        url: 'http://localhost:8066/Permission/GetByID?id=' + id,
+            //        async: false,
+            //        type: "get",
+            //        //  data: { id: getUrlParam("id")},
+            //        success: function (data) {
+            //            $("input[name=ID]").val(data[0].ID);
+            //            $("input[name=PermissionName]").val(data[0].PermissionName);
+
+            //            $("input[name=PermissionUrl]").val(data[0].PermissionUrl);
+            //            $("input[name=IsUser][value='" + data[0].IsUser + "']").attr("checked", "checked")
+
+
+            //        }
+            //    })
+
+            //})
+
+            //var vm = new Vue({
+            //    el: "#app",
+
+            //    methods: {
+            //        //ID, PermissionName, PermissionUrl, Isuser
+            //        update: function (ID, PermissionName, PermissionUrl, Isuser) {
+
+            //            var params = new URLSearchParams();
+            //            //params.append('ID', ID);
+            //            //params.append('PermissionName', PermissionName);
+            //            //params.append('PermissionUrl', PermissionUrl);
+            //            //params.append('Isuser', Isuser);
+
+            //            axios.post('http://localhost:8066/Permission/UpdatePermission', params).then(
+            //                (response) => {
+            //                    console.log(response.data);
+            //                    if (response.data > 0) {
+            //                        alert("修改成功!!!");
+
+            //                    }
+            //                    //console.info(this.list);
+            //                },
+            //                (response) => {
+            //                    alert(response.status);
+            //                }
+            //            ).catch(function (response) {
+            //                alert(response);
+            //            });
+            //        },
+            //    }
+
+
+
+            //})
+
+
+
+
+
+                            //function update() {
+                            //    $.ajax({
+                            //        url: "http://localhost:24380/Permission/updatePermission",
+                            //        type: "post",
+                            //        data: $("#form").serialize(),
+                            //        //data: { ID: $("input[name=ID]").val(), Name: $("#Name").val(), Discription: $("#Discription").val(), URL: $("#url").val(), IsUser: $("IsUser").val() },
+                            //        success: function (data) {
+
+                            //            if (data > 0) {
+                            //                alert("修改成功");
+
+
+                            //            }
+                            //            else {
+                            //                alert("修改失败")
+                            //            }
+                            //        }
+                            //    })
+                            //}
 
 
     </script>
