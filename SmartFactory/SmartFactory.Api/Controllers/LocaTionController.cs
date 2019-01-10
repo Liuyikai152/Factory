@@ -9,6 +9,7 @@ using System.Web.Http;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 using SmartFactory.Services;
+using Newtonsoft.Json;
 
 namespace SmartFactory.Api.Controllers
 {
@@ -23,30 +24,56 @@ namespace SmartFactory.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-
         [HttpPost]
         [Route("GetLocaTions")]
-        public PageBox GetLocaTions(string currentpage,string companyname)
+        public PageBox GetLocaTions(FactoryEnum locastate,string  isdelete,string currentpage,string companyname,string locanumber,string factoryname1,string factoryname2)
         {
-            var locaList = localionServices.GetLocations();
-            if (companyname!=null)
-            {
-                locaList = locaList.Where(n => n.CompanyName.Contains(companyname)).ToList();
-            }
-
             if (currentpage == null)
             {
                 currentpage = "1";
             }
-            
-            int totlepage = locaList.Count / 3 + (locaList.Count % 3 == 0 ? 0 : 1);
-            locaList = locaList.Skip((int.Parse(currentpage) - 1) * 3).Take(3).ToList();
+
+            var rolelist = localionServices.GetLocations();
+            if (locastate != 0)
+            {
+                rolelist = rolelist.Where(n => n.LocaState.Equals(locastate)).ToList();
+            }
+            if (isdelete != null)
+            {
+                if (isdelete == "true")
+                {
+                    isdelete = "1";
+                }
+                else {
+                    isdelete = "0";
+                }
+                rolelist = rolelist.Where(n => n.IsDelete.Equals(Convert.ToInt32(isdelete))).ToList();
+            }
+            if (companyname != null)
+            {
+                rolelist = rolelist.Where(n => n.CompanyName.Contains(companyname)).ToList();
+            }
+            if (locanumber != null)
+            {
+                rolelist = rolelist.Where(n => n.LocaNumber.Contains(locanumber)).ToList();
+            }
+            if (factoryname1 != null)
+            {
+                rolelist = rolelist.Where(n => n.FactoryName1.Contains(factoryname1)).ToList();
+            }
+            if (factoryname2 != null)
+            {
+                rolelist = rolelist.Where(n => n.FactoryName2.Contains(factoryname2)).ToList();
+            }
+           
+            int totlepage = rolelist.Count / 3 + (rolelist.Count % 3 == 0 ? 0 : 1);
+            rolelist = rolelist.Skip((int.Parse(currentpage) - 1) * 3).Take(3).ToList();
             PageBox pagebox = new PageBox();
             pagebox.PageIndex = int.Parse(currentpage);
             pagebox.PageCount = totlepage;
-            pagebox.Data = locaList;
+            pagebox.Data = rolelist;
 
-            return  pagebox;
+            return pagebox;
         }
 
         /// <summary>
@@ -55,12 +82,11 @@ namespace SmartFactory.Api.Controllers
         /// <param name="ID"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetLocaTion")]
-        public List<LocaTion> GetLocaTion()
+        [Route("GetLocationById")]
+        public LocationNotMapped GetLocationById(int id)
         {
-            var locaTionList = localionServices.GetLocations();
-            return locaTionList;
-
+            var i = localionServices.GetLocationById(id);
+            return i;
         }
     }
 }

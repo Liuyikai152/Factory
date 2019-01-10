@@ -73,6 +73,7 @@
     <Compile Include="IFacilityLocaServices.cs" />
     <Compile Include="IFacilityTypeServices.cs" />
     <Compile Include="IHostServices.cs" />
+    <Compile Include="ILocalionServices.cs" />
     <Compile Include="IMaintenanceOrderServices.cs" />
     <Compile Include="IPermissionRoleServices.cs" />
     <Compile Include="IPermissionServices.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="IBusinesServices.cs" />
     <Compile Include="ICompanyCodeServices.cs" />
     <Compile Include="IFactoryAreaServices.cs" />
-    <Compile Include="ILocalionServices.cs" />
     <Compile Include="ILocaTypeServices.cs" />
     <Compile Include="IPlanfactoryServices.cs" />
     <Compile Include="IPlangroupServices.cs" />

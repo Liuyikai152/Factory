@@ -16,19 +16,19 @@ namespace SmartFactory.Model
     {
         /// <summary>
         /// 主键id
-        
+        /// <summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
         /// 业务名称
-        
+        /// <summary>
 
         public string BusionessName { get; set; }
 
         /// <summary>
         /// 业务编号
-        
+        /// <summary>
         public string BusionessNumber { get; set; }
     }
 }
