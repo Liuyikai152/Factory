@@ -217,7 +217,9 @@
                         &nbsp;&nbsp;
 
                         <input type="button" id="btnS" value="导入" style="margin-left:100px; width:100px;height:30px;" />
-                        <input type="button" id="btnOut" value="导出" style="margin-left:100px; width:100px;height:30px;" />
+                        <br />
+                        <input type="text" id="Out" style="margin-left:100px;"  />
+                        <input type="button" id="btnOut" value="导出" style=" width:100px;height:30px;" />
                         <p id="alert" style="color:red"></p>
                     </form>
                     <!--日期范围：
@@ -320,15 +322,16 @@
             $("#btnOut").click(function () {
               
                 $.ajax({
-                    url: "http://localhost:8066/Excel/OutsExcel",
-                    contentType: false,
-                    processData: false,
-                    cache: false,
-                    data: new FormData($("#formData")[0]),
+                    url: "http://localhost:8066/Excel/OutExcel",
+                    //contentType: false,
+                    //processData: false,
+                    //cache: false,
+                    data: { },
                     type: 'POST',
                     success: function (data) {
+                        alert(data);
                         if (data > 0) {
-                            $("#alert").text("导入成功");
+                            $("#alert").text("导出成功");
                         }
                     }
                 })
