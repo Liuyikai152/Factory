@@ -19,14 +19,10 @@ namespace SmartFactory.Services
         /// <summary>
         /// 查看单个位置详情
         /// </summary>
-        /// <param name="ID"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public LocaTion GetLocation(int ID)
         public LocationNotMapped GetLocationById(int id)
         {
-            var locationList = factoryDBcontext.LocaTion.Find(ID);
-            return locationList;
             var i = factoryDBcontext.Database.SqlQuery<LocationNotMapped>("CALL Pro_GetLocaTionByID").Where(n => n.ID.Equals(id)).FirstOrDefault();
             return i;
         }
