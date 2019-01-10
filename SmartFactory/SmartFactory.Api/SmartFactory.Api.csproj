@@ -139,7 +139,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
     <Compile Include="Controllers\LocaTionController.cs" />
-
     <Compile Include="Controllers\ExcelController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\MaintenanceOrderController.cs" />
@@ -155,6 +154,8 @@
   <ItemGroup>
     <Content Include="Content\新建 Microsoft Excel 工作表.xlsx" />
     <Content Include="Content\维修工单.xlsx" />
+    <Content Include="Content\维修.xlsx" />
+    <Content Include="Content\format.xlsx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
