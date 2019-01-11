@@ -21,7 +21,7 @@ namespace SmartFactory.Api.Controllers
         public const int PAGESIZE = 2;
         [HttpGet]
         [Route("GetFacility")]
-        public PageBox GetFacility(FactoryEnum IsSiren,string BitNumbers, string CompanyName, string FactoryName, string TypeName,string FacilityNumber, int PageIndex = 1)
+        public PageBox GetFacility(FactoryEnum IsSiren, string BitNumbers, string CompanyName, string FactoryName, string TypeName,string FacilityNumber, int PageIndex = 1)
         {
             List<FacilityNotMapp> facilitylist = FacilityServices.GetFacility();
             if (IsSiren != 0)
