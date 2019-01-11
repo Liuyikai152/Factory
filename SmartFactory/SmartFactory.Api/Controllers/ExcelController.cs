@@ -268,9 +268,6 @@ namespace SmartFactory.Api.Controllers
 
         #endregion
 
-
-
-        public IMaintenanceOrderServices maintenanceOrderServices { get; set; }
         
        /// <summary>
        /// 固定查询
