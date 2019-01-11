@@ -105,7 +105,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 是否报警
         /// <summary>
-        public int IsSiren { get; set; }
+        public FactoryEnum IsSiren { get; set; }
 
         /// <summary>
         /// 设备种类

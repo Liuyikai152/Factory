@@ -71,8 +71,13 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int DeleteUsers(int id)
         {
-            factoryDBcontext.Users.Remove(GetByID(id));
-            return factoryDBcontext.SaveChanges();
+            MySqlParameter[] parameters = new MySqlParameter[1]
+                     {
+                   new MySqlParameter("@ids", id)
+
+                     };
+            var result = factoryDBcontext.Database.ExecuteSqlCommand("call Pro_DeleteUsers(@ids)", parameters);
+            return result;
         }
 
         /// <summary>
@@ -80,10 +85,15 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Users GetByID(int id)
+        public List<Users> GetByID(int id)
         {
-            var i = factoryDBcontext.Users.Find(id);
-            return i;
+            MySqlParameter[] parameters = new MySqlParameter[1]
+                 {
+                   new MySqlParameter("@uid", id)
+
+                 };
+            var userList = factoryDBcontext.Database.SqlQuery<Users>("call Pro_GetAllUser(@uid)", parameters).ToList();
+            return userList;
         }
 
         /// <summary>
@@ -91,9 +101,15 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<Users> GetPermissiomUrl(int id)
+        public List<UserInfo> GetPermissiomUrl(int id)
         {
-            throw new NotImplementedException();
+            MySqlParameter[] parameters = new MySqlParameter[1]
+                 {
+                   new MySqlParameter("@ids", id)
+
+                 };
+            var userList = factoryDBcontext.Database.SqlQuery<UserInfo>("call Pro_GetPermissionUrl(@ids)", parameters).ToList();
+            return userList;
         }
 
         /// <summary>
@@ -121,9 +137,9 @@ namespace SmartFactory.Services
                 };
             var loginList = factoryDBcontext.Database.SqlQuery<Users>("call Pro_Login(@name,@pwd)", parameters).ToList();
             if (loginList.Count() > 0)
-            {
+            
                 return loginList[0].ID;
-            }
+            
             return 0;
         }
         /// <summary>
@@ -133,8 +149,50 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int UpdateUsers(Users user)
         {
-            factoryDBcontext.Entry(user).State = System.Data.Entity.EntityState.Modified;
-            return factoryDBcontext.SaveChanges();
+
+            MySqlParameter[] parameters = new MySqlParameter[]
+                  {
+                   new MySqlParameter("@uname", user.UserName)
+
+                  };
+            var userList = factoryDBcontext.Database.SqlQuery<Users>("CALL Pro_Getusername(@uname)", parameters).ToList();
+            int result = -1;
+            if (userList.Count() == 0 || userList.Count() == 1)
+            {
+                MySqlParameter[] parameters1 = new MySqlParameter[4]
+                 {
+                   new MySqlParameter("@ids", user.ID),
+                    new MySqlParameter("@uname", user.UserName),
+                     new MySqlParameter("@pwd", user.PassWord),
+                       new MySqlParameter("@rids", user.RoleId)
+
+                 };
+                int result1 = factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_UpdateUsers(@ids,@uname,@pwd,@rids)", parameters1);
+
+                MySqlParameter[] parameters2 = new MySqlParameter[1]
+                 {
+                   new MySqlParameter("@uid", user.ID)
+                 };
+                factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_DeleteUsersRole(@uid)", parameters2);
+
+                var users = user.RoleId.Split(',');
+
+                for (int i = 0; i < users.Length; i++)
+                {
+                    UsersRole usersRole = new UsersRole();
+                    usersRole.UserId = user.ID;
+                    usersRole.RoleId = Convert.ToInt32(users[i]);
+
+                    MySqlParameter[] parameters3 = new MySqlParameter[2]
+                 {
+                   new MySqlParameter("@uid", usersRole.UserId),
+                   new MySqlParameter("@rid", usersRole.RoleId)
+                 };
+                    result = factoryDBcontext.Database.ExecuteSqlCommand("Call Pro_AddUsersRole(@uid,@rid)", parameters3);
+                }
+            }
+
+            return result;
         }
     }
 }

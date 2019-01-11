@@ -39,7 +39,12 @@ namespace SmartFactory.Model
         /// <summary>
         /// 权限路径
         /// </summary>
-   
-       
+        public string PermissionUrl { get; set; }
+
+        /// <summary>
+        /// 权限名称
+        /// </summary>
+        public string PermissionName { get; set; }
+
     }
 }

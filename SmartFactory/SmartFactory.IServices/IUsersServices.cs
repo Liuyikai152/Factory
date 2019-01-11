@@ -52,9 +52,14 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Users GetByID(int id);
+        List<Users> GetByID(int id);
 
-        List<Users> GetPermissiomUrl(int id);
+        /// <summary>
+        /// 获取权限路径
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        List<UserInfo> GetPermissiomUrl(int id);
 
     }
 }

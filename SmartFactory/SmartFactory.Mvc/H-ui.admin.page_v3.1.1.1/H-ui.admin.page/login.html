@@ -71,7 +71,8 @@
                 if (data > 0) {
                     //把用户名存入JS缓存
                     localStorage.uname = $("#name").val();
-                    localStorage.userid = data;
+                    localStorage.ID = data;
+                    alert(data)
                     location.href = "index.html";
                 }
                 else {

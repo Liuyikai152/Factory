@@ -147,6 +147,7 @@
     <Compile Include="Controllers\MaintenanceOrderController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\PumpController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
