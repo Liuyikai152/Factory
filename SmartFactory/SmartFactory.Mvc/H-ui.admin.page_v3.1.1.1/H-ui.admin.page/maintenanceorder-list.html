@@ -327,28 +327,13 @@
 
 
 
-                //$.ajax({
-                //    url: "http://localhost:8066/Excel/GetMainss",                
-                //    data: {
-                //        fileName: $("#File2").val(),
-                //        tableName:"GetMains"
-                //    },
-                //    type: 'get',
-                //    success: function (data) {
-                //        alert(data);
-                //        if (data > 0) {
-                //            $("#alert").text("导出成功");
-                //        }
-                //    }
-                //})
-
                 $.ajax({
-                    url: "http://localhost:8066/Excel/OutExcel",
-                    //contentType: false,
-                    //processData: false,
-                    //cache: false,
-                    data: { },
-                    type: 'POST',
+                    url: "http://localhost:8066/Excel/GetMainss",                
+                    data: {
+                        fileName: $("#File2").val(),
+                        tableName:"GetMains"
+                    },
+                    type: 'get',
                     success: function (data) {
                         alert(data);
                         if (data > 0) {
@@ -356,6 +341,21 @@
                         }
                     }
                 })
+
+                //$.ajax({
+                //    url: "http://localhost:8066/Excel/OutExcel",
+                //    //contentType: false,
+                //    //processData: false,
+                //    //cache: false,
+                //    data: { },
+                //    type: 'POST',
+                //    success: function (data) {
+                //        alert(data);
+                //        if (data > 0) {
+                //            $("#alert").text("导出成功");
+                //        }
+                //    }
+                //})
 
             })
         });

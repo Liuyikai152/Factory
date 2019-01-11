@@ -113,7 +113,7 @@ namespace SmartFactory.Api.Controllers
 
             OleDbConnection connection = new OleDbConnection();
 
-            connection.ConnectionString = GetConnectionString("C:\\"+destFileName);
+            connection.ConnectionString = GetConnectionString("C:\\"+destFileName+".xlsx");
 
             OleDbCommand command = new OleDbCommand();
 
@@ -213,7 +213,7 @@ namespace SmartFactory.Api.Controllers
 
 
 
-                    string FileName = Guid.NewGuid().ToString().Substring(8) + ".xlsx";
+            string FileName = Rand.Number(5,true)+".xlsx"; //Guid.NewGuid().ToString()+ ".xlsx";
 
                     string sNewFullFile = "C:\\"+ FileName;
            
@@ -271,7 +271,11 @@ namespace SmartFactory.Api.Controllers
 
 
         public IMaintenanceOrderServices maintenanceOrderServices { get; set; }
-
+        
+       /// <summary>
+       /// 固定查询
+       /// </summary>
+       /// <returns></returns>
         public static DataTable GetDataTable() {
             FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
@@ -281,7 +285,12 @@ namespace SmartFactory.Api.Controllers
 
         }
 
-
+        /// <summary>
+        /// 查询并导出数据
+        /// </summary>
+        /// <param name="fileName">文件名称</param>
+        /// <param name="tableName">表名</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetMainss")]
         public  int GetMainss(string fileName,string tableName)
