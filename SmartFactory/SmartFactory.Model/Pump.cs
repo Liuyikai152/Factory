@@ -64,5 +64,15 @@ namespace SmartFactory.Model
         /// 是否报警
         /// </summary>
         public FactoryEnum IsSiren { get; set; }
+
+        /// <summary>
+        /// 主机名
+        /// </summary>
+        public string HostName { get; set; }
+
+        /// <summary>
+        /// 附机名
+        /// </summary>
+        public string AttachName { get; set; }
     }
 }

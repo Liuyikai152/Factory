@@ -33,14 +33,8 @@ namespace SmartFactory.Model
         /// <summary>
         /// 位置名称
         /// <summary>
-        [NotMapped]
-        public string LocalName { get; set; }
-
-        /// 位置名称
-        /// </summary>
-        /// <summary>
-        public string LocaName { get; set; }
-
+       // [NotMapped]
+       // public string LocalName { get; set; }
 
         /// <summary>
         /// 公司编号
@@ -50,8 +44,8 @@ namespace SmartFactory.Model
         /// <summary>
         /// 公司名称
         /// <summary>
-        [NotMapped]
-        public string CompanyName { get; set; }
+       /// [NotMapped]
+       // public string CompanyName { get; set; }
 
         /// <summary>
         /// 计划工厂
@@ -61,8 +55,8 @@ namespace SmartFactory.Model
         /// <summary>
         /// 计划工厂名称
         /// <summary>
-        [NotMapped]
-        public string FactoryName1 { get; set; }
+      //  [NotMapped]
+      //  public string FactoryName1 { get; set; }
 
         /// <summary>
         /// 维护工厂
@@ -72,8 +66,8 @@ namespace SmartFactory.Model
         /// <summary>
         /// 维护工厂名称
         /// <summary>
-        [NotMapped]
-        public string FactoryName2 { get; set; }
+       // [NotMapped]
+       // public string FactoryName2 { get; set; }
 
         /// <summary>
         /// 工作区域
@@ -88,8 +82,8 @@ namespace SmartFactory.Model
         /// <summary>
         /// 计划员组名称
         /// <summary>
-        [NotMapped]
-        public string GroupName { get; set; }
+      //  [NotMapped]
+       // public string GroupName { get; set; }
 
 
         /// <summary>
@@ -100,8 +94,8 @@ namespace SmartFactory.Model
         /// <summary>
         /// 维护班组名称
         /// <summary>
-        [NotMapped]
-        public string ServiceName { get; set; }
+       // [NotMapped]
+       // public string ServiceName { get; set; }
 
         /// <summary>
         /// 成本中心
@@ -111,8 +105,8 @@ namespace SmartFactory.Model
         /// <summary>
         /// 成本工厂
         /// <summary>
-        [NotMapped]
-        public string FactoryName3 { get; set; }
+        //[NotMapped]
+        //public string FactoryName3 { get; set; }
 
         /// <summary>
         /// 位置类型

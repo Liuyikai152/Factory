@@ -163,7 +163,7 @@
 
                         <input type="button" id="btnS" value="导入" style="margin-left:100px; width:100px;height:30px;" />
                         <br />
-                        <input id="File2" type="file" accept=".xls,.xlsx" name="Excel" style="margin-left:100px;" />
+                        <input id="File2" type="text"  name="Excel1" style="margin-left:100px;" />
                         <input type="button" id="btnOut" value="导出" style=" width:100px;height:30px;" />
                         <p id="alert" style="color:red"></p>
                     </form>
@@ -265,14 +265,18 @@
 
             })
 
+
+
             //导出
             $("#btnOut").click(function () {
+
+
 
                 $.ajax({
                     url: "http://localhost:8066/Excel/GetMainss",                
                     data: {
                         fileName: $("#File2").val(),
-                        tableName:"Main"
+                        tableName:"GetMains"
                     },
                     type: 'get',
                     success: function (data) {
