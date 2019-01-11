@@ -113,7 +113,7 @@ namespace SmartFactory.Api.Controllers
 
             OleDbConnection connection = new OleDbConnection();
 
-            connection.ConnectionString = GetConnectionString(destFileName);
+            connection.ConnectionString = GetConnectionString("C:\\"+destFileName);
 
             OleDbCommand command = new OleDbCommand();
 
@@ -211,7 +211,7 @@ namespace SmartFactory.Api.Controllers
 
                     string FileName = Guid.NewGuid().ToString().Substring(8) + ".xlsx";
 
-                    string sNewFullFile = "D:\\Users\\Administrator\\Desktop\\"+ FileName;
+                    string sNewFullFile = "C:\\"+ FileName;
            
                     string strConn = GetConnectionString(sNewFullFile);
                     System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(strConn);
