@@ -153,13 +153,11 @@
             <article class="cl pd-20">
                 <div>
 
-                    <input type="text" class="input-text" style="width:150px" placeholder="设备编码" value="" V-model="FacilityNumber">
-                    <input type="text" class="input-text" style="width:150px" placeholder="公司名称" value="" V-model="BitNumbers">
-                    <input type="text" class="input-text" style="width:150px" placeholder="计划工厂" value="" V-model="CompanyName">
-                    <input type="text" class="input-text" style="width:150px" placeholder="维护工厂" value="" V-model="FactoryName">
-                    <input type="text" class="input-text" style="width:150px" placeholder="设备种类" value="" V-model="TypeName">
-                
-
+                  <span>所属装置</span>
+                    <select>
+                        <option value="">==请选择==</option>
+                    </select>
+                    <input type="text" class="input-text" style="width:150px" placeholder="机泵编码" value="" V-model="UnitNumber">
                     <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
                 </div>
 
@@ -180,7 +178,7 @@
                         </tr>
 
                         <tr v-for="test in tests" class="text-c">
-                            <th>{{test.ID}}</th>1
+                            <th>{{test.ID}}</th>
                             <th>{{test.FacilityNumber}}</th>
                             <th>{{test.FacilityName}}</th>
                             <th>{{test.BitNumbers}}</th>
