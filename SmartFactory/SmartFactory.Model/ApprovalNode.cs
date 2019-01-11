@@ -24,8 +24,12 @@ namespace SmartFactory.Model
         /// <summary>
         /// 节点名称
         /// <summary>
-        public int NodeName { get; set; }
+        public string NodeName { get; set; }
 
+        /// <summary>
+        /// 节点角色
+        /// </summary>
+        public string NodeRole { get; set; }
         /// <summary>
         /// 创建人
         /// <summary>

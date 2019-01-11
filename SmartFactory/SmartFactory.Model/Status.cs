@@ -24,7 +24,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 审批状态
         /// </summary>
-        public int State { get; set; }
+        public string State { get; set; }
 
         /// <summary>
         /// 创建人

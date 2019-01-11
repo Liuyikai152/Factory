@@ -67,6 +67,7 @@
     <Compile Include="BitNumber.cs" />
     <Compile Include="Business.cs" />
     <Compile Include="CompanyCode.cs" />
+    <Compile Include="ConfigurationNotMapped.cs" />
     <Compile Include="Facility.cs" />
     <Compile Include="FacilityDetails.cs" />
     <Compile Include="FacilityGeneral.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Station.cs" />
     <Compile Include="Subfamily.cs" />
     <Compile Include="Unit.cs" />
+    <Compile Include="UnitNotMapped.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="UsersRole.cs" />

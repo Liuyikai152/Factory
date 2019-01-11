@@ -6,20 +6,16 @@ using System.Threading.Tasks;
 
 namespace SmartFactory.Model
 {
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
-
-    /// <summary>
-    /// 审批配置表
-    /// <summary>
-    [Table("Configuration")]
-    public class Configuration
+    public class ConfigurationNotMapped
     {
-        /// <summary>
-        /// 审批配置主键
-        /// <summary>
-        [Key]
         public int ID { get; set; }
+        public string Condition { get; set; }
+        public string State { get; set; }
+        public string TureState { get; set; }
+        public string NodeName { get; set; }
+        public string UserName { get; set; }
+        public string NextUserName { get; set; }
+
 
         /// <summary>
         /// 审批流程ID
@@ -80,6 +76,5 @@ namespace SmartFactory.Model
         /// 创建时间
         /// <summary>
         public DateTime CreateTime { get; set; }
-
     }
 }

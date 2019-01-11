@@ -20,12 +20,34 @@ namespace SmartFactory.Api.Controllers
         /// 显示
         /// </summary>
         /// <returns></returns>
+        public const int PAGESIZE = 2;
         [HttpGet]
         [Route("GetUnit")]
-        public List<UnitNotMapped> GetUnit()
+        public PageBox GetUnit(int PageIndex=1)
         {
-            var untpList = UnitServices.GetHost();
-            return untpList;
+            List<UnitNotMapped> Unitlist = UnitServices.GetHost();
+            PageBox pageBox = new PageBox();
+
+            pageBox.PageIndex = PageIndex;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount = Unitlist.Count / PAGESIZE + (Unitlist.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = Unitlist.Skip((PageIndex - 1) * PAGESIZE).Take(PAGESIZE);
+            return pageBox;
+           
         }
+
+        /// <summary>
+        /// 获取单个ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetByID")]
+        public UnitNotMapped GetByID(int id)
+        {
+            var pumpNotMap = UnitServices.GetByID(id);
+            return pumpNotMap;
+        }
+
     }
 }

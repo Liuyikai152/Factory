@@ -20,7 +20,7 @@ namespace SmartFactory.IServices
         /// 查看审批活动
         /// </summary>
         /// <returns></returns>
-        List<Configuration> GetActivities();
+        List<ConfigurationNotMapped> Getfiguration();
 
         /// <summary>
         /// 删除审批活动
