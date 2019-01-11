@@ -30,7 +30,8 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int DeleteUnit(int id)
         {
-            factoryDBcontext.Unit.Remove(GetByID(id));
+            var sid = factoryDBcontext.Unit.Find(id);
+            factoryDBcontext.Unit.Remove(sid);
             return factoryDBcontext.SaveChanges();
         }
 
@@ -39,20 +40,20 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Unit GetByID(int id)
+        public UnitNotMapped GetByID(int id)
         {
-            var i= factoryDBcontext.Unit.Find(id);
-            return i;
+            var unitList = factoryDBcontext.Database.SqlQuery<UnitNotMapped>("call pro_Getunitlist").Where(n => n.ID.Equals(id)).FirstOrDefault();
+            return unitList;
         }
 
         /// <summary>
         /// 显示机组
         /// </summary>
         /// <returns></returns>
-        public List<Unit> GetHost()
+        public List<UnitNotMapped> GetHost()
         {
-            var uintList= factoryDBcontext.Unit.ToList();
-            return uintList;
+            var unitList = factoryDBcontext.Database.SqlQuery<UnitNotMapped>("call pro_Getunitlist").ToList();
+            return unitList;
         }
 
         /// <summary>
