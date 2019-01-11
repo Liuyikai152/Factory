@@ -60,5 +60,64 @@ namespace SmartFactory.Api.Controllers
             var result = usersServices.AddUsers(users);
             return result;
         }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        [Route("DeleteUsers")]
+        [HttpGet]
+        public int DeleteUsers(int ID)
+        {
+            var result = usersServices.DeleteUsers(ID);
+            return result;
+        }
+
+
+        /// <summary>
+        /// 获取角色id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("GetByID")]
+        [HttpGet]
+        public List<Users> GetByID(int id)
+        {
+            var result = usersServices.GetByID(id);
+            return result;
+        }
+
+        /// <summary>
+        /// 修改权限
+        /// </summary>
+        /// <param name="Users"></param>
+        /// <returns></returns>
+        [Route("UpdateUsers")]
+        [HttpPost]
+        public int UpdateUsers(string userName, string passWord, string roleId, int id)
+        {
+            Users users = new Users();
+            users.UserName = userName;
+            users.PassWord = passWord;
+            users.RoleId = roleId;
+            users.ID = id;
+            var result = usersServices.UpdateUsers(users);
+            return result;
+        }
+
+
+        /// <summary>
+        /// 获取权限路径
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("GetPermissiomUrl")]
+        [HttpGet]
+        public List<UserInfo> GetPermissiomUrl(int id)
+        {
+            var result = usersServices.GetPermissiomUrl(id);
+            return result;
+        }
     }
 }
