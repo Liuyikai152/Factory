@@ -32,7 +32,7 @@ namespace SmartFactory.Services
                 MySqlParameter[] parameters1 = new MySqlParameter[2]
                  {
                    new MySqlParameter("@rname", role.RoleName),
-                
+
                    new MySqlParameter("@pids", role.Pid)
                  };
 
@@ -61,7 +61,6 @@ namespace SmartFactory.Services
             return result;
         }
 
-
         /// <summary>
         /// 删除角色
         /// </summary>
@@ -69,8 +68,13 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int DeleteRole(int id)
         {
-            factoryDBcontext.Role.Find(GetByID(id));
-            return factoryDBcontext.SaveChanges();
+            MySqlParameter[] parameters = new MySqlParameter[1]
+                    {
+                   new MySqlParameter("@ids", id)
+
+                    };
+            var result = factoryDBcontext.Database.ExecuteSqlCommand("call Pro_DelRole(@ids)", parameters);
+            return result;
         }
 
         /// <summary>
@@ -93,12 +97,11 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
-        public List<Role> GetRoles()
+        public List<Roles> GetRoles()
         {
-            var roleList = factoryDBcontext.Role.ToList();
+            var roleList = factoryDBcontext.Database.SqlQuery<Roles>("call Pro_GetRole()").ToList();
             return roleList;
         }
-
 
         /// <summary>
         /// 修改角色
@@ -107,8 +110,49 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int UpdateRole(Role role)
         {
-            factoryDBcontext.Entry(role).State = System.Data.Entity.EntityState.Modified;
-            return factoryDBcontext.SaveChanges();
+            MySqlParameter[] parameters = new MySqlParameter[]
+                  {
+                   new MySqlParameter("@rname", role.RoleName)
+
+                  };
+            var roleList = factoryDBcontext.Database.SqlQuery<Role>("CALL Pro_GetRoleName(@rname)", parameters).ToList();
+            int result = -1;
+            if (roleList.Count()==0|| roleList.Count() == 1)
+            {
+                MySqlParameter[] parameters1 = new MySqlParameter[3]
+                 {
+                   new MySqlParameter("@ids", role.ID),
+                    new MySqlParameter("@rname", role.RoleName),
+                     new MySqlParameter("@Pids", role.Pid)
+
+                 };
+                int result1 = factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_updateRole(@ids,@rname,@Pids)", parameters1);
+
+                MySqlParameter[] parameters2 = new MySqlParameter[1]
+                 {
+                   new MySqlParameter("@roleids", role.ID)
+                 };
+                 factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_Delpermissionrole(@roleids)", parameters2);
+
+                var roles = role.Pid.Split(',');
+
+                for (int i = 0; i < roles.Length; i++)
+                {
+                    PermissionRole permissionRole = new PermissionRole();
+                    permissionRole.RoleId = role.ID;
+                    permissionRole.PermissionId = Convert.ToInt32(roles[i]);
+
+                    MySqlParameter[] parameters3 = new MySqlParameter[2]
+                 {
+                   new MySqlParameter("@roleids", permissionRole.RoleId),
+                   new MySqlParameter("@permissids", permissionRole.PermissionId)
+                 };
+                    result = factoryDBcontext.Database.ExecuteSqlCommand("Call Pro_Addpermissionrole(@roleids,@permissids)", parameters3);
+                }
+            }
+
+            return result;
         }
+
     }
 }

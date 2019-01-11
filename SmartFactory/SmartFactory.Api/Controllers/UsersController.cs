@@ -24,7 +24,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("GetUsers")]
         [HttpGet]
-        public List<Users> GetUsers()
+        public List<UserInfo> GetUsers()
         {
             var userList = usersServices.GetUsers();
             return userList;
@@ -41,6 +41,23 @@ namespace SmartFactory.Api.Controllers
         public int Login(string userName, string passWord)
         {
             int result = usersServices.Login(userName, passWord);
+            return result;
+        }
+
+        /// <summary>
+        /// 添加角色
+        /// </summary>
+        /// <param name="t_Users"></param>
+        /// <returns></returns>
+        [Route("AddUsers")]
+        [HttpPost]
+        public int AddUsers(string userName, string passWord, string roleId)
+        {
+            Users users = new Users();
+            users.UserName = userName;
+            users.PassWord = passWord;
+            users.RoleId = roleId;
+            var result = usersServices.AddUsers(users);
             return result;
         }
     }

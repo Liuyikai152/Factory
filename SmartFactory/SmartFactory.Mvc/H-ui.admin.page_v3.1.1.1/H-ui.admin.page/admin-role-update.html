@@ -20,47 +20,37 @@
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-    <script>DD_belatedPNG.fix('*');</script><![endif]-->
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>添加管理员 - 管理员管理 - H-ui.admin v3.0</title>
+    <title>新建网站角色 - 管理员管理 - H-ui.admin v3.0</title>
     <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
     <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
     <article class="cl pd-20">
-        <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <form action="" method="post" class="form form-horizontal" id="form">
+            <input type="hidden" name="ID" />
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="UserName" name="UserName">
+                    <input type="text" class="input-text" value="" placeholder="" id="Name" name="RoleName" datatype="*4-16" nullmsg="用户账户不能为空">
                 </div>
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="PassWord" name="PassWord">
-                </div>
-            </div>
-            <!--<div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色id：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" placeholder="角色ID" id="RoleId"
-                           name="RoleId">
-                </div>
-            </div>-->
 
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3">角色名称：</label>
-                <div class="check-box" id="RoleName" name="RoleName">
+                <label class="form-label col-xs-4 col-sm-3">权限名称：</label>
+                <div class="check-box" id="Permission" name="Permission">
 
 
                 </div>
 
             </div>
+
             <div class="row cl">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                    <button type="button" onclick="update()" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
                 </div>
             </div>
         </form>
@@ -77,46 +67,71 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
-
+    <script src="../../Scripts/GetParse.js"></script>
     <script src="../../Scripts/jquery-1.10.2.min.js"></script>
-
     <script type="text/javascript">
+
+        var id = getPar("id");
+
         $(function () {
             $.ajax({
-                url: 'http://localhost:8066/Role/GetRoles',
+                url: 'http://localhost:8066/Permission/GetPermission',
                 type: 'get',
+                async: false,
                 data: {},
                 success: function (res) {
                     console.log(res);
                     $(res).each(function (index, data) {
-                        $(".check-box").append('<input type="checkbox" class="cks" id="' + data.ID + '" name="RoleName" value="' + data.ID + '"  />' + data.RoleName)
-                    })
+                        $(".check-box").append('<input type="checkbox" class="cks" id="' + data.ID + '" name="Permissio" value="' + data.ID + '"   />' + data.PermissionName)
 
+                        
+                    })
+                   
                 }
             })
-        })
-        function add() {
-            var role = "";
-            $(".cks:checked").each(function () {
-                role += $(this).val() + ",";
-            })
-            role = role.substring(0, role.lastIndexOf(','));
-            alert(role);
+
+            //反填
             $.ajax({
-                url: "http://localhost:8066/Users/AddUsers?userName=" + $("#UserName").val() + '&&passWord=' + $("#PassWord").val() + '&&roleId=' + role,
+                url: 'http://localhost:8066/Role/GetByID?id=' + id,
+                async: false,
+                type: "get",
+                success: function (data) {
+
+                    $("input[name=ID]").val(data[0].ID);
+                    $("input[name=RoleName]").val(data[0].RoleName);
+                    $(data[0].Pid.split(',')).each(function (index, data) {
+
+                        $("input[name=Permissio][value=" + data + "]").prop("checked", true)
+                        console.log(data)
+                    })
+                }
+            })
+
+        }),
+          
+
+
+
+
+        function update() {
+            var ids = "";
+            
+            $(".cks:checked").each(function () {
+                ids += $(this).val() + ",";
+            })
+            ids = ids.substring(0, ids.lastIndexOf(','));
+
+            $.ajax({
+                url: "http://localhost:8066/Role/UpdateRole?roleName=" + $("input[name=RoleName]").val() + '&&pId=' + ids + '&&id=' + id,
                 type: "post",
-                data: {
-                    //userName: $("#UserName").val(),
-                    //passWord: $("#PassWord").val(),
-                    //roleId: role
-                },
+                async: false,
                 success: function (data) {
 
                     if (data > 0) {
-                        alert("添加成功")
+                        alert("修改成功")
                     }
                     else {
-                        alert("添加失败")
+                        alert("修改失败")
                     }
                 }
             })
@@ -125,27 +140,6 @@
 
 
     </script>
-
-    <!--<script type="text/javascript">
-        function add() {
-            $.ajax({
-                url: "http://localhost:24380/TUsers/AddTUsers",
-                type: "post",
-                data: { UserName: $("#adminName").val(), PassWord: $("#password").val(), RoleID: $("#Role").val() },
-                success: function (data) {
-                    if (data > 0) {
-                        alert("添加成功")
-
-
-                    }
-                    else {
-                        alert("添加失败")
-                    }
-                }
-            })
-        }
-
-    </script>-->
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

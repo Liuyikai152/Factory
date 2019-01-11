@@ -26,10 +26,10 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("GetRoles")]
         [HttpGet]
-        public List<Role> GetRoles()
+        public List<Roles> GetRoles()
         {
-            var userList = roleServices.GetRoles();
-            return userList;
+            var roleList = roleServices.GetRoles();
+            return roleList;
         }
 
         /// <summary>
@@ -45,6 +45,49 @@ namespace SmartFactory.Api.Controllers
             role.RoleName = roleName;
             role.Pid = pId;
             var result = roleServices.AddRole(role);
+            return result;
+        }
+
+        /// <summary>
+        /// 获取id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("GetByID")]
+        [HttpGet]
+        public List<Role> GetByID(int id)
+        {
+            var roleList = roleServices.GetByID(id);
+            return roleList;
+        }
+
+        /// <summary>
+        /// 修改角色
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        [Route("UpdateRole")]
+        [HttpPost]
+        public int UpdateRole(string roleName, string pId, int id)
+        {
+            Role role = new Role();
+            role.RoleName = roleName;
+            role.Pid = pId;
+            role.ID = id;
+            var result = roleServices.UpdateRole(role);
+            return result;
+        }
+
+        /// <summary>
+        /// 删除权限
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("DeleteRole")]
+        [HttpGet]
+        public int DeleteRole(int id)
+        {
+            var result = roleServices.DeleteRole(id);
             return result;
         }
     }

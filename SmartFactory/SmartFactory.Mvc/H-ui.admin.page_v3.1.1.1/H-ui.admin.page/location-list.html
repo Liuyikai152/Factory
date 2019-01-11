@@ -226,8 +226,10 @@
         <form class="form form-horizontal" id="formData">
             <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
             <div>
-                <span id="alert"  style="color:red"></span>
+                <span id="alert" style="color:red"></span>
                 <button type="button" id="btnS"><i class="Hui-iconfont">&#xe600;</i>导入数据</button>
+
+                <input type="button" id="btnOut" value="导出" style=" width:100px;height:30px;" />
             </div>
         </form>
 
@@ -316,7 +318,7 @@
     <script>
         $(function () {
             $("#btnS").click(function () {
-              
+
                 $.ajax({
                     url: "http://localhost:8066/Import/LocaTion",
                     contentType: false,
@@ -332,94 +334,111 @@
                 })
 
             })
-        });
 
-        var vue = new Vue({
-            el: "#app",
-            data: {
-                list: [],
-                locastate: "",
-                isdelete: "",
-                companyname: "",
-                locanumber: "",
-                factoryname1: "",
-                factoryname2: "",
+            //导出
+            $("#btnOut").click(function () {
+                $.ajax({
+                    url: "http://localhost:8066/Import/OutExcel",
+                    //contentType: false,
+                    //processData: false,
+                    //cache: false,
+                    data: {},
+                    type: 'POST',
+                    success: function (data) {
+                        alert(data);
+                        if (data > 0) {
+                            $("#alert").text("导出成功");
+                        }
+                    }
+                })
+            })
 
-                all: 0,
-                cur: 1
-            },
-            watch: {
-                cur: function (oldValue, newValue) {
+            var vue = new Vue({
+                el: "#app",
+                data: {
+                    list: [],
+                    locastate: "",
+                    isdelete: "",
+                    companyname: "",
+                    locanumber: "",
+                    factoryname1: "",
+                    factoryname2: "",
 
-                }
-            },
-            ready() {
-   
-                this.getList();
+                    all: 0,
+                    cur: 1
+                },
+                watch: {
+                    cur: function (oldValue, newValue) {
 
-            },
-            methods: {
-                btnClick: function (data) {//页码点击事件
-                    var that = this;
-                    if (data != that.cur) {
-                        that.cur = data;
-                        that.getList();
                     }
                 },
-                pageClick: function () {
+                ready() {
 
                     this.getList();
+
                 },
-                getList: function () {
-                   
-                    axios.get('http://localhost:8066/LocaTion/GetLocaTions?locastate=' + this.locastate + '&&isdelete=' + this.isdelete + '&&currentpage=' + this.cur + '&&companyname=' + this.companyname + '&&locanumber=' + this.locanumber + '&&factoryname1=' + this.factoryname1 + '&&factoryname2=' + this.factoryname2).then((response) => {
-                        this.list = [];
-                        this.cur = response.data.PageIndex;
-                        this.all = response.data.PageCount;
-                        for (var i = 0; i < response.data.Data.length; i++) {
-                            this.list.push(response.data.Data[i]);
+                methods: {
+                    btnClick: function (data) {//页码点击事件
+                        var that = this;
+                        if (data != that.cur) {
+                            that.cur = data;
+                            that.getList();
                         }
                     },
-                        (response) => {
-                            alert(response.status);
-                        }
-                    ).catch(function (response) {
-                        alert(response);
-                    });
-                },
+                    pageClick: function () {
 
-                computed: {
-                    indexs: function () {
-                        var that = this;
-                        var left = 1;
-                        var right = that.all;
-                        var ar = [];
-                        if (this.all >= 5) {
-                            if (that.cur > 3 && that.cur < that.all - 2) {
-                                left = that.cur - 2
-                                right = that.cur + 2
-                            } else {
-                                if (that.cur <= 3) {
-                                    left = 1
-                                    right = 5
+                        this.getList();
+                    },
+                    getList: function () {
+
+                        axios.get('http://localhost:8066/LocaTion/GetLocaTions?locastate=' + this.locastate + '&&isdelete=' + this.isdelete + '&&currentpage=' + this.cur + '&&companyname=' + this.companyname + '&&locanumber=' + this.locanumber + '&&factoryname1=' + this.factoryname1 + '&&factoryname2=' + this.factoryname2).then((response) => {
+                            this.list = [];
+                            this.cur = response.data.PageIndex;
+                            this.all = response.data.PageCount;
+                            for (var i = 0; i < response.data.Data.length; i++) {
+                                this.list.push(response.data.Data[i]);
+                            }
+                        },
+                            (response) => {
+                                alert(response.status);
+                            }
+                        ).catch(function (response) {
+                            alert(response);
+                        });
+                    },
+
+                    computed: {
+                        indexs: function () {
+                            var that = this;
+                            var left = 1;
+                            var right = that.all;
+                            var ar = [];
+                            if (this.all >= 5) {
+                                if (that.cur > 3 && that.cur < that.all - 2) {
+                                    left = that.cur - 2
+                                    right = that.cur + 2
                                 } else {
-                                    right = that.all
-                                    left = that.all - 4
+                                    if (that.cur <= 3) {
+                                        left = 1
+                                        right = 5
+                                    } else {
+                                        right = that.all
+                                        left = that.all - 4
+                                    }
                                 }
                             }
+                            while (left <= right) {
+                                ar.push(left)
+                                left++
+                            }
+                            return ar
                         }
-                        while (left <= right) {
-                            ar.push(left)
-                            left++
-                        }
-                        return ar
+
                     }
+                },
+            })
 
-                }
-            },
         })
-
-
     </script>
 
     <!--/请在上方写此页面业务相关的脚本-->
