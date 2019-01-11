@@ -24,6 +24,7 @@
     <!--/meta 作为公共模版分离出去-->
 
     <title>机组详情</title>
+
 </head>
 <body>
     <style>
@@ -181,6 +182,7 @@
                     <!--<img src="{{test.StructureImg}}" style="width:100px;height:80px;" />-->
                 </div>
 
+
             </article>
 
         </div>
@@ -203,7 +205,9 @@
     <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
+
     <script src="../../Scripts/GetParse.js"></script>
+
     <script type="text/javascript">
         $(function () {
             $("#btnS").click(function () {
@@ -229,16 +233,12 @@
             el: "#app",
             data: {
                 pumpId: getPar("id"),
-
                 apiUrl: "http://localhost:8066/Pump/",
-
-
             },
             ready: function () {
                 this.getTests()
             },
             methods: {
-
                 getTests: function () {
                    
                     this.$http.get(this.apiUrl + 'GetByID?id=' + this.pumpId, function (data) {
@@ -247,7 +247,6 @@
                     })
                 },
 
-              
             },
             //计算属性
             computed: {
