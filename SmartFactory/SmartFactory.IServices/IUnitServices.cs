@@ -33,7 +33,7 @@ namespace SmartFactory.IServices
         /// 查看机组
         /// </summary>
         /// <returns></returns>
-        List<UnitNotMapped> GetHost();
+        List<Unit> GetHost();
 
 
         /// <summary>
