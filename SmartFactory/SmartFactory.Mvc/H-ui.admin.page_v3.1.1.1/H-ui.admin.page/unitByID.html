@@ -2,31 +2,31 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="Bookmark" href="favicon.ico" >
-<link rel="Shortcut Icon" href="favicon.ico" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
-<![endif]-->
-<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
-<!--/meta 作为公共模版分离出去-->
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="Bookmark" href="favicon.ico">
+    <link rel="Shortcut Icon" href="favicon.ico" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <!--/meta 作为公共模版分离出去-->
 
-<title>管理员列表 - 管理员列表 - H-ui.admin v3.0</title>
-<meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-<meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+    <title>管理员列表 - 管理员列表 - H-ui.admin v3.0</title>
+    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
     <!--_header 作为公共模版分离出去-->
@@ -66,7 +66,8 @@
             </div>
         </div>
     </header>
-
+    <!--/_header 作为公共模版分离出去-->
+    <!--_menu 作为公共模版分离出去-->
     <aside class="Hui-aside">
 
         <div class="menu_dropdown bk_2">
@@ -94,51 +95,33 @@
             <span class="c-gray en">&gt;</span>
             管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
         </nav>
+
         <div class="Hui-article" id="app" style="background-color:azure">
             <article class="cl pd-20">
 
-
                 <div>
-                    <input type="button" value="返回" onclick="location.href='maintenanceorder-list.html'" style="margin-left:100px;  width:100px;height:30px;" />
+                    <input type="button" value="返回" onclick="location.href='unit.html'" style="margin-left:100px;  width:100px;height:30px;" />
                 </div>
+
                 <div style="margin:100px  auto  auto 150px;">
 
 
-                    <h3><span>所属机组/机泵：</span>{{test.FacilityName}}</h3>
+                    <h3><span>序号：</span>{{test.ID}}</h3>
                     <p style="font-size:18px;">
-                        <span>工单编号：</span> {{test.OrderNumber}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>设备编号：</span>{{test.FacilityNumber}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>位置编码：</span>{{test.LocaNumber}}
+                        <span>所属装置：</span> {{test.AreaName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>机组编号：</span>{{test.UnitNumber}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>机组名称：</span>{{test.UnitName}}
                     </p>
-                    <h3><span>公司名称：</span>{{test.CompanyName}} </h3>
+                    <h3><span>主机名称：</span>{{test.AttachName}} </h3>
+                    <br />
                     <p style="font-size:18px;">
-                        <span>计划员组：</span>{{test.GroupName}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>工厂区域：</span>{{test.AreaName}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>计划工厂名称：</span>{{test.FactoryName1}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <br />
-                        <br />
-                        <span>维护班组名称：</span>{{test.ServiceName}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>成本工厂：</span>{{test.FactoryName3}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>维护工厂：</span>{{test.FactoryName2}}
+                        <span>附机名称：</span>{{test.HostName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>详细信息：</span>{{test.Describe}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>操作人：</span>{{test.CrewLeader}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                     </p>
 
-                    <p style="font-size:18px;">
-                        <span>设备名称：</span>{{test.DeviceName}}  &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>故障名称：</span>{{test.FaultName}} &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>故障部位：</span>{{test.FaultPart}}
-                    </p>
-
-
-                    <p style="font-size:18px;"><span>故障现象及处理过程：</span>{{test.HandlingMethod}}</p>
-
-                    <h3>维修时间</h3>
-                    <p style="font-size:18px;">
-                        <span>故障发生时间：</span>{{test.HappenTime}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>处理完成时间：</span>{{test.CompletionTime}}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>停机时间：</span>{{test.DownTime}}
-                    </p>
                 </div>
-
             </article>
         </div>
     </section>
@@ -163,7 +146,7 @@
             el: "#app",
             data: {
                 mainId: getPar("id"),
-                apiUrl: 'http://localhost:8066/MaintenanceOrder/',
+                apiUrl: 'http://localhost:8066/Unit/',
                 testdata: {}
             },
             ready: function () {
@@ -231,6 +214,7 @@
             });
         }
 
+
         $(function () {
             $("#uname").text(localStorage.uname);
 
@@ -248,12 +232,6 @@
                     })
                 }
             })
-
-
-
-
-
-
         })
     </script>
     <!--/请在上方写此页面业务相关的脚本-->

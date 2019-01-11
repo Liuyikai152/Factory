@@ -94,6 +94,7 @@
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pump.cs" />
+    <Compile Include="PumpNotMap.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Roles.cs" />
     <Compile Include="ServiceGroup.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Station.cs" />
     <Compile Include="Subfamily.cs" />
     <Compile Include="Unit.cs" />
+    <Compile Include="UnitNotMapped.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="UsersRole.cs" />

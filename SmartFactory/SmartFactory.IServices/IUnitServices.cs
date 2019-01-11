@@ -33,7 +33,7 @@ namespace SmartFactory.IServices
         /// 查看机组
         /// </summary>
         /// <returns></returns>
-        List<Unit> GetHost();
+        List<UnitNotMapped> GetHost();
 
 
         /// <summary>
@@ -41,6 +41,6 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Unit GetByID(int id);
+        UnitNotMapped GetByID(int id);
     }
 }
