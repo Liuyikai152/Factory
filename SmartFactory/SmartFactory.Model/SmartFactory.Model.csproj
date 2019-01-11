@@ -67,6 +67,7 @@
     <Compile Include="BitNumber.cs" />
     <Compile Include="Business.cs" />
     <Compile Include="CompanyCode.cs" />
+    <Compile Include="ConfigurationNotMapped.cs" />
     <Compile Include="Facility.cs" />
     <Compile Include="FacilityDetails.cs" />
     <Compile Include="FacilityGeneral.cs" />

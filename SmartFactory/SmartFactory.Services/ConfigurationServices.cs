@@ -26,14 +26,14 @@ namespace SmartFactory.Services
             factoryDBcontext.Configurations.Add(configuration);
             return factoryDBcontext.SaveChanges();
         }
-
+        
         /// <summary>
         /// 查看审批活动
         /// </summary>
         /// <returns></returns>
-        public List<Configuration> GetActivities()
+        public List<ConfigurationNotMapped> Getfiguration()
         {
-            var configurationList = factoryDBcontext.Database.SqlQuery<Configuration>("").ToList();
+            var configurationList = factoryDBcontext.Database.SqlQuery<ConfigurationNotMapped>("CALL Pro_GetConfiguration").ToList();
             return configurationList;
         }
 

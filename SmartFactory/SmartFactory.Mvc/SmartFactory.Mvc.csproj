@@ -1191,7 +1191,7 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\static\h-ui\js\H-ui.min.js" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\system-base.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\system-category-add.html" />
-    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\system-category.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\configuration-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\system-data.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\system-log.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\system-shielding.html" />
