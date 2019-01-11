@@ -23,7 +23,7 @@
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>图片列表</title>
+    <title>机组</title>
 </head>
 <body>
     <style>
@@ -151,7 +151,7 @@
         </form>
         <div class="Hui-article" id="app" style="margin-top:50px;">
             <article class="cl pd-20">
-                <div>
+                <div style="margin-left:400px">
 
                   <span>所属装置</span>
                     <select>
@@ -160,15 +160,15 @@
                     <input type="text" class="input-text" style="width:150px" placeholder="机泵编码" value="" V-model="PumpNumber">
                     <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
                 </div>
-
+                <br />
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
                         <tr class="text-c">
 
                             <th width="80">序号</th>
                             <th width="80">所属装置</th>
-                            <th width="80">机组编号</th>
-                            <th width="80">机组名称</th>
+                            <th width="80">机泵编号</th>
+                            <th width="80">机泵名称</th>
                             <th width="80">主机名称</th>
                             <th width="80">附机名称</th>
                             <th width="80">详细信息</th>
@@ -184,9 +184,9 @@
                             <th>{{test.PumpName}}</th>
                             <th>{{test.HostName}}</th>
                             <th>{{test.AttachName}}</th>
-                            <th><a href='pumpById.html'>查看</a></th>
+                            <th><a href='pump.html?id={{test.ID}}'>查看</a></th>
                             <th><a href='FacilityByID.html?id={{test.ID}}'>编辑</a></th>
-                            <th><a herf='#？id={{test.ID}}'>删除</a> </th>
+                            <th><a herf='#id={{test.ID}}'>删除</a> </th>
                         </tr>
 
                 </table>
@@ -249,15 +249,10 @@
         var vm = new Vue({
             el: "#app",
             data: {
-                FacilityNumber: "",
-                BitNumbers: "",
-                companyname: "",
-                FactoryName: "",
-                TypeName: "",
-                IsSiren: "",
+                
                 all: 8,
                 cur: 1,
-                apiUrl: "http://localhost:8066/Facility/",
+                apiUrl: "http://localhost:8066/Pump/",
 
 
             },
@@ -266,7 +261,7 @@
             },
             methods: {
                 getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetFacility', { IsSiren: this.IsSiren, BitNumbers: this.BitNumbers, CompanyName: this.CompanyName, FactoryName: this.FactoryName, TypeName: this.TypeName, FacilityNumber: this.FacilityNumber, PageIndex: this.cur, }, function (data) {
+                    this.$http.get(this.apiUrl + 'GetPumps', { PageIndex: this.cur, }, function (data) {
 
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;

@@ -57,6 +57,7 @@ namespace SmartFactory.Api.Controllers
             var pumpNotMap = pumpServices.GetByID(id);
             return pumpNotMap;
         }
+        public const int PAGESIZE= 3;
 
         /// <summary>
         /// 显示
@@ -64,10 +65,15 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetPumps")]
-        public List<PumpNotMap> GetPumps()
+        public PageBox GetPumps(int PageIndex=1)
         {
+            PageBox pageBox = new PageBox();
             var pumpList = pumpServices.GetPumps();
-            return pumpList;
+            pageBox.PageIndex = PageIndex;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount = pumpList.Count / PAGESIZE + (pumpList.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = pumpList.Skip((PageIndex - 1) * PAGESIZE).Take(PAGESIZE);
+            return pageBox;
         }
 
         /// <summary>
