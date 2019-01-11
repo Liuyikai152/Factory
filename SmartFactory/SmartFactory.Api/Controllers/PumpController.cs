@@ -1,28 +1,34 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+
 using SmartFactory.IServices;
 using SmartFactory.Model;
+using SmartFactory.Services;
 
-namespace SmartFactory.Services
+namespace SmartFactory.Api.Controllers
 {
-    
-    public class PumpServices : IPumpServices
+    [RoutePrefix("Pump")]
+    public class PumpController : ApiController
     {
-        FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
+
+        public IPumpServices pumpServices { get; set; }
 
         /// <summary>
         /// 添加机泵
         /// </summary>
         /// <param name="pump"></param>
         /// <returns></returns>
+        [HttpPost]
+        [Route("AddPump")]
         public int AddPump(Pump pump)
         {
-            factoryDBcontext.Pump.Add(pump);
-            return factoryDBcontext.SaveChanges();
+            int i= pumpServices.AddPump(pump);
+            return i;
         }
 
         /// <summary>
@@ -30,12 +36,13 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpGet]
+        [Route("DeletePump")]
         public int DeletePump(int id)
         {
-            var getPump = factoryDBcontext.Pump.Find(id);
-            factoryDBcontext.Pump.Remove(getPump);
-            return factoryDBcontext.SaveChanges();
-               
+            int i = pumpServices.DeletePump(id);
+            return i;
+
         }
 
         /// <summary>
@@ -43,9 +50,11 @@ namespace SmartFactory.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpGet]
+        [Route("GetByID")]
         public PumpNotMap GetByID(int id)
         {
-            var pumpNotMap = factoryDBcontext.Database.SqlQuery<PumpNotMap>("call Pro_GetPumpList").Where(n=>n.ID.Equals(id)).FirstOrDefault();
+            var pumpNotMap = pumpServices.GetByID(id);
             return pumpNotMap;
         }
 
@@ -53,21 +62,26 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
+        [Route("GetPumps")]
         public List<PumpNotMap> GetPumps()
         {
-            var pumpList = factoryDBcontext.Database.SqlQuery<PumpNotMap>("call Pro_GetPumpList").ToList();
+            var pumpList = pumpServices.GetPumps();
             return pumpList;
         }
 
         /// <summary>
-        /// 修改
+        /// 修改警告状态
         /// </summary>
         /// <param name="pump"></param>
         /// <returns></returns>
+        [HttpPost]
+        [Route("UpdatePump")]
         public int UpdatePump(Pump pump)
         {
-            factoryDBcontext.Entry(pump).State = System.Data.Entity.EntityState.Modified;
-            return factoryDBcontext.SaveChanges();
+            var i = pumpServices.UpdatePump(pump);
+
+            return i;
         }
     }
 }
