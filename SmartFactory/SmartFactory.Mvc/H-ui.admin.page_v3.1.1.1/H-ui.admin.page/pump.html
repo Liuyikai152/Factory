@@ -1,0 +1,346 @@
+﻿<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="Bookmark" href="favicon.ico">
+    <link rel="Shortcut Icon" href="favicon.ico" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5.js"></scri76 pt>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script><![endif]-->
+    <!--/meta 作为公共模版分离出去-->
+
+    <title>图片列表</title>
+</head>
+<body>
+    <style>
+        .page-bar {
+            margin: 40px;
+        }
+
+        ul, li {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        li {
+            list-style: none
+        }
+
+        .page-bar li:first-child > a {
+            margin-left: 0px
+        }
+
+        .page-bar a {
+            border: 1px solid #ddd;
+            text-decoration: none;
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            cursor: pointer
+        }
+
+            .page-bar a:hover {
+                background-color: #eee;
+            }
+
+            .page-bar a.banclick {
+                cursor: not-allowed;
+            }
+
+        .page-bar .active a {
+            color: #fff;
+            cursor: default;
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+
+        .page-bar i {
+            font-style: normal;
+            color: #d44950;
+            margin: 0px 4px;
+            font-size: 12px;
+        }
+    </style>
+    <!--_header 作为公共模版分离出去-->
+    <header class="navbar-wrapper">
+        <div class="navbar navbar-fixed-top">
+            <div class="container-fluid cl">
+                <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">智能工厂管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml"></a> <span class="logo navbar-slogan f-l mr-10 hidden-xs"></span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+                <nav class="nav navbar-nav">
+
+                </nav>
+                <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+                    <ul class="cl">
+                        <li></li>
+                        <li class="dropDown dropDown_hover">
+                            <label id="uname"></label>
+                            <a href="#" class="dropDown_A"> <i class="Hui-iconfont">&#xe6d5;</i></a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+
+                                <li><a href="login.html">切换账户</a></li>
+                                <li><a href="#">退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li id="Hui-skin" class="dropDown right dropDown_hover">
+                            <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
+                            <ul class="dropDown-menu menu radius box-shadow">
+                                <li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
+                                <li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
+                                <li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
+                                <li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
+                                <li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
+                                <li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--/_header 作为公共模版分离出去-->
+    <!--_menu 作为公共模版分离出去-->
+    <aside class="Hui-aside">
+
+        <div class="menu_dropdown bk_2">
+
+
+
+            <ul id="powerList">
+                <li><a data-href="article-list.html" data-title="管理" href="javascript:void(0)">管理</a></li>
+            </ul>
+
+
+
+        </div>
+    </aside>
+    <div class="dislpayArrow hidden-xs">
+        <a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
+    </div>
+    <!--/_menu 作为公共模版分离出去-->
+
+    <section class="Hui-article-box">
+        <form class="form form-horizontal" id="formData">
+            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
+            <div>
+                <p id="alert" style="color:red"></p>
+            </div>
+            <div>
+                <div>
+                    <input type="button" id="btnS" value="提交" style="width:100px;" />
+                </div>
+            </div>
+
+        </form>
+        <div class="Hui-article" id="app" style="margin-top:50px;">
+            <article class="cl pd-20">
+                <div>
+
+                  <span>所属装置</span>
+                    <select>
+                        <option value="">==请选择==</option>
+                    </select>
+                    <input type="text" class="input-text" style="width:150px" placeholder="机泵编码" value="" V-model="PumpNumber">
+                    <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
+                </div>
+
+                <table class="table table-border table-bordered table-bg table-hover table-sort">
+                    <thead>
+                        <tr class="text-c">
+
+                            <th width="80">序号</th>
+                            <th width="80">所属装置</th>
+                            <th width="80">机组编号</th>
+                            <th width="80">机组名称</th>
+                            <th width="80">主机名称</th>
+                            <th width="80">附机名称</th>
+                            <th width="80">详细信息</th>
+                            <th width="80">编辑</th>
+                            <th width="80">删除</th>
+
+                        </tr>
+
+                        <tr v-for="test in tests" class="text-c">
+                            <th>{{test.ID}}</th>
+                            <th>{{test.AreaName}}</th>
+                            <th>{{test.PumpNumber}}</th>
+                            <th>{{test.PumpName}}</th>
+                            <th>{{test.HostName}}</th>
+                            <th>{{test.AttachName}}</th>
+                            <th><a href='pumpById.html'>查看</a></th>
+                            <th><a href='FacilityByID.html?id={{test.ID}}'>编辑</a></th>
+                            <th><a herf='#？id={{test.ID}}'>删除</a> </th>
+                        </tr>
+
+                </table>
+                <div class="page-bar">
+                    <ul>
+                        <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
+                        <li v-if="cur==1"><a class="banclick">上一页</a></li>
+                        <li v-for="index in indexs" v-bind:class="{ 'active': cur == index}">
+                            <a v-on:click="btnClick(index)">{{ index }}</a>
+                        </li>
+                        <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
+                        <li v-if="cur == all"><a class="banclick">下一页</a></li>
+                        <li><a>共<i>{{all}}</i>页</a></li>
+                    </ul>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+
+
+
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+    <!--/_footer /作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="lib/datatables/1.10.0/jquery.datatables.min.js"></script>
+    <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+    <script src="../../Scripts/vue.min.js"></script>
+    <script src="../../Scripts/axios.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btnS").click(function () {
+                alert($("#formData")[0])
+                $.ajax({
+                    url: "http://localhost:8066/Import/Imports",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: new FormData($("#formData")[0]),
+                    type: 'POST',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#alert").text("导入成功");
+                        }
+                    }
+                })
+
+            })
+        });
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                FacilityNumber: "",
+                BitNumbers: "",
+                companyname: "",
+                FactoryName: "",
+                TypeName: "",
+                IsSiren: "",
+                all: 8,
+                cur: 1,
+                apiUrl: "http://localhost:8066/Facility/",
+
+
+            },
+            ready: function () {
+                this.getTests()
+            },
+            methods: {
+                getTests: function () {
+                    this.$http.get(this.apiUrl + 'GetFacility', { IsSiren: this.IsSiren, BitNumbers: this.BitNumbers, CompanyName: this.CompanyName, FactoryName: this.FactoryName, TypeName: this.TypeName, FacilityNumber: this.FacilityNumber, PageIndex: this.cur, }, function (data) {
+
+                        this.cur = data.PageIndex;
+                        this.all = data.PageCount;
+                        this.$set('tests', data.Data);
+                    })
+                },
+
+                btnClick: function (data) {//页码点击事件
+                    if (data != this.cur) {
+                        this.cur = data;
+                        this.getTests(data);
+
+
+                    }
+                },
+                pageClick: function () {
+                    //console.log('现在在' + this.cur + '页');
+                    this.getTests(this.cur);
+                },
+            },
+            //计算属性
+            computed: {
+                indexs: function () {
+                    var left = 1;
+                    var right = this.all;
+                    var ar = [];
+                    if (this.all >= 5) {
+                        if (this.cur > 3 && this.cur < this.all - 2) {
+                            left = this.cur - 2
+                            right = this.cur + 2
+                        } else {
+                            if (this.cur <= 3) {
+                                left = 1
+                                right = 5
+                            } else {
+                                right = this.all
+                                left = this.all - 4
+                            }
+                        }
+                    }
+                    while (left <= right) {
+                        ar.push(left)
+                        left++
+                    }
+                    return ar
+                }
+
+            }
+        })
+
+        $(function () {
+            $("#uname").text(localStorage.uname);
+
+            setInterval("showTime()", 1000);
+            $.ajax({
+                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
+                async: false,
+                type: 'get',
+                //data: { id:  },
+                success: function (data) {
+
+                    $(data).each(function (index, data) {
+
+                        $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
+                    })
+                }
+            })
+        })
+
+    </script>
+
+
+    <!--/请在上方写此页面业务相关的脚本-->
+</body>
+
+
+</html>
