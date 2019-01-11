@@ -49,9 +49,9 @@ namespace SmartFactory.Services
         /// 显示机组
         /// </summary>
         /// <returns></returns>
-        public List<Unit> GetHost()
+        public List<UnitNotMapped> GetHost()
         {
-            var uintList= factoryDBcontext.Unit.ToList();
+            var uintList= factoryDBcontext.Database.SqlQuery<UnitNotMapped>("CALL pro_Getunitlist").ToList();
             return uintList;
         }
 
