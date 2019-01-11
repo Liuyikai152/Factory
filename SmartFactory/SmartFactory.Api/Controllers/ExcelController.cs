@@ -95,30 +95,18 @@ namespace SmartFactory.Api.Controllers
         /// <param name="destFileName">指定目标文件路径</param>
         /// <param name="tableName">要导出到的表名称</param>
         /// <returns>导出的记录的行数</returns>
-        [HttpPost]
-        [Route("ExportToExcel")]
         public static int ExportToExcel(DataTable dt,string destFileName, string tableName)
         {
             
-
-            if (File.Exists(destFileName)) 
-            {
-                File.Delete(destFileName);
-            }
-
+           
             //得到字段名
-
             string szFields = "";
-
             string szValues = "";
 
             for (int i = 1; i < dt.Columns.Count; i++)
-
             {
                 szFields += "[" + dt.Columns[i] + "],";
-
             }
-
             szFields = szFields.TrimEnd(',');
 
             //定义数据连接
@@ -136,95 +124,57 @@ namespace SmartFactory.Api.Controllers
             //打开数据库连接
 
             try
-
             {
-
                 connection.Open();
-
             }
-
             catch
-
             {
-
                 throw new Exception("目标文件路径错误。");
-
             }
-
             //创建数据库表
 
             try
-
             {
                 command.CommandText = GetCreateTableSql("[" + tableName + "]", szFields.Split(','));
                 command.ExecuteNonQuery();
             }
-
             catch (Exception ex)
-
             {
-
                 //如果允许覆盖则删除已有数据
-
                 throw ex;
-
             }
-
             try
-
             {
-
                 //循环处理数据------------------------------------------
-
                 int recordCount = 0;
-
                 for (int i = 0; i < dt.Rows.Count; i++)
-
                 {
-
                     szValues = "";
 
-                    for (int j = 0; j < dt.Columns.Count; j++)
-
+                    for (int j = 1; j < dt.Columns.Count; j++)
                     {
-
                             szValues += "'" + dt.Rows[i][j] + "',";
-
-                        
-
                     }
 
                     szValues = szValues.TrimEnd(',');
 
-
                         //组合成SQL语句并执行
-
                         string szSql = "INSERT INTO [" + tableName + "](" + szFields + ") VALUES(" + szValues + ")";
 
                     command.CommandText = szSql;
-
                     recordCount += command.ExecuteNonQuery();
-
                 }
-
                 connection.Close();
-
                 return recordCount;
-
             }
-
             catch (Exception ex)
-
             {
-
                 throw ex;
-
             }
 
         }
 
         //得到连接字符串
-
         private static String GetConnectionString(string fullPath)
         {
             string szConnection;
@@ -234,7 +184,6 @@ namespace SmartFactory.Api.Controllers
         }
 
         //得到创建表的SQL语句
-
         private static string GetCreateTableSql(string tableName, string[] fields)
         {
             string szSql = "CREATE TABLE " + tableName + "(";
@@ -246,10 +195,6 @@ namespace SmartFactory.Api.Controllers
             return szSql;
 
         }
-
-
-
-
 
         #endregion
 
@@ -334,6 +279,22 @@ namespace SmartFactory.Api.Controllers
 
             return JsonConvert.DeserializeObject<DataTable>(JsonConvert.SerializeObject(list));
 
+        }
+
+
+        [HttpGet]
+        [Route("GetMainss")]
+        public  int GetMainss(string fileName,string tableName)
+        {
+            FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
+
+            var list = factoryDBcontext.MaintenanceOrder.ToList();
+
+            var dt= JsonConvert.DeserializeObject<DataTable>(JsonConvert.SerializeObject(list));
+           
+            int i=  ExportToExcel(dt, fileName,tableName);
+
+            return i;
         }
 
     }
