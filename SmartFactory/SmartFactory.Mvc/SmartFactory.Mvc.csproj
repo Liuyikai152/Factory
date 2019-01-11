@@ -123,6 +123,7 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission-update.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\in.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\index.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\location-details.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\location-list.html" />
