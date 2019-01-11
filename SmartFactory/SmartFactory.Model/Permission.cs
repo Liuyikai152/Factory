@@ -36,5 +36,9 @@ namespace SmartFactory.Model
         /// </summary>
         public string IsUser { get; set; }
 
+        /// <summary>
+        /// 父级id
+        /// </summary>
+        //public int Pid { get; set; }
     }
 }

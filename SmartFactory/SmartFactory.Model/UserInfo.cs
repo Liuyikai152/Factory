@@ -46,5 +46,10 @@ namespace SmartFactory.Model
         /// </summary>
         public string PermissionName { get; set; }
 
+        /// <summary>
+        /// 父级id
+        /// </summary>
+        public int Pid { get; set; }
+
     }
 }
