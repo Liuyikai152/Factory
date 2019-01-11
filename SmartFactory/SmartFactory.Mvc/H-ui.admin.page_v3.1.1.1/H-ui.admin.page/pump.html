@@ -158,13 +158,7 @@
                     <input type="text" class="input-text" style="width:150px" placeholder="计划工厂" value="" V-model="CompanyName">
                     <input type="text" class="input-text" style="width:150px" placeholder="维护工厂" value="" V-model="FactoryName">
                     <input type="text" class="input-text" style="width:150px" placeholder="设备种类" value="" V-model="TypeName">
-                    <span class="select-box inline">
-                        <select name="" style="width:150px" class="input-text" V-model="IsSiren">
-                            <option selected="selected" value="0">是否报警</option>
-                            <option value="3">警示</option>
-                            <option value="4">正常</option>
-                        </select>
-                    </span>
+                
 
                     <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
                 </div>
@@ -193,7 +187,7 @@
                             <th>{{test.CompanyName}}</th>
                             <th>{{test.FactoryName}}</th>
                             <th>{{test.FactoryName1}}</th>
-                            <th><a href='FacilityByID.html?id={{test.ID}}'>查看</a></th></th>
+                            <th><a href='FacilityByID.html?id={{test.ID}}'>查看</a></th>
                             <th><a href='FacilityByID.html?id={{test.ID}}'>编辑</a></th>
                             <th><a herf='#？id={{test.ID}}'>删除</a> </th>
                         </tr>
@@ -267,6 +261,7 @@
                 all: 8,
                 cur: 1,
                 apiUrl: "http://localhost:8066/Facility/",
+
 
             },
             ready: function () {

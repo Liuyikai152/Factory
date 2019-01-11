@@ -34,12 +34,12 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Pump GetByID(int id);
+        PumpNotMap GetByID(int id);
 
         /// <summary>
         /// 显示机泵
         /// </summary>
         /// <returns></returns>
-        List<Pump> GetPumps();
+        List<PumpNotMap> GetPumps();
     }
 }
