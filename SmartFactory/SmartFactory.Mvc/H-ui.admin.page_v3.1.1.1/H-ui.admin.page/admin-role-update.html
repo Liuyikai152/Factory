@@ -50,7 +50,7 @@
 
             <div class="row cl">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <button type="button" onclick="update()" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
+                    <button type="button" onclick="update()" class="btn btn-success radius" id="admin-role-save" name=""> 确定</button>
                 </div>
             </div>
         </form>
@@ -107,20 +107,17 @@
                 }
             })
 
-        }),
+        })
           
-
-
-
 
         function update() {
             var ids = "";
-            
+
             $(".cks:checked").each(function () {
                 ids += $(this).val() + ",";
             })
             ids = ids.substring(0, ids.lastIndexOf(','));
-
+            alert(ids);
             $.ajax({
                 url: "http://localhost:8066/Role/UpdateRole?roleName=" + $("input[name=RoleName]").val() + '&&pId=' + ids + '&&id=' + id,
                 type: "post",
@@ -136,6 +133,10 @@
                 }
             })
         }
+
+
+
+        
 
 
 

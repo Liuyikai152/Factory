@@ -89,6 +89,10 @@
 
 
         function add() {
+            if ($("input[name=RoleName]").val() == "") {
+                alert("角色名不能为空")
+                return;
+            }
             var ids = "";
             $(".cks:checked").each(function () {
                 ids += $(this).val() + ",";
