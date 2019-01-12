@@ -154,9 +154,9 @@
                 <div>
 
                     <input type="text" class="input-text" style="width:150px" placeholder="设备编码" value="" V-model="FacilityNumber">
-                    <input type="text" class="input-text" style="width:150px" placeholder="公司名称" value="" V-model="CompanyName">
+                    <input type="text" class="input-text" style="width:150px" placeholder="设备位号" value="" V-model="BitNumbers">
+                    <input type="text" class="input-text" style="width:150px" placeholder="公司编号" value="" V-model="CompanyName">
                     <input type="text" class="input-text" style="width:150px" placeholder="计划工厂" value="" V-model="FactoryName">
-                    <input type="text" class="input-text" style="width:150px" placeholder="维护工厂" value="" V-model="FactoryName1">
                     <input type="text" class="input-text" style="width:150px" placeholder="设备种类" value="" V-model="TypeName">
                     <span class="select-box inline">
                         <select name="" style="width:150px" class="input-text" V-model="IsSiren">
@@ -263,12 +263,12 @@
         var vm = new Vue({
             el: "#app",
             data: {
-                FactoryName1: "",
+                IsSiren: "",
                 BitNumbers: "",
-                companyname: "",
+                CompanyName: "",
                 FactoryName: "",
                 TypeName: "",
-                IsSiren: "",
+                FacilityNumber: "",
                 all: 8,
                 cur: 1,
                 apiUrl: "http://localhost:8066/Facility/",
@@ -280,7 +280,7 @@
             methods: {
                 getTests: function () {
                    // this.$http.get(this.apiUrl + 'GetFacility', { IsSiren: this.IsSiren, BitNumbers: this.BitNumbers, CompanyName: this.CompanyName, FactoryName: this.FactoryName, TypeName: this.TypeName, FacilityNumber: this.FacilityNumber, PageIndex: this.cur, }, function (data) {
-                    this.$http.get(this.apiUrl + 'GetFacility?IsSiren=' + this.IsSiren + '&&BitNumbers=' + this.BitNumbers + '&&CompanyName=' + this.CompanyName + '&&FactoryName=' + this.FactoryName + '&&TypeName=' + this.TypeName + '&&FacilityNumber=' + this.FactoryName1 + '&&PageIndex=' + this.cur, function (data) {
+                    this.$http.get(this.apiUrl + 'GetFacility?IsSiren=' + this.IsSiren + '&&BitNumbers=' + this.BitNumbers + '&&CompanyName=' + this.CompanyName + '&&FactoryName=' + this.FactoryName + '&&TypeName=' + this.TypeName + '&&FacilityNumber=' + this.FacilityNumber + '&&PageIndex=' + this.cur, function (data) {
 
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;
@@ -332,28 +332,19 @@
         })
 
         $(function () {
-            $("#uname").text(localStorage.uname);
-
-            setInterval("showTime()", 1000);
+            //$("#uname").text(localStorage.uname);
+            //setInterval("showTime()", 1000);
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
                 type: 'get',
                 //data: { id:  },
                 success: function (data) {
-
                     $(data).each(function (index, data) {
-
                         $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
                     })
                 }
             })
-
-
-
-
-
-
         })
 
     </script>
