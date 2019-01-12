@@ -152,7 +152,7 @@ namespace SmartFactory.Api.Controllers
 
             string FileName = Guid.NewGuid().ToString().Substring(8) + ".xlsx";
 
-            string sNewFullFile = "C:\\TEMP\\" + FileName;
+            string sNewFullFile = "C:\\" + FileName;
 
             string strConn = GetConnectionString(sNewFullFile);
             System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(strConn);

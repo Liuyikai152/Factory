@@ -23,7 +23,7 @@
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>图片列表</title>
+    <title>机组</title>
 </head>
 <body>
     <style>
@@ -301,24 +301,24 @@
             }
         })
 
-        //$(function () {
-        //    $("#uname").text(localStorage.uname);
+        $(function () {
+            $("#uname").text(localStorage.uname);
 
-        //    setInterval("showTime()", 1000);
-        //    $.ajax({
-        //        url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
-        //        async: false,
-        //        type: 'get',
-        //        //data: { id:  },
-        //        success: function (data) {
+            setInterval("showTime()", 1000);
+            $.ajax({
+                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
+                async: false,
+                type: 'get',
+                //data: { id:  },
+                success: function (data) {
 
-        //            $(data).each(function (index, data) {
+                    $(data).each(function (index, data) {
 
-        //                $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
-        //            })
-        //        }
-        //    })
-        //})
+                        $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
+                    })
+                }
+            })
+        })
 
     </script>
 
