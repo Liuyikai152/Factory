@@ -53,7 +53,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 所属装置
         /// </summary>
-        public string MyPrDeviceoperty { get; set; }
+        public string Device { get; set; }
 
         /// <summary>
         /// 设备名称
@@ -68,16 +68,18 @@ namespace SmartFactory.Model
         /// <summary>
         /// 采样频率
         /// </summary>
-        public Double Frequency { get; set; }
+        public Double ? Frequency { get; set; }
 
         /// <summary>
         /// 开始日期
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime ? StartDate { get; set; }
 
         /// <summary>
         /// 修改日期
         /// </summary>
-        public DateTime DateChanged { get; set; }
+        public DateTime ? DateChanged { get; set; }
+
+        public int UnitOrPump { get; set; }
     }
 }

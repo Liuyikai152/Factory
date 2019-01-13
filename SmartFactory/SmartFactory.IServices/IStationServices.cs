@@ -40,6 +40,6 @@ namespace SmartFactory.IServices
         /// 显示
         /// </summary>
         /// <returns></returns>
-        List<Station> GetStations();
+        List<Station> GetStations(string PNumber);
     }
 }

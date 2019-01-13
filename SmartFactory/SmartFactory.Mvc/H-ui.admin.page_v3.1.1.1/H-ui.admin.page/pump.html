@@ -138,13 +138,13 @@
 
     <section class="Hui-article-box">
         <form class="form form-horizontal" id="formData">
-            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
+            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel"  />
             <div>
                 <p id="alert" style="color:red"></p>
             </div>
             <div>
                 <div>
-                    <input type="button" id="btnS" value="提交" style="width:100px;" />
+                    <input type="button" id="btnS" value="提交" style="width:100px;" class="btn btn-success"/>
                 </div>
             </div>
 
@@ -154,13 +154,20 @@
                 <div style="margin-left:400px">
 
                   <span>所属装置</span>
-                    <select>
+                    <select id="AreaName">
                         <option value="">==请选择==</option>
                     </select>
                     <input type="text" class="input-text" style="width:150px" placeholder="机泵编码" value="" V-model="PumpNumber">
                     <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
                 </div>
                 <br />
+                <div>
+                   
+                    <input type="button"  value="新增" id="addPump" onclick="AddPump.html"  class="btn btn-success"/>
+                    &nbsp;&nbsp;&nbsp;<input type="text" id="out" style="width:50px;" /> 
+                    <input type="button" value="导出" id="outExcel" class="btn btn-success" />
+                    &nbsp;&nbsp;&nbsp;<input type="button" value="通知配置" id="config" class="btn btn-success"  />
+                </div>
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
                         <tr class="text-c">
@@ -176,7 +183,6 @@
                             <th width="80">删除</th>
 
                         </tr>
-
                         <tr v-for="test in tests" class="text-c">
                             <th>{{test.ID}}</th>
                             <th>{{test.AreaName}}</th>
@@ -184,7 +190,7 @@
                             <th>{{test.PumpName}}</th>
                             <th>{{test.HostName}}</th>
                             <th>{{test.AttachName}}</th>
-                            <th><a href='pump.html?id={{test.ID}}'>查看</a></th>
+                            <th><a href='pumpById.html?id={{test.ID}}'>查看</a></th>
                             <th><a href='FacilityByID.html?id={{test.ID}}'>编辑</a></th>
                             <th><a herf='#id={{test.ID}}'>删除</a> </th>
                         </tr>

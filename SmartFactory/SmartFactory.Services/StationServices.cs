@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 
+using MySql.Data.MySqlClient;
+
 namespace SmartFactory.Services
 {
     public class StationServices : IStationServices
@@ -13,7 +15,7 @@ namespace SmartFactory.Services
         FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
 
         /// <summary>
-        /// 添加主机/附机
+        /// 添加测点
         /// </summary>
         /// <param name="station"></param>
         /// <returns></returns>
@@ -24,7 +26,7 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
-        /// 删除主机/附机
+        /// 删除测点
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -46,12 +48,12 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
-        /// 显示
+        /// 显示测点
         /// </summary>
         /// <returns></returns>
-        public List<Station> GetStations()
+        public List<Station> GetStations(string PNumber)
         {
-            var stationList= factoryDBcontext.Station.ToList();
+            var stationList= factoryDBcontext.Database.SqlQuery<Station>("call Pro_GetStations(@PNumber)",new MySqlParameter("@PNumber", PNumber)).ToList();
             return stationList;
         }
 

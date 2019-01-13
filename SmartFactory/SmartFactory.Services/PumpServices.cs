@@ -45,7 +45,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public PumpNotMap GetByID(int id)
         {
-            var pumpNotMap = factoryDBcontext.Database.SqlQuery<PumpNotMap>("call Pro_GetPumpList").Where(n=>n.ID.Equals(id)).FirstOrDefault();
+            var pumpNotMap = factoryDBcontext.Database.SqlQuery<PumpNotMap>("call Pro_GetPumpList").FirstOrDefault(n=>n.ID.Equals(id));
             return pumpNotMap;
         }
 

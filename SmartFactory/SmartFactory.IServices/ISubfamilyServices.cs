@@ -40,6 +40,6 @@ namespace SmartFactory.IServices
         /// 显示子关系
         /// </summary>
         /// <returns></returns>
-        List<Subfamily> GetSubfamilies();
+        List<Subfamily> GetSubfamilies(string  PNumber);
     }
 }

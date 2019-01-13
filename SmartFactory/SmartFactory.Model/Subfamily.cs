@@ -51,17 +51,17 @@ namespace SmartFactory.Model
         /// <summary>
         /// 开始日期
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime ? StartDate { get; set; }
 
         /// <summary>
         /// 修改日期
         /// </summary>
-        public DateTime DateChanged { get; set; }
+        public DateTime ? DateChanged { get; set; }
 
         /// <summary>
         /// 机组Or机泵
         /// </summary>
-        public int UnitOrPump { get; set; }
+        public int ? UnitOrPump { get; set; }
 
     }
 }

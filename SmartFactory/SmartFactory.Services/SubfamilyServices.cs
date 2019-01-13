@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 
+using MySql.Data.MySqlClient;
+
 namespace SmartFactory.Services
 {
     public class SubfamilyServices : ISubfamilyServices
@@ -49,9 +51,9 @@ namespace SmartFactory.Services
         /// 显示
         /// </summary>
         /// <returns></returns>
-        public List<Subfamily> GetSubfamilies()
+        public List<Subfamily> GetSubfamilies(string PNumber)
         {
-            var subfamilyList= factoryDBcontext.Subfamily.ToList();
+            var subfamilyList= factoryDBcontext.Database.SqlQuery<Subfamily>("call Pro_Getsubfamily(@PNumber)", new MySqlParameter("@PNumber", PNumber) ).ToList();
             return subfamilyList;
         }
 

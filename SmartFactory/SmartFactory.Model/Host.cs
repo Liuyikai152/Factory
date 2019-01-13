@@ -27,6 +27,11 @@ namespace SmartFactory.Model
         /// <summary>
         /// 编号
         /// <summary>
+        public string Number { get; set; }
+
+        /// <summary>
+        /// 主机/附机编号
+        /// <summary>
         public string UnitNumber { get; set; }
 
         /// <summary>
@@ -57,31 +62,31 @@ namespace SmartFactory.Model
         /// <summary>
         /// 流量
         /// <summary>
-        public int Flow { get; set; }
+        public int? Flow { get; set; }
 
         /// <summary>
         /// 出口压力
         /// <summary>
-        public int Pressure { get; set; }
+        public int ? Pressure { get; set; }
 
         /// <summary>
         /// 出口温度
         /// <summary>
-        public int Temperature { get; set; }
+        public int ? Temperature { get; set; }
 
         /// <summary>
         /// 开始日期
         /// <summary>
-        public DateTime StartDate { get; set; }
+        public DateTime ? StartDate { get; set; }
 
         /// <summary>
         /// 修改日期
         /// <summary>
-        public DateTime DateChanged { get; set; }
+        public DateTime ? DateChanged { get; set; }
 
         /// <summary>
         /// 机组Or机泵
         /// <summary>
-        public int UnitOrPump { get; set; }
+        public int ? UnitOrPump { get; set; }
     }
 }

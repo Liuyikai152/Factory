@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
 namespace SmartFactory.Services
 {
     public class HostServices : IHostServices
@@ -45,9 +48,14 @@ namespace SmartFactory.Services
             return i;
         }
 
-        public List<Host> GetHost()
+       /// <summary>
+       /// 查询所有主机/附机
+       /// </summary>
+       /// <returns></returns>
+        public List<Host> GetHost(string PNumber)
         {
-            var hostList = factoryDBcontext.Host.ToList();
+           
+            var hostList = factoryDBcontext.Database.SqlQuery<Host>("call Pro_GetHostList(@PNumber)",new MySqlParameter("@PNumber", PNumber)).ToList();
             return hostList;
         }
 

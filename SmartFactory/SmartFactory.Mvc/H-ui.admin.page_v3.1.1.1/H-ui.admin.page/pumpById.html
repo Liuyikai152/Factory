@@ -145,7 +145,7 @@
             </div>
             <div>
                 <div>
-                    <input type="button" id="btnS" value="提交" style="width:100px;" />
+                    <input type="button" id="btnS" value="提交" style="width:100px;" class="btn btn-success" />
                 </div>
             </div>
 
@@ -156,13 +156,13 @@
                 <br />
                 <h3>查看机泵信息</h3>
 
-                
-                <div style="width:80%;height:800px; margin-left:80px;font-size:20px;">
+
+                <div style="width:80%;height:500px; margin-left:80px;font-size:20px;">
                     <div>
-                        <input type="button" value="返回" onclick="location.href='pump.html'" style="  width:100px;height:30px;" />
+                        <input type="button" value="返回" onclick="location.href='pump.html'" class="btn btn-success" style="  width:100px;height:30px;" />
                     </div>
                     <br />
-                    <div>
+                    <div style="float:left">
 
                         <p>
                             <span>所属装置: </span> {{test.PumpNumber}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -179,13 +179,78 @@
                         <p><span>功能描述： </span>{{test.Describe}}        </p>
 
                     </div>
-                    <!--<img src="{{test.StructureImg}}" style="width:100px;height:80px;" />-->
+                    <div style="float:right;width:500px;"> <img src="{{test.StructureImg}}" style="width:300px;height:200px;" /></div>
                 </div>
+                <div style="float:none;">
+                    <h4>主机/附机列表</h4>
+                    <table class="table table-border table-bordered table-bg table-hover table-sort">
+                        <thead>
+                            <tr class="text-c">
+                                <th width="80">类型</th>
+                                <th width="80">设备名称</th>
+                                <th width="80">设备位号</th>
+                                <th width="80">功率(KW)</th>
+                                <th width="80">转速(rpm)</th>
+                                <th width="80">流量(m3/h)</th>
+                                <th width="80">出口压力(MPa)</th>
+                                <th width="80">出口温度(C)</th>
+                            </tr>
+                            <tr v-for="host in hosts" class="text-c">
+                                <th>{{host.Type}}</th>
+                                <th>{{host.FacilityName}}</th>
+                                <th>{{host.BitNumber}}</th>
+                                <th>{{host.Power}}</th>
+                                <th>{{host.RotateSpeed}}</th>
+                                <th>{{host.Flow}}</th>
+                                <th>{{host.Pressure}}</th>
+                                <th>{{host.Temperature}}</th>
+                            </tr>
+                    </table>
 
+                </div>
+                <div style="margin-top:40px;">
+                    <h4>子系统列表</h4>
+                    <table class="table table-border table-bordered table-bg table-hover table-sort">
+                        <tr>
+                        <tr class="text-c">
+                            <th width="100">名称</th>
+                            <th width="400">功能描述</th>
+                        </tr>
+                        <tr v-for="subfamily in subfamilys" class="text-c">
+                            <th>{{subfamily.Name}}</th>
+                            <th>{{subfamily.Describe}}</th>
+                        </tr>
+                    </table>
 
+                </div>
+                <div style="margin-top:40px;">
+                    <h4>测点列表</h4>
+                    <table class="table table-border table-bordered table-bg table-hover table-sort">
+                        <thead>
+                            <tr class="text-c">
+                                <th width="80">测点名称</th>
+                                <th width="80">测点编号</th>
+                                <th width="80">计量单位</th>
+                                <th width="80">小数位数</th>
+                                <th width="80">采集方式</th>
+                                <th width="80">位号</th>
+                            </tr>
+                            <tr v-for="station in stations" class="text-c">
+                                <th>{{station.StationName}}</th>
+                                <th>{{station.StationNumber}}</th>
+                                <th>{{station.Measurement}}</th>
+                                <th>{{station.DecimalPlace}}</th>
+                                <th>{{station.ADMode}}</th>
+                                <th>{{station.BitNumber}}</th>
+                            </tr>
+                    </table>
+
+                </div>
             </article>
 
-        </div>
+        </div >
+
+       
     </section>
 
 
@@ -243,10 +308,29 @@
                    
                     this.$http.get(this.apiUrl + 'GetByID?id=' + this.pumpId, function (data) {
                         this.$set('test', data);
-                        console.log(data)
+                        if (data.PumpNumber!= null)
+                        {
+                            //主机/附机
+                            this.$http.get('http://localhost:8066/Host/GetHost?PNumber=' + data.PumpNumber, function (data) {
+                                this.$set('hosts', data);
+
+                            })
+
+                            //子系统
+                            this.$http.get('http://localhost:8066/SubFamily/GetSubfamilies?PNumber=' + data.PumpNumber, function (data) {
+                                this.$set('subfamilys', data);
+
+                            })
+
+                            //测点
+                            this.$http.get('http://localhost:8066/Station/GetStations?PNumber=' + data.PumpNumber, function (data) {
+                                this.$set('stations', data);
+
+                            })
+                        }
                     })
                 },
-
+               
             },
             //计算属性
             computed: {

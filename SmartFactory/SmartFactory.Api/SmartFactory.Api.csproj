@@ -142,6 +142,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\HostController.cs" />
     <Compile Include="Controllers\LocaTionController.cs" />
     <Compile Include="Controllers\ExcelController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
@@ -150,6 +151,8 @@
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\PumpController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\SubFamilyController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">

@@ -77,6 +77,7 @@ namespace SmartFactory.Api
             container.RegisterType<UsersRoleServices>().As<IUsersRoleServices>();
             container.RegisterType<UnitServices>().As<IUnitServices>();
             container.RegisterType<PumpServices>().As<IPumpServices>();
+            container.RegisterType<HostServices>().As<IHostServices>();
         }
     }
 }

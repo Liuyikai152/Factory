@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartFactory.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,10 @@ namespace SmartFactory.Services
     /// 连接MySql
     /// </summary>
     [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
-    public class FactoryDBcontext:DbContext
+    public class FactoryDBcontext : DbContext
     {
-        public FactoryDBcontext(): base("name=ArtLineDbContext")
+
+        public FactoryDBcontext() : base("name=ArtLineDbContext")
         {
             //阻止EF到数据中打探EdmMetadata（EdmMetadata：用于存储数据库中 EDM 的元数据的实体；
             //EDM的全称为Entity Data Model（实体数据模型），EDM模式在项目中的表现形式就是扩展名为.edmx的文件）
@@ -157,6 +159,13 @@ namespace SmartFactory.Services
         /// 设备制造商数据表
         /// </summary>
         public DbSet<FacilityGeneral> FacilityGeneral { get; set; }
-        
+
     }
 }
+
+
+   
+
+
+
+
