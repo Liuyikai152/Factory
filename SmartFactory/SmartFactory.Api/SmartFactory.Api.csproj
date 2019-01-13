@@ -140,7 +140,9 @@
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApprovalNodeController.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
+    <Compile Include="Controllers\ConditionsController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\LocaTionController.cs" />
     <Compile Include="Controllers\ExcelController.cs" />
