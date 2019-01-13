@@ -23,8 +23,8 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<ApprovalNode> GetApprovalNodes()
         {
-            var approvalNodeList = factoryDBcontext.Database.SqlQuery<ApprovalNode>("").ToList();
-            return approvalNodeList;
+            var approvalNodeList = from a in factoryDBcontext.ApprovalNode.ToList() select a;
+            return approvalNodeList.ToList();
         }
     }
 }

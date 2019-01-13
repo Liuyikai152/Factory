@@ -237,15 +237,21 @@
                             this.$set('list', data);
                         })
                     },
-                    deleteTests: function (id) {
-                        this.$http.get('http://localhost:8066/Configuration/DeleteConfiguration?id=' + id, function () {
-                            if (data > 0) {
-                                alert("删除")
+                   
+                     deleteTests: function (Id) {
+                         axios.get('http://localhost:8066/Configuration/DeleteConfiguration?id=' + Id).then((respose) => {
+                            if (respose.data > 0) {
+                                alert("删除成功!!!");
+                                this.getTests();
                             }
-                            this.getTests();
-
-                        })
-                    }
+                        },
+                            (response) => {
+                                alert(response.status);
+                            }
+                        ).catch(function (response) {
+                            alert(response);
+                        });
+                    },
 
                 }
             })

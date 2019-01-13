@@ -24,7 +24,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 审批流程ID
         /// <summary>
-        public int ProcessID { get; set; }
+        public int ? ProcessID { get; set; }
 
         /// <summary>
         /// 审批节点ID
@@ -79,7 +79,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 创建时间
         /// <summary>
-        public DateTime CreateTime { get; set; }
+        public DateTime ? CreateTime { get; set; }
 
     }
 }
