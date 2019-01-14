@@ -44,7 +44,7 @@
                 <div class="formControls col-xs-8 col-xs-offset-3">
 
                     <input name="" type="button" onclick="login()" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;陆&nbsp;">
-                    <input name="" type="button" onclick="login1()" class="btn btn-success radius size-L" value="维修工">
+                 
                     <input name="" type="button" onclick="login2()" class="btn btn-success radius size-L" value="操作员甲">
                     <input name="" type="button" onclick="login3()" class="btn btn-success radius size-L" value="操作员乙">
                     <input name="" type="button" onclick="login4()" class="btn btn-success radius size-L" value="普管">
@@ -86,32 +86,7 @@
 
         })
     }
-    function login1() {
-     
-
-        $.ajax({
-            url: "http://localhost:8066/Users/Login",
-            type: "get",
-            data:
-            {
-                userName: 1,
-                passWord: 1
-            },
-            success: function (data) {
-                if (data > 0) {
-                    //把用户名存入JS缓存
-                    localStorage.uname = $("#name").val();
-                    localStorage.ID = data;
-            
-                    location.href = "index.html";
-                }
-                else {
-                    alert(" 用户名或密码错误")
-                }
-            }
-
-        })
-    }
+  
     function login2() {
     
 

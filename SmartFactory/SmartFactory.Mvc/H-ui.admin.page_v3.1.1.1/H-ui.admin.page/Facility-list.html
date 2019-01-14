@@ -64,7 +64,7 @@
                 cursor: not-allowed;
             }
 
-        .page-bar .active a { 
+        .page-bar .active a {
             color: #fff;
             cursor: default;
             background-color: #337ab7;
@@ -118,16 +118,7 @@
     <!--/_header 作为公共模版分离出去-->
     <!--_menu 作为公共模版分离出去-->
     <aside class="Hui-aside">
-
-        <div class="menu_dropdown bk_2">
-
-
-
-            <ul id="powerList">
-                <li><a data-href="article-list.html" data-title="管理" href="javascript:void(0)">管理</a></li>
-            </ul>
-
-
+        <div id="Permision_List" class="menu_dropdown bk_2">
 
         </div>
     </aside>
@@ -228,7 +219,7 @@
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
-    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
@@ -281,7 +272,6 @@
                 getTests: function () {
                    // this.$http.get(this.apiUrl + 'GetFacility', { IsSiren: this.IsSiren, BitNumbers: this.BitNumbers, CompanyName: this.CompanyName, FactoryName: this.FactoryName, TypeName: this.TypeName, FacilityNumber: this.FacilityNumber, PageIndex: this.cur, }, function (data) {
                     this.$http.get(this.apiUrl + 'GetFacility?IsSiren=' + this.IsSiren + '&&BitNumbers=' + this.BitNumbers + '&&CompanyName=' + this.CompanyName + '&&FactoryName=' + this.FactoryName + '&&TypeName=' + this.TypeName + '&&FacilityNumber=' + this.FacilityNumber + '&&PageIndex=' + this.cur, function (data) {
-
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;
                         this.$set('tests', data.Data);
@@ -332,8 +322,9 @@
         })
 
         $(function () {
-            //$("#uname").text(localStorage.uname);
-            //setInterval("showTime()", 1000);
+
+            $("#uname").text(localStorage.uname);
+
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
@@ -341,7 +332,13 @@
                 //data: { id:  },
                 success: function (data) {
                     $(data).each(function (index, data) {
+
                         $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
+
+                        if (data.Pid == 0) {
+                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
+                        }
+                    })
                     })
                 }
             })
@@ -349,7 +346,7 @@
 
     </script>
 
-
+    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 角色权限
         /// </summary>
-       
+    
         public string Permission { get; set; }
 
         /// <summary>
