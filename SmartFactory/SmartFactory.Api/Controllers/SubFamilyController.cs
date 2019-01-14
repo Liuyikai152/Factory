@@ -27,5 +27,18 @@ namespace SmartFactory.Api.Controllers
             var subfamilyList = subfamilyServices.GetSubfamilies(PNumber);
             return subfamilyList;
         }
+
+        /// <summary>
+        /// 显示机组子关系
+        /// </summary>
+        /// <param name="PNumber"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetUnitSubfamilies")]
+        public List<Subfamily> GetUnitSubfamilies(string uNumber)
+        {
+            var subfamilyList = subfamilyServices.GetUnitSubfamilies(uNumber);
+            return subfamilyList;
+        }
     }
 }

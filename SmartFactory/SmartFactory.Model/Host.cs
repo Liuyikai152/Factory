@@ -52,17 +52,17 @@ namespace SmartFactory.Model
         /// <summary>
         /// 功率（KW）
         /// <summary>
-        public int Power { get; set; }
+        public int? Power { get; set; }
 
         /// <summary>
         /// 转速（rpm）
         /// <summary>
-        public int RotateSpeed { get; set; }
+        public int? RotateSpeed { get; set; }
 
         /// <summary>
         /// 流量
         /// <summary>
-        public int? Flow { get; set; }
+        public string Flow { get; set; }
 
         /// <summary>
         /// 出口压力
@@ -72,7 +72,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 出口温度
         /// <summary>
-        public int ? Temperature { get; set; }
+        public string  Temperature { get; set; }
 
         /// <summary>
         /// 开始日期

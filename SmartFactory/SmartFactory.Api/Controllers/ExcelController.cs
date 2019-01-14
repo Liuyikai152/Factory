@@ -23,6 +23,7 @@ namespace SmartFactory.Api.Controllers
     public class ExcelController : ApiController
     {
         public IPumpServices pumpServices { get; set; }
+        public IUnitServices  unitServices { get; set; }
 
         #region EXCEL导入
         /// <summary>
@@ -310,6 +311,19 @@ namespace SmartFactory.Api.Controllers
         public int GetPumps(string fileName, string tableName)
         {
             var list = pumpServices.GetPumps();
+
+            var dt = JsonConvert.DeserializeObject<DataTable>(JsonConvert.SerializeObject(list));
+
+            int i = ExportToExcel(dt, fileName, tableName);
+
+            return i;
+        }
+
+        [Route("GetUnit")]
+        [HttpGet]
+        public int GetUnit(string fileName, string tableName)
+        {
+            var list = unitServices.GetHost();
 
             var dt = JsonConvert.DeserializeObject<DataTable>(JsonConvert.SerializeObject(list));
 
