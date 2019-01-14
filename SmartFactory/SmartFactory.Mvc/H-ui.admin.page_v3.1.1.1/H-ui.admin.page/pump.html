@@ -137,17 +137,10 @@
     <!--/_menu 作为公共模版分离出去-->
 
     <section class="Hui-article-box">
-        <form class="form form-horizontal" id="formData">
-            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel"  />
+        <form class="form form-horizontal" id="formData">         
             <div>
                 <p id="alert" style="color:red"></p>
             </div>
-            <div>
-                <div>
-                    <input type="button" id="btnS" value="提交" style="width:100px;" class="btn btn-success"/>
-                </div>
-            </div>
-
         </form>
         <div class="Hui-article" id="app" style="margin-top:50px;">
             <article class="cl pd-20">
@@ -233,23 +226,23 @@
 
     <script type="text/javascript">
         $(function () {
-            $("#btnS").click(function () {
-                alert($("#formData")[0])
+            //导出
+            $("#outExcel").click(function () {
                 $.ajax({
-                    url: "http://localhost:8066/Import/Imports",
-                    contentType: false,
-                    processData: false,
-                    cache: false,
-                    data: new FormData($("#formData")[0]),
-                    type: 'POST',
+                    url: "http://localhost:8066/Excel/GetPumps",
+                    data: {
+                        fileName: $("#out").val(),
+                        tableName: "GetPump"
+                    },
+                    type: 'get',
                     success: function (data) {
+                      
                         if (data > 0) {
-                            $("#alert").text("导入成功");
-                        }
+                            $("#alert").text("导出成功");
+                        }                     
                     }
                 })
-
-            })
+            })              
         });
 
         var vm = new Vue({

@@ -22,6 +22,8 @@ namespace SmartFactory.Api.Controllers
     [RoutePrefix("Excel")]
     public class ExcelController : ApiController
     {
+        public IPumpServices pumpServices { get; set; }
+
         #region EXCEL导入
         /// <summary>
         /// 维修工单导入
@@ -303,5 +305,17 @@ namespace SmartFactory.Api.Controllers
             return i;
         }
 
+        [Route("GetPumps")]
+        [HttpGet]
+        public int GetPumps(string fileName, string tableName)
+        {
+            var list = pumpServices.GetPumps();
+
+            var dt = JsonConvert.DeserializeObject<DataTable>(JsonConvert.SerializeObject(list));
+
+            int i = ExportToExcel(dt, fileName, tableName);
+
+            return i;
+        }
     }
 }
