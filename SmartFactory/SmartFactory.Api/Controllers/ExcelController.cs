@@ -69,7 +69,7 @@ namespace SmartFactory.Api.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         //获得添加的sql语句 并执行
-                        string stuSQL = string.Format("insert into MaintenanceOrder(OrderNumber,Belongs,DeviceNumber,DeviceName,FaultName,FaultPart,HappenTime,CompletionTime,DownTime,HandlingMethod) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')",dt.Rows[i]["通知单号"],dt.Rows[i]["所属机组/机泵"],dt.Rows[i]["设备编号"],dt.Rows[i]["设备名称"],dt.Rows[i]["故障名称"],dt.Rows[i]["故障部位"],dt.Rows[i]["故障发生时间"],dt.Rows[i]["处理完成时间"],dt.Rows[i]["停机时间"],dt.Rows[i]["故障处理方法"]);
+                        string stuSQL = string.Format("insert into MaintenanceOrder(OrderNumber,Belongs,DeviceNumber,DeviceName,FaultName,FaultPart,HappenTime,CompletionTime,DownTime,HandlingMethod) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')", dt.Rows[i]["通知单号"], dt.Rows[i]["所属机组/机泵"], dt.Rows[i]["设备编号"], dt.Rows[i]["设备名称"], dt.Rows[i]["故障名称"], dt.Rows[i]["故障部位"], dt.Rows[i]["故障发生时间"], dt.Rows[i]["处理完成时间"], dt.Rows[i]["停机时间"], dt.Rows[i]["故障处理方法"]);
                         mySqlCommand.CommandText = stuSQL;
                         var addpowers = mySqlCommand.ExecuteNonQuery();
 
@@ -97,10 +97,10 @@ namespace SmartFactory.Api.Controllers
         /// <param name="destFileName">指定目标文件路径</param>
         /// <param name="tableName">要导出到的表名称</param>
         /// <returns>导出的记录的行数</returns>
-        public static int ExportToExcel(DataTable dt,string destFileName, string tableName)
+        public static int ExportToExcel(DataTable dt, string destFileName, string tableName)
         {
-            
-           
+
+
             //得到字段名
             string szFields = "";
             string szValues = "";
@@ -115,7 +115,7 @@ namespace SmartFactory.Api.Controllers
 
             OleDbConnection connection = new OleDbConnection();
 
-            connection.ConnectionString = GetConnectionString("C:\\"+destFileName+".xlsx");
+            connection.ConnectionString = GetConnectionString("C:\\" + destFileName + ".xlsx");
 
             OleDbCommand command = new OleDbCommand();
 
@@ -155,13 +155,13 @@ namespace SmartFactory.Api.Controllers
 
                     for (int j = 1; j < dt.Columns.Count; j++)
                     {
-                            szValues += "'" + dt.Rows[i][j] + "',";
+                        szValues += "'" + dt.Rows[i][j] + "',";
                     }
 
                     szValues = szValues.TrimEnd(',');
 
-                        //组合成SQL语句并执行
-                        string szSql = "INSERT INTO [" + tableName + "](" + szFields + ") VALUES(" + szValues + ")";
+                    //组合成SQL语句并执行
+                    string szSql = "INSERT INTO [" + tableName + "](" + szFields + ") VALUES(" + szValues + ")";
 
                     command.CommandText = szSql;
                     recordCount += command.ExecuteNonQuery();
@@ -193,7 +193,7 @@ namespace SmartFactory.Api.Controllers
             {
                 szSql += fields[i] + " Text,";
             }
-            szSql = szSql.TrimEnd(',') + ")";      
+            szSql = szSql.TrimEnd(',') + ")";
             return szSql;
 
         }
@@ -202,11 +202,31 @@ namespace SmartFactory.Api.Controllers
 
 
 
+        #region 上传图片
+        [HttpPost]
+        [Route("UpdateFileLoad")]
+        public string UpdateFileLoad()
+        {
+            //获取所选文件
+            HttpPostedFile getFile = HttpContext.Current.Request.Files["file"];
+            if (getFile != null)
+            {
+                //获得所选文件名
+                string fileName =  HttpContext.Current.Request.MapPath("~/Content/") + getFile.FileName;
+                if (!System.IO.File.Exists(fileName))
+                    getFile.SaveAs(fileName);
 
+                return "/Content/"+ getFile.FileName;
+            }
+            else {
+                return "";
+            }
+        }
+        #endregion
 
 
         #region  导出固定位置
-                 [Route("OutExcel")]
+        [Route("OutExcel")]
                 [HttpPost]
                 public   int OutExcel()
                 {
