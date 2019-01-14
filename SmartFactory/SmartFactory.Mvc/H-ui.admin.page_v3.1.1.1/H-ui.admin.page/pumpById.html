@@ -119,16 +119,7 @@
     <!--/_header 作为公共模版分离出去-->
     <!--_menu 作为公共模版分离出去-->
     <aside class="Hui-aside">
-
-        <div class="menu_dropdown bk_2">
-
-
-
-            <ul id="powerList">
-                <li><a data-href="article-list.html" data-title="管理" href="javascript:void(0)">管理</a></li>
-            </ul>
-
-
+        <div id="Permision_List" class="menu_dropdown bk_2">
 
         </div>
     </aside>
@@ -365,7 +356,7 @@
         $(function () {
             $("#uname").text(localStorage.uname);
 
-            setInterval("showTime()", 1000);
+ 
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
@@ -374,8 +365,14 @@
                 success: function (data) {
 
                     $(data).each(function (index, data) {
-
-                        $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
+                        if (data.Pid == 0) {
+                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
+                        }
+                    })
+                    $(data).each(function (index, data) {
+                        if (data.Pid != 0) {
+                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
+                        }
                     })
                 }
             })
