@@ -41,5 +41,12 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <returns></returns>
         List<Subfamily> GetSubfamilies(string  PNumber);
+
+        /// <summary>
+        /// 显示机组子关系
+        /// </summary>
+        /// <param name="uNumber"></param>
+        /// <returns></returns>
+        List<Subfamily> GetUnitSubfamilies(string uNumber);
     }
 }

@@ -69,5 +69,17 @@ namespace SmartFactory.Services
             factoryDBcontext.Entry(host).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
+
+        /// <summary>
+        /// 显示机组主机/附机列表
+        /// </summary>
+        /// <param name="PNumber"></param>
+        /// <returns></returns>
+        public List<Host> GetUnitHost(string uNumber)
+        {
+
+            var hostList = factoryDBcontext.Database.SqlQuery<Host>("CALL Pro_GetUnitHost(@uNumber)", new MySqlParameter("@uNumber", uNumber)).ToList();
+            return hostList;
+        }
     }
 }

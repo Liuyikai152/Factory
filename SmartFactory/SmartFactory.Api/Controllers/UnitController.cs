@@ -49,5 +49,17 @@ namespace SmartFactory.Api.Controllers
             return pumpNotMap;
         }
 
+        /// <summary>
+        /// 删除机组信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("DeleteUnit")]
+        [HttpGet]
+        public int DeleteUnit(int id)
+        {
+            var result = UnitServices.DeleteUnit(id);
+            return result;
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace SmartFactory.IServices
         int UpdateHost(Host host);
 
         /// <summary>
-        /// 查看机组
+        /// 查看机泵主机/附机
         /// </summary>
         /// <returns></returns>
         List<Host> GetHost(string PNumber);
@@ -42,5 +42,11 @@ namespace SmartFactory.IServices
         /// <param name="id"></param>
         /// <returns></returns>
         Host GetByID(int id);
+
+        /// <summary>
+        /// 查看机组主机/附机
+        /// </summary>
+        /// <returns></returns>
+        List<Host> GetUnitHost(string uNumber);
     }
 }

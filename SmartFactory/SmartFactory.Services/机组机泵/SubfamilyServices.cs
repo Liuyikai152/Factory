@@ -67,5 +67,16 @@ namespace SmartFactory.Services
             factoryDBcontext.Entry(subfamily).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
+
+        /// <summary>
+        /// 显示机组子系统列表
+        /// </summary>
+        /// <param name="PNumber"></param>
+        /// <returns></returns>
+        public List<Subfamily> GetUnitSubfamilies(string uNumber)
+        {
+            var subfamilyList = factoryDBcontext.Database.SqlQuery<Subfamily>("call Pro_GetUnitSubfamily(@uNumber)", new MySqlParameter("@uNumber", uNumber)).ToList();
+            return subfamilyList;
+        }
     }
 }

@@ -68,5 +68,16 @@ namespace SmartFactory.Services
             factoryDBcontext.Entry(station).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
+
+        /// <summary>
+        /// 显示机组测点列表
+        /// </summary>
+        /// <param name="PNumber"></param>
+        /// <returns></returns>
+        public List<Station> GetUnitStations(string uNumber)
+        {
+            var stationList = factoryDBcontext.Database.SqlQuery<Station>("call Pro_GetUnitStations(@uNumber)", new MySqlParameter("@uNumber", uNumber)).ToList();
+            return stationList;
+        }
     }
 }

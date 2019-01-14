@@ -10,7 +10,7 @@
     <link rel="Bookmark" href="favicon.ico">
     <link rel="Shortcut Icon" href="favicon.ico" />
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/html5.js"></scri76 pt>
     <script type="text/javascript" src="lib/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
@@ -20,15 +20,65 @@
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-    <script>DD_belatedPNG.fix('*');</script>
-    <![endif]-->
+    <script>DD_belatedPNG.fix('*');</script><![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
     <title>机组详情</title>
-    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+
 </head>
 <body>
+    <style>
+        .page-bar {
+            margin: 40px;
+        }
+
+        ul, li {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        li {
+            list-style: none
+        }
+
+        .page-bar li:first-child > a {
+            margin-left: 0px
+        }
+
+        .page-bar a {
+            border: 1px solid #ddd;
+            text-decoration: none;
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            cursor: pointer
+        }
+
+            .page-bar a:hover {
+                background-color: #eee;
+            }
+
+            .page-bar a.banclick {
+                cursor: not-allowed;
+            }
+
+        .page-bar .active a {
+            color: #fff;
+            cursor: default;
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+
+        .page-bar i {
+            font-style: normal;
+            color: #d44950;
+            margin: 0px 4px;
+            font-size: 12px;
+        }
+    </style>
     <!--_header 作为公共模版分离出去-->
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
@@ -69,16 +119,7 @@
     <!--/_header 作为公共模版分离出去-->
     <!--_menu 作为公共模版分离出去-->
     <aside class="Hui-aside">
-
-        <div class="menu_dropdown bk_2">
-
-
-
-            <ul id="powerList">
-                <li><a data-href="article-list.html" data-title="管理" href="javascript:void(0)">管理</a></li>
-            </ul>
-
-
+        <div id="Permision_List" class="menu_dropdown bk_2">
 
         </div>
     </aside>
@@ -87,138 +128,237 @@
     </div>
     <!--/_menu 作为公共模版分离出去-->
 
-    <section class="Hui-article-box">
-        <nav class="breadcrumb">
-            <i class="Hui-iconfont">&#xe67f;</i> 首页
-            <span class="c-gray en">&gt;</span>
-            管理员管理
-            <span class="c-gray en">&gt;</span>
-            管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
-        </nav>
+    <section class="Hui-article-box" style="background-color:azure">
+        <form class="form form-horizontal" id="formData">
+            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
+            <div>
+                <p id="alert" style="color:red"></p>
+            </div>
+            <div>
+                <div>
+                    <input type="button" id="btnS" value="提交" style="width:100px;" class="btn btn-success" />
+                </div>
+            </div>
 
-        <div class="Hui-article" id="app" style="background-color:azure">
+        </form>
+        <div class="Hui-article" id="app" style="margin-top:50px; ">
             <article class="cl pd-20">
 
-                <div>
-                    <input type="button" value="返回" onclick="location.href='unit.html'" style="margin-left:100px;  width:100px;height:30px;" />
-                </div>
-
-                <div style="margin:100px  auto  auto 150px;">
+                <br />
+                <h3>查看机组信息</h3>
 
 
-                    <h3><span>序号：</span>{{test.ID}}</h3>
-                    <p style="font-size:18px;">
-                        <span>所属装置：</span> {{test.AreaName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>机组编号：</span>{{test.UnitNumber}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>机组名称：</span>{{test.UnitName}}
-                    </p>
-                    <h3><span>主机名称：</span>{{test.AttachName}} </h3>
+                <div style="width:80%;height:500px; margin-left:80px;font-size:20px;">
+                    <div>
+                        <input type="button" value="返回" onclick="location.href='pump.html'" class="btn btn-success" style="  width:100px;height:30px;" />
+                    </div>
                     <br />
-                    <p style="font-size:18px;">
-                        <span>附机名称：</span>{{test.HostName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>详细信息：</span>{{test.Describe}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>操作人：</span>{{test.CrewLeader}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div style="float:left">
 
-                    </p>
+                        <p>
+                            <span>所属装置: </span> {{test.AreaName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>机组编号: </span>{{test.UnitNumber}}
+                        </p>
+                        <p>
+                            <span>机组名称: </span>{{test.UnitName}}
+
+                        </p>
+                        <p>
+                            <span>机组负责人：</span>{{test.CrewLeader}}
+
+                        </p>
+                        <p><span>功能描述： </span>{{test.Describe}}        </p>
+
+                    </div>
+                    <div style="float:right;width:500px;"> <img src="{{test.StructureImg}}" style="width:300px;height:200px;" /></div>
+                </div>
+                <div style="float:none;">
+                    <h4>主机/附机列表</h4>
+                    <table class="table table-border table-bordered table-bg table-hover table-sort">
+                        <thead>
+                            <tr class="text-c">
+                                <th width="80">类型</th>
+                                <th width="80">设备名称</th>
+                                <th width="80">设备位号</th>
+                                <th width="80">功率(KW)</th>
+                                <th width="80">转速(rpm)</th>
+                                <th width="80">流量(m3/h)</th>
+                                <th width="80">出口压力(MPa)</th>
+                                <th width="80">出口温度(C)</th>
+                            </tr>
+                            <tr v-for="host in hosts" class="text-c">
+                                <th>{{host.Type}}</th>
+                                <th>{{host.FacilityName}}</th>
+                                <th>{{host.BitNumber}}</th>
+                                <th>{{host.Power}}</th>
+                                <th>{{host.RotateSpeed}}</th>
+                                <th>{{host.Flow}}</th>
+                                <th>{{host.Pressure}}</th>
+                                <th>{{host.Temperature}}</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+                <div style="margin-top:40px;">
+                    <h4>子系统列表</h4>
+                    <table class="table table-border table-bordered table-bg table-hover table-sort">
+
+                        <tr class="text-c">
+                            <th width="100">名称</th>
+                            <th width="400">功能描述</th>
+                        </tr>
+                        <tr v-for="subfamily in subfamilys" class="text-c">
+                            <th>{{subfamily.Name}}</th>
+                            <th>{{subfamily.Describe}}</th>
+
+                        </tr>
+                    </table>
+
+                </div>
+                <div style="margin-top:40px;">
+                    <h4>测点列表</h4>
+                    <table class="table table-border table-bordered table-bg table-hover table-sort">
+                        <thead>
+                            <tr class="text-c">
+                                <th width="80">测点名称</th>
+                                <th width="80">测点编号</th>
+                                <th width="80">计量单位</th>
+                                <th width="80">小数位数</th>
+                                <th width="80">采集方式</th>
+                                <th width="80">位号</th>
+                            </tr>
+                            <tr v-for="station in stations" class="text-c">
+                                <th>{{station.StationName}}</th>
+                                <th>{{station.StationNumber}}</th>
+                                <th>{{station.Measurement}}</th>
+                                <th>{{station.DecimalPlace}}</th>
+                                <th>{{station.ADMode}}</th>
+                                <th>{{station.BitNumber}}</th>
+                            </tr>
+                        </thead>
+                    </table>
 
                 </div>
             </article>
+
         </div>
+
+
     </section>
+
+
+
 
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
-    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
-    <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="lib/datatables/1.10.0/jquery.datatables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-    <script src="../../Scripts/GetParse.js"></script>
+    <script src="../../Scripts/vue.min.js"></script>
+    <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
+    <script src="../../Scripts/GetParse.js"></script>
+
     <script type="text/javascript">
+        $(function () {
+            $("#btnS").click(function () {
+                alert($("#formData")[0])
+                $.ajax({
+                    url: "http://localhost:8066/Import/Imports",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    data: new FormData($("#formData")[0]),
+                    type: 'POST',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#alert").text("导入成功");
+                        }
+                    }
+                })
+
+            })
+        });
 
         var vm = new Vue({
             el: "#app",
             data: {
-                mainId: getPar("id"),
-                apiUrl: 'http://localhost:8066/Unit/',
-                testdata: {}
+                pumpId: getPar("id"),
+                apiUrl: "http://localhost:8066/Unit/",
             },
             ready: function () {
                 this.getTests()
             },
             methods: {
                 getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetById?id=' + this.mainId, function (data) {
+
+                    this.$http.get(this.apiUrl + 'GetByid?id=' + this.pumpId, function (data) {
                         this.$set('test', data);
+                        if (data.UnitNumber != null) {
+                            //主机/附机
+                            this.$http.get('http://localhost:8066/Host/GetUnitHost?uNumber=' + data.UnitNumber, function (data) {
+                                this.$set('hosts', data);
+
+                            })
+
+                            //子系统
+                            this.$http.get('http://localhost:8066/SubFamily/GetUnitSubfamilies?uNumber=' + data.UnitNumber, function (data) {
+                                this.$set('subfamilys', data);
+
+                            })
+
+                            //测点
+                            this.$http.get('http://localhost:8066/Station/GetUnitStations?uNumber=' + data.UnitNumber, function (data) {
+                                this.$set('stations', data);
+
+                            })
+                        }
                     })
                 },
 
-
             },
+            //计算属性
+            computed: {
+                indexs: function () {
+                    var left = 1;
+                    var right = this.all;
+                    var ar = [];
+                    if (this.all >= 5) {
+                        if (this.cur > 3 && this.cur < this.all - 2) {
+                            left = this.cur - 2
+                            right = this.cur + 2
+                        } else {
+                            if (this.cur <= 3) {
+                                left = 1
+                                right = 5
+                            } else {
+                                right = this.all
+                                left = this.all - 4
+                            }
+                        }
+                    }
+                    while (left <= right) {
+                        ar.push(left)
+                        left++
+                    }
+                    return ar
+                }
 
-        });
-
-
-        /*
-            参数解释：
-            title	标题
-            url		请求的url
-            id		需要操作的数据id
-            w		弹出层宽度（缺省调默认值）
-            h		弹出层高度（缺省调默认值）
-        */
-        /*管理员-增加*/
-        function admin_add(title, url, w, h) {
-            layer_show(title, url, w, h);
-        }
-        /*管理员-删除*/
-        function admin_del(obj, id) {
-            layer.confirm('确认要删除吗？', function (index) {
-                //此处请求后台程序，下方是成功后的前台处理……
-
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', { icon: 1, time: 1000 });
-            });
-        }
-        /*管理员-编辑*/
-        function admin_edit(title, url, id, w, h) {
-            layer_show(title, url, w, h);
-        }
-        /*管理员-停用*/
-        function admin_stop(obj, id) {
-            layer.confirm('确认要停用吗？', function (index) {
-                //此处请求后台程序，下方是成功后的前台处理……
-
-                $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
-                $(obj).remove();
-                layer.msg('已停用!', { icon: 5, time: 1000 });
-            });
-        }
-
-        /*管理员-启用*/
-        function admin_start(obj, id) {
-            layer.confirm('确认要启用吗？', function (index) {
-                //此处请求后台程序，下方是成功后的前台处理……
-
-                $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-                $(obj).remove();
-                layer.msg('已启用!', { icon: 6, time: 1000 });
-            });
-        }
-
+            }
+        })
 
         $(function () {
             $("#uname").text(localStorage.uname);
 
-            setInterval("showTime()", 1000);
+
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
@@ -227,13 +367,24 @@
                 success: function (data) {
 
                     $(data).each(function (index, data) {
-
-                        $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
+                        if (data.Pid == 0) {
+                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
+                        }
+                    })
+                    $(data).each(function (index, data) {
+                        if (data.Pid != 0) {
+                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
+                        }
                     })
                 }
             })
         })
+
     </script>
+    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
+
+
 </html>

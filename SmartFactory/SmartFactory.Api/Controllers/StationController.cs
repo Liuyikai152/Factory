@@ -28,5 +28,17 @@ namespace SmartFactory.Api.Controllers
             return stationList;
         }
 
+
+        /// <summary>
+        /// 显示测点
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetUnitStations")]
+        public List<Station> GetUnitStations(string uNumber)
+        {
+            var stationList = stationServices.GetUnitStations(uNumber);
+            return stationList;
+        }
     }
 }

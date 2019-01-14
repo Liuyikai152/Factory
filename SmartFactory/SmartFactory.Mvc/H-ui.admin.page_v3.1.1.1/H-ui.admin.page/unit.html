@@ -128,21 +128,26 @@
     <!--/_menu 作为公共模版分离出去-->
 
     <section class="Hui-article-box">
-        <form class="form form-horizontal" id="formData">
-            <input id="File1" type="file" accept=".xls,.xlsx" name="Excel" />
-            <div>
-                <p id="alert" style="color:red"></p>
-            </div>
-            <div>
-                <div>
-                    <input type="button" id="btnS" value="提交" style="width:100px;" />
-                </div>
-            </div>
 
-        </form>
         <div class="Hui-article" id="app" style="margin-top:50px;">
             <article class="cl pd-20">
-               
+                <div style="margin-left:400px">
+
+                    <span>所属装置</span>
+                    <select id="AreaName">
+                        <option value="">==请选择==</option>
+                    </select>
+                    <input type="text" class="input-text" style="width:150px" placeholder="机组编码" value="" V-model="PumpNumber">
+                    <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
+                </div>
+                <br />
+                <div>
+
+                    <input type="button" value="新增" id="addPump" onclick="AddPump.html" class="btn btn-success" />
+                    &nbsp;&nbsp;&nbsp;<input type="text" id="out" style="width:50px;" />
+                    <input type="button" value="导出" id="outExcel" class="btn btn-success" />
+                    &nbsp;&nbsp;&nbsp;<input type="button" value="通知配置" id="config" class="btn btn-success" />
+                </div>
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
                         <tr class="text-c">
@@ -166,10 +171,10 @@
                             <th>{{test.UnitName}}</th>
                             <th>{{test.AttachName}}</th>
                             <th>{{test.HostName}}</th>
-                           
+
                             <th><a href='unitByID.html?id={{test.ID}}'>查看</a></th>
                             <th><a href='FacilityByID.html?id={{test.ID}}'>编辑</a></th>
-                            <th><a herf='#？id={{test.ID}}'>删除</a> </th>
+                            <th><a herf='#' v-on:click="DeleteUnitById(test.ID)">删除</a> </th>
                         </tr>
 
                 </table>
@@ -207,33 +212,34 @@
     <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-
+    <script src="../../Scripts/axios.js"></script>
+  
     <script type="text/javascript">
         $(function () {
-            $("#btnS").click(function () {
-                alert($("#formData")[0])
+            //导出
+            $("#outExcel").click(function () {
                 $.ajax({
-                    url: "http://localhost:8066/Import/Imports",
-                    contentType: false,
-                    processData: false,
-                    cache: false,
-                    data: new FormData($("#formData")[0]),
-                    type: 'POST',
+                    url: "http://localhost:8066/Excel/GetUnit",
+                    data: {
+                        fileName: $("#out").val(),
+                        tableName: "GetPump"
+                    },
+                    type: 'get',
                     success: function (data) {
+
                         if (data > 0) {
-                            $("#alert").text("导入成功");
+                            $("#alert").text("导出成功");
                         }
                     }
                 })
-
             })
         });
 
         var vm = new Vue({
             el: "#app",
             data: {
-                    all: 8,
-                    cur: 1,
+                all: 8,
+                cur: 1,
                 apiUrl: "http://localhost:8066/Unit/",
 
             },
@@ -242,12 +248,31 @@
             },
             methods: {
                 getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetUnit', { PageIndex: this.cur,}, function (data) {
+                    this.$http.get(this.apiUrl + 'GetUnit', { PageIndex: this.cur, }, function (data) {
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;
                         this.$set('tests', data.Data);
                     })
                 },
+
+                DeleteUnitById: function (id) {
+
+                    axios.get('http://localhost:8066/Unit/DeleteUnit?id=' + id).then(
+                        (response) => {
+                            if (response.data > 0) {
+                              
+                                this.getTests(this.cur);
+                                
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
 
                 btnClick: function (data) {//页码点击事件
                     if (data != this.cur) {
@@ -262,6 +287,9 @@
                     this.getTests(this.cur);
                 },
             },
+
+
+
             //计算属性
             computed: {
                 indexs: function () {
@@ -291,6 +319,30 @@
 
             }
         })
+        //function del(id, obj) {
+        //    alert(id)
+        //    if (confirm("确定删除吗?")) {
+        //        $.ajax({
+        //            url: 'http://localhost:8066/Unit/DeleteUnit?id=' + id,
+        //            type: 'get',
+        //            data: {
+        //                //ID: ID
+        //            },
+        //            success: function (data) {
+
+        //                if (data > 0) {
+        //                    alert("删除成功");
+        //                    $(obj).parent().parent().remove();
+        //                    location.href = "unit.html";
+        //                }
+        //                else {
+        //                    alert("删除失败");
+        //                }
+        //            }
+        //        })
+        //    }
+        //}
+
 
         $(function () {
             $("#uname").text(localStorage.uname);

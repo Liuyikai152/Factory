@@ -28,5 +28,17 @@ namespace SmartFactory.Api.Controllers
             var hostList = hostServices.GetHost(PNumber);
             return hostList;
         }
+
+        /// <summary>
+        /// 查询所有主机/附机
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetUnitHost")]
+        [HttpGet]
+        public List<Host> GetUnitHost(string uNumber)
+        {
+            var hostList = hostServices.GetUnitHost(uNumber);
+            return hostList;
+        }
     }
 }

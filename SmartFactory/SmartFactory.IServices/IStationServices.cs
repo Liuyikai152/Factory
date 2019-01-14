@@ -41,5 +41,12 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <returns></returns>
         List<Station> GetStations(string PNumber);
+
+        /// <summary>
+        /// 显示机组测点
+        /// </summary>
+        /// <param name="uNumber"></param>
+        /// <returns></returns>
+        List<Station> GetUnitStations(string uNumber);
     }
 }
