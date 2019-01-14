@@ -324,7 +324,6 @@
         $(function () {
 
             $("#uname").text(localStorage.uname);
-
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
