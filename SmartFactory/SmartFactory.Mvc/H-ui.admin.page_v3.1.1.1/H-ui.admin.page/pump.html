@@ -138,7 +138,7 @@
                 <div style="margin-left:400px">
 
                   <span>所属装置</span>
-                    <select id="AreaName">
+                    <select id="AreaName" v-model="AreaNumber">
                         <option value="">==请选择==</option>
                     </select>
                     <input type="text" class="input-text" style="width:150px" placeholder="机泵编码" value="" V-model="PumpNumber">
@@ -224,7 +224,7 @@
                 data: {},
                 success: function (res) {
                     $(res).each(function (index, data) {
-                        $("#AreaName").append("<option value=" + data.AreaNumber + ">" + data.AreaName + "</option>")
+                        $("#AreaName").append("<option value=" + data.AreaName + " >" + data.AreaName + "</option>")
                     })
 
                 }
@@ -256,16 +256,17 @@
                 all: 8,
                 cur: 1,
                 apiUrl: "http://localhost:8066/Pump/",
-
+                AreaNumber: $("#AreaName").val()
 
             },
             ready: function () {
-                this.getTests()
+                this.getTests();
+
             },
             methods: {
                 getTests: function () {
-                    this.$http.get(this.apiUrl + 'GetPumps', { PageIndex: this.cur, }, function (data) {
-
+                   
+                    this.$http.get(this.apiUrl + 'GetPumps', { PageIndex: this.cur, AreaNumber: this.AreaNumber, PumpNumber: this.PumpNumber }, function (data) {                      
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;
                         this.$set('tests', data.Data);

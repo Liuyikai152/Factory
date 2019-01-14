@@ -80,10 +80,17 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetPumps")]
-        public PageBox GetPumps(int PageIndex=1)
+        public PageBox GetPumps(string AreaNumber,string PumpNumber, int PageIndex=1)
         {
             PageBox pageBox = new PageBox();
             var pumpList = pumpServices.GetPumps();
+            if (AreaNumber != null && AreaNumber != "") {
+                pumpList = pumpList.Where(n => n.AreaName.Equals(AreaNumber)).ToList();
+            }
+            if (PumpNumber!=null&&PumpNumber!="")
+            {
+                pumpList = pumpList.Where(n => n.PumpNumber.Contains(PumpNumber)).ToList();
+            }
             pageBox.PageIndex = PageIndex;
             pageBox.PageSize = PAGESIZE;
             pageBox.PageCount = pumpList.Count / PAGESIZE + (pumpList.Count % PAGESIZE == 0 ? 0 : 1);
