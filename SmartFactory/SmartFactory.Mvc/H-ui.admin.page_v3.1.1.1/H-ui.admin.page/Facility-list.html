@@ -334,7 +334,7 @@
         $(function () {
             $("#uname").text(localStorage.uname);
 
-            setInterval("showTime()", 1000);
+            //setInterval("showTime()", 1000);
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
