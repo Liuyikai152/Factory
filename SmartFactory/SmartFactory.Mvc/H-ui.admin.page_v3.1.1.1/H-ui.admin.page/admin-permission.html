@@ -121,16 +121,7 @@
     <!--/_header 作为公共模版分离出去-->
     <!--_menu 作为公共模版分离出去-->
     <aside class="Hui-aside">
-
-        <div class="menu_dropdown bk_2">
-
-
-
-            <ul id="powerList">
-                <li><a data-href="article-list.html" data-title="管理" href="javascript:void(0)">管理</a></li>
-            </ul>
-
-
+        <div id="Permision_List" class="menu_dropdown bk_2">
 
         </div>
     </aside>
@@ -164,7 +155,7 @@
                             <th>{{test.PermissionName}}</th>
                             <th>{{test.PermissionUrl}}</th>
                             <th>{{test.IsUser}}</th>
-                           
+
 
                             <th><a href="javascript:;" onclick="admin_permission_edit({{test.ID}})" class="btn btn-primary radius"><i class="Hui-iconfont"></i> 修改</a></th>
                         </tr>
@@ -183,7 +174,7 @@
                     </ul>
                 </div>
             </article>
-           
+
         </div>
     </section>
 
@@ -191,7 +182,7 @@
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
-    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
 
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
@@ -282,7 +273,7 @@
         //        all: 8,
         //        cur: 1,
         //        apiUrl: 'http://localhost:8066/Permission/',
-              
+
         //    },
         //    ready: function () {
         //        this.getTests()
@@ -291,7 +282,7 @@
         //        getTests: function () {
         //            this.$http.get(this.apiUrl + 'GetPermission', { PageIndex: this.cur}, function (data) {
         //                this.cur = data.PageIndex;
-        //                this.all = data.PageCount; 
+        //                this.all = data.PageCount;
         //                this.$set('tests', data);
         //            })
         //        },
@@ -370,29 +361,27 @@
 
         $(function () {
             $("#uname").text(localStorage.uname);
-
-            setInterval("showTime()", 1000);
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
                 type: 'get',
                 //data: { id:  },
                 success: function (data) {
-
                     $(data).each(function (index, data) {
-
-                        $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
+                        if (data.Pid == 0) {
+                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
+                        }
+                    })
+                    $(data).each(function (index, data) {
+                        if (data.Pid != 0) {
+                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
+                        }
                     })
                 }
             })
-
-
-
-
-
-
         })
     </script>
+    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

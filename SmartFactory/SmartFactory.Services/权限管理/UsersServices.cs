@@ -64,7 +64,7 @@ namespace SmartFactory.Services
             return result;
         }
 
-        /// <summary>
+        /// <summary>`  
         /// 删除
         /// </summary>
         /// <param name="id"></param>
