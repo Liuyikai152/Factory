@@ -61,5 +61,7 @@ namespace SmartFactory.Api.Controllers
             var result = UnitServices.DeleteUnit(id);
             return result;
         }
+
+
     }
 }
