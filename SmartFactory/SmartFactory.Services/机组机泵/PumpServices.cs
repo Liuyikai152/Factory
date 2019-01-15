@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SmartFactory.IServices;
 using SmartFactory.Model;
+using MySql.Data.MySqlClient;
 
 namespace SmartFactory.Services
 {
@@ -45,7 +46,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public PumpNotMap GetByID(int id)
         {
-            var pumpNotMap = factoryDBcontext.Database.SqlQuery<PumpNotMap>("call Pro_GetPumpList").FirstOrDefault(n=>n.ID.Equals(id));
+            var pumpNotMap = factoryDBcontext.Database.SqlQuery<PumpNotMap>("call Pro_GetPumpByID(@id)",new MySqlParameter("@id",id)).FirstOrDefault();
             return pumpNotMap;
         }
 

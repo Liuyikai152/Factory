@@ -27,6 +27,21 @@ namespace SmartFactory.Api.Controllers
         [Route("AddPump")]
         public int AddPump(Pump pump)
         {
+            pump.StartDate = DateTime.Now;
+            pump.DateChanged = DateTime.Now;
+            pump.IsSiren = 0;
+            switch (pump.Device)
+            {
+                case "C001":
+                    {
+                        pump.HostName = "Q1";
+                        pump.AttachName = "Q2";
+                    };break;
+                default: {
+                        pump.HostName = "Y1";
+                        pump.AttachName = "Y2";
+                    };break;
+            }
             int i= pumpServices.AddPump(pump);
             return i;
         }
@@ -65,10 +80,17 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetPumps")]
-        public PageBox GetPumps(int PageIndex=1)
+        public PageBox GetPumps(string AreaNumber,string PumpNumber, int PageIndex=1)
         {
             PageBox pageBox = new PageBox();
             var pumpList = pumpServices.GetPumps();
+            if (AreaNumber != null && AreaNumber != "") {
+                pumpList = pumpList.Where(n => n.AreaName.Equals(AreaNumber)).ToList();
+            }
+            if (PumpNumber!=null&&PumpNumber!="")
+            {
+                pumpList = pumpList.Where(n => n.PumpNumber.Contains(PumpNumber)).ToList();
+            }
             pageBox.PageIndex = PageIndex;
             pageBox.PageSize = PAGESIZE;
             pageBox.PageCount = pumpList.Count / PAGESIZE + (pumpList.Count % PAGESIZE == 0 ? 0 : 1);

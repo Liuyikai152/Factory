@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\AddPump.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\404.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-add.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-list.html" />

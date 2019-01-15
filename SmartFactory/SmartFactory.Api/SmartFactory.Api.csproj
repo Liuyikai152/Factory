@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\1.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -144,6 +145,7 @@
     <Compile Include="Controllers\CompanyCodeController.cs" />
     <Compile Include="Controllers\ConditionsController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\FacilityAreaController.cs" />
     <Compile Include="Controllers\HostController.cs" />
     <Compile Include="Controllers\LocaTionController.cs" />
     <Compile Include="Controllers\ExcelController.cs" />
