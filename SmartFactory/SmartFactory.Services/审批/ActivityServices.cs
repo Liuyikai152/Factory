@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 using System.Data.Entity;
+using MySql.Data.MySqlClient;
 
 namespace SmartFactory.Services
 {
@@ -49,9 +50,14 @@ namespace SmartFactory.Services
         /// 查看审批活动
         /// </summary>
         /// <returns></returns>
-        public List<Activity> GetActivities()
+        public List<ActivityNotMappit> GetActivities(string name,string state)
         {
-            var activityList = factoryDBcontext.Database.SqlQuery<Activity>("").ToList();
+            MySqlParameter[] mySqlParameter = new MySqlParameter[]
+            {
+                new MySqlParameter ("@userNames",name),
+                new MySqlParameter ("@states",state),
+            }; 
+            var activityList = factoryDBcontext.Database.SqlQuery<ActivityNotMappit>("CALL Pro_GetActivity (@userNames, @states)",mySqlParameter).ToList();
             return activityList;
         }
 

@@ -96,8 +96,8 @@ namespace SmartFactory.Api.Controllers
                     
                 }
                 return i;
-            }
-            return 0;
+           }
+           return 0;
            
         }
     }

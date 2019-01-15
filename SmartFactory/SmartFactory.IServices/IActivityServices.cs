@@ -25,7 +25,7 @@ namespace SmartFactory.IServices
         /// 查看审批活动
         /// </summary>
         /// <returns></returns>
-        List<Activity> GetActivities();
+        List<ActivityNotMappit> GetActivities(string name, string state);
 
         /// <summary>
         ///  修改审批流程状态
