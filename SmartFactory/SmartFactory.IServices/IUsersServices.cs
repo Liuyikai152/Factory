@@ -61,5 +61,10 @@ namespace SmartFactory.IServices
         /// <returns></returns>
         List<UserInfo> GetPermissiomUrl(int id);
 
+        /// <summary>
+        /// 显示人员
+        /// </summary>
+        /// <returns></returns>
+        List<Users> GetApprovalUsers();
     }
 }

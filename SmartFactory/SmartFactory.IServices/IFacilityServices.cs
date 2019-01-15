@@ -27,5 +27,12 @@ namespace SmartFactory.IServices
         /// <param name="id"></param>
         /// <returns></returns>
         FacilityNotMapp GetById(int id);
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="facility"></param>
+        /// <returns></returns>
+        int UpdateSiren(int ID, int IsSiren);
     }
 }

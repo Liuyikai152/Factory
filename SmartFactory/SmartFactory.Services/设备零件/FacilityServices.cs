@@ -8,6 +8,7 @@ namespace SmartFactory.Services
 {
     using SmartFactory.Model;
     using SmartFactory.IServices;
+    using MySql.Data.MySqlClient;
 
     /// <summary>
     /// 设备/零件实现类
@@ -39,6 +40,21 @@ namespace SmartFactory.Services
 
             var i = factoryDBcontext.Database.SqlQuery<FacilityNotMapp>("call pro_getFacilitys").ToList();
             return i;
+
+        }
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="facility"></param>
+        /// <returns></returns>
+        public int UpdateSiren(int ID, int IsSiren)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[] {
+                new MySqlParameter("@ids",ID),
+                new MySqlParameter("@isSiren",IsSiren),
+            };
+            return factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_UpdateFacility (@ids,@isSiren)", parameters);
 
         }
     }

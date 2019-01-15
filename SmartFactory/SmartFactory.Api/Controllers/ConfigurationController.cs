@@ -29,6 +29,19 @@ namespace SmartFactory.Api.Controllers
         }
 
         /// <summary>
+        /// 添加审批流程配置
+        /// </summary>
+        /// <param name="facilitymanu"></param>
+        /// <returns></returns>
+        [Route("AddConfiguration")]
+        [HttpPost]
+        public int AddConfiguration(Configuration configuration)
+        {
+            var i = configurationsServices.AddConfiguration(configuration);
+            return i;
+        }
+
+        /// <summary>
         /// 删除审批活动
         /// </summary>
         /// <param name="id"></param>

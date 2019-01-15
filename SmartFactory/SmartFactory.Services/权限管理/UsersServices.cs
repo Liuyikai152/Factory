@@ -97,6 +97,16 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
+        /// 审批人
+        /// </summary>
+        /// <returns></returns>
+        public List<Users> GetApprovalUsers()
+        {
+            var userList = from a in factoryDBcontext.Users.ToList() select a;
+            return userList.ToList();
+        }
+
+        /// <summary>
         /// 获取权限路径
         /// </summary>
         /// <param name="id"></param>

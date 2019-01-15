@@ -74,7 +74,18 @@ namespace SmartFactory.Api.Controllers
            
 
         }
-        
 
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("UpdateSiren")]
+        public int UpdateSiren(int ID, int IsSiren)
+        {
+            var i = FacilityServices.UpdateSiren(ID, IsSiren);
+            return i;
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 审批节点ID
         /// <summary>
-        public int NodeID { get; set; }
+        public int? NodeID { get; set; }
 
         /// <summary>
         /// 配置流程编码
@@ -39,37 +39,37 @@ namespace SmartFactory.Model
         /// <summary>
         /// 审批角色ID
         /// <summary>
-        public int ApprovalRoleID { get; set; }
+        public int? ApprovalRoleID { get; set; }
 
         /// <summary>
         /// 下一步审批角色ID
         /// <summary>
-        public int NextApprovalRoleID { get; set; }
+        public int? NextApprovalRoleID { get; set; }
 
         /// <summary>
         /// 审批人员ID
         /// <summary>
-        public int ApprovalUserID { get; set; }
+        public int? ApprovalUserID { get; set; }
 
         /// <summary>
         /// 下一步审批人员ID
         /// <summary>
-        public int NextApprovalUserID { get; set; }
+        public int? NextApprovalUserID { get; set; }
 
         /// <summary>
         /// 判断条件ID
         /// <summary>
-        public int JudgmentID { get; set; }
+        public int? JudgmentID { get; set; }
 
         /// <summary>
         /// 审批状态ID
         /// <summary>
-        public int StateID { get; set; }
+        public int? StateID { get; set; }
 
         /// <summary>
         /// 实际审批状态ID
         /// <summary>
-        public int TureStateID { get; set; }
+        public int? TureStateID { get; set; }
 
         /// <summary>
         /// 创建人

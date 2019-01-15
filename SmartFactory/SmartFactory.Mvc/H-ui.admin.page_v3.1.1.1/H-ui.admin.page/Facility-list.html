@@ -27,6 +27,26 @@
 </head>
 <body>
     <style>
+        .messageBox {
+            height: 52px;
+            padding: 35px 53px 0 78px;
+            line-height: 52px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            border: 5px solid #ddd;
+            border-top: 0;
+            color: #444;
+            font-size: 18px;
+            z-index: 9999;
+        }
+
+        .messageError {
+            background-position: -441px -673px;
+        }
+
         .page-bar {
             margin: 40px;
         }
@@ -37,11 +57,11 @@
         }
 
         li {
-            list-style: none
+            list-style: none;
         }
 
         .page-bar li:first-child > a {
-            margin-left: 0px
+            margin-left: 0px;
         }
 
         .page-bar a {
@@ -53,7 +73,7 @@
             margin-left: -1px;
             line-height: 1.42857143;
             color: #337ab7;
-            cursor: pointer
+            cursor: pointer;
         }
 
             .page-bar a:hover {
@@ -118,7 +138,16 @@
     <!--/_header 作为公共模版分离出去-->
     <!--_menu 作为公共模版分离出去-->
     <aside class="Hui-aside">
-        <div id="Permision_List" class="menu_dropdown bk_2">
+
+        <div class="menu_dropdown bk_2">
+
+
+
+            <ul id="powerList">
+                <li><a data-href="article-list.html" data-title="管理" href="javascript:void(0)">管理</a></li>
+            </ul>
+
+
 
         </div>
     </aside>
@@ -160,6 +189,7 @@
                     <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
                 </div>
 
+                <div class="messageBox"></div>
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
                         <tr class="text-c">
@@ -179,18 +209,21 @@
                         </tr>
 
                         <tr v-for="test in tests" class="text-c">
-                            <th>{{test.ID}}</th>
-                            <th>{{test.FacilityNumber}}</th>
-                            <th>{{test.FacilityName}}</th>
-                            <th>{{test.BitNumbers}}</th>
-                            <th>{{test.CompanyName}}</th>
-                            <th>{{test.FactoryName}}</th>
-                            <th>{{test.FactoryName1}}</th>
-                            <th>{{test.AreaName}}</th>
-                            <th>{{test.GroupName}}</th>
-                            <th>{{test.TypeName}}</th>
-                            <th>{{test.IsSiren==3?"警示":"正常"}} </th>
-                            <th><a href='FacilityByID.html?id={{test.ID}}'>查看</a></th>
+                            <td>{{test.ID}}</td>
+                            <td>{{test.FacilityNumber}}</td>
+                            <td>{{test.FacilityName}}</td>
+                            <td>{{test.BitNumbers}}</td>
+                            <td>{{test.CompanyName}}</td>
+                            <td>{{test.FactoryName}}</td>
+                            <td>{{test.FactoryName1}}</td>
+                            <td>{{test.AreaName}}</td>
+                            <td>{{test.GroupName}}</td>
+                            <td>{{test.TypeName}}</td>
+                            <td>{{test.IsSiren==3?"警示":"正常"}} </td>
+                            <td>
+                                <a href='#' onclick='UpdateSiren({{test.ID}},{{test.IsSiren==3?4:3}})'>报警</a>
+                                <a href='FacilityByID.html?id={{test.ID}}'>查看</a>
+                            </td>
 
                         </tr>
 
@@ -219,7 +252,7 @@
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
-
+    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
@@ -272,6 +305,7 @@
                 getTests: function () {
                    // this.$http.get(this.apiUrl + 'GetFacility', { IsSiren: this.IsSiren, BitNumbers: this.BitNumbers, CompanyName: this.CompanyName, FactoryName: this.FactoryName, TypeName: this.TypeName, FacilityNumber: this.FacilityNumber, PageIndex: this.cur, }, function (data) {
                     this.$http.get(this.apiUrl + 'GetFacility?IsSiren=' + this.IsSiren + '&&BitNumbers=' + this.BitNumbers + '&&CompanyName=' + this.CompanyName + '&&FactoryName=' + this.FactoryName + '&&TypeName=' + this.TypeName + '&&FacilityNumber=' + this.FacilityNumber + '&&PageIndex=' + this.cur, function (data) {
+
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;
                         this.$set('tests', data.Data);
@@ -322,8 +356,8 @@
         })
 
         $(function () {
-
-            $("#uname").text(localStorage.uname);
+            //$("#uname").text(localStorage.uname);
+            //setInterval("showTime()", 1000);
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
@@ -331,22 +365,38 @@
                 //data: { id:  },
                 success: function (data) {
                     $(data).each(function (index, data) {
-                        if (data.Pid == 0) {
-                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
-                        }
-                    })
-                    $(data).each(function (index, data) {
-                        if (data.Pid != 0) {
-                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
-                        }
+                        $("#powerList").append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>")
                     })
                 }
             })
         })
 
+        //修改报警状态
+        function UpdateSiren(ID, IsSiren) {
+            if (confirm("是否要继续进行审核？")) {
+                $.ajax({
+                    url: "http://localhost:8066/Facility/UpdateSiren",
+                    data: {
+                        ID: ID,
+                        IsSiren: IsSiren,
+                    },
+                    type: "get",
+                    success: function (data) {
+                        if (data > 0) {
+                            $(".messageBox").removeClass("messageError").text("修改成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                        }
+                        else {
+                            alert("失败");
+                        }
+                    }
+                })
+            }
+        }
+
+
     </script>
 
-    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 
