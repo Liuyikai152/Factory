@@ -148,12 +148,12 @@
                 <h3>查看机组信息</h3>
 
 
-                <div style="width:80%;height:500px; margin-left:80px;font-size:20px;">
+                <div style="width:80%;height:400px; margin-left:80px;font-size:20px;">
                     <div>
                         <input type="button" value="返回" onclick="location.href='pump.html'" class="btn btn-success" style="  width:100px;height:30px;" />
                     </div>
                     <br />
-                    <div style="float:left">
+                    <div style="float:left;width:65%;">
 
                         <p>
                             <span>所属装置: </span> {{test.AreaName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -170,7 +170,11 @@
                         <p><span>功能描述： </span>{{test.Describe}}        </p>
 
                     </div>
-                    <div style="float:right;width:500px;"> <img src="{{test.StructureImg}}" style="width:300px;height:200px;" /></div>
+                    <div style="float:right;width:35%; margin-bottom:20px;">
+                        <img src="http://localhost:8066/{{test.ChartImg}}" style="width:300px;height:200px;" />
+
+                    </div>
+
                 </div>
                 <div style="float:none;">
                     <h4>主机/附机列表</h4>
