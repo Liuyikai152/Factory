@@ -222,7 +222,51 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
+    <script type="text/javascript">
+	      $(function () {
+            var demo = new Vue({
+                el: '#app',
+                data: {
+                    apiUrl: 'http://localhost:8066/Configuration/GetConfiguration',
+                    testdata: {}
+                },
+                ready: function () {
+                    this.getTests()
+                },
+                methods: {
 
+                    getTests: function () {
+
+                        this.$http.get('http://localhost:8066/Configuration/GetConfiguration', function (data) {
+                            this.$set('list', data);
+                        })
+                    },
+
+                    deleteTests: function (Id) {
+                        if (confirm("是否确认删除？")) {
+                            axios.get('http://localhost:8066/Configuration/DeleteConfiguration?id=' + Id).then((respose) => {
+                                if (respose.data > 0) {
+                                    this.getTests();
+                                }
+                            },
+                                (response) => {
+                                    alert(response.status);
+                                }
+                            ).catch(function (response) {
+                                alert(response);
+                            });
+
+                        }
+                    },
+
+
+
+
+                }
+            })
+        });
+
+    </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
