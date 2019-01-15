@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\1.png" />
+    <Content Include="Content\2.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

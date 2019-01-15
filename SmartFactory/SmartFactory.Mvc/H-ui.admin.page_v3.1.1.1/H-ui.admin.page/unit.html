@@ -143,7 +143,7 @@
                 <br />
                 <div>
 
-                    <input type="button" value="新增" id="addPump" onclick="AddPump.html" class="btn btn-success" />
+                    <input type="button" value="新增" id="addPump" onclick="AddUnit()" class="btn btn-success" />
                     &nbsp;&nbsp;&nbsp;<input type="text" id="out" style="width:50px;" />
                     <input type="button" value="导出" id="outExcel" class="btn btn-success" />
                     &nbsp;&nbsp;&nbsp;<input type="button" value="通知配置" id="config" class="btn btn-success" />
@@ -342,7 +342,9 @@
         //        })
         //    }
         //}
-
+        function AddUnit() {
+            location.href = "unit-add.html";
+        }
 
         $(function () {
             $("#uname").text(localStorage.uname);

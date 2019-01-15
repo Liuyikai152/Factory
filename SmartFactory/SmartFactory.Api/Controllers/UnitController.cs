@@ -14,7 +14,7 @@ namespace SmartFactory.Api.Controllers
     [RoutePrefix("Unit")]
     public class UnitController : ApiController
     {
-        public IUnitServices UnitServices { get; set; }
+        public IUnitServices unitServices { get; set; }
 
         /// <summary>
         /// 显示
@@ -25,7 +25,7 @@ namespace SmartFactory.Api.Controllers
         [Route("GetUnit")]
         public PageBox GetUnit(int PageIndex=1)
         {
-            List<UnitNotMapped> Unitlist = UnitServices.GetHost();
+            List<UnitNotMapped> Unitlist = unitServices.GetHost();
             PageBox pageBox = new PageBox();
 
             pageBox.PageIndex = PageIndex;
@@ -45,7 +45,7 @@ namespace SmartFactory.Api.Controllers
         [Route("GetByID")]
         public UnitNotMapped GetByID(int id)
         {
-            var pumpNotMap = UnitServices.GetByID(id);
+            var pumpNotMap = unitServices.GetByID(id);
             return pumpNotMap;
         }
 
@@ -58,7 +58,20 @@ namespace SmartFactory.Api.Controllers
         [HttpGet]
         public int DeleteUnit(int id)
         {
-            var result = UnitServices.DeleteUnit(id);
+            var result = unitServices.DeleteUnit(id);
+            return result;
+        }
+
+        /// <summary>
+        /// 添加机组
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <returns></returns>
+        [Route("AddUnit")]
+        [HttpPost]
+        public int AddUnit(Unit unit)
+        {
+            var result = unitServices.AddUnit(unit);
             return result;
         }
 
