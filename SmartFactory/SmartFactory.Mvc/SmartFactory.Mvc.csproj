@@ -119,6 +119,7 @@
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-role-update.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-update.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\pump-add.html" />
+    <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\unit-update.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\unitByID.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\FacilityByID.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\admin-permission-add.html" />

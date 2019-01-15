@@ -23,18 +23,25 @@ namespace SmartFactory.Api.Controllers
         public const int PAGESIZE = 2;
         [HttpGet]
         [Route("GetUnit")]
-        public PageBox GetUnit(int PageIndex=1)
+        public PageBox GetUnit(string AreaNumber, string UnitNumbers, int PageIndex = 1)
         {
-            List<UnitNotMapped> Unitlist = unitServices.GetHost();
             PageBox pageBox = new PageBox();
-
+            var unitList = unitServices.GetHost();
+            if (AreaNumber != null && AreaNumber != "")
+            {
+                unitList = unitList.Where(n => n.AreaName.Equals(AreaNumber)).ToList();
+            }
+            if (UnitNumbers != null && UnitNumbers != "")
+            {
+                unitList = unitList.Where(n => n.UnitNumber.Contains(UnitNumbers)).ToList();
+            }
             pageBox.PageIndex = PageIndex;
             pageBox.PageSize = PAGESIZE;
-            pageBox.PageCount = Unitlist.Count / PAGESIZE + (Unitlist.Count % PAGESIZE == 0 ? 0 : 1);
-            pageBox.Data = Unitlist.Skip((PageIndex - 1) * PAGESIZE).Take(PAGESIZE);
+            pageBox.PageCount = unitList.Count / PAGESIZE + (unitList.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = unitList.Skip((PageIndex - 1) * PAGESIZE).Take(PAGESIZE);
             return pageBox;
-           
         }
+
 
         /// <summary>
         /// 获取单个ID
@@ -75,6 +82,31 @@ namespace SmartFactory.Api.Controllers
             return result;
         }
 
+        /// <summary>
+        /// 修改机组
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <returns></returns>
+        [Route("UpdateUnit")]
+        [HttpPost]
+        public int UpdateUnit(Unit unit)
+        {
+            var result = unitServices.UpdateUnit(unit);
+            return result;
+        }
 
+
+        /// <summary>
+        /// 获取机组单个id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("GetUnitByID")]
+        [HttpGet]
+        public Unit GetUnitByID(int id)
+        {
+            var result = unitServices.GetUnitByID(id);
+            return result;
+        }
     }
 }
