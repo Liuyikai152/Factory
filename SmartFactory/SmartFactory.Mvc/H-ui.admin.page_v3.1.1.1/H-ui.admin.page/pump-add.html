@@ -76,11 +76,16 @@
     <div class="dislpayArrow hidden-xs"> <a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a> </div>
     <!--/_menu 作为公共模版分离出去-->
 
-    <section class="Hui-article-box">
-       
-        <div class="Hui-article" id="app">
+    <section class="Hui-article-box" style="background-color:azure">       
+        <div class="Hui-article" id="app" style="margin-left:80px;">
             <article class="cl pd-20" id="pumpAdd">
-                <form action="" method="post" class="form form-horizontal" id="formData">
+                <h3>机泵配置</h3>
+                <form action="" method="post" class="form form-horizontal" id="formData" style="margin-left:30px;">
+                    <div class="row cl">
+                        <div>
+                            <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
+                        </div>
+                    </div>
                     <div class="row cl">
                         <label>所属装置：</label>
                         <select name="Device">
@@ -89,6 +94,7 @@
                         </select>
 
                         <label>机泵编号：</label>
+                        <input type="hidden" name="ID" id="pumpid"/>
                         <input type="text" autocomplete="off" value="" placeholder="机泵编号" id="" name="PumpNumber">
 
 
@@ -114,11 +120,7 @@
                         <input type="hidden" name="StructureImg" id="StructureImg" />
                         <img src="" id="fileImg" style="width:200px;height:120px;" />
                     </div>
-                    <div class="row cl">
-                        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                            <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
-                        </div>
-                    </div>
+
                 </form>
             </article>
 
