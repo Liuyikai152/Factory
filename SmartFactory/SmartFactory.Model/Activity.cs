@@ -69,7 +69,7 @@ namespace SmartFactory.Model
         /// <summary>
         /// 实际审批状态
         
-        public int TureState { get; set; }
+        public int TureStateID { get; set; }
 
         /// <summary>
         /// 创建人
