@@ -14,6 +14,9 @@ namespace SmartFactory.Api.Controllers
     public class FacilityController : ApiController
     {
         public IFacilityServices FacilityServices { get; set; }
+
+        public IActivityServices activityServices { get; set; }
+
         /// <summary>
         /// 查看所有零件
         /// </summary>
@@ -82,10 +85,20 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("UpdateSiren")]
-        public int UpdateSiren(int ID, int IsSiren)
+        public int UpdateSiren(int ID, int IsSiren,int judgment)
         {
-            var i = FacilityServices.UpdateSiren(ID, IsSiren);
-            return i;
+            if(IsSiren==3)
+            {
+                var i = FacilityServices.UpdateSiren(ID, IsSiren);
+                if (i > 0)
+                {
+                    activityServices.AddActivity(judgment);
+                    
+                }
+                return i;
+            }
+            return 0;
+           
         }
     }
 }

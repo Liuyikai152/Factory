@@ -379,14 +379,16 @@
                     data: {
                         ID: ID,
                         IsSiren: IsSiren,
+                        judgment:2,
                     },
                     type: "get",
                     success: function (data) {
                         if (data > 0) {
                             $(".messageBox").removeClass("messageError").text("修改成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                            
                         }
                         else {
-                            alert("失败");
+                            $(".messageBox").removeClass("messageError").text("设备报警不能修改！！！").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                         }
                     }
                 })

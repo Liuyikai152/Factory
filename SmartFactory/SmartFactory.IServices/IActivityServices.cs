@@ -14,6 +14,12 @@ namespace SmartFactory.IServices
     /// </summary>
     public interface IActivityServices
     {
+        /// <summary>
+        /// 添加审批活动
+        /// </summary>
+        /// <param name="activity"></param>
+        /// <returns></returns>
+        int AddActivity(int judgment);
 
         /// <summary>
         /// 查看审批活动
