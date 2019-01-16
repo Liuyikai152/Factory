@@ -48,12 +48,22 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
-        /// 显示
+        /// 根据条件显示
         /// </summary>
         /// <returns></returns>
-        public List<Subfamily> GetSubfamilies(string PNumber)
+        public List<Subfamily> GetSubfamilieByNumber(string PNumber)
         {
-            var subfamilyList= factoryDBcontext.Database.SqlQuery<Subfamily>("call Pro_Getsubfamily(@PNumber)", new MySqlParameter("@PNumber", PNumber) ).ToList();
+            var subfamilyList= factoryDBcontext.Database.SqlQuery<Subfamily>("call Pro_GetsubfamilyByNumber(@PNumber)",new MySqlParameter("@PNumber", PNumber)).ToList();
+            return subfamilyList;
+        }
+
+        /// <summary>
+        /// 显示所有
+        /// </summary>
+        /// <returns></returns>
+        public List<Subfamily> GetSubfamilie()
+        {
+            var subfamilyList = factoryDBcontext.Database.SqlQuery<Subfamily>("call Pro_Getsubfamily").ToList();
             return subfamilyList;
         }
 
