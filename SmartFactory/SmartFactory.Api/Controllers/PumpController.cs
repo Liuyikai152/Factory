@@ -18,7 +18,7 @@ namespace SmartFactory.Api.Controllers
 
         public IPumpServices pumpServices { get; set; }
         public IActivityServices activityServices { get; set; }
-
+        public const int PAGESIZE = 3;
         /// <summary>
         /// 添加机泵
         /// </summary>
@@ -62,7 +62,7 @@ namespace SmartFactory.Api.Controllers
             var pumpNotMap = pumpServices.GetByID(id);
             return pumpNotMap;
         }
-        public const int PAGESIZE= 3;
+       
 
         /// <summary>
         /// 显示
@@ -89,7 +89,7 @@ namespace SmartFactory.Api.Controllers
         }
 
         /// <summary>
-        /// 修改警告状态
+        /// 修改
         /// </summary>
         /// <param name="pump"></param>
         /// <returns></returns>

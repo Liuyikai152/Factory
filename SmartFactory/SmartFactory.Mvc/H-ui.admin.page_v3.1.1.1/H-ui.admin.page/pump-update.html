@@ -42,16 +42,16 @@
                 </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机泵编号：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机组编号：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="PumpNumber" name="PumpNumber" v-model="test.UnitNumber">
+                        <input type="text" class="input-text" placeholder="" id="PumpNumber" name="PumpNumber" v-model="test.PumpNumber">
                     </div>
                 </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机泵名称：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机组名称：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="PumpName" name="PumpName" v-model="test.UnitName">
+                        <input type="text" class="input-text" placeholder="" id="PumpName" name="PumpName" v-model="test.PumpName">
                     </div>
                 </div>
 
@@ -69,10 +69,33 @@
                     </div>
                 </div>
 
+
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机组描述：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="Describe" name="Describe" v-model="test.Describe">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>负责人：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="CrewLeader" name="CrewLeader" v-model="test.CrewLeader">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图片：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="StructureImg" name="StructureImg" v-model="test.StructureImg">
+                    </div>
+                </div>
+
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3">报警状态：</label>
                     <div class="check-box">
-                        <input type="radio" id="IsSiren" name="IsSiren" v-model="test.IsSiren" value="4" checked="checked" />
+                        <input type="radio" id="IsSiren" name="IsSiren" v-model="test.IsSiren" value="4" />
                         正常
                         <!--value="启用"value="停用"-->
                     </div>
@@ -84,7 +107,7 @@
 
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                        <input class="btn btn-primary radius" v-on:click="update(test.ID,test.Device,test.UnitNumber,test.UnitName,test.HostName,test.AttachName,test.IsSiren)" type="button" value="提交">
+                        <input class="btn btn-primary radius" v-on:click="update(test.ID,test.Device,test.UnitNumber,test.UnitName,test.HostName,test.AttachName,test.Describe,test.CrewLeader,test.ChartImg,test.IsSiren)" type="button" value="提交">
                     </div>
 
                 </div>
@@ -118,19 +141,19 @@
             el: "#app",
             data: {
                 mainId: getPar("id"),
-                apiUrl: 'http://localhost:8066/Unit/',
+                apiUrl: 'http://localhost:8066/Pump/',
                 testdata: {}
             },
             ready: function () {
-                this.GetUnit()
+                this.GetPump()
             },
             methods: {
-                GetUnit: function () {
-                    this.$http.get(this.apiUrl + 'GetUnitByID?id=' + this.mainId, function (data) {
+                GetPump: function () {
+                    this.$http.get(this.apiUrl + 'GetByID?id=' + this.mainId, function (data) {
                         this.$set('test', data);
                     })
                 },
-                update: function (ID, Device, UnitNumber, UnitName, HostName, AttachName, IsSiren) {
+                update: function (ID, Device, UnitNumber, UnitName, HostName, AttachName, Describe, CrewLeader, ChartImg, IsSiren) {
 
                     var params = new URLSearchParams();
                     params.append('ID', ID);
@@ -139,6 +162,9 @@
                     params.append('UnitName', UnitName);
                     params.append('HostName', HostName);
                     params.append('AttachName', AttachName);
+                    params.append('Describe', Describe);
+                    params.append('CrewLeader', CrewLeader);
+                    params.append('ChartImg', ChartImg);
                     params.append('IsSiren', IsSiren);
                     axios.post('http://localhost:8066/Unit/UpdateUnit', params).then(
                         (response) => {
@@ -160,88 +186,6 @@
             }
 
         });
-
-            //var id = getPar("id");
-            //$(function () {
-            //    alert(id);
-            //    //反填
-            //    $.ajax({
-            //        url: 'http://localhost:8066/Permission/GetByID?id=' + id,
-            //        async: false,
-            //        type: "get",
-            //        //  data: { id: getUrlParam("id")},
-            //        success: function (data) {
-            //            $("input[name=ID]").val(data[0].ID);
-            //            $("input[name=PermissionName]").val(data[0].PermissionName);
-
-            //            $("input[name=PermissionUrl]").val(data[0].PermissionUrl);
-            //            $("input[name=IsUser][value='" + data[0].IsUser + "']").attr("checked", "checked")
-
-
-            //        }
-            //    })
-
-            //})
-
-            //var vm = new Vue({
-            //    el: "#app",
-
-            //    methods: {
-            //        //ID, PermissionName, PermissionUrl, Isuser
-            //        update: function (ID, PermissionName, PermissionUrl, Isuser) {
-
-            //            var params = new URLSearchParams();
-            //            //params.append('ID', ID);
-            //            //params.append('PermissionName', PermissionName);
-            //            //params.append('PermissionUrl', PermissionUrl);
-            //            //params.append('Isuser', Isuser);
-
-            //            axios.post('http://localhost:8066/Permission/UpdatePermission', params).then(
-            //                (response) => {
-            //                    console.log(response.data);
-            //                    if (response.data > 0) {
-            //                        alert("修改成功!!!");
-
-            //                    }
-            //                    //console.info(this.list);
-            //                },
-            //                (response) => {
-            //                    alert(response.status);
-            //                }
-            //            ).catch(function (response) {
-            //                alert(response);
-            //            });
-            //        },
-            //    }
-
-
-
-            //})
-
-
-
-
-
-                            //function update() {
-                            //    $.ajax({
-                            //        url: "http://localhost:24380/Permission/updatePermission",
-                            //        type: "post",
-                            //        data: $("#form").serialize(),
-                            //        //data: { ID: $("input[name=ID]").val(), Name: $("#Name").val(), Discription: $("#Discription").val(), URL: $("#url").val(), IsUser: $("IsUser").val() },
-                            //        success: function (data) {
-
-                            //            if (data > 0) {
-                            //                alert("修改成功");
-
-
-                            //            }
-                            //            else {
-                            //                alert("修改失败")
-                            //            }
-                            //        }
-                            //    })
-                            //}
-
 
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
