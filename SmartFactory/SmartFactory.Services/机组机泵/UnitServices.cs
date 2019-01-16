@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 using SmartFactory.IServices;
 using SmartFactory.Model;
 
@@ -65,6 +66,17 @@ namespace SmartFactory.Services
         {
             factoryDBcontext.Entry(unit).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
+        }
+
+        /// <summary>
+        /// 获取机组单个id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Unit GetUnitByID(int id)
+        {
+            var unitList = factoryDBcontext.Database.SqlQuery<Unit>("call Pro_GetUnitId(@ids)", new MySqlParameter("@ids", id)).FirstOrDefault();
+            return unitList;
         }
     }
 }
