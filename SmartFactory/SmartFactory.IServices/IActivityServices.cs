@@ -28,6 +28,23 @@ namespace SmartFactory.IServices
         List<ActivityNotMappit> GetActivities(string name, string state);
 
         /// <summary>
+        /// 修改审批状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        int UpdateState(int ID, int state, int trueState);
+
+        /// <summary>
+        /// 驳回审批状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="trueState"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        int UpdateNoState(int ID, int trueState);
+
+        /// <summary>
         ///  修改审批流程状态
         /// </summary>
         /// <param name="ActivityNumber"></param>

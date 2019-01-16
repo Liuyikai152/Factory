@@ -28,5 +28,33 @@ namespace SmartFactory.Api.Controllers
             return ActivityList;
         }
 
+        /// <summary>
+        /// 修改审批状态
+        /// </summary>
+        /// <param name="facility"></param>
+        /// <returns></returns>
+        [Route("UpdateState")]
+        [HttpGet]
+        public int UpdateState(int ID, int trueState, int state)
+        {
+            var i = activityServices.UpdateState(ID,trueState, state);
+            return i;
+        }
+
+        /// <summary>
+        /// 驳回审批状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="trueState"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("UpdateNoState")]
+        public int UpdateNoState(int ID, int trueState)
+        {
+            var i = activityServices.UpdateNoState(ID, trueState);
+            return i;
+        }
+
     }
 }
