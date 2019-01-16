@@ -62,7 +62,22 @@ namespace SmartFactory.Api.Controllers
             var pumpNotMap = pumpServices.GetByID(id);
             return pumpNotMap;
         }
-       
+
+
+        /// <summary>
+        /// 获取单个ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetPumpByID")]
+        public Pump GetPumpByID(int id)
+        {
+            FactoryDBcontext factoryDBcontext = new FactoryDBcontext();
+            var pump = factoryDBcontext.Pump.Find(id);
+            return pump;
+        }
+
 
         /// <summary>
         /// 显示
