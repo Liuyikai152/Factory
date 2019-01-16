@@ -94,7 +94,7 @@
 
                         <label><span class="c-red">*</span>机组名称：</label>
                         <input type="text" autocomplete="off" value="" placeholder="机组名称" id="" name="UnitName">
-                        <input type="hidden" name="" value="" />
+                        <input type="hidden" name="CrewLeader" value="" />
                     </div>
                     <div class="row cl">
                         <label>机组描述：</label>
@@ -120,6 +120,85 @@
                         </div>
                     </div>
                 </form>
+
+                <div id="app" style="float:none;margin-top:70px;margin-bottom:100px;">
+                    <div>
+                        <h4>主机/附机列表</h4>
+                        <div>
+                            <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        </div>
+                        <table class="table table-border table-bordered table-bg table-hover table-sort">
+                            <thead>
+                                <tr class="text-c">
+                                    <th width="80">类型</th>
+                                    <th width="80">设备名称</th>
+                                    <th width="80">设备位号</th>
+                                    <th width="80">功率(KW)</th>
+                                    <th width="80">转速(rpm)</th>
+                                    <th width="80">流量(m3/h)</th>
+                                    <th width="80">出口压力(MPa)</th>
+                                    <th width="80">出口温度(C)</th>
+                                    <th width="80">操作</th>
+                                </tr>
+                                <tr v-for="host in hosts" class="text-c">
+                                    <th>{{host.Type}}</th>
+                                    <th>{{host.FacilityName}}</th>
+                                    <th>{{host.BitNumber}}</th>
+                                    <th>{{host.Power}}</th>
+                                    <th>{{host.RotateSpeed}}</th>
+                                    <th>{{host.Flow}}</th>
+                                    <th>{{host.Pressure}}</th>
+                                    <th>{{host.Temperature}}</th>
+                                    <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectHost(host.ID)">删除</a></th>
+                                </tr>
+                        </table>
+
+                    </div>
+                    <div style="margin-top:40px;">
+                        <h4>子系统列表</h4>
+                        <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        <table class="table table-border table-bordered table-bg table-hover table-sort">
+                            <tr>
+                            <tr class="text-c">
+                                <th width="100">名称</th>
+                                <th width="400">功能描述</th>
+                                <th width="80">操作</th>
+                            </tr>
+                            <tr v-for="subfamily in subfamilys" class="text-c">
+                                <th>{{subfamily.Name}}</th>
+                                <th>{{subfamily.Describe}}</th>
+                                <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectSubfamily(subfamily.ID)">删除</a></th>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div style="margin-top:40px;">
+                        <h4>测点列表</h4>
+                        <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        <table class="table table-border table-bordered table-bg table-hover table-sort">
+                            <thead>
+                                <tr class="text-c">
+                                    <th width="80">测点名称</th>
+                                    <th width="80">测点编号</th>
+                                    <th width="80">计量单位</th>
+                                    <th width="80">小数位数</th>
+                                    <th width="80">采集方式</th>
+                                    <th width="80">位号</th>
+                                    <th width="80">操作</th>
+                                </tr>
+                                <tr v-for="station in stations" class="text-c">
+                                    <th>{{station.StationName}}</th>
+                                    <th>{{station.StationNumber}}</th>
+                                    <th>{{station.Measurement}}</th>
+                                    <th>{{station.DecimalPlace}}</th>
+                                    <th>{{station.ADMode}}</th>
+                                    <th>{{station.BitNumber}}</th>
+                                    <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectStation(station.ID)">删除</a></th>
+                                </tr>
+                        </table>
+
+                    </div>
+                </div>
             </article>
 
         </div>
@@ -140,7 +219,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("[name=Principal]").val(localStorage.uname);
+            $("[name=CrewLeader]").val(localStorage.uname);
+            $("#uname").text(localStorage.uname);
+
+            //左侧栏
+            $.ajax({
+                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
+                async: false,
+                type: 'get',
+                //data: { id:  },
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        if (data.Pid == 0) {
+                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
+                        }
+                    })
+                    $(data).each(function (index, data) {
+                        if (data.Pid != 0) {
+                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
+                        }
+                    })
+                }
+            })
+            //显示所属装置
             $.ajax({
                 url: 'http://localhost:8066/FacilityArea/GetFactoryAreas',
                 type: 'get',
@@ -152,7 +253,7 @@
 
                 }
             })
-
+            //上传图片
             $("#file1").click(function () {
 
                 alert($("#formData")[0])
@@ -172,45 +273,156 @@
 
             })
         })
+        //添加
         function add() {
+            if ($("[name=Device]").val().trim().length == 0) {
+                $(".messageBox").removeClass("messageError").text("所属装置不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                return;
+            }
+            if ($("[name=UnitNumber]").val().trim().length == 0) {
+                $(".messageBox").removeClass("messageError").text("机组编号不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                return;
+            }
+
+            if ($("[name=UnitName]").val().trim().length == 0) {
+                $(".messageBox").removeClass("messageError").text("机组名称不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                return;
+            }
+
+            if ($("[name=StructureImg]").val().trim().length == 0) {
+                $(".messageBox").removeClass("messageError").text("图片路径不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                return;
+            }
 
             $.ajax({
                 url: "http://localhost:8066/Unit/AddUnit",
                 type: "post",
                 data: $("#formData").serialize(),
-                
                 success: function (data) {
 
                     if (data > 0) {
-                        alert("添加成功")
+                        $(".messageBox").removeClass("messageError").text("添加成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                     }
                     else {
-                        alert("添加失败")
+                        $(".messageBox").removeClass("messageError").text("添加失败").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                     }
                 }
             })
         }
+    </script>
 
-        $(function () {
-            $("#uname").text(localStorage.uname);
-            $.ajax({
-                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
-                async: false,
-                type: 'get',
-                //data: { id:  },
-                success: function (data) {
-                    $(data).each(function (index, data) {
-                        if (data.Pid == 0) {
-                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
-                        }
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            ready: function () {
+                this.getTests();
+            },
+            methods: {
+                getTests: function () {
+                    //主机/附机
+                    this.$http.get('http://localhost:8066/Host/GetHosts', function (data) {
+                        this.$set('hosts', data);
                     })
-                    $(data).each(function (index, data) {
-                        if (data.Pid != 0) {
-                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
-                        }
+
+                    //子系统
+                    this.$http.get('http://localhost:8066/SubFamily/GetSubfamiliy', function (data) {
+                        this.$set('subfamilys', data);
                     })
+
+                    //测点
+                    this.$http.get('http://localhost:8066/Station/GetStation', function (data) {
+                        this.$set('stations', data);
+                    })
+                },
+                //删除主机/附机
+                DelectHost: function (id) {
+
+                    axios.get('http://localhost:8066/Host/DeleteHost?id=' + id).then(
+                        (response) => {
+                            if (response.data > 0) {
+
+                                this.getTests();
+                                $(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+                //删除子系统
+                DelectSubfamily: function (id) {
+
+                    axios.get('http://localhost:8066/SubFamily/DeleteSubfamily?id=' + id).then(
+                        (response) => {
+                            if (response.data > 0) {
+
+                                this.getTests();
+                                $(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+
+                    });
+                },
+                //删除测点
+                DelectStation: function (id) {
+
+                    axios.get('http://localhost:8066/Station/DeleteStation?id=' + id).then(
+                        (response) => {
+                            if (response.data > 0) {
+
+                                this.getTests();
+                                $(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
+            },
+            //计算属性
+            computed: {
+                indexs: function () {
+                    var left = 1;
+                    var right = this.all;
+                    var ar = [];
+                    if (this.all >= 5) {
+                        if (this.cur > 3 && this.cur < this.all - 2) {
+                            left = this.cur - 2
+                            right = this.cur + 2
+                        } else {
+                            if (this.cur <= 3) {
+                                left = 1
+                                right = 5
+                            } else {
+                                right = this.all
+                                left = this.all - 4
+                            }
+                        }
+                    }
+                    while (left <= right) {
+                        ar.push(left)
+                        left++
+                    }
+                    return ar
                 }
-            })
+
+            }
         })
     </script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>

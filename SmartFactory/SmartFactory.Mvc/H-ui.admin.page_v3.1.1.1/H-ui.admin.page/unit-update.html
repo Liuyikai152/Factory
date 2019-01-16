@@ -69,22 +69,45 @@
                     </div>
                 </div>
 
+              
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机组描述：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="Describe" name="Describe" v-model="test.Describe">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>负责人：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="CrewLeader" name="CrewLeader" v-model="test.CrewLeader">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图片：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="ChartImg" name="ChartImg" v-model="test.ChartImg">
+                    </div>
+                </div>
+
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3">报警状态：</label>
                     <div class="check-box">
-                        <input type="radio" id="IsSiren" name="IsSiren" v-model="test.IsSiren" value="4" checked="checked" />
+                        <input type="radio" id="IsSiren" name="IsSiren" v-model="test.IsSiren"  value="4" />
                         正常
                         <!--value="启用"value="停用"-->
                     </div>
                     <div class="check-box">
-                        <input type="radio" id="IsSiren" name="IsSiren" v-model="test.IsSiren" value="3" />
+                        <input type="radio" id="IsSiren" name="IsSiren" v-model="test.IsSiren" value="3"  />
                         报警
                     </div>
                 </div>
 
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                        <input class="btn btn-primary radius" v-on:click="update(test.ID,test.Device,test.UnitNumber,test.UnitName,test.HostName,test.AttachName,test.IsSiren)" type="button" value="提交">
+                        <input class="btn btn-primary radius" v-on:click="update(test.ID,test.Device,test.UnitNumber,test.UnitName,test.HostName,test.AttachName,test.Describe,test.CrewLeader,test.ChartImg,test.IsSiren)" type="button" value="提交">
                     </div>
 
                 </div>
@@ -113,7 +136,7 @@
     <script src="../../Scripts/axios.js"></script>
 
     <script type="text/javascript">
-
+     
         var vm = new Vue({
             el: "#app",
             data: {
@@ -130,7 +153,7 @@
                         this.$set('test', data);
                     })
                 },
-                update: function (ID, Device, UnitNumber, UnitName, HostName, AttachName, IsSiren) {
+                update: function (ID, Device, UnitNumber, UnitName, HostName, AttachName, Describe, CrewLeader, ChartImg, IsSiren) {
 
                     var params = new URLSearchParams();
                     params.append('ID', ID);
@@ -139,6 +162,9 @@
                     params.append('UnitName', UnitName);
                     params.append('HostName', HostName);
                     params.append('AttachName', AttachName);
+                    params.append('Describe', Describe);
+                    params.append('CrewLeader', CrewLeader);
+                    params.append('ChartImg', ChartImg);
                     params.append('IsSiren', IsSiren);
                     axios.post('http://localhost:8066/Unit/UpdateUnit', params).then(
                         (response) => {

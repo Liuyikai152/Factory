@@ -78,6 +78,22 @@ namespace SmartFactory.Api.Controllers
         [HttpPost]
         public int AddUnit(Unit unit)
         {
+            unit.DateChanged = DateTime.Now;
+            unit.StartDate = DateTime.Now;
+            unit.IsSiren = FactoryEnum.Normal;
+            switch (unit.Device)
+            {
+                case "C001":
+                    {
+                        unit.HostName = "Q1";
+                        unit.AttachName = "Q2";
+                    }; break;
+                default:
+                    {
+                        unit.HostName = "Y1";
+                        unit.AttachName = "Y2";
+                    }; break;
+            }
             var result = unitServices.AddUnit(unit);
             return result;
         }
@@ -91,6 +107,8 @@ namespace SmartFactory.Api.Controllers
         [HttpPost]
         public int UpdateUnit(Unit unit)
         {
+            unit.DateChanged = DateTime.Now;
+            unit.StartDate = DateTime.Now;
             var result = unitServices.UpdateUnit(unit);
             return result;
         }
