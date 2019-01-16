@@ -16,6 +16,7 @@ namespace SmartFactory.Api.Controllers
     {
 
         public ISubfamilyServices subfamilyServices { get; set; }
+        public const int PAGESIZE = 3;
         /// <summary>
         /// 根据条件显示
         /// </summary>
@@ -34,10 +35,15 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetSubfamiliy")]
-        public List<Subfamily> GetSubfamilie()
+        public PageBox GetSubfamilie(int page=1)
         {
             var subfamilyList = subfamilyServices.GetSubfamilie();
-            return subfamilyList;
+            PageBox pageBox = new PageBox();
+            pageBox.PageIndex = page;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount = subfamilyList.Count / PAGESIZE + (subfamilyList.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = subfamilyList.Skip((page - 1) * PAGESIZE).Take(PAGESIZE);
+            return pageBox;
         }
 
 

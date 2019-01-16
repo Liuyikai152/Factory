@@ -50,6 +50,56 @@
         .messageError {
             background-position: -441px -673px;
         }
+        .page-bar {
+            margin: 40px;
+        }
+
+        ul, li {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        li {
+            list-style: none
+        }
+
+        .page-bar li:first-child > a {
+            margin-left: 0px
+        }
+
+        .page-bar a {
+            border: 1px solid #ddd;
+            text-decoration: none;
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            cursor: pointer
+        }
+
+            .page-bar a:hover {
+                background-color: #eee;
+            }
+
+            .page-bar a.banclick {
+                cursor: not-allowed;
+            }
+
+        .page-bar .active a {
+            color: #fff;
+            cursor: default;
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+
+        .page-bar i {
+            font-style: normal;
+            color: #d44950;
+            margin: 0px 4px;
+            font-size: 12px;
+        }
     </style>
     <!--_header 作为公共模版分离出去-->
     <header class="navbar-wrapper">
@@ -177,9 +227,21 @@
                                     <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectHost(host.ID)">删除</a></th>
                                 </tr>
                         </table>
-
+                        <div class="page-bar">
+                            <ul>
+                                <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
+                                <li v-if="cur==1"><a class="banclick">上一页</a></li>
+                                <li v-for="index in indexs" v-bind:class="{ 'active': cur == index}">
+                                    <a v-on:click="btnClick(index)">{{index}}</a>
+                                </li>
+                                <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
+                                <li v-if="cur == all"><a class="banclick">下一页</a></li>
+                                <li><a>共<i>{{all}}</i>页</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div style="margin-top:40px;">
+                 
+                    <div style="margin-top:80px;">
                         <h4>子系统列表</h4>
                         <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -195,9 +257,21 @@
                                 <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectSubfamily(subfamily.ID)">删除</a></th>
                             </tr>
                         </table>
-
+                        <div class="page-bar">
+                            <ul>
+                                <li v-if="cur2>1"><a v-on:click="cur2--,page2Click()">上一页</a></li>
+                                <li v-if="cur2==1"><a class="banclick">上一页</a></li>
+                                <li v-for="index in indxs" v-bind:class="{ 'active': cur2 == index}">
+                                    <a v-on:click="btn2Click(index)">{{ index }}</a>
+                                </li>
+                                <li v-if="cur2!=all2"><a v-on:click="cur2++,page2Click()">下一页</a></li>
+                                <li v-if="cur2 == all2"><a class="banclick">下一页</a></li>
+                                <li><a>共<i>{{all2}}</i>页</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div style="margin-top:40px;">
+                   
+                    <div style="margin-top:80px;">
                         <h4>测点列表</h4>
                         <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -221,8 +295,20 @@
                                     <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectStation(station.ID)">删除</a></th>
                                 </tr>
                         </table>
-
+                        <div class="page-bar">
+                            <ul>
+                                <li v-if="cur3>1"><a v-on:click="cur3--,page3Click()">上一页</a></li>
+                                <li v-if="cur3==1"><a class="banclick">上一页</a></li>
+                                <li v-for="index in indes" v-bind:class="{ 'active': cur3 == index}">
+                                    <a v-on:click="btn3Click(index)">{{index}}</a>
+                                </li>
+                                <li v-if="cur3!=all3"><a v-on:click="cur3++,page3Click()">下一页</a></li>
+                                <li v-if="cur3 ==all3"><a class="banclick">下一页</a></li>
+                                <li><a>共<i>{{all3}}</i>页</a></li>
+                            </ul>
+                        </div>
                     </div>
+                  
                 </div>
             </article>
 
@@ -342,23 +428,20 @@
         var vm = new Vue({
             el: "#pumpAdd",
             data: {
-                page:1,
-                Cur:1,
-                page2:1,
-                Cur2:1,
-                page3:1,
-                Cur3:1
+                all:1,
+                cur:1,
+                all2:1,
+                cur2:1,
+                all3:1,
+                cur3:1
             },
             ready: function () {
                 this.getTests();
+                this.SubFamily();
+                this.Station();
             },
             methods: {
                 getTests: function () {
-                    //主机/附机
-                    this.$http.get('http://localhost:8066/Host/GetHosts?hostType=' + this.page, function (data) {
-                        this.$set('hosts', data);
-                    })
-
                     //主机
                     this.$http.get('http://localhost:8066/Host/GetHostType?hostType=主机', function (data) {
                         this.$set('main', data);
@@ -369,14 +452,30 @@
                         this.$set('attach', data);
                     })
 
-                    //子系统
-                    this.$http.get('http://localhost:8066/SubFamily/GetSubfamiliy?page=' + this.page2, function (data) {
-                        this.$set('subfamilys', data);
+                    //主机/附机
+                    this.$http.get('http://localhost:8066/Host/GetHosts?page=' + this.cur, function (data) {
+                        this.cur = data.PageIndex;
+                        this.all = data.PageCount;
+                        this.$set('hosts', data.Data);
                     })
 
+               
+                },
+
+                SubFamily: function () {
+                    //子系统
+                    this.$http.get('http://localhost:8066/SubFamily/GetSubfamiliy?page=' + this.cur2, function (data) {
+                        this.cur2 = data.PageIndex;
+                        this.all2 = data.PageCount;
+                        this.$set('subfamilys', data.Data);
+                    })  
+                },
+                Station: function () {
                     //测点
-                    this.$http.get('http://localhost:8066/Station/GetStation?page=' + this.page3, function (data) {
-                        this.$set('stations', data);
+                    this.$http.get('http://localhost:8066/Station/GetStation?page=' + this.cur3, function (data) {
+                        this.cur3 = data.PageIndex;
+                        this.all3= data.PageCount;
+                        this.$set('stations', data.Data);
                     })
                 },
                 //删除主机/附机
@@ -436,9 +535,44 @@
                     });
                 },
 
+                btnClick: function (data) {//页码点击事件
+                    if (data != this.cur) {
+                        this.cur = data;
+                        this.getTests(data);
+                    }
+                },
+                pageClick: function () {
+                    //console.log('现在在' + this.cur + '页');
+                    this.getTests(this.cur);                  
+                },
+
+
+                btn2Click: function (data) {//页码点击事件
+                    if (data != this.cur2) {
+                        this.cur2 = data;
+                        this.SubFamily(data);
+                    }
+                },
+                page2Click: function () {
+                    //console.log('现在在' + this.cur + '页');
+                    this.SubFamily(this.cur2);
+                },
+
+
+                btn3Click: function (data) {//页码点击事件
+                    if (data != this.cur3) {
+                        this.cur3 = data;
+                        this.Station(data);
+                    }
+                },
+                page3Click: function () {
+                    //console.log('现在在' + this.cur + '页');
+                    this.Station(this.cur3);
+                },
             },
             //计算属性
             computed: {
+                //主机/附机计算
                 indexs: function () {
                     var left = 1;
                     var right = this.all;
@@ -462,9 +596,61 @@
                         left++
                     }
                     return ar
+                },
+                  //子系统计算
+                indxs: function () {
+                    var left = 1;
+                    var right = this.all2;
+                    var ar = [];
+                    if (this.all2 >= 5) {
+                        if (this.cur2 > 3 && this.cur2 < this.all2 - 2) {
+                            left = this.cur2 - 2
+                            right = this.cur2 + 2
+                        } else {
+                            if (this.cur2 <= 3) {
+                                left = 1
+                                right = 5
+                            } else {
+                                right = this.all2
+                                left = this.all2 - 4
+                            }
+                        }
+                    }
+                    while (left <= right) {
+                        ar.push(left)
+                        left++
+                    }
+                    return ar
+                },
+                  //测点计算
+                indes: function () {
+                    var left = 1;
+                    var right = this.all3;
+                    var ar = [];
+                    if (this.all3 >= 5) {
+                        if (this.cur3 > 3 && this.cur3 < this.all3 - 2) {
+                            left = this.cur3 - 2
+                            right = this.cur3 + 2
+                        } else {
+                            if (this.cur3 <= 3) {
+                                left = 1
+                                right = 5
+                            } else {
+                                right = this.all3
+                                left = this.all3 - 4
+                            }
+                        }
+                    }
+                    while (left <= right) {
+                        ar.push(left)
+                        left++
+                    }
+                    return ar
                 }
 
-            }
+            },
+
+         
         })
     </script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>

@@ -15,7 +15,7 @@ namespace SmartFactory.Api.Controllers
     public class StationController : ApiController
     {
         public IStationServices stationServices { get; set; }
-
+        public const int PAGESIZE = 3;
         /// <summary>
         /// 显示测点机泵
         /// </summary>
@@ -99,10 +99,15 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetStation")]
-        public List<Station> GetStation()
+        public PageBox GetStation(int page=1)
         {
-            var stationList = stationServices.GetStation(); ;
-            return stationList;
+            var stationList = stationServices.GetStation();
+            PageBox pageBox = new PageBox();
+            pageBox.PageIndex = page;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount = stationList.Count / PAGESIZE + (stationList.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = stationList.Skip((page - 1) * PAGESIZE).Take(PAGESIZE);
+            return pageBox;
         }
     }
 }
