@@ -17,7 +17,7 @@ namespace SmartFactory.Api.Controllers
         public IStationServices stationServices { get; set; }
 
         /// <summary>
-        /// 显示测点
+        /// 显示测点机泵
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -30,7 +30,7 @@ namespace SmartFactory.Api.Controllers
 
 
         /// <summary>
-        /// 显示测点
+        /// 显示测点机组
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -38,6 +38,70 @@ namespace SmartFactory.Api.Controllers
         public List<Station> GetUnitStations(string uNumber)
         {
             var stationList = stationServices.GetUnitStations(uNumber);
+            return stationList;
+        }
+
+        /// <summary>
+        /// 添加测点
+        /// </summary>
+        /// <param name="station"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AddStation")]
+        public int AddStation(Station station)
+        {
+            var i = stationServices.AddStation(station);
+            return i;
+        }
+
+        /// <summary>
+        /// 删除测点
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteStation")]
+        public int DeleteStation(int id)
+        {
+            var i = stationServices.DeleteStation(id);
+            return i;
+        }
+
+        /// <summary>
+        /// 获取单个id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetById")]
+        public Station GetById(int id)
+        {
+            var station = stationServices.GetById(id);
+            return station;
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="station"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateStation")]
+        public int UpdateStation(Station station)
+        {
+            var i = stationServices.UpdateStation(station);
+            return i;
+        }
+
+        /// <summary>
+        /// 显示测点
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetStation")]
+        public List<Station> GetStation()
+        {
+            var stationList = stationServices.GetStation(); ;
             return stationList;
         }
     }

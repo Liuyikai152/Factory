@@ -145,13 +145,10 @@
                     <button type="submit" class="btn btn-success" v-on:click="getTests"><i class="Hui-iconfont">&#xe665;</i> 查 询 </button>
                 </div>
                 <br />
-                <div>
-                    
-                        <span class="l">  <a href="javascript:;" onclick="AddPump('新增','AddPump.html','800','500')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
-                    
+                <div>                   
+                        <span class="l">  <a href="pump-add.html"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>                   
                     &nbsp;&nbsp;&nbsp;<input type="text" id="out" style="width:50px;" />
                     <input type="button" value="导出" id="outExcel" class="btn btn-success" />
-                    &nbsp;&nbsp;&nbsp;<input type="button" value="通知配置" id="config" class="btn btn-success" />
                 </div>
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
@@ -163,6 +160,7 @@
                             <th width="80">机泵名称</th>
                             <th width="80">主机名称</th>
                             <th width="80">附机名称</th>
+                            <th width="80">报警状态</th>
                             <th width="80">详细信息</th>
                             <th width="80">编辑</th>
                             <th width="80">删除</th>
@@ -175,9 +173,10 @@
                             <th>{{test.PumpName}}</th>
                             <th>{{test.HostName}}</th>
                             <th>{{test.AttachName}}</th>
+                            <th>{{test.IsSiren==3?"警告":"正常"}}</th>
                             <th><a href='pumpById.html?id={{test.ID}}'>查看</a></th>
                             <th><a href='FacilityByID.html?id={{test.ID}}'>编辑</a></th>
-                            <th><a herf='#id={{test.ID}}'>删除</a> </th>
+                            <th><a herf='#' v-on:click="DeleteUnitById(test.ID)">删除</a> </th>
                         </tr>
 
                 </table>
@@ -273,6 +272,24 @@
                     })
                 },
 
+                DeleteUnitById: function (id) {
+
+                    axios.get('http://localhost:8066/Pump/DeletePump?id=' + id).then(
+                        (response) => {
+                            if (response.data > 0) {
+
+                                this.getTests(this.cur);
+
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
                 btnClick: function (data) {//页码点击事件
                     if (data != this.cur) {
                         this.cur = data;
@@ -347,41 +364,8 @@
      w		弹出层宽度（缺省调默认值）
      h		弹出层高度（缺省调默认值）
  */
-        /*管理员-增加*/
-        function AddPump() {
-            location.href = 'pump-add.html';
-        }
-        /*管理员-删除*/
-        function admin_del(id, obj) {
-            layer.confirm('确认要删除吗？', function (index) {
-                //此处请求后台程序，下方是成功后的前台处理……
-                $.ajax({
-                    url: 'http://localhost:8066/Users/DeleteUsers?id=' + id,
-                    type: 'get',
-                    data: {
-                        //ID: ID
-                    },
-                    success: function (data) {
-
-                        if (data > 0) {
-                            // alert("删除成功");
-
-                            layer.msg('已删除!', { icon: 1, time: 1000 });
-                            $(obj).parent().parent().remove();
-                        }
-                        else {
-                            alert("删除失败");
-                        }
-                    }
-                })
-
-            });
-        }
-        /*管理员-编辑*/
-        function admin_update(id) {
-            layer_show("编辑权限", "admin-update.html?id=" + id, 300, 500);
-        }
-
+      
+   
     </script>
 
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>

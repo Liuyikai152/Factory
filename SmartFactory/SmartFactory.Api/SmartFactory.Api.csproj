@@ -142,6 +142,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ApprovalNodeController.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
     <Compile Include="Controllers\ConditionsController.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Controllers\PumpController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\SubFamilyController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\UsersController.cs" />

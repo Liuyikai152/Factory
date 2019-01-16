@@ -76,11 +76,18 @@
     <div class="dislpayArrow hidden-xs"> <a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a> </div>
     <!--/_menu 作为公共模版分离出去-->
 
-    <section class="Hui-article-box">
-       
-        <div class="Hui-article" id="app">
+    <section class="Hui-article-box" style="background-color:azure">
+        <div class="Hui-article" style="margin-left:40px;">
+
             <article class="cl pd-20" id="pumpAdd">
-                <form action="" method="post" class="form form-horizontal" id="formData">
+                <input type="hidden" name="ID" id="pumpid" value="" />
+                <h3>机泵配置</h3>
+                <form action="" method="post" class="form form-horizontal" id="formData" style="margin-left:30px;">
+                    <div class="row cl">
+                        <div>
+                            <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
+                        </div>
+                    </div>
                     <div class="row cl">
                         <label>所属装置：</label>
                         <select name="Device">
@@ -89,6 +96,7 @@
                         </select>
 
                         <label>机泵编号：</label>
+
                         <input type="text" autocomplete="off" value="" placeholder="机泵编号" id="" name="PumpNumber">
 
 
@@ -114,12 +122,86 @@
                         <input type="hidden" name="StructureImg" id="StructureImg" />
                         <img src="" id="fileImg" style="width:200px;height:120px;" />
                     </div>
-                    <div class="row cl">
-                        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                            <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
-                        </div>
-                    </div>
+
                 </form>
+                <div id="app" style="float:none;margin-top:70px;margin-bottom:100px;">
+                    <div>
+                        <h4>主机/附机列表</h4>
+                        <div>
+                            <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        </div>
+                        <table class="table table-border table-bordered table-bg table-hover table-sort">
+                            <thead>
+                                <tr class="text-c">
+                                    <th width="80">类型</th>
+                                    <th width="80">设备名称</th>
+                                    <th width="80">设备位号</th>
+                                    <th width="80">功率(KW)</th>
+                                    <th width="80">转速(rpm)</th>
+                                    <th width="80">流量(m3/h)</th>
+                                    <th width="80">出口压力(MPa)</th>
+                                    <th width="80">出口温度(C)</th>
+                                    <th width="80">操作</th>
+                                </tr>
+                                <tr v-for="host in hosts" class="text-c">
+                                    <th>{{host.Type}}</th>
+                                    <th>{{host.FacilityName}}</th>
+                                    <th>{{host.BitNumber}}</th>
+                                    <th>{{host.Power}}</th>
+                                    <th>{{host.RotateSpeed}}</th>
+                                    <th>{{host.Flow}}</th>
+                                    <th>{{host.Pressure}}</th>
+                                    <th>{{host.Temperature}}</th>
+                                    <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectHost(host.ID)">删除</a></th>
+                                </tr>
+                        </table>
+
+                    </div>
+                    <div style="margin-top:40px;">
+                        <h4>子系统列表</h4>
+                        <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        <table class="table table-border table-bordered table-bg table-hover table-sort">
+                            <tr>
+                            <tr class="text-c">
+                                <th width="100">名称</th>
+                                <th width="400">功能描述</th>
+                                <th width="80">操作</th>
+                            </tr>
+                            <tr v-for="subfamily in subfamilys" class="text-c">
+                                <th>{{subfamily.Name}}</th>
+                                <th>{{subfamily.Describe}}</th>
+                                <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectSubfamily(subfamily.ID)">删除</a></th>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div style="margin-top:40px;">
+                        <h4>测点列表</h4>
+                        <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        <table class="table table-border table-bordered table-bg table-hover table-sort">
+                            <thead>
+                                <tr class="text-c">
+                                    <th width="80">测点名称</th>
+                                    <th width="80">测点编号</th>
+                                    <th width="80">计量单位</th>
+                                    <th width="80">小数位数</th>
+                                    <th width="80">采集方式</th>
+                                    <th width="80">位号</th>
+                                    <th width="80">操作</th>
+                                </tr>
+                                <tr v-for="station in stations" class="text-c">
+                                    <th>{{station.StationName}}</th>
+                                    <th>{{station.StationNumber}}</th>
+                                    <th>{{station.Measurement}}</th>
+                                    <th>{{station.DecimalPlace}}</th>
+                                    <th>{{station.ADMode}}</th>
+                                    <th>{{station.BitNumber}}</th>
+                                    <th><a href="#">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectStation(station.ID)">删除</a></th>
+                                </tr>
+                        </table>
+
+                    </div>
+                </div>
             </article>
 
         </div>
@@ -129,18 +211,22 @@
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
-
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-
+    <script src="../../Scripts/GetParse.js"></script>
+    <script src="../../Scripts/vue.min.js"></script>
+    <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
     <script type="text/javascript">
         $(function () {
             $("[name=Principal]").val(localStorage.uname);
+            $("#uname").text(localStorage.uname);
+            //显示所属装置
             $.ajax({
                 url: 'http://localhost:8066/FacilityArea/GetFactoryAreas',
                 type: 'get',
@@ -152,7 +238,7 @@
 
                 }
             })
-
+            //上传图片
             $("#file1").click(function () {
 
                 alert($("#formData")[0])
@@ -171,61 +257,9 @@
                 })
 
             })
-        })
-        function add() {
 
-            $.ajax({
-                url: "http://localhost:8066/Pump/AddPump",
-                type: "post",
-                data: $("#formData").serialize(),
-                success: function (data) {
 
-                    if (data > 0) {
-                        alert("添加成功")
-                    }
-                    else {
-                        alert("添加失败")
-                    }
-                }
-            })
-        }
-
-        //var vm = new vue({
-        //    el: "#pumpAdd",
-        //    data: {
-
-        //    },
-        //    ready: function () {
-
-        //    },
-        //    methods: {
-        //        getFailityArea: function () {
-        //            this.$http.get("http://localhost:8066/FacilityArea/GetFactoryAreas"), function(data){
-        //                this.$set('failityArea', data);
-        //            }
-        //        }
-        //    }
-
-        //})        //var vm = new vue({
-        //    el: "#pumpAdd",
-        //    data: {
-
-        //    },
-        //    ready: function () {
-
-        //    },
-        //    methods: {
-        //        getFailityArea: function () {
-        //            this.$http.get("http://localhost:8066/FacilityArea/GetFactoryAreas"), function(data){
-        //                this.$set('failityArea', data);
-        //            }
-        //        }
-        //    }
-
-        //})
-
-        $(function () {
-            $("#uname").text(localStorage.uname);
+            //左侧栏
             $.ajax({
                 url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
                 async: false,
@@ -244,6 +278,136 @@
                     })
                 }
             })
+        })
+
+        function add() {
+
+            $.ajax({
+                url: "http://localhost:8066/Pump/AddPump",
+                type: "post",
+                data: $("#formData").serialize(),
+                success: function (data) {
+
+                    if (data > 0) {
+                        alert("添加成功")
+                    }
+                    else {
+                        alert("添加失败")
+                    }
+                }
+            })
+        }
+    </script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                pumpId: getPar("id"),
+            },
+            ready: function () {
+                this.getTests();
+            },
+            methods: {
+                getTests: function () {
+                    //主机/附机
+                    this.$http.get('http://localhost:8066/Host/GetHosts', function (data) {
+                        this.$set('hosts', data);
+                    })
+
+                    //子系统
+                    this.$http.get('http://localhost:8066/SubFamily/GetSubfamiliy', function (data) {
+                        this.$set('subfamilys', data);
+                    })
+
+                    //测点
+                    this.$http.get('http://localhost:8066/Station/GetStation', function (data) {
+                        this.$set('stations', data);
+                    })
+                },
+
+                DelectHost: function (id) {
+
+                    axios.get('http://localhost:8066/Host/DeleteHost?id=' + id).then(
+                        (response) => {
+                            if (response.data > 0) {
+
+                                this.getTests(this.cur);
+
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
+                DelectSubfamily: function (id) {
+
+                    axios.get('http://localhost:8066/SubFamily/DeleteSubfamily?id=' + id).then(
+                        (response) => {
+                            if (response.data > 0) {
+
+                                this.getTests(this.cur);
+
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
+                DelectStation: function (id) {
+
+                    axios.get('http://localhost:8066/Station/DeleteStation?id=' + id).then(
+                        (response) => {
+                            if (response.data > 0) {
+
+                                this.getTests(this.cur);
+
+                            }
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
+            },
+            //计算属性
+            computed: {
+                indexs: function () {
+                    var left = 1;
+                    var right = this.all;
+                    var ar = [];
+                    if (this.all >= 5) {
+                        if (this.cur > 3 && this.cur < this.all - 2) {
+                            left = this.cur - 2
+                            right = this.cur + 2
+                        } else {
+                            if (this.cur <= 3) {
+                                left = 1
+                                right = 5
+                            } else {
+                                right = this.all
+                                left = this.all - 4
+                            }
+                        }
+                    }
+                    while (left <= right) {
+                        ar.push(left)
+                        left++
+                    }
+                    return ar
+                }
+
+            }
         })
     </script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>

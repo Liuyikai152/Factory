@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity.cs" />
+    <Compile Include="ActivityNotMappit.cs" />
     <Compile Include="ApprovalNode.cs" />
     <Compile Include="BitNumber.cs" />
     <Compile Include="Business.cs" />

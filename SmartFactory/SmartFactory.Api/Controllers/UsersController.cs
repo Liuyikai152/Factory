@@ -31,6 +31,18 @@ namespace SmartFactory.Api.Controllers
         }
 
         /// <summary>
+        /// 显示审批人
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetApprovalUsers")]
+        [HttpGet]
+        public List<Users> GetApprovalUsers()
+        {
+            var userList = usersServices.GetApprovalUsers();
+            return userList;
+        }
+
+        /// <summary>
         /// 登录
         /// </summary>
         /// <param name="userName"></param>
