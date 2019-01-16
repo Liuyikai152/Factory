@@ -70,5 +70,20 @@ namespace SmartFactory.Services
             factoryDBcontext.Entry(pump).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
         }
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="IsSiren"></param>
+        /// <returns></returns>
+        public int UpdateSiren(int ID, int IsSiren)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[] {
+                new MySqlParameter("@ids",ID),
+                new MySqlParameter("@isSiren",IsSiren),
+            };
+            return factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_UpdateIsSiren (@ids,@isSiren)", parameters);
+        }
     }
 }

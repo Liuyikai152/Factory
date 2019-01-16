@@ -41,5 +41,13 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <returns></returns>
         List<PumpNotMap> GetPumps();
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="IsSiren"></param>
+        /// <returns></returns>
+        int UpdateSiren(int ID, int IsSiren);
     }
 }

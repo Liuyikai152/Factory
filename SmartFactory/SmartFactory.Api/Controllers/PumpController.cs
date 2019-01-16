@@ -17,6 +17,7 @@ namespace SmartFactory.Api.Controllers
     {
 
         public IPumpServices pumpServices { get; set; }
+        public IActivityServices activityServices { get; set; }
 
         /// <summary>
         /// 添加机泵
@@ -99,6 +100,28 @@ namespace SmartFactory.Api.Controllers
             var i = pumpServices.UpdatePump(pump);
 
             return i;
+        }
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="IsSiren"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("UpdateSiren")]
+        public int UpdateSiren(int ID, int IsSiren,int judgment)
+        {
+            if (IsSiren == 3)
+            {
+                var i = pumpServices.UpdateSiren(ID, IsSiren);
+                if (i > 0)
+                {
+                    activityServices.AddActivity(judgment);
+                }
+                return i;
+            }
+            return 0;
         }
     }
 }
