@@ -109,6 +109,8 @@ namespace SmartFactory.Api.Controllers
         [Route("UpdateSubfamily")]
         public int UpdateSubfamily(Subfamily subfamily)
         {
+            subfamily.DateChanged = DateTime.Now;
+            subfamily.StartDate = DateTime.Now;
             var i = subfamilyServices.UpdateSubfamily(subfamily);
             return i;
         }
