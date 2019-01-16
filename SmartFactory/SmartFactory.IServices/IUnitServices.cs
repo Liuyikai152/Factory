@@ -42,5 +42,12 @@ namespace SmartFactory.IServices
         /// <param name="id"></param>
         /// <returns></returns>
         UnitNotMapped GetByID(int id);
+
+        /// <summary>
+        /// 获取机组id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Unit GetUnitByID(int id);
     }
 }

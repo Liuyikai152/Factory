@@ -38,28 +38,6 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
-        /// 获取单个id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public Host GetByID(int id)
-        {
-            var i = factoryDBcontext.Host.Find(id);
-            return i;
-        }
-
-       /// <summary>
-       /// 查询所有主机/附机
-       /// </summary>
-       /// <returns></returns>
-        public List<Host> GetHost(string PNumber)
-        {
-           
-            var hostList = factoryDBcontext.Database.SqlQuery<Host>("call Pro_GetHostList(@PNumber)",new MySqlParameter("@PNumber", PNumber)).ToList();
-            return hostList;
-        }
-
-        /// <summary>
         /// 修改
         /// </summary>
         /// <param name="host"></param>
@@ -71,6 +49,39 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
+        /// 获取单个id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Host GetByID(int id)
+        {
+            var i = factoryDBcontext.Host.Find(id);
+            return i;
+        }
+
+        /// <summary>
+        /// 查询所有主机/附机
+        /// </summary>
+        /// <returns></returns>
+        public List<Host> GetHosts()
+        {
+
+            var hostList = factoryDBcontext.Database.SqlQuery<Host>("call Pro_Gethost").ToList();
+            return hostList;
+        }
+
+        /// <summary>
+        /// 根据条件查询所有主机/附机
+        /// </summary>
+        /// <returns></returns>
+        public List<Host> GetHost(string PNumber)
+        {
+           
+            var hostList = factoryDBcontext.Database.SqlQuery<Host>("call Pro_GetHostList(@PNumber)",new MySqlParameter("@PNumber", PNumber)).ToList();
+            return hostList;
+        }     
+
+        /// <summary>
         /// 显示机组主机/附机列表
         /// </summary>
         /// <param name="PNumber"></param>
@@ -79,6 +90,17 @@ namespace SmartFactory.Services
         {
 
             var hostList = factoryDBcontext.Database.SqlQuery<Host>("CALL Pro_GetUnitHost(@uNumber)", new MySqlParameter("@uNumber", uNumber)).ToList();
+            return hostList;
+        }
+
+        /// <summary>
+        /// 根据条件查询主机或附机
+        /// </summary>
+        /// <returns></returns>
+        public List<Host> GetHostType(string hostType)
+        {
+
+            var hostList = factoryDBcontext.Database.SqlQuery<Host>("call Pro_HostType(@hosttype)", new MySqlParameter("@hosttype", hostType)).ToList();
             return hostList;
         }
     }

@@ -37,7 +37,7 @@ namespace SmartFactory.IServices
         Station GetById(int id);
 
         /// <summary>
-        /// 显示
+        /// 根据条件显示机泵测点
         /// </summary>
         /// <returns></returns>
         List<Station> GetStations(string PNumber);
@@ -48,5 +48,8 @@ namespace SmartFactory.IServices
         /// <param name="uNumber"></param>
         /// <returns></returns>
         List<Station> GetUnitStations(string uNumber);
+
+        //显示测点
+        List<Station> GetStation();
     }
 }

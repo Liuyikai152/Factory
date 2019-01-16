@@ -48,17 +48,6 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
-        /// 显示测点
-        /// </summary>
-        /// <returns></returns>
-        public List<Station> GetStations(string PNumber)
-        {
-            var stationList= factoryDBcontext.Database.SqlQuery<Station>("call Pro_GetStations(@PNumber)",new MySqlParameter("@PNumber", PNumber)).ToList();
-            return stationList;
-        }
-
-
-        /// <summary>
         /// 修改
         /// </summary>
         /// <param name="station"></param>
@@ -67,6 +56,26 @@ namespace SmartFactory.Services
         {
             factoryDBcontext.Entry(station).State = System.Data.Entity.EntityState.Modified;
             return factoryDBcontext.SaveChanges();
+        }
+
+        /// <summary>
+        /// 显示测点
+        /// </summary>
+        /// <returns></returns>
+        public List<Station> GetStation()
+        {
+            var stationList= factoryDBcontext.Database.SqlQuery<Station>("call Pro_Getstation").ToList();
+            return stationList;
+        }
+
+        /// <summary>
+        /// 显示机泵测点
+        /// </summary>
+        /// <returns></returns>
+        public List<Station> GetStations(string PNumber)
+        {
+            var stationList = factoryDBcontext.Database.SqlQuery<Station>("call Pro_GetStations(@PNumber)", new MySqlParameter("@PNumber", PNumber)).ToList();
+            return stationList;
         }
 
         /// <summary>

@@ -37,10 +37,17 @@ namespace SmartFactory.IServices
         Subfamily GetById(int id);
 
         /// <summary>
-        /// 显示子关系
+        /// 根据条件显示
         /// </summary>
         /// <returns></returns>
-        List<Subfamily> GetSubfamilies(string  PNumber);
+        List<Subfamily> GetSubfamilieByNumber(string  PNumber);
+
+        /// <summary>
+        /// 显示所有
+        /// </summary>
+        /// <returns></returns>
+        List<Subfamily> GetSubfamilie();
+        
 
         /// <summary>
         /// 显示机组子关系
