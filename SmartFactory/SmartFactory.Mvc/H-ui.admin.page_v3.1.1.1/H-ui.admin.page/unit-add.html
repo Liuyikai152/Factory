@@ -89,12 +89,12 @@
                         </select>
 
                         <label>机组编号：</label>
-                        <input type="text" autocomplete="off" value="" placeholder="机组编号" id="" name="PumpNumber">
+                        <input type="text" autocomplete="off" value="" placeholder="机组编号" id="" name="UnitNumber">
 
 
                         <label><span class="c-red">*</span>机组名称：</label>
-                        <input type="text" autocomplete="off" value="" placeholder="机组名称" id="" name="PumpName">
-                        <input type="hidden" name="Principal" value="" />
+                        <input type="text" autocomplete="off" value="" placeholder="机组名称" id="" name="UnitName">
+                        <input type="hidden" name="" value="" />
                     </div>
                     <div class="row cl">
                         <label>机组描述：</label>
@@ -178,6 +178,7 @@
                 url: "http://localhost:8066/Unit/AddUnit",
                 type: "post",
                 data: $("#formData").serialize(),
+                
                 success: function (data) {
 
                     if (data > 0) {
