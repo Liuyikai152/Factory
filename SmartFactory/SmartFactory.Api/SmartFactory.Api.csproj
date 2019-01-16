@@ -134,6 +134,7 @@
   <ItemGroup>
     <Content Include="Content\1.png" />
     <Content Include="Content\2.png" />
+    <Content Include="Content\img-set1.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -173,6 +174,7 @@
     <Content Include="Content\format.xlsx" />
     <Content Include="Content\设备位置.xlsx" />
     <Content Include="Content\维修.xlsx" />
+    <Content Include="Content\31.xlsx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
