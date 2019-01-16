@@ -26,7 +26,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int AddActivity(int judgment)
         {
-            var configurationList = (from a in factoryDBcontext.Configurations.ToList() where a.JudgmentID== judgment select a).ToList();
+            var configurationList = (from a in factoryDBcontext.Configurations.ToList() where a.JudgmentID == judgment select a).ToList();
 
             Activity activity = new Activity();
             for (int i = 0; i < configurationList.Count(); i++)
@@ -50,15 +50,61 @@ namespace SmartFactory.Services
         /// 查看审批活动
         /// </summary>
         /// <returns></returns>
-        public List<ActivityNotMappit> GetActivities(string name,string state)
+        public List<ActivityNotMappit> GetActivities(string name, string state)
         {
             MySqlParameter[] mySqlParameter = new MySqlParameter[]
             {
                 new MySqlParameter ("@userNames",name),
                 new MySqlParameter ("@states",state),
-            }; 
-            var activityList = factoryDBcontext.Database.SqlQuery<ActivityNotMappit>("CALL Pro_GetActivity (@userNames, @states)",mySqlParameter).ToList();
+            };
+            var activityList = factoryDBcontext.Database.SqlQuery<ActivityNotMappit>("CALL Pro_GetActivity (@userNames, @states)", mySqlParameter).ToList();
             return activityList;
+        }
+
+        /// <summary>
+        /// 修改审批状态
+        /// </summary>
+        /// <param name="facility"></param>
+        /// <returns></returns>
+        public int UpdateState(int ID, int trueState, int state)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[] {
+                new MySqlParameter("@ids",ID),
+                new MySqlParameter("@trueState",trueState),
+            };
+            factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_UpdateTrueState(@ids,@trueState)", parameters);
+
+            var i = factoryDBcontext.Activities.FirstOrDefault(n => n.ID.Equals(ID + 1));
+            if (i != null)
+            {
+                if (i.NextApprovalUserID != null)
+                {
+                    MySqlParameter[] mySqlParameters = new MySqlParameter[]
+                    {
+                            new MySqlParameter("@ids",i.ID),
+                            new MySqlParameter("@state",state),
+                    };
+                    factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_UpdateState(@ids,@state)", mySqlParameters);
+                }
+            }
+            return 1;
+        }
+
+
+        /// <summary>
+        /// 驳回审批状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="trueState"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public int UpdateNoState(int ID, int trueState)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[] {
+                new MySqlParameter("@ids",ID),
+                new MySqlParameter("@trueState",trueState),
+            };
+            return factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_UpdateTrueState(@ids,@trueState)", parameters);             
         }
 
         /// <summary>

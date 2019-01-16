@@ -1,0 +1,250 @@
+﻿<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="Bookmark" href="favicon.ico">
+    <link rel="Shortcut Icon" href="favicon.ico" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script><![endif]-->
+    <!--/meta 作为公共模版分离出去-->
+
+    <title>机组修改</title>
+    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+    <div class="Hui-article" id="app">
+        <article class="cl pd-20">
+            <form action="" method="post" class="form form-horizontal" id="form">
+                <!--<input type="hidden" name="ID" />-->
+                <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
+                <input type="hidden" name="ID" v-model="test[0].ID" />
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>所属装置：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="Device" name="Device" v-model="test.Device">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机泵编号：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="PumpNumber" name="PumpNumber" v-model="test.UnitNumber">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机泵名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="PumpName" name="PumpName" v-model="test.UnitName">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主机名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="HostName" name="HostName" v-model="test.HostName">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>附机名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="AttachName" name="AttachName" v-model="test.AttachName">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">报警状态：</label>
+                    <div class="check-box">
+                        <input type="radio" id="IsSiren" name="IsSiren" v-model="test.IsSiren" value="4" checked="checked" />
+                        正常
+                        <!--value="启用"value="停用"-->
+                    </div>
+                    <div class="check-box">
+                        <input type="radio" id="IsSiren" name="IsSiren" v-model="test.IsSiren" value="3" />
+                        报警
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                        <input class="btn btn-primary radius" v-on:click="update(test.ID,test.Device,test.UnitNumber,test.UnitName,test.HostName,test.AttachName,test.IsSiren)" type="button" value="提交">
+                    </div>
+
+                </div>
+            </form>
+        </article>
+    </div>
+
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
+    <!--/_footer /作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+    <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
+    <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+
+    <script src="../../Scripts/GetParse.js"></script>
+
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
+    <script src="../../Scripts/axios.js"></script>
+
+    <script type="text/javascript">
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                mainId: getPar("id"),
+                apiUrl: 'http://localhost:8066/Unit/',
+                testdata: {}
+            },
+            ready: function () {
+                this.GetUnit()
+            },
+            methods: {
+                GetUnit: function () {
+                    this.$http.get(this.apiUrl + 'GetUnitByID?id=' + this.mainId, function (data) {
+                        this.$set('test', data);
+                    })
+                },
+                update: function (ID, Device, UnitNumber, UnitName, HostName, AttachName, IsSiren) {
+
+                    var params = new URLSearchParams();
+                    params.append('ID', ID);
+                    params.append('Device', Device);
+                    params.append('UnitNumber', UnitNumber);
+                    params.append('UnitName', UnitName);
+                    params.append('HostName', HostName);
+                    params.append('AttachName', AttachName);
+                    params.append('IsSiren', IsSiren);
+                    axios.post('http://localhost:8066/Unit/UpdateUnit', params).then(
+                        (response) => {
+                            console.log(response.data);
+                            if (response.data > 0) {
+                                alert("修改成功!!!");
+
+                            }
+                            //console.info(this.list);
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+
+            }
+
+        });
+
+            //var id = getPar("id");
+            //$(function () {
+            //    alert(id);
+            //    //反填
+            //    $.ajax({
+            //        url: 'http://localhost:8066/Permission/GetByID?id=' + id,
+            //        async: false,
+            //        type: "get",
+            //        //  data: { id: getUrlParam("id")},
+            //        success: function (data) {
+            //            $("input[name=ID]").val(data[0].ID);
+            //            $("input[name=PermissionName]").val(data[0].PermissionName);
+
+            //            $("input[name=PermissionUrl]").val(data[0].PermissionUrl);
+            //            $("input[name=IsUser][value='" + data[0].IsUser + "']").attr("checked", "checked")
+
+
+            //        }
+            //    })
+
+            //})
+
+            //var vm = new Vue({
+            //    el: "#app",
+
+            //    methods: {
+            //        //ID, PermissionName, PermissionUrl, Isuser
+            //        update: function (ID, PermissionName, PermissionUrl, Isuser) {
+
+            //            var params = new URLSearchParams();
+            //            //params.append('ID', ID);
+            //            //params.append('PermissionName', PermissionName);
+            //            //params.append('PermissionUrl', PermissionUrl);
+            //            //params.append('Isuser', Isuser);
+
+            //            axios.post('http://localhost:8066/Permission/UpdatePermission', params).then(
+            //                (response) => {
+            //                    console.log(response.data);
+            //                    if (response.data > 0) {
+            //                        alert("修改成功!!!");
+
+            //                    }
+            //                    //console.info(this.list);
+            //                },
+            //                (response) => {
+            //                    alert(response.status);
+            //                }
+            //            ).catch(function (response) {
+            //                alert(response);
+            //            });
+            //        },
+            //    }
+
+
+
+            //})
+
+
+
+
+
+                            //function update() {
+                            //    $.ajax({
+                            //        url: "http://localhost:24380/Permission/updatePermission",
+                            //        type: "post",
+                            //        data: $("#form").serialize(),
+                            //        //data: { ID: $("input[name=ID]").val(), Name: $("#Name").val(), Discription: $("#Discription").val(), URL: $("#url").val(), IsUser: $("IsUser").val() },
+                            //        success: function (data) {
+
+                            //            if (data > 0) {
+                            //                alert("修改成功");
+
+
+                            //            }
+                            //            else {
+                            //                alert("修改失败")
+                            //            }
+                            //        }
+                            //    })
+                            //}
+
+
+    </script>
+    <!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>
+

@@ -17,6 +17,7 @@ namespace SmartFactory.Api.Controllers
     {
 
         public IPumpServices pumpServices { get; set; }
+        public IActivityServices activityServices { get; set; }
 
         /// <summary>
         /// 添加机泵
@@ -29,19 +30,8 @@ namespace SmartFactory.Api.Controllers
         {
             pump.StartDate = DateTime.Now;
             pump.DateChanged = DateTime.Now;
-            pump.IsSiren = 0;
-            switch (pump.Device)
-            {
-                case "C001":
-                    {
-                        pump.HostName = "Q1";
-                        pump.AttachName = "Q2";
-                    };break;
-                default: {
-                        pump.HostName = "Y1";
-                        pump.AttachName = "Y2";
-                    };break;
-            }
+            pump.IsSiren =FactoryEnum.Normal;
+         
             int i= pumpServices.AddPump(pump);
             return i;
         }
@@ -110,6 +100,28 @@ namespace SmartFactory.Api.Controllers
             var i = pumpServices.UpdatePump(pump);
 
             return i;
+        }
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="IsSiren"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("UpdateSiren")]
+        public int UpdateSiren(int ID, int IsSiren,int judgment)
+        {
+            if (IsSiren == 3)
+            {
+                var i = pumpServices.UpdateSiren(ID, IsSiren);
+                if (i > 0)
+                {
+                    activityServices.AddActivity(judgment);
+                }
+                return i;
+            }
+            return 0;
         }
     }
 }

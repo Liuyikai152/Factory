@@ -16,7 +16,7 @@ namespace SmartFactory.Api.Controllers
     {
         
         public IHostServices hostServices { get; set; }
-
+        public const int PAGESIZE = 3;
         /// <summary>
         /// 根据条件查询机泵所有主机/附机
         /// </summary>
@@ -99,9 +99,27 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("GetHosts")]
         [HttpGet]
-        public List<Host> GetHosts()
+        public PageBox GetHosts(int page=1)
         {
             var hostList = hostServices.GetHosts();
+            PageBox pageBox = new PageBox();
+            pageBox.PageIndex = page;
+            pageBox.PageSize = PAGESIZE;
+            pageBox.PageCount = hostList.Count / PAGESIZE + (hostList.Count % PAGESIZE == 0 ? 0 : 1);
+            pageBox.Data = hostList.Skip((page - 1) * PAGESIZE).Take(PAGESIZE);         
+            return pageBox;
+        }
+
+        /// <summary>
+        /// 根据条件查询主机或附机
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetHostType")]
+        [HttpGet]
+        public List<Host> GetHostType(string hostType)
+        {
+
+            var hostList =hostServices.GetHostType(hostType);
             return hostList;
         }
     }

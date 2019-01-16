@@ -26,6 +26,23 @@
     <title>栏目管理</title>
 </head>
 <body>
+    <style>
+        .messageBox {
+            height: 52px;
+            padding: 35px 53px 0 78px;
+            line-height: 52px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            border: 5px solid #ddd;
+            border-top: 0;
+            color: #444;
+            font-size: 18px;
+            z-index: 9999;
+        }
+    </style>
     <!--_header 作为公共模版分离出去-->
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
@@ -124,6 +141,7 @@
                 <span class="l">
                     <a class="btn btn-primary radius" href="configuration-add.html"><i class="Hui-iconfont">&#xe600;</i> 添加配置</a>
                 </span>
+                <div class="messageBox"></div>
                 <table class="table table-border table-bordered table-hover table-bg table-sort">
                     <thead>
                         <tr class="text-c">
@@ -149,7 +167,8 @@
                             <td>{{item.State}}</td>
                             <td>{{item.TureState}}</td>
                             <td>
-                                <button type="button" class="btn btn-success"><i class="Hui-iconfont"></i>修改</button>
+                                <a href='#' onclick='UpdateState({{item.ID}},{{item.TureStateID==1?2:3}})'>通过</a>
+                                <a href='#' onclick='UpdateNoState({{item.ID}},{{item.TureStateID==1?3:2}})'>驳回</a>
                             </td>
                         </tr>
                     </tbody>
@@ -163,44 +182,38 @@
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
 
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
-    <script src="../../Scripts/vue.js"></script>
-    <script src="../../Scripts/axios.js"></script>
+    <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="lib/datatables/1.10.0/jquery.datatables.min.js"></script>
+    <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+    <script src="../../Scripts/vue.min.js"></script>
+    <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
     <script type="text/javascript">
-        $(function () {
-            localStorage.uname
+        var demo = new Vue({
+            el: '#app',
+            data: {
+                apiUrl: 'http://localhost:8066/Configuration/GetConfiguration',
+                testdata: {},
+                state: "通过",
+            },
+            ready: function () {
+                this.getTests()
+            },
+            methods: {
 
-            var demo = new Vue({
-                el: '#app',
-                data: {
-                    apiUrl: 'http://localhost:8066/Configuration/GetConfiguration',
-                    testdata: {},
-                    state: "通过",
+                getTests: function () {
+                    this.$http.get('http://localhost:8066/Activity/GetActivities?name=' + localStorage.uname + '&&state=' + this.state, function (data) {
+                        this.$set('list', data);
+                    })
                 },
-                ready: function () {
-                    this.getTests()
-                },
-                methods: {
-
-                    getTests: function () {
-                        this.$http.get('http://localhost:8066/Activity/GetActivities?name=' + localStorage.uname + '&&state=' + this.state, function (data) {
-                            this.$set('list', data);
-                        })
-                    },
-
-
-
-
-
-
-                }
-            })
-        });
+            }
+        })
         $(function () {
             $("#uname").text(localStorage.uname);
             $.ajax({
@@ -221,9 +234,54 @@
                     })
                 }
             })
+
+
         })
+
+        function UpdateState(ID, trueState) {
+            if (confirm("是否要继续进行审核？")) {
+                $.ajax({
+                    url: "http://localhost:8066/Activity/UpdateState",
+                    data: {
+                        ID: ID,
+                        trueState: trueState,
+                        state: 2,  
+                    },
+                    type: "get",
+                    success: function (data) {
+                        if (data > 0) {
+                            $(".messageBox").removeClass("messageError").text("审批完成，请刷新").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                        }
+                        else {
+                            alert("审批失败")
+                        }
+                    }
+                })
+            }
+        }
+
+        function UpdateNoState(ID, trueState) {
+            if (confirm("是否要继续进行审核？")) {
+                $.ajax({
+                    url: "http://localhost:8066/Activity/UpdateNoState",
+                    data: {
+                        ID: ID,
+                        trueState: trueState,
+                    },
+                    type: "get",
+                    success: function (data) {
+                        if (data > 0) {
+                            $(".messageBox").removeClass("messageError").text("审批完成，请刷新").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                        }
+                        else {
+                            alert("审批失败")
+                        }
+                    }
+                })
+            }
+        }
     </script>
-    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
