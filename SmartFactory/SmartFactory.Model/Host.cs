@@ -25,12 +25,12 @@ namespace SmartFactory.Model
         public int ID { get; set; }
 
         /// <summary>
-        /// 编号
+        /// 主机/附机编号
         /// <summary>
         public string Number { get; set; }
 
         /// <summary>
-        /// 主机/附机编号
+        /// 机组编号
         /// <summary>
         public string UnitNumber { get; set; }
 

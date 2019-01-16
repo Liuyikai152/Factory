@@ -76,6 +76,8 @@ namespace SmartFactory.Api.Controllers
         [HttpPost]
         public int UpdateHost(Host host)
         {
+            host.DateChanged = DateTime.Now;
+            host.StartDate = DateTime.Now;
             var i = hostServices.UpdateHost(host);
             return i;
         }
