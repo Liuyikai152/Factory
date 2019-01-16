@@ -38,6 +38,17 @@ namespace SmartFactory.Services
         }
 
         /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public int UpdateHost(Host host)
+        {
+            factoryDBcontext.Entry(host).State = System.Data.Entity.EntityState.Modified;
+            return factoryDBcontext.SaveChanges();
+        }
+
+        /// <summary>
         /// 获取单个id
         /// </summary>
         /// <param name="id"></param>
@@ -48,27 +59,27 @@ namespace SmartFactory.Services
             return i;
         }
 
-       /// <summary>
-       /// 查询所有主机/附机
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// 查询所有主机/附机
+        /// </summary>
+        /// <returns></returns>
+        public List<Host> GetHosts()
+        {
+
+            var hostList = factoryDBcontext.Database.SqlQuery<Host>("call Pro_Gethost").ToList();
+            return hostList;
+        }
+
+        /// <summary>
+        /// 根据条件查询所有主机/附机
+        /// </summary>
+        /// <returns></returns>
         public List<Host> GetHost(string PNumber)
         {
            
             var hostList = factoryDBcontext.Database.SqlQuery<Host>("call Pro_GetHostList(@PNumber)",new MySqlParameter("@PNumber", PNumber)).ToList();
             return hostList;
-        }
-
-        /// <summary>
-        /// 修改
-        /// </summary>
-        /// <param name="host"></param>
-        /// <returns></returns>
-        public int UpdateHost(Host host)
-        {
-            factoryDBcontext.Entry(host).State = System.Data.Entity.EntityState.Modified;
-            return factoryDBcontext.SaveChanges();
-        }
+        }     
 
         /// <summary>
         /// 显示机组主机/附机列表

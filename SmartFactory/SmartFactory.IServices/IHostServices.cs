@@ -48,5 +48,11 @@ namespace SmartFactory.IServices
         /// </summary>
         /// <returns></returns>
         List<Host> GetUnitHost(string uNumber);
+
+        /// <summary>
+        /// 显示主机/附机
+        /// </summary>
+        /// <returns></returns>
+        List<Host> GetHosts();
     }
 }
