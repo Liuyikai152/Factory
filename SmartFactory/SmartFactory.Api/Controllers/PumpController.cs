@@ -29,19 +29,19 @@ namespace SmartFactory.Api.Controllers
         {
             pump.StartDate = DateTime.Now;
             pump.DateChanged = DateTime.Now;
-            pump.IsSiren = 0;
-            switch (pump.Device)
-            {
-                case "C001":
-                    {
-                        pump.HostName = "Q1";
-                        pump.AttachName = "Q2";
-                    };break;
-                default: {
-                        pump.HostName = "Y1";
-                        pump.AttachName = "Y2";
-                    };break;
-            }
+            pump.IsSiren =FactoryEnum.Caution;
+            //switch (pump.Device)
+            //{
+            //    case "C001":
+            //        {
+            //            pump.HostName = "Q1";
+            //            pump.AttachName = "Q2";
+            //        };break;
+            //    default: {
+            //            pump.HostName = "Y1";
+            //            pump.AttachName = "Y2";
+            //        };break;
+            //}
             int i= pumpServices.AddPump(pump);
             return i;
         }
