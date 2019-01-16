@@ -285,6 +285,7 @@
                     data: new FormData($("#formData")[0]),
                     type: 'POST',
                     success: function (data) {
+                        $("#ChartImg").val(data);
                         $("#fileImg").attr("src", "http://localhost:8066/" + data);
                     }
 
@@ -298,6 +299,8 @@
                 $(".messageBox").removeClass("messageError").text("所属装置不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                 return;
             }
+            if ($("[name=UnitNumber]").val() == "") {
+                $(".messageBox").removeClass("messageError").text("机泵编号不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                 return;
             }
 
