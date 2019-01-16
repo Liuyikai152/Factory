@@ -101,11 +101,20 @@
                             <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
                         </div>
                     </div>
+                    <div class="row cl" >
+                        <label>主机名称:</label>
+                        <select name="HostName" >
+                            <option v-for="host in main" value="{{host.UnitNumber}}">{{host.FacilityName}}</option>
+                        </select>
+                        <label>附机名称：</label>
+                        <select name="ArrachName">
+                            <option v-for="host in attach" value="{{host.UnitNumber}}">{{host.FacilityName}}</option>
+                        </select>
+                    </div>
                     <div class="row cl">
                         <label>所属装置：</label>
                         <select name="Device">
                             <option value="">==请选择==</option>
-
                         </select>
 
                         <label>机泵编号：</label>
@@ -331,9 +340,14 @@
     </script>
     <script>
         var vm = new Vue({
-            el: "#app",
+            el: "#pumpAdd",
             data: {
-            
+                page:1,
+                Cur:1,
+                page2:1,
+                Cur2:1,
+                page3:1,
+                Cur3:1
             },
             ready: function () {
                 this.getTests();
@@ -341,17 +355,27 @@
             methods: {
                 getTests: function () {
                     //主机/附机
-                    this.$http.get('http://localhost:8066/Host/GetHosts', function (data) {
+                    this.$http.get('http://localhost:8066/Host/GetHosts?hostType=' + this.page, function (data) {
                         this.$set('hosts', data);
                     })
 
+                    //主机
+                    this.$http.get('http://localhost:8066/Host/GetHostType?hostType=主机', function (data) {
+                        this.$set('main', data);
+                    })
+
+                    //附机
+                    this.$http.get('http://localhost:8066/Host/GetHostType?hostType=附机', function (data) {
+                        this.$set('attach', data);
+                    })
+
                     //子系统
-                    this.$http.get('http://localhost:8066/SubFamily/GetSubfamiliy', function (data) {
+                    this.$http.get('http://localhost:8066/SubFamily/GetSubfamiliy?page=' + this.page2, function (data) {
                         this.$set('subfamilys', data);
                     })
 
                     //测点
-                    this.$http.get('http://localhost:8066/Station/GetStation', function (data) {
+                    this.$http.get('http://localhost:8066/Station/GetStation?page=' + this.page3, function (data) {
                         this.$set('stations', data);
                     })
                 },

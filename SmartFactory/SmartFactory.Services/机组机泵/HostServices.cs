@@ -92,5 +92,16 @@ namespace SmartFactory.Services
             var hostList = factoryDBcontext.Database.SqlQuery<Host>("CALL Pro_GetUnitHost(@uNumber)", new MySqlParameter("@uNumber", uNumber)).ToList();
             return hostList;
         }
+
+        /// <summary>
+        /// 根据条件查询主机或附机
+        /// </summary>
+        /// <returns></returns>
+        public List<Host> GetHostType(string hostType)
+        {
+
+            var hostList = factoryDBcontext.Database.SqlQuery<Host>("call Pro_HostType(@hosttype)", new MySqlParameter("@hosttype", hostType)).ToList();
+            return hostList;
+        }
     }
 }
