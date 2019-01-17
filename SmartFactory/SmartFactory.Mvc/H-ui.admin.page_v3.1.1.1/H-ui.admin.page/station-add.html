@@ -133,7 +133,7 @@
             methods:
             {
                 //保存
-                add: function (ID, UnitNumber, StationName, StationNumber, Measurement, DecimalPlace, ADMode, BitNumber) {
+                add: function (ID, UnitNumber, StationName, StationNumber, Measurement, DecimalPlace, ADMode, BitNumber, Device, FacilityName) {
                     var params = new URLSearchParams();
                     params.append('ID', ID);
                     params.append('UnitNumber', UnitNumber);
@@ -143,6 +143,8 @@
                     params.append('DecimalPlace', DecimalPlace);
                     params.append('ADMode', ADMode);
                     params.append('BitNumber', BitNumber);
+                    params.append('Device', Device);
+                    params.append('FacilityName', FacilityName);
                     axios.post('http://localhost:8066/Station/AddStation', params).then(
                         (response) => {
                             alert(response)
