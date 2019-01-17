@@ -9,8 +9,10 @@ using SmartFactory.IServices;
 using SmartFactory.Model;
 using SmartFactory.Services;
 
+
 namespace SmartFactory.Api.Controllers
 {
+ 
     [RoutePrefix("Users")]
     public class UsersController : ApiController
     {
@@ -50,6 +52,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("Login")]
         [HttpGet]
+      
         public int Login(string userName, string passWord)
         {
             int result = usersServices.Login(userName, passWord);
@@ -125,7 +128,7 @@ namespace SmartFactory.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("GetPermissiomUrl")]
-        [HttpGet]
+        [HttpGet]      
         public List<UserInfo> GetPermissiomUrl(int id)
         {
             var result = usersServices.GetPermissiomUrl(id);

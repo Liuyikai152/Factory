@@ -1,5 +1,6 @@
 ﻿using ServiceStack.Redis;
 using ServiceStack.Text;
+using SmartFactory.Cache;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,7 @@ using System.Web;
 /// <summary>
 /// Redis缓存操作类
 /// </summary>
-namespace SmartFactory.Cache
-{
+
     public class RedisHelper
     {
         /// <summary>
@@ -343,4 +343,4 @@ namespace SmartFactory.Cache
 
         }
     }
-}
+

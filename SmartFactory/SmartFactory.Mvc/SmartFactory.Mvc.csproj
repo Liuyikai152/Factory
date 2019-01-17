@@ -1260,7 +1260,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
-    <Compile Include="Controllers\CeshiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1305,7 +1304,6 @@
     <Content Include="Scripts\axios.min.map" />
     <Content Include="Scripts\axios.map" />
     <Content Include="Views\Default\Index.cshtml" />
-    <Content Include="Views\Ceshi\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

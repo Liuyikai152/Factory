@@ -158,6 +158,7 @@
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\PumpController.cs" />
+    <Compile Include="Controllers\RequestAuthorize.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\StationController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
@@ -176,6 +177,7 @@
     <Content Include="Content\设备位置.xlsx" />
     <Content Include="Content\维修.xlsx" />
     <Content Include="Content\31.xlsx" />
+    <Content Include="AppSettings.config" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -189,6 +191,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SmartFactory.Cache\SmartFactory.Cache.csproj">
+      <Project>{61de7121-3512-4007-aa9a-c44b47c8f63f}</Project>
+      <Name>SmartFactory.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SmartFactory.Common\SmartFactory.Common.csproj">
       <Project>{b9006487-e699-45ed-9051-95b04eb8f80b}</Project>
       <Name>SmartFactory.Common</Name>
