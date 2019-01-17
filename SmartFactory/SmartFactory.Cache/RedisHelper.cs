@@ -4,13 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Newtonsoft.Json;
-using CommonCache;
 
 /// <summary>
 /// Redis缓存操作类
 /// </summary>
-public class RedisHelper
+namespace SmartFactory.Cache
+{
+    public class RedisHelper
     {
         /// <summary>
         /// 判断某个数据是否已经被缓存
@@ -64,10 +64,10 @@ public class RedisHelper
         {
             var result = new RedisOperatorBase().Set<T>(key, t, tmpExpire);
             return result;
-            }
+        }
 
-            /// <summary>
-            /// 存储数据到hash表
+        /// <summary>
+        /// 存储数据到hash表
         /// </summary>
         public static bool Set<T>(string hashId, string key, T t, DateTime tmpExpire)
         {
@@ -343,4 +343,4 @@ public class RedisHelper
 
         }
     }
-
+}

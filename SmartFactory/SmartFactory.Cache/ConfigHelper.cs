@@ -5,7 +5,7 @@ using System.Web;
 using System.Configuration;
 using System.IO;
 
-namespace CommonCache
+namespace SmartFactory.Cache
 {
     /// <summary>
     /// Description: 获取配置文件信息操作类
