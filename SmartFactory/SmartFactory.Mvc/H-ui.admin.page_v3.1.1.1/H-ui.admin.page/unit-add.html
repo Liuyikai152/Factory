@@ -192,7 +192,7 @@
                     <div>
                         <h4>主机/附机列表</h4>
                         <div>
-                            <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                            <span class="l">  <a href="#" onclick="addhost()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
                         </div>
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
                             <thead>
@@ -237,7 +237,7 @@
 
                     <div style="margin-top:80px;">
                         <h4>子系统列表</h4>
-                        <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        <span class="l">  <a href="#" onclick="addsubfamily()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
                             <tr>
                             <tr class="text-c">
@@ -269,7 +269,7 @@
 
                     <div style="margin-top:80px;">
                         <h4>测点列表</h4>
-                        <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        <span class="l">  <a href="#" onclick="addstation()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
                             <thead>
                                 <tr class="text-c">
@@ -424,15 +424,27 @@
         function unit_edit(id) {
             layer_show("编辑主机/附机", "host-update.html?id=" + id, 700, 700);
         }
-
+         //修改子系统
         function update(id) {
             layer_show("编辑子系统", "subfamily-update.html?id=" + id, 700, 700);
         }
-
+         //修改测点
         function updatesta(id) {
             layer_show("编辑测点", "station-update.html?id=" + id, 700, 700);
         }
 
+        //添加主机附机
+        function addhost() {
+            layer_show("添加主机附机", "host-add.html" , 700, 700);
+        }
+        //添加子系统
+        function addsubfamily() {
+            layer_show("添加主机附机", "subfamily-add.html", 700, 700);
+        }
+        //添加测点
+        function addstation() {
+            layer_show("添加主机附机", "station-add.html", 700, 700);
+        }
     </script>
     <script>
         var vm = new Vue({

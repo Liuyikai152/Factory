@@ -18,13 +18,12 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script><![endif]-->
+    <!--/meta 作为公共模版分离出去-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-    <script src="../../Scripts/axios.js"></script>
-    <script src="../../Scripts/vue.js"></script>
-
-
-    <title>添加管理员 - 管理员管理 - H-ui.admin v3.0</title>
+    <title>机组修改</title>
     <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
     <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
@@ -32,47 +31,70 @@
     <div class="Hui-article" id="app">
         <article class="cl pd-20">
             <form action="" method="post" class="form form-horizontal" id="form">
+                <!--<input type="hidden" name="ID" />-->
+                <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
+                <input type="hidden" name="ID" v-model="test[0].ID" />
+
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>子系统编号：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="Name" v-model="PermissionName">
+                        <input type="text" class="input-text" placeholder="" id="UnitNumber" name="UnitNumber" v-model="test.UnitNumber">
                     </div>
                 </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3">权限URL：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>子系统名称：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="url" v-model="PermissionUrl">
+                        <input type="text" class="input-text" placeholder="" id="Name" name="Name" v-model="test.Name">
                     </div>
                 </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3">父级ID：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>功能描述：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" value="" placeholder="" id="Pid" v-model="Pid">
+                        <input type="text" class="input-text" placeholder="" id="Describe" name="Describe" v-model="test.Describe">
                     </div>
                 </div>
 
+
+
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="hidden" class="input-text" placeholder="" id="ChartImg" name="ChartImg" v-model="test.ChartImg">
+                </div>
+
+
+
+
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3">是否启用：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>系统编号：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="SubfamilyNumber" name="SubfamilyNumber" v-model="test.SubfamilyNumber">
+                    </div>
+                </div>
+
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">机组or机泵：</label>
                     <div class="check-box">
-                        <input type="radio" id="IsUser" v-model="IsUser" value="启用" name="is" checked="checked" />
-                        启用
+                        <input type="radio" id="IsSiren" name="UnitOrPump" v-model="test.UnitOrPump" value="0" />
+                        机泵
+                        <!--value="启用"value="停用"-->
                     </div>
                     <div class="check-box">
-                        <input type="radio" id="IsUser" v-model="IsUser" value="停用" name="is" />
-                        停用
+                        <input type="radio" id="IsSiren" name="UnitOrPump" v-model="test.UnitOrPump" value="1" />
+                        机组
                     </div>
                 </div>
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                        <input class="btn btn-primary radius" v-on:click="add(PermissionName,PermissionUrl,Pid,IsUser)" type="button" value="提交">
+                        <input class="btn btn-primary radius" v-on:click="add(test.ID,test.UnitNumber,test.Name,test.Describe,test.ChartImg,test.SubfamilyNumber,test.UnitOrPump)" type="button" value="提交">
                     </div>
 
                 </div>
             </form>
         </article>
     </div>
+
     <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
@@ -85,9 +107,14 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 
-    <script src="../../Scripts/vue.js"></script>
+    <script src="../../Scripts/GetParse.js"></script>
+
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
     <script src="../../Scripts/axios.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
     <script type="text/javascript">
 
         var vm = new Vue({
@@ -95,13 +122,16 @@
             methods:
             {
                 //保存
-                add: function (PermissionName, PermissionUrl, Pid, IsUser) {
+                add: function (ID, UnitNumber, Name, Describe, ChartImg, SubfamilyNumber, UnitOrPump) {
                     var params = new URLSearchParams();
-                    params.append('PermissionName', PermissionName);
-                    params.append('PermissionUrl', PermissionUrl);
-                    params.append('Pid', Pid);
-                    params.append('IsUser', IsUser);
-                    axios.post('http://localhost:8066/Permission/AddPermission', params).then(
+                    params.append('ID', ID);
+                    params.append('UnitNumber', UnitNumber);
+                    params.append('Name', Name);
+                    params.append('Describe', Describe);
+                    params.append('ChartImg', ChartImg);
+                    params.append('SubfamilyNumber', SubfamilyNumber);
+                    params.append('UnitOrPump', UnitOrPump);
+                    axios.post('http://localhost:8066/SubFamily/AddSubFamily', params).then(
                         (response) => {
                             alert(response)
                             alert("添加成功")
@@ -113,18 +143,13 @@
                         alert(response);
                     });
                 },
-
-
             },
             computed: {
             }
-
-
         });
 
-
-               
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
+
