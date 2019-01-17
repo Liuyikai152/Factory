@@ -73,20 +73,32 @@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>采集方式：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="ADMode" name="ADMode" v-model="test.ADMode">
+                        <select class="input-text" v-model="test.ADMode">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option value="自动">自动</option>
+                            <option value="手动">手动</option>
+                            <option value="半自动">半自动</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备位号：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="BitNumber" name="BitNumber" v-model="test.BitNumber">
+                     <div class="formControls col-xs-8 col-sm-9">
+                        <select class="input-text" v-model="test.BitNumber">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="host in BitNumbers" v-bind:value="host.ID">{{host.BitNumbers}}</option>
+                        </select>
                     </div>
                 </div>
+
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>所属装置：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="Device" name="Device" v-model="test.Device">
+                        <select class="input-text" v-model="test.Device">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="host in Device" v-model="{{host.AreaNumber}}">{{host.AreaName}}</option>
+                        </select>
                     </div>
                 </div>
 
@@ -130,8 +142,24 @@
 
         var vm = new Vue({
             el: "#app",
+            ready: function () {
+                this.getBitNumbers();
+                this.GetFacilityArea();
+            },
             methods:
             {
+                getBitNumbers: function () {
+
+                    this.$http.get('http://localhost:8066/BitNumber/GetFacilityType', function (data) {
+                        this.$set('BitNumbers', data);
+                    })
+                },
+                GetFacilityArea: function () {
+                    //所属装置
+                    this.$http.get('http://localhost:8066/FacilityArea/GetFactoryAreas', function (data) {
+                        this.$set('Device', data);
+                    })
+                },
                 //保存
                 add: function (ID, UnitNumber, StationName, StationNumber, Measurement, DecimalPlace, ADMode, BitNumber, Device, FacilityName) {
                     var params = new URLSearchParams();
