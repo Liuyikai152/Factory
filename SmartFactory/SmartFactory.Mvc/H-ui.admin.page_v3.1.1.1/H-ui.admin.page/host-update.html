@@ -105,14 +105,14 @@
                 <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
                 <input type="hidden" name="ID" v-model="test[0].ID" />
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主机/附机编号：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机组/机泵编号：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <input type="text" class="input-text" placeholder="" id="Number" name="Number" v-model="test.Number">
                     </div>
                 </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机组/机泵编号：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主机/附机编号：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <input type="text" class="input-text" placeholder="" id="UnitNumber" name="UnitNumber" v-model="test.UnitNumber">
                     </div>
@@ -121,7 +121,7 @@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主机/附机类型：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <!--<input type="text" class="input-text" placeholder="" id="Type" name="Type" v-model="test.Type">-->
+                     
                         <select class="input-text" v-model="test.Type">
                             <option value="主机">主机</option>
                             <option value="附机">附机</option>
@@ -138,8 +138,10 @@
 
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备位号：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="BitNumber" name="BitNumber" v-model="test.BitNumber">
+                    <div class="formControls col-xs-8 col-sm-9">                     
+                        <select class="input-text" v-model="test.BitNumber">
+                            <option v-for="host in FacilityName" value="{{host.BitNumbers}}">{{host.BitNumbers}}</option>
+                        </select>
                     </div>
                 </div>
 
@@ -232,12 +234,19 @@
                 testdata: {}
             },
             ready: function () {
-                this.GetUnit()
+                this.GetUnit();
+                this.GetFacilityName();
             },
             methods: {
                 GetUnit: function () {
                     this.$http.get(this.apiUrl + 'GetByID?id=' + this.mainId, function (data) {
                         this.$set('test', data);
+                    })
+                },
+                GetFacilityName: function () {
+                    //查询设备位号
+                    this.$http.get('http://localhost:8066/BitNumber/GetFacilityType', function (data) {
+                        this.$set('FacilityName', data);
                     })
                 },
                 update: function (ID, Number, UnitNumber, Type, FacilityName, BitNumber, Power, RotateSpeed, Flow, Pressure, Temperature, UnitOrPump) {

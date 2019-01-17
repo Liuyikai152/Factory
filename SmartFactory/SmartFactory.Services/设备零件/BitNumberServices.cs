@@ -33,7 +33,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public List<BitNumber> GetFacilityType()
         {
-            var getBitNumber = from bitnumber in factoryDBcontext.BitNumber.ToList() select bitnumber;
+            var getBitNumber = factoryDBcontext.BitNumber.ToList() ;
             return getBitNumber.ToList();
         }
     }

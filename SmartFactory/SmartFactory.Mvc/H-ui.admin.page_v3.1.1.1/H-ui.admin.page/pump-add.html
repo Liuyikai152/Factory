@@ -226,7 +226,7 @@
                                     <th>{{host.Flow}}</th>
                                     <th>{{host.Pressure}}</th>
                                     <th>{{host.Temperature}}</th>
-                                    <th><a href="#" onclick="unit_edit({{host.ID}})">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectHost(host.ID)">删除</a></th>
+                                    <th><a href="javascript:void(0);" onclick="unit_edit({{host.ID}})">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectHost(host.ID)">删除</a></th>
                                 </tr>
 </table>
                         <div class="page-bar">
@@ -256,7 +256,7 @@
                             <tr v-for="subfamily in subfamilys" class="text-c">
                                 <th>{{subfamily.Name}}</th>
                                 <th>{{subfamily.Describe}}</th>
-                                <th><a href="#" onclick="update({{host.ID}}">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectSubfamily(subfamily.ID)">删除</a></th>
+                                <th><a href="javascript:void(0);" onclick="update({{subfamily.ID}})" >编辑</a> | <a href="javascript:void(0);" v-on:click="DelectSubfamily(subfamily.ID)">删除</a></th>
                             </tr>
                         </table>
                         <div class="page-bar">
@@ -294,7 +294,7 @@
                                     <th>{{station.DecimalPlace}}</th>
                                     <th>{{station.ADMode}}</th>
                                     <th>{{station.BitNumber}}</th>
-                                    <th><a href="#" onclick="updatesta({{station.ID}})">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectStation(station.ID)">删除</a></th>
+                                    <th><a href="javascript:void(0);" onclick="updatesta({{station.ID}})">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectStation(station.ID)">删除</a></th>
                                 </tr>
                         </table>
                         <div class="page-bar">
