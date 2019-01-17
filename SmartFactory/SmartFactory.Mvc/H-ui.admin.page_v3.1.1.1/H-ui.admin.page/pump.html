@@ -194,7 +194,7 @@
                             <th>{{test.IsSiren==3?"警告":"正常"}}</th>
                             <th><a href='#' onclick='UpdateSiren({{test.ID}},{{test.IsSiren==3?4:3}})'>报警</a></th>
                             <th><a href='pumpById.html?id={{test.ID}}'>查看</a></th>
-                            <th><a href='pump-update.html?id={{test.ID}}'>编辑</a></th>
+                            <th><a href='#'onclick="pump_edit({{test.ID}})" >编辑</a></th>
                             <th><a herf='#' v-on:click="DeleteUnitById(test.ID)">删除</a> </th>
                         </tr>
 
@@ -236,6 +236,27 @@
 
     <script type="text/javascript">
         $(function () {
+            $("#uname").text(localStorage.uname);
+            //左侧栏
+            $.ajax({
+                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
+                async: false,
+                type: 'get',
+                //data: { id:  },
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        if (data.Pid == 0) {
+                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
+                        }
+                    })
+                    $(data).each(function (index, data) {
+                        if (data.Pid != 0) {
+                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
+                        }
+                    })
+                }
+            })
+            //显示所属装置
             $.ajax({
                 url: 'http://localhost:8066/FacilityArea/GetFactoryAreas',
                 type: 'get',
@@ -283,14 +304,14 @@
             },
             methods: {
                 getTests: function () {
-                   
+                   ///机泵显示
                     this.$http.get(this.apiUrl + 'GetPumps', { PageIndex: this.cur, AreaNumber: this.AreaNumber, PumpNumber: this.PumpNumber }, function (data) {                      
                         this.cur = data.PageIndex;
                         this.all = data.PageCount;
                         this.$set('tests', data.Data);
                     })
                 },
-
+                //根据删除
                 DeleteUnitById: function (id) {
 
                     axios.get('http://localhost:8066/Pump/DeletePump?id=' + id).then(
@@ -352,28 +373,6 @@
             }
         })
 
-        $(function () {
-            $("#uname").text(localStorage.uname);
-            $.ajax({
-                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
-                async: false,
-                type: 'get',
-                //data: { id:  },
-                success: function (data) {
-                    $(data).each(function (index, data) {
-                        if (data.Pid == 0) {
-                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
-                        }
-                    })
-                    $(data).each(function (index, data) {
-                        if (data.Pid != 0) {
-                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
-                        }
-                    })
-                }
-            })
-        })
-
         //修改报警状态
         function UpdateSiren(ID, IsSiren) {
             if (confirm("是否要继续进行审核？")) {
@@ -406,7 +405,9 @@
      w		弹出层宽度（缺省调默认值）
      h		弹出层高度（缺省调默认值）
  */
-      
+        function pump_edit(id) {
+            layer_show("编辑机组", "pump-update.html?id=" + id, 700, 700);
+        }
    
     </script>
 
