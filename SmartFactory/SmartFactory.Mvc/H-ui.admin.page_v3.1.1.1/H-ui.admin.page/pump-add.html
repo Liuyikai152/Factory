@@ -50,6 +50,7 @@
         .messageError {
             background-position: -441px -673px;
         }
+
         .page-bar {
             margin: 40px;
         }
@@ -122,7 +123,7 @@
                             </ul>
                         </li>
 
-                
+
                     </ul>
                 </nav>
             </div>
@@ -151,9 +152,9 @@
                             <input class="btn btn-primary radius" onclick="add()" type="button" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
                         </div>
                     </div>
-                    <div class="row cl" >
+                    <div class="row cl">
                         <label>主机名称:</label>
-                        <select name="HostName" >
+                        <select name="HostName">
                             <option v-for="host in main" value="{{host.UnitNumber}}">{{host.FacilityName}}</option>
                         </select>
                         <label>附机名称：</label>
@@ -196,14 +197,12 @@
                     </div>
 
                 </form>
-        
+
                 <div id="app" style="float:none;margin-top:70px;margin-bottom:100px;">
-                  
+
                     <div>
                         <h4>主机/附机列表</h4>
-                        <div>
-                            <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
-                        </div>
+                        <span class="l">  <a href="#" onclick="addhost()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
                             <thead>
                                 <tr class="text-c">
@@ -228,7 +227,8 @@
                                     <th>{{host.Temperature}}</th>
                                     <th><a href="javascript:void(0);" onclick="unit_edit({{host.ID}})">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectHost(host.ID)">删除</a></th>
                                 </tr>
-</table>
+
+                        </table>
                         <div class="page-bar">
                             <ul>
                                 <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
@@ -242,10 +242,10 @@
                             </ul>
                         </div>
                     </div>
-                 
+
                     <div style="margin-top:80px;">
                         <h4>子系统列表</h4>
-                        <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        <span class="l">  <a href="#" onclick="addsubfamily()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
                             <tr>
                             <tr class="text-c">
@@ -256,7 +256,7 @@
                             <tr v-for="subfamily in subfamilys" class="text-c">
                                 <th>{{subfamily.Name}}</th>
                                 <th>{{subfamily.Describe}}</th>
-                                <th><a href="javascript:void(0);" onclick="update({{subfamily.ID}})" >编辑</a> | <a href="javascript:void(0);" v-on:click="DelectSubfamily(subfamily.ID)">删除</a></th>
+                                <th><a href="javascript:void(0);" onclick="update({{subfamily.ID}})">编辑</a> | <a href="javascript:void(0);" v-on:click="DelectSubfamily(subfamily.ID)">删除</a></th>
                             </tr>
                         </table>
                         <div class="page-bar">
@@ -272,10 +272,10 @@
                             </ul>
                         </div>
                     </div>
-                   
+
                     <div style="margin-top:80px;">
                         <h4>测点列表</h4>
-                        <span class="l">  <a href="pump-add.html" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
+                        <span class="l">  <a href="#" onclick="addstation()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 新增</a> </span>
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
                             <thead>
                                 <tr class="text-c">
@@ -310,7 +310,7 @@
                             </ul>
                         </div>
                     </div>
-                  
+
                 </div>
             </article>
 
@@ -321,7 +321,7 @@
     <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
-    
+
     <!--/_footer /作为公共模版分离出去-->
     <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
@@ -390,12 +390,11 @@
         })
         //添加
         function add() {
-            if ($("[name=Device]").val()=="") {
+            if ($("[name=Device]").val() == "") {
                 $(".messageBox").removeClass("messageError").text("所属装置不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                 return;
             }
-            if ($("[name=PumpNumber]").val()=="")
-            {
+            if ($("[name=PumpNumber]").val() == "") {
                 $(".messageBox").removeClass("messageError").text("机泵编号不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                 return;
             }
@@ -409,7 +408,7 @@
                 $(".messageBox").removeClass("messageError").text("图片路径不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                 return;
             }
-           
+
             $.ajax({
                 url: "http://localhost:8066/Pump/AddPump",
                 type: "post",
@@ -430,25 +429,37 @@
         function unit_edit(id) {
             layer_show("编辑主机/附机", "host-update.html?id=" + id, 700, 700);
         }
-         //修改子系统
+        //修改子系统
         function update(id) {
             layer_show("编辑子系统", "subfamily-update.html?id=" + id, 700, 700);
         }
-         //修改测点
+        //修改测点
         function updatesta(id) {
             layer_show("编辑测点", "station-update.html?id=" + id, 700, 700);
+        }
+        //添加主机附机
+        function addhost() {
+            layer_show("添加主机附机", "host-add.html", 700, 700);
+        }
+        //添加子系统
+        function addsubfamily() {
+            layer_show("添加子系统", "subfamily-add.html", 700, 700);
+        }
+        //添加测点
+        function addstation() {
+            layer_show("添加测点", "station-add.html", 700, 700);
         }
     </script>
     <script>
         var vm = new Vue({
             el: "#pumpAdd",
             data: {
-                all:1,
-                cur:1,
-                all2:1,
-                cur2:1,
-                all3:1,
-                cur3:1
+                all: 1,
+                cur: 1,
+                all2: 1,
+                cur2: 1,
+                all3: 1,
+                cur3: 1
             },
             ready: function () {
                 this.getTests();
@@ -474,7 +485,7 @@
                         this.$set('hosts', data.Data);
                     })
 
-               
+
                 },
 
                 SubFamily: function () {
@@ -483,13 +494,13 @@
                         this.cur2 = data.PageIndex;
                         this.all2 = data.PageCount;
                         this.$set('subfamilys', data.Data);
-                    })  
+                    })
                 },
                 Station: function () {
                     //测点
                     this.$http.get('http://localhost:8066/Station/GetStation?page=' + this.cur3, function (data) {
                         this.cur3 = data.PageIndex;
-                        this.all3= data.PageCount;
+                        this.all3 = data.PageCount;
                         this.$set('stations', data.Data);
                     })
                 },
@@ -524,11 +535,11 @@
                         },
                         (response) => {
                             alert(response.status);
-                           
+
                         }
                     ).catch(function (response) {
                         alert(response);
-                       
+
                     });
                 },
                 //删除测点
@@ -558,7 +569,7 @@
                 },
                 pageClick: function () {
                     //console.log('现在在' + this.cur + '页');
-                    this.getTests(this.cur);                  
+                    this.getTests(this.cur);
                 },
 
 
@@ -612,7 +623,7 @@
                     }
                     return ar
                 },
-                  //子系统计算
+                //子系统计算
                 indxs: function () {
                     var left = 1;
                     var right = this.all2;
@@ -637,7 +648,7 @@
                     }
                     return ar
                 },
-                  //测点计算
+                //测点计算
                 indes: function () {
                     var left = 1;
                     var right = this.all3;
@@ -665,7 +676,7 @@
 
             },
 
-         
+
         })
     </script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
