@@ -50,6 +50,8 @@ namespace SmartFactory.Api.Controllers
         [Route("AddStation")]
         public int AddStation(Station station)
         {
+            station.DateChanged = DateTime.Now;
+            station.StartDate = DateTime.Now;
             var i = stationServices.AddStation(station);
             return i;
         }

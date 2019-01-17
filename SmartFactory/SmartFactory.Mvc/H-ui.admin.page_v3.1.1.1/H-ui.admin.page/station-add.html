@@ -34,31 +34,46 @@
                 <!--<input type="hidden" name="ID" />-->
                 <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
                 <input type="hidden" name="ID" v-model="test[0].ID" />
-                <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主机/附机编号：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="Number" name="Number" v-model="test.Number">
-                    </div>
-                </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机组编号：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>编号：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <input type="text" class="input-text" placeholder="" id="UnitNumber" name="UnitNumber" v-model="test.UnitNumber">
                     </div>
                 </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主机/附机类型：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>测点名称：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="Type" name="Type" v-model="test.Type">
+                        <input type="text" class="input-text" placeholder="" id="StationName" name="StationName" v-model="test.StationName">
                     </div>
                 </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备名称：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>测点编号：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="FacilityName" name="FacilityName" v-model="test.FacilityName">
+                        <input type="text" class="input-text" placeholder="" id="StationNumber" name="StationNumber" v-model="test.StationNumber">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>计量单位：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="Measurement" name="Measurement" v-model="test.Measurement">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>小数位数：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="DecimalPlace" name="DecimalPlace" v-model="test.DecimalPlace">
+                    </div>
+                </div>
+
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>采集方式：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="ADMode" name="ADMode" v-model="test.ADMode">
                     </div>
                 </div>
 
@@ -68,59 +83,22 @@
                         <input type="text" class="input-text" placeholder="" id="BitNumber" name="BitNumber" v-model="test.BitNumber">
                     </div>
                 </div>
-
-
-
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>功率（KW）：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>所属装置：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="Power" name="Power" v-model="test.Power">
+                        <input type="text" class="input-text" placeholder="" id="Device" name="Device" v-model="test.Device">
                     </div>
                 </div>
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>转速（rpm）：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备名称：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="RotateSpeed" name="RotateSpeed" v-model="test.RotateSpeed">
-                    </div>
-                </div>
-
-                <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>流量：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="Flow" name="Flow" v-model="test.Flow">
-                    </div>
-                </div>
-
-                <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>出口压力：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="Pressure" name="Pressure" v-model="test.Pressure">
-                    </div>
-                </div>
-
-                <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>出口温度：</label>
-                    <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="Temperature" name="Temperature" v-model="test.Temperature">
-                    </div>
-                </div>
-
-                <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3">机组or机泵：</label>
-                    <div class="check-box">
-                        <input type="radio" id="IsSiren" name="UnitOrPump" v-model="test.UnitOrPump" value="0" />
-                        机泵
-                        <!--value="启用"value="停用"-->
-                    </div>
-                    <div class="check-box">
-                        <input type="radio" id="IsSiren" name="UnitOrPump" v-model="test.UnitOrPump" value="1" />
-                        机组
+                        <input type="text" class="input-text" placeholder="" id="FacilityName" name="FacilityName" v-model="test.FacilityName">
                     </div>
                 </div>
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                        <input class="btn btn-primary radius" v-on:click="update(test.ID,test.Number,test.UnitNumber,test.Type,test.FacilityName,test.BitNumber,test.Power,test.RotateSpeed,test.Flow,test.Pressure,test.Temperature,test.UnitOrPump)" type="button" value="提交">
+                        <input class="btn btn-primary radius" v-on:click="add(test.ID,test.UnitNumber,test.StationName,test.StationNumber,test.Measurement,test.DecimalPlace,test.ADMode,test.BitNumber,test.Device,test.FacilityName)" type="button" value="提交">
                     </div>
 
                 </div>
@@ -155,21 +133,17 @@
             methods:
             {
                 //保存
-                add: function (ID, Number, UnitNumber, Type, FacilityName, BitNumber, Power, RotateSpeed, Flow, Pressure, Temperature, UnitOrPump) {
+                add: function (ID, UnitNumber, StationName, StationNumber, Measurement, DecimalPlace, ADMode, BitNumber) {
                     var params = new URLSearchParams();
                     params.append('ID', ID);
-                    params.append('Number', Number);
                     params.append('UnitNumber', UnitNumber);
-                    params.append('Type', Type);
-                    params.append('FacilityName', FacilityName);
+                    params.append('StationName', StationName);
+                    params.append('StationNumber', StationNumber);
+                    params.append('Measurement', Measurement);
+                    params.append('DecimalPlace', DecimalPlace);
+                    params.append('ADMode', ADMode);
                     params.append('BitNumber', BitNumber);
-                    params.append('Power', Power);
-                    params.append('RotateSpeed', RotateSpeed);
-                    params.append('Flow', Flow);
-                    params.append('Pressure', Pressure);
-                    params.append('Temperature', Temperature);
-                    params.append('UnitOrPump', UnitOrPump);
-                    axios.post('http://localhost:8066/Host/AddHost', params).then(
+                    axios.post('http://localhost:8066/Station/AddStation', params).then(
                         (response) => {
                             alert(response)
                             alert("添加成功")
@@ -181,19 +155,10 @@
                         alert(response);
                     });
                 },
-
-
             },
             computed: {
             }
-
-
         });
-
-
-
-
-
     </script>
     <!--/请在上方写此页面业务相关的脚本-->
 </body>

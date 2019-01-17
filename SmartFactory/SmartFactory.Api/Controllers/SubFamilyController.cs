@@ -69,6 +69,8 @@ namespace SmartFactory.Api.Controllers
         [Route("AddSubfamily")]
         public int AddSubfamily(Subfamily subfamily)
         {
+            subfamily.DateChanged = DateTime.Now;
+            subfamily.StartDate = DateTime.Now;
             var i = subfamilyServices.AddSubfamily(subfamily);
             return i;
         }

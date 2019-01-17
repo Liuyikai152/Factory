@@ -50,6 +50,8 @@ namespace SmartFactory.Api.Controllers
         [HttpPost]
         public int AddHost(Host host)
         {
+            host.DateChanged = DateTime.Now;
+            host.StartDate = DateTime.Now;
             var i = hostServices.AddHost(host);
             return i;
         }
