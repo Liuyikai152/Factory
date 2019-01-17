@@ -78,5 +78,21 @@ namespace SmartFactory.Services
             var unitList = factoryDBcontext.Database.SqlQuery<Unit>("call Pro_GetUnitId(@ids)", new MySqlParameter("@ids", id)).FirstOrDefault();
             return unitList;
         }
+
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="IsSiren"></param>
+        /// <returns></returns>
+        public int UpdateUnitSiren(int ID, int IsSiren)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[] {
+                new MySqlParameter("@ids",ID),
+                new MySqlParameter("@isSiren",IsSiren),
+            };
+            return factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_UpdateUnitIsSiren (@ids,@isSiren)", parameters);
+        }
     }
 }
