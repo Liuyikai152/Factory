@@ -106,7 +106,7 @@
                 <input type="hidden" name="ID" v-model="test[0].ID" />
 
                 <div class="row cl">
-                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>编号：</label>
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>机组/机泵编号：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <input type="text" class="input-text" placeholder="" id="UnitNumber" name="UnitNumber" v-model="test.UnitNumber">
                     </div>
@@ -132,28 +132,50 @@
                         <input type="text" class="input-text" placeholder="" id="Measurement" name="Measurement" v-model="test.Measurement">
                     </div>
                 </div>
-
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>小数位数：</label>
                     <div class="formControls col-xs-8 col-sm-9">
                         <input type="text" class="input-text" placeholder="" id="DecimalPlace" name="DecimalPlace" v-model="test.DecimalPlace">
                     </div>
                 </div>
-
-
-
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>采集方式：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="ADMode" name="ADMode" v-model="test.ADMode">
+                        <!--<input type="text" class="input-text" placeholder="" id="ADMode" name="ADMode" v-model="test.ADMode">-->
+                        <select class="input-text" v-model="test.ADMode">
+                            <option value="自动">自动</option>
+                            <option value="手动">手动</option>
+                            <option value="半自动">半自动</option>
+                        </select>
                     </div>
                 </div>
-
-
-
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备位号：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <!--<input type="text" class="input-text" placeholder="" id="BitNumber" name="BitNumber" v-model="test.BitNumber">-->
+                        <select class="input-text" v-model="test.BitNumber">
+                            <option v-for="host in FacilityName" value="{{host.BitNumbers}}">{{host.BitNumbers}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>所属装置：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <!--<input type="text" class="input-text" placeholder="" id="Device" name="Device" v-model="test.Device">-->
+                        <select class="input-text" v-model="test.Device">
+                            <option v-for="host in Device" value="{{host.AreaNumber}}">{{host.AreaName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备名称：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+                        <input type="text" class="input-text" placeholder="" id="FacilityName" name="FacilityName" v-model="test.FacilityName"> 
+                    </div>
+                </div>
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                        <input class="btn btn-primary radius" v-on:click="update(test.ID,test.UnitNumber,test.StationName,test.StationNumber,test.Measurement,test.DecimalPlace,test.ADMode)" type="button" value="提交">
+                        <input class="btn btn-primary radius" v-on:click="update(test.ID,test.UnitNumber,test.StationName,test.StationNumber,test.Measurement,test.DecimalPlace,test.ADMode,test.BitNumber,test.Device,test.FacilityName)" type="button" value="提交">
                     </div>
 
                 </div>
@@ -191,7 +213,9 @@
                 testdata: {}
             },
             ready: function () {
-                this.GetUnit()
+                this.GetUnit();
+                this.GetFacilityArea();
+                this.GetFacilityName();
             },
             methods: {
                 GetUnit: function () {
@@ -199,7 +223,19 @@
                         this.$set('test', data);
                     })
                 },
-                update: function (ID, UnitNumber, StationName, StationNumber, Measurement, DecimalPlace, ADMode, Device) {
+                GetFacilityArea: function () {
+                    //所属装置
+                    this.$http.get('http://localhost:8066/FacilityArea/GetFactoryAreas', function (data) {
+                        this.$set('Device', data);
+                    })
+                },
+                GetFacilityName: function () {
+                    //查询设备位号
+                    this.$http.get('http://localhost:8066/BitNumber/GetFacilityType', function (data) {
+                        this.$set('FacilityName', data);
+                    })
+                },
+                update: function (ID, UnitNumber, StationName, StationNumber, Measurement, DecimalPlace, ADMode, BitNumber,FacilityName, Device) {
 
                     var params = new URLSearchParams();
                     params.append('ID', ID);
@@ -208,7 +244,10 @@
                     params.append('StationNumber', StationNumber);
                     params.append('Measurement', Measurement);
                     params.append('DecimalPlace', DecimalPlace);
-                    params.append('ADMode', ADMode);
+                    params.append('ADMode', ADMode);                   
+                    params.append('BitNumber', BitNumber);
+                    params.append('FacilityName', FacilityName);
+                    params.append('Device', Device);
                     axios.post('http://localhost:8066/Station/UpdateStation', params).then(
                         (response) => {
                             console.log(response.data);
