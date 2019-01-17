@@ -15,6 +15,7 @@ namespace SmartFactory.Api.Controllers
     public class UnitController : ApiController
     {
         public IUnitServices unitServices { get; set; }
+        public IActivityServices activityServices { get; set; }
 
         /// <summary>
         /// 显示
@@ -125,6 +126,29 @@ namespace SmartFactory.Api.Controllers
         {
             var result = unitServices.GetUnitByID(id);
             return result;
+        }
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="IsSiren"></param>
+        /// <returns></returns>
+        [Route("UpdateUnitSiren")]
+        [HttpGet]
+        public int UpdateUnitSiren(int ID, int IsSiren, int judgment)
+        {
+           
+            if (IsSiren == 3)
+            {
+                var i = unitServices.UpdateUnitSiren(ID, IsSiren);
+                if (i > 0)
+                {
+                    activityServices.AddActivity(judgment);
+                }
+                return i;
+            }
+            return 0;
         }
     }
 }

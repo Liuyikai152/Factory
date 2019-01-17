@@ -49,5 +49,13 @@ namespace SmartFactory.IServices
         /// <param name="id"></param>
         /// <returns></returns>
         Unit GetUnitByID(int id);
+
+        /// <summary>
+        /// 修改报警状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="IsSiren"></param>
+        /// <returns></returns>
+        int UpdateUnitSiren(int ID, int IsSiren);
     }
 }
