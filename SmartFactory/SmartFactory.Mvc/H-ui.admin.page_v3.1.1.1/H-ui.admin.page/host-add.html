@@ -51,7 +51,12 @@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>主机/附机类型：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="Type" name="Type" v-model="test.Type">
+
+                        <select class="input-text" v-model="test.Type">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option value="主机">主机</option>
+                            <option value="附机">附机</option>
+                        </select>
                     </div>
                 </div>
 
@@ -65,11 +70,12 @@
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备位号：</label>
                     <div class="formControls col-xs-8 col-sm-9">
-                        <input type="text" class="input-text" placeholder="" id="BitNumber" name="BitNumber" v-model="test.BitNumber">
+                        <select class="input-text" v-model="test.BitNumber">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="host in BitNumbers" v-bind:value="host.ID">{{host.BitNumbers}}</option>
+                        </select>
                     </div>
                 </div>
-
-
 
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>功率（KW）：</label>
@@ -152,8 +158,18 @@
 
         var vm = new Vue({
             el: "#app",
+            ready: function () {
+                
+                this.GetFacilityName();
+            },
             methods:
             {
+                GetFacilityName: function () {
+                    //查询设备位号
+                    this.$http.get('http://localhost:8066/BitNumber/GetFacilityType', function (data) {
+                        this.$set('BitNumbers', data);
+                    })
+                },
                 //保存
                 add: function (ID, Number, UnitNumber, Type, FacilityName, BitNumber, Power, RotateSpeed, Flow, Pressure, Temperature, UnitOrPump) {
                     var params = new URLSearchParams();
