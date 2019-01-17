@@ -47,7 +47,7 @@
                     <input name="" type="button" onclick="login2()" class="btn btn-success radius size-L" value="组长">
                     <input name="" type="button" onclick="login3()" class="btn btn-success radius size-L" value="经理">
                     <input name="" type="button" onclick="login4()" class="btn btn-success radius size-L" value="主管">
-                    <input name="" type="button" onclick="login5()" class="btn btn-success radius size-L" value="懂事长">
+                    <input name="" type="button" onclick="login5()" class="btn btn-success radius size-L" value="董事长">
                     <input name="" type="button" onclick="login1()" class="btn btn-success radius size-L" value="超管">
                 </div>
 			</div>
@@ -88,7 +88,7 @@
     }
     function login1() {
 
-
+        alert($("#name").val())
         $.ajax({
             url: "http://localhost:8066/Users/Login",
             type: "get",
@@ -100,7 +100,7 @@
             success: function (data) {
                 if (data > 0) {
                     //把用户名存入JS缓存
-                    localStorage.uname = $("#name").val();
+                    localStorage.uname = "admin";
                     localStorage.ID = data;
 
                     location.href = "index.html";
@@ -126,7 +126,7 @@
             success: function (data) {
                 if (data > 0) {
                     //把用户名存入JS缓存
-                    localStorage.uname = $("#name").val();
+                    localStorage.uname = "组长";
                     localStorage.ID = data;
                 
                     location.href = "index.html";
@@ -152,7 +152,7 @@
             success: function (data) {
                 if (data > 0) {
                     //把用户名存入JS缓存
-                    localStorage.uname = $("#name").val();
+                    localStorage.uname = "经理";
                     localStorage.ID = data;
                 
                     location.href = "index.html";
@@ -178,7 +178,7 @@
             success: function (data) {
                 if (data > 0) {
                     //把用户名存入JS缓存
-                    localStorage.uname = $("#name").val();
+                    localStorage.uname = "主管";
                     localStorage.ID = data;
                 
                     location.href = "index.html";
@@ -204,7 +204,7 @@
             success: function (data) {
                 if (data > 0) {
                     //把用户名存入JS缓存
-                    localStorage.uname = $("#name").val();
+                    localStorage.uname = "董事长";
                     localStorage.ID = data;
                    
                     location.href = "index.html";

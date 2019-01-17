@@ -151,25 +151,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
 
     <script type="text/javascript">
-        var demo = new Vue({
-            el: '#app',
-            data: {
-                apiUrl: 'http://localhost:8066/Configuration/GetConfiguration',
-                testdata: {},
-                state: "通过",
-            },
-            ready: function () {
-                this.getTests()
-            },
-            methods: {
-
-                getTests: function () {
-                    this.$http.get('http://localhost:8066/Activity/GetActivities?name=' + localStorage.uname + '&&state=' + this.state, function (data) {
-                        this.$set('list', data);
-                    })
-                },
-            }
-        })
         $(function () {
             $("#uname").text(localStorage.uname);
             $.ajax({
@@ -193,6 +174,27 @@
 
 
         })
+
+        var demo = new Vue({
+            el: '#app',
+            data: {
+                apiUrl: 'http://localhost:8066/Configuration/GetConfiguration',
+                testdata: {},
+                state: "通过",
+            },
+            ready: function () {
+                this.getTests()
+            },
+            methods: {
+
+                getTests: function () {
+                    this.$http.get('http://localhost:8066/Activity/GetActivities?name=' + localStorage.uname + '&&state=' + this.state, function (data) {
+                        this.$set('list', data);
+                    })
+                },
+            }
+        })
+     
 
         function UpdateState(ID, trueState) {
             if (confirm("是否要继续进行审核？")) {
