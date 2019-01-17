@@ -27,6 +27,22 @@
 </head>
 <body>
     <style>
+        .messageBox {
+            height: 52px;
+            padding: 35px 53px 0 78px;
+            line-height: 52px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            border: 5px solid #ddd;
+            border-top: 0;
+            color: #444;
+            font-size: 18px;
+            z-index: 9999;
+        }
+
         .page-bar {
             margin: 40px;
         }
@@ -151,8 +167,9 @@
 
                     &nbsp;&nbsp;&nbsp;<input type="text" id="out" style="width:50px;" />
                     <input type="button" value="导出" id="outExcel" class="btn btn-success" />
-                  
+
                 </div>
+                <div class="messageBox"></div>
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
                         <tr class="text-c">
@@ -163,6 +180,7 @@
                             <th width="80">主机名称</th>
                             <th width="80">附机名称</th>
                             <th width="80">报警状态</th>
+                            <th width="80">改变状态</th>
                             <th width="80">详细信息</th>
                             <th width="80">编辑</th>
                             <th width="80">删除</th>
@@ -175,8 +193,9 @@
                             <th>{{test.AttachName}}</th>
                             <th>{{test.HostName}}</th>
                             <th>{{test.IsSiren==3?"警告":"正常"}}</th>
+                            <th><a href='#' onclick='UpdateSiren({{test.ID}},{{test.IsSiren==3?4:3}})'>报警</a></th>
                             <th><a href='unitByID.html?id={{test.ID}}'>查看</a></th>
-                            <th><a href='#' onclick="unit_edit({{test.ID}})" >编辑</a></th>
+                            <th><a href='#' onclick="unit_edit({{test.ID}})">编辑</a></th>
                             <th><a herf='#' v-on:click="DeleteUnitById(test.ID)">删除</a> </th>
                         </tr>
                     </thead>
@@ -356,14 +375,6 @@
         })
 
 
-        /*
-     参数解释：
-     title	标题
-     url		请求的url
-     id		需要操作的数据id
-     w		弹出层宽度（缺省调默认值）
-     h		弹出层高度（缺省调默认值）
-*/
         /*管理员-增加*/
         function AddPump() {
             location.href = 'unit-add.html';
@@ -397,7 +408,30 @@
         function unit_edit(id) {
             layer_show("编辑机组", "unit-update.html?id=" + id, 700, 700);
         }
-  
+
+        //修改报警状态
+        function UpdateSiren(ID, IsSiren) {
+            if (confirm("是否要继续进行审核？")) {
+                $.ajax({
+                    url: "http://localhost:8066/Unit/UpdateUnitSiren",
+                    data: {
+                        ID: ID,
+                        IsSiren: IsSiren,
+                        judgment: 1,
+                    },
+                    type: "get",
+                    success: function (data) {
+                        if (data > 0) {
+                            $(".messageBox").removeClass("messageError").text("修改成功请刷新").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+
+                        }
+                        else {
+                            $(".messageBox").removeClass("messageError").text("设备报警不能修改！！！").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                        }
+                    }
+                })
+            }
+        }
 
     </script>
 
