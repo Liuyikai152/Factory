@@ -147,7 +147,6 @@
                     params.append('UnitOrPump', UnitOrPump);
                     axios.post('http://localhost:8066/SubFamily/UpdateSubfamily', params).then(
                         (response) => {
-                            console.log(response.data);
                             if (response.data > 0) {
                                 ShowMessageBox(true, "修改成功");
                             }
