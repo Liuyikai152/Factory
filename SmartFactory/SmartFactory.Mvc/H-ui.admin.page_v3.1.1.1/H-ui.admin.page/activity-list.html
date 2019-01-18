@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
@@ -26,27 +27,12 @@
     <title>栏目管理</title>
 </head>
 <body>
-    <style>
-        .messageBox {
-            height: 52px;
-            padding: 35px 53px 0 78px;
-            line-height: 52px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            position: fixed;
-            top: -60px;
-            left: 50%;
-            border: 5px solid #ddd;
-            border-top: 0;
-            color: #444;
-            font-size: 18px;
-            z-index: 9999;
-        }
-    </style>
+  
 
 
     <!--/_header 作为公共模版分离出去-->
-    <!--_menu 作为公共模版分离出去--> <header class="navbar-wrapper">
+    <!--_menu 作为公共模版分离出去--> 
+    <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
             <div class="container-fluid cl">
                 <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">智能工厂管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml"></a> <span class="logo navbar-slogan f-l mr-10 hidden-xs"></span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
@@ -149,28 +135,12 @@
     <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-
+    <script src="../../Scripts/message.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#uname").text(localStorage.uname);
-            $.ajax({
-                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
-                async: false,
-                type: 'get',
-                //data: { id:  },
-                success: function (data) {
-                    $(data).each(function (index, data) {
-                        if (data.Pid == 0) {
-                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
-                        }
-                    })
-                    $(data).each(function (index, data) {
-                        if (data.Pid != 0) {
-                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
-                        }
-                    })
-                }
-            })
+         
+            LeftMenu();
 
 
         })
@@ -208,10 +178,10 @@
                     type: "get",
                     success: function (data) {
                         if (data > 0) {
-                            $(".messageBox").removeClass("messageError").text("审批完成，请刷新").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                            ShowMessageBox(true,"审批完成,请刷新")
                         }
                         else {
-                            alert("审批失败")
+                            ShowMessageBox(false, "审批失败")
                         }
                     }
                 })
@@ -229,10 +199,10 @@
                     type: "get",
                     success: function (data) {
                         if (data > 0) {
-                            $(".messageBox").removeClass("messageError").text("审批完成，请刷新").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                            ShowMessageBox(true, "审批完成,请刷新")
                         }
                         else {
-                            alert("审批失败")
+                            ShowMessageBox(false, "审批失败")
                         }
                     }
                 })
