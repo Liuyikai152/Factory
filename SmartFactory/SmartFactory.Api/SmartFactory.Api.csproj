@@ -178,6 +178,8 @@
     <Content Include="Content\维修.xlsx" />
     <Content Include="Content\31.xlsx" />
     <Content Include="AppSettings.config" />
+    <Content Include="Content\设备零件.xlsx" />
+    <Content Include="Content\维修工单.xlsx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
