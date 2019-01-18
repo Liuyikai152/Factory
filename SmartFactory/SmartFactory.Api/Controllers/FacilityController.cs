@@ -21,7 +21,7 @@ namespace SmartFactory.Api.Controllers
         /// 查看所有零件
         /// </summary>
         /// <returns></returns>
-        public const int PAGESIZE = 2;
+        public const int PAGESIZE = 3;
         [HttpGet]
         [Route("GetFacility")]
         public PageBox GetFacility(FactoryEnum IsSiren, string BitNumbers, string CompanyName, string FactoryName, string TypeName,string FacilityNumber, int PageIndex = 1)
