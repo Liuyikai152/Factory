@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Conntent\style.css" />
     <Content Include="Global.asax" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\activity-list.html" />
     <Content Include="H-ui.admin.page_v3.1.1.1\H-ui.admin.page\404.html" />
@@ -1253,6 +1254,7 @@
     <Content Include="Scripts\echarts.min.js" />
     <Content Include="Scripts\GetParse.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\message.js" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\vue.min.js" />
     <Content Include="Web.config" />
