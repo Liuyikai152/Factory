@@ -12,7 +12,7 @@ using SmartFactory.Services;
 
 namespace SmartFactory.Api.Controllers
 {
- 
+   
     [RoutePrefix("Users")]
     public class UsersController : ApiController
     {
@@ -24,6 +24,7 @@ namespace SmartFactory.Api.Controllers
         /// 显示
         /// </summary>
         /// <returns></returns>
+      
         [Route("GetUsers")]
         [HttpGet]
         public List<UserInfo> GetUsers()
@@ -52,7 +53,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("Login")]
         [HttpGet]
-      
+     
         public int Login(string userName, string passWord)
         {
             int result = usersServices.Login(userName, passWord);
