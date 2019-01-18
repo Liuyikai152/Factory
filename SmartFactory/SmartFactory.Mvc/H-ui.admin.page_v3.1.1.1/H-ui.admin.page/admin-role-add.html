@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -30,6 +31,7 @@
 </head>
 <body>
     <article class="cl pd-20">
+        <div class="messageBox"></div>
         <form action="" method="post" class="form form-horizontal" id="form">
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
@@ -70,6 +72,7 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
     <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../../Scripts/message.js"></script>
     <script type="text/javascript">
         $(function () {
             $.ajax({
@@ -90,7 +93,7 @@
 
         function add() {
             if ($("input[name=RoleName]").val() == "") {
-                alert("角色名不能为空")
+                ShowMessageBox(false,"角色姓名不能为空")
                 return;
             }
             var ids = "";
@@ -99,15 +102,15 @@
             })
             ids = ids.substring(0, ids.lastIndexOf(','));
             $.ajax({
-                url: "http://localhost:8066/Role/AddRole?roleName=" + $("input[name=RoleName]").val() + '&&pId=' + ids ,
+                url: "http://localhost:8066/Role/AddRole?roleName=" + $("input[name=RoleName]").val() + '&&pId=' + ids,
                 type: "post",
                 success: function (data) {
 
                     if (data > 0) {
-                        alert("添加成功")
+                        ShowMessageBox(true,"添加成功")
                     }
                     else {
-                        alert("添加失败")
+                        ShowMessageBox(false,"添加失败")
                     }
                 }
             })

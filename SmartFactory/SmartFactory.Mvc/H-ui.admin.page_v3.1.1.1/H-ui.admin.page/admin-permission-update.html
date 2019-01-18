@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
@@ -30,6 +31,7 @@
 <body>
     <div class="Hui-article" id="app">
         <article class="cl pd-20">
+            <div class="messageBox"></div>
             <form action="" method="post" class="form form-horizontal" id="form">
                 <!--<input type="hidden" name="ID" />-->
                 <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
@@ -86,7 +88,7 @@
 
     <script src="../../Scripts/GetParse.js"></script>
     <script src="../../Scripts/jquery-1.10.2.min.js"></script>
-
+    <script src="../../Scripts/message.js"></script>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
@@ -123,7 +125,7 @@
                         (response) => {
                             console.log(response.data);
                             if (response.data > 0) {
-                                alert("修改成功!!!");
+                                ShowMessageBox(true,"修改成功")
 
                             }
                             //console.info(this.list);
@@ -140,87 +142,7 @@
 
         });
 
-            //var id = getPar("id");
-            //$(function () {
-            //    alert(id);
-            //    //反填
-            //    $.ajax({
-            //        url: 'http://localhost:8066/Permission/GetByID?id=' + id,
-            //        async: false,
-            //        type: "get",
-            //        //  data: { id: getUrlParam("id")},
-            //        success: function (data) {
-            //            $("input[name=ID]").val(data[0].ID);
-            //            $("input[name=PermissionName]").val(data[0].PermissionName);
-
-            //            $("input[name=PermissionUrl]").val(data[0].PermissionUrl);
-            //            $("input[name=IsUser][value='" + data[0].IsUser + "']").attr("checked", "checked")
-
-
-            //        }
-            //    })
-
-            //})
-
-            //var vm = new Vue({
-            //    el: "#app",
-
-            //    methods: {
-            //        //ID, PermissionName, PermissionUrl, Isuser
-            //        update: function (ID, PermissionName, PermissionUrl, Isuser) {
-
-            //            var params = new URLSearchParams();
-            //            //params.append('ID', ID);
-            //            //params.append('PermissionName', PermissionName);
-            //            //params.append('PermissionUrl', PermissionUrl);
-            //            //params.append('Isuser', Isuser);
-
-            //            axios.post('http://localhost:8066/Permission/UpdatePermission', params).then(
-            //                (response) => {
-            //                    console.log(response.data);
-            //                    if (response.data > 0) {
-            //                        alert("修改成功!!!");
-
-            //                    }
-            //                    //console.info(this.list);
-            //                },
-            //                (response) => {
-            //                    alert(response.status);
-            //                }
-            //            ).catch(function (response) {
-            //                alert(response);
-            //            });
-            //        },
-            //    }
-
-
-
-            //})
-
-
-
-
-
-                            //function update() {
-                            //    $.ajax({
-                            //        url: "http://localhost:24380/Permission/updatePermission",
-                            //        type: "post",
-                            //        data: $("#form").serialize(),
-                            //        //data: { ID: $("input[name=ID]").val(), Name: $("#Name").val(), Discription: $("#Discription").val(), URL: $("#url").val(), IsUser: $("IsUser").val() },
-                            //        success: function (data) {
-
-                            //            if (data > 0) {
-                            //                alert("修改成功");
-
-
-                            //            }
-                            //            else {
-                            //                alert("修改失败")
-                            //            }
-                            //        }
-                            //    })
-                            //}
-
+         
 
     </script>
     <!--/请在上方写此页面业务相关的脚本-->

@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
-
+<link href="../../Conntent/style.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
@@ -28,203 +28,203 @@
 <link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="page-container" id="add">
-    <form class="form form-horizontal">
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">配置编码：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" v-model="ProcessCode">
+    <div class="page-container" id="add">
+        <div class="messageBox"></div>
+        <form class="form form-horizontal">
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">配置编码：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" v-model="ProcessCode">
+                </div>
             </div>
-        </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">审批条件：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <span class="select-box">
-                    <select id="" v-model="JudgmentID">
-                        <option selected="selected" value="请选择">--请选择--</option>
-                        <option v-for="text in Judgment" v-bind:value="text.ID">{{text.Condition}}</option>
-                    </select>
-                </span>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">审批条件：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box">
+                        <select id="" v-model="JudgmentID">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="text in Judgment" v-bind:value="text.ID">{{text.Condition}}</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">审批节点：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <span class="select-box">
-                    <select id="" v-model="NodeID">
-                        <option selected="selected" value="请选择">--请选择--</option>
-                        <option v-for="text in Node" v-bind:value="text.ID">{{text.NodeName}}</option>
-                    </select>
-                </span>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">审批节点：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box">
+                        <select id="" v-model="NodeID">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="text in Node" v-bind:value="text.ID">{{text.NodeName}}</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">当前审批人：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <span class="select-box">
-                    <select id="" v-model="ApprovalUserID">
-                        <option selected="selected" value="请选择">--请选择--</option>
-                        <option v-for="text in Users" v-bind:value="text.ID">{{text.UserName}}</option>
-                    </select>
-                </span>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">当前审批人：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box">
+                        <select id="" v-model="ApprovalUserID">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="text in Users" v-bind:value="text.ID">{{text.UserName}}</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">下一步审批人：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <span class="select-box">
-                    <select id="" v-model="NextApprovalUserID">
-                        <option selected="selected" value="请选择">--请选择--</option>
-                        <option v-for="text in NextUsers" v-bind:value="text.ID">{{text.UserName}}</option>
-                    </select>
-                </span>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">下一步审批人：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box">
+                        <select id="" v-model="NextApprovalUserID">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="text in NextUsers" v-bind:value="text.ID">{{text.UserName}}</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">当前审核状态：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <span class="select-box">
-                    <select id="" v-model="StateID">
-                        <option selected="selected" value="请选择">--请选择--</option>
-                        <option v-for="text in States" v-bind:value="text.ID">{{text.State}}</option>
-                    </select>
-                </span>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">当前审核状态：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box">
+                        <select id="" v-model="StateID">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="text in States" v-bind:value="text.ID">{{text.State}}</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">实际审核状态：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <span class="select-box">
-                    <select id="" v-model="TureStateID">
-                        <option selected="selected" value="请选择">--请选择--</option>
-                        <option v-for="text in TureStates" v-bind:value="text.ID">{{text.State}}</option>
-                    </select>
-                </span>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">实际审核状态：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box">
+                        <select id="" v-model="TureStateID">
+                            <option selected="selected" value="请选择">--请选择--</option>
+                            <option v-for="text in TureStates" v-bind:value="text.ID">{{text.State}}</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"></label>
-            <div class="formControls col-xs-8 col-sm-9">
-               
-                    <button type="button"  class="btn btn-success" v-on:click="AddConfiguration(ProcessCode, JudgmentID, NodeID, ApprovalUserID, NextApprovalUserID, StateID, TureStateID)">添 加</button>
-               
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"></label>
+                <div class="formControls col-xs-8 col-sm-9">
+
+                    <button type="button" class="btn btn-success" v-on:click="AddConfiguration(ProcessCode, JudgmentID, NodeID, ApprovalUserID, NextApprovalUserID, StateID, TureStateID)">添 加</button>
+
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
 
-<!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="lib/layer/2.4/layer.js"></script> 
- 
-<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
-<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script> 
-<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script> 
-<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script> 
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 
-<!--/_footer /作为公共模版分离出去-->
+    <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+    <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
+    <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+    <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+    <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
 
-<!--请在下方写此页面业务相关的脚本-->
-    
-<script src="../../Scripts/vue.js"></script>
-<script src="../../Scripts/axios.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-<script type="text/javascript">
-    $(function () {
-        var vx = new Vue({
-            el: "#add",
-            data:
-            {
-                Judgment: [],
-            },
-            ready: function () {
-                this.getJudgment();
-                this.getNode();
-                this.getUsers();
-                this.getNextUsers();
-                this.getState();
-                this.getTureState();
-            },
-            
-            methods:
-            {
-                getJudgment: function () {
+    <!--/_footer /作为公共模版分离出去-->
+    <!--请在下方写此页面业务相关的脚本-->
 
-                    this.$http.get('http://localhost:8066/Conditions/GetConditions', function (data) {
-                        this.$set('Judgment', data);
-                    })
+    <script src="../../Scripts/vue.js"></script>
+    <script src="../../Scripts/axios.js"></script>
+    <script src="../../Scripts/message.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var vx = new Vue({
+                el: "#add",
+                data:
+                {
+                    Judgment: [],
                 },
-                getNode: function () {
-
-                    this.$http.get('http://localhost:8066/ApprovalNode/GetApprovalNodes', function (data) {
-                        this.$set('Node', data);
-                    })
-                },
-                getUsers: function () {
-
-                    this.$http.get('http://localhost:8066/Users/GetApprovalUsers', function (data) {
-                        this.$set('Users', data);
-                    })
-                },
-                getNextUsers: function () {
-
-                    this.$http.get('http://localhost:8066/Users/GetApprovalUsers', function (data) {
-                        this.$set('NextUsers', data);
-                    })
-                },
-                getState: function () {
-
-                    this.$http.get('http://localhost:8066/Status/GetStatus', function (data) {
-                        this.$set('States', data);
-                    })
-                },
-                getTureState: function () {
-
-                    this.$http.get('http://localhost:8066/Status/GetStatus', function (data) {
-                        this.$set('TureStates', data);
-                    })
+                ready: function () {
+                    this.getJudgment();
+                    this.getNode();
+                    this.getUsers();
+                    this.getNextUsers();
+                    this.getState();
+                    this.getTureState();
                 },
 
-                AddConfiguration: function (ProcessCode, JudgmentID, NodeID, ApprovalUserID, NextApprovalUserID, StateID, TureStateID) {
-                    var params = new URLSearchParams();
-                    params.append('ProcessCode', ProcessCode);
-                    params.append('JudgmentID', JudgmentID);
-                    params.append('NodeID', NodeID);
-                    params.append('ApprovalUserID', ApprovalUserID);
-                    params.append('NextApprovalUserID', NextApprovalUserID);
-                    params.append('StateID', StateID);
-                    params.append('TureStateID', TureStateID);
-                    axios.post('http://localhost:8066/Configuration/AddConfiguration', params).then(
-                        (response) => {
-                            
-                            alert("添加成功");
-                            
-                        },
-                        (response) => {
-                            alert(response.status);
-                        }
-                    ).catch(function (response) {
-                        alert(response);
-                    });
+                methods:
+                {
+                    getJudgment: function () {
+
+                        this.$http.get('http://localhost:8066/Conditions/GetConditions', function (data) {
+                            this.$set('Judgment', data);
+                        })
+                    },
+                    getNode: function () {
+
+                        this.$http.get('http://localhost:8066/ApprovalNode/GetApprovalNodes', function (data) {
+                            this.$set('Node', data);
+                        })
+                    },
+                    getUsers: function () {
+
+                        this.$http.get('http://localhost:8066/Users/GetApprovalUsers', function (data) {
+                            this.$set('Users', data);
+                        })
+                    },
+                    getNextUsers: function () {
+
+                        this.$http.get('http://localhost:8066/Users/GetApprovalUsers', function (data) {
+                            this.$set('NextUsers', data);
+                        })
+                    },
+                    getState: function () {
+
+                        this.$http.get('http://localhost:8066/Status/GetStatus', function (data) {
+                            this.$set('States', data);
+                        })
+                    },
+                    getTureState: function () {
+
+                        this.$http.get('http://localhost:8066/Status/GetStatus', function (data) {
+                            this.$set('TureStates', data);
+                        })
+                    },
+
+                    AddConfiguration: function (ProcessCode, JudgmentID, NodeID, ApprovalUserID, NextApprovalUserID, StateID, TureStateID) {
+                        var params = new URLSearchParams();
+                        params.append('ProcessCode', ProcessCode);
+                        params.append('JudgmentID', JudgmentID);
+                        params.append('NodeID', NodeID);
+                        params.append('ApprovalUserID', ApprovalUserID);
+                        params.append('NextApprovalUserID', NextApprovalUserID);
+                        params.append('StateID', StateID);
+                        params.append('TureStateID', TureStateID);
+                        axios.post('http://localhost:8066/Configuration/AddConfiguration', params).then(
+                            (response) => {
+
+                                ShowMessageBox(true,"添加成功!")
+                            },
+                            (response) => {
+                                alert(response.status);
+                            }
+                        ).catch(function (response) {
+                            alert(response);
+                        });
+
+
+                    }
 
 
                 }
 
-
-            }
-
-        });
-    })
-</script>
+            });
+        })
+    </script>
 </body>
 </html>

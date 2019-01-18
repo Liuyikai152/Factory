@@ -129,7 +129,7 @@
     <!--/_menu 作为公共模版分离出去-->
 
     <section class="Hui-article-box">
-        <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 权限管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+      
         <div class="Hui-article" id="app">
             <article class="cl pd-20">
 
@@ -189,7 +189,7 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-
+    <script src="../../Scripts/message.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
     <script type="text/javascript">
@@ -267,72 +267,7 @@
 
 
 
-        //var vm = new Vue({
-        //    el: "#app",
-        //    data: {
-        //        all: 8,
-        //        cur: 1,
-        //        apiUrl: 'http://localhost:8066/Permission/',
 
-        //    },
-        //    ready: function () {
-        //        this.getTests()
-        //    },
-        //    methods: {
-        //        getTests: function () {
-        //            this.$http.get(this.apiUrl + 'GetPermission', { PageIndex: this.cur}, function (data) {
-        //                this.cur = data.PageIndex;
-        //                this.all = data.PageCount;
-        //                this.$set('tests', data);
-        //            })
-        //        },
-
-        //        btnClick: function (data) {//页码点击事件
-        //            if (data != this.cur) {
-        //                this.cur = data;
-        //                this.getTests(data);
-
-
-        //            }
-        //        },
-        //        pageClick: function () {
-        //            //console.log('现在在' + this.cur + '页');
-        //            this.getTests(this.cur);
-        //        },
-
-
-
-        //    },
-        //    //计算属性
-        //    computed: {
-        //        indexs: function () {
-        //            var left = 1;
-        //            var right = this.all;
-        //            var ar = [];
-        //            if (this.all >= 5) {
-        //                if (this.cur > 3 && this.cur < this.all - 2) {
-        //                    left = this.cur - 2
-        //                    right = this.cur + 2
-        //                } else {
-        //                    if (this.cur <= 3) {
-        //                        left = 1
-        //                        right = 5
-        //                    } else {
-        //                        right = this.all
-        //                        left = this.all - 4
-        //                    }
-        //                }
-        //            }
-        //            while (left <= right) {
-        //                ar.push(left)
-        //                left++
-        //            }
-        //            return ar
-        //        },
-
-        //    }
-
-        //})
 
         /*
             参数解释：
@@ -351,34 +286,12 @@
             layer_show("编辑权限", "admin-permission-update.html?id=" + id, 300, 500);
         }
 
-        /*管理员-权限-删除*/
-        function admin_permission_del(obj, id) {
-            layer.confirm('角色删除须谨慎，确认要删除吗？', function (index) {
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', { icon: 1, time: 1000 });
-            });
-        }
+
 
         $(function () {
             $("#uname").text(localStorage.uname);
-            $.ajax({
-                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
-                async: false,
-                type: 'get',
-                //data: { id:  },
-                success: function (data) {
-                    $(data).each(function (index, data) {
-                        if (data.Pid == 0) {
-                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
-                        }
-                    })
-                    $(data).each(function (index, data) {
-                        if (data.Pid != 0) {
-                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
-                        }
-                    })
-                }
-            })
+            
+            LeftMenu();
         })
     </script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>

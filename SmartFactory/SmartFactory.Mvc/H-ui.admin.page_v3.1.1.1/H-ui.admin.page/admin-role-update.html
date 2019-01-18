@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -30,6 +31,7 @@
 </head>
 <body>
     <article class="cl pd-20">
+        <div class="messageBox"></div>
         <form action="" method="post" class="form form-horizontal" id="form">
             <input type="hidden" name="ID" />
             <div class="row cl">
@@ -69,6 +71,7 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
     <script src="../../Scripts/GetParse.js"></script>
     <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../../Scripts/message.js"></script>
     <script type="text/javascript">
 
         var id = getPar("id");
@@ -84,9 +87,9 @@
                     $(res).each(function (index, data) {
                         $(".check-box").append('<input type="checkbox" class="cks" id="' + data.ID + '" name="Permissio" value="' + data.ID + '"   />' + data.PermissionName)
 
-                        
+
                     })
-                   
+
                 }
             })
 
@@ -108,7 +111,7 @@
             })
 
         })
-          
+
 
         function update() {
             var ids = "";
@@ -125,10 +128,10 @@
                 success: function (data) {
 
                     if (data > 0) {
-                        alert("修改成功")
+                        ShowMessageBox(true,"添加成功")
                     }
                     else {
-                        alert("修改失败")
+                        ShowMessageBox(false,"添加失败")
                     }
                 }
             })
@@ -136,7 +139,7 @@
 
 
 
-        
+
 
 
 
