@@ -1,45 +1,46 @@
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
-<![endif]-->
-<link href="static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
-<link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script><![endif]-->
-<title>后台登录 - H-ui.admin.page v3.0</title>
-<meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-<meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link href="static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script><![endif]-->
+    <title>后台登录 - H-ui.admin.page v3.0</title>
+    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
-<input type="hidden" id="TenantId" name="TenantId" value="" />
-<div class="header"></div>
+    <input type="hidden" id="TenantId" name="TenantId" value="" />
+    <div class="header"></div>
+    <div class="messageBox"></div>
+    <div id="loginform" class="loginBox">
+        <form class="form form-horizontal" action="index.html" method="post">
+            <div class="row cl">
+                <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+                <div class="formControls col-xs-8">
+                    <input id="name" name="" type="text" placeholder="账户" class="input-text size-L">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+                <div class="formControls col-xs-8">
+                    <input id="pwd" name="" type="password" placeholder="密码" class="input-text size-L">
+                </div>
+            </div>
 
-	<div id="loginform" class="loginBox">
-		<form class="form form-horizontal" action="index.html" method="post">
-			<div class="row cl">
-				<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
-				<div class="formControls col-xs-8">
-					<input id="name" name="" type="text" placeholder="账户" class="input-text size-L">
-				</div>
-			</div>
-			<div class="row cl">
-				<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
-				<div class="formControls col-xs-8">
-					<input id="pwd" name="" type="password" placeholder="密码" class="input-text size-L">
-				</div>
-			</div>
-			
-			<div class="row cl">
+            <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
 
                     <input name="" id="btn_Login" type="button" onclick="login()" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;陆&nbsp;">
@@ -50,176 +51,177 @@
                     <input name="" type="button" onclick="login5()" class="btn btn-success radius size-L" value="董事长">
                     <input name="" type="button" onclick="login1()" class="btn btn-success radius size-L" value="超管">
                 </div>
-			</div>
-           
-		</form>
-	</div>
-    
+            </div>
 
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
-<script>
-    function login() {
-        var name = $("#name").val();
-        var pwd = $("#pwd").val() ;
+        </form>
+    </div>
 
-        $.ajax({
-            url: "http://localhost:8066/Users/Login",
-            type: "get",
-            data:
-            {
-                userName: name,
-                passWord: pwd
-            },
-            success: function (data) {
-                if (data > 0) {
-                    //把用户名存入JS缓存
-                    localStorage.uname = $("#name").val();
-                    localStorage.ID = data;
-              
-                    location.href = "index.html";
+
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+    <script src="../../Scripts/message.js"></script>
+    <script>
+        function login() {
+            var name = $("#name").val();
+            var pwd = $("#pwd").val();
+
+            $.ajax({
+                url: "http://localhost:8066/Users/Login",
+                type: "get",
+                data:
+                {
+                    userName: name,
+                    passWord: pwd
+                },
+                success: function (data) {
+                    if (data > 0) {
+                        //把用户名存入JS缓存
+                        localStorage.uname = $("#name").val();
+                        localStorage.ID = data;
+
+                        location.href = "index.html";
+                    }
+                    else {
+                        ShowMessageBox(false, "用户名或密码错误");
+                    }
                 }
-                else {
-                    alert(" 用户名或密码错误")
-                }
-            }
 
-        })
-    }
-    function login1() {
-
-        $.ajax({
-            url: "http://localhost:8066/Users/Login",
-            type: "get",
-            data:
-            {
-                userName: "admin",
-                passWord: 123
-            },
-            success: function (data) {
-                if (data > 0) {
-                    //把用户名存入JS缓存
-                    localStorage.uname = "admin";
-                    localStorage.ID = data;
-
-                    location.href = "index.html";
-                }
-                else {
-                    alert("用户名或密码错误")
-                }
-            }
-
-        })
-    }
-    function login2() {
-    
-
-        $.ajax({
-            url: "http://localhost:8066/Users/Login",
-            type: "get",
-            data:
-            {
-                userName: "组长",
-                passWord: 1
-            },
-            success: function (data) {
-                if (data > 0) {
-                    //把用户名存入JS缓存
-                    localStorage.uname = "组长";
-                    localStorage.ID = data;
-                
-                    location.href = "index.html";
-                }
-                else {
-                    alert(" 用户名或密码错误")
-                }
-            }
-
-        })
-    }
-    function login3() {
-
-
-        $.ajax({
-            url: "http://localhost:8066/Users/Login",
-            type: "get",
-            data:
-            {
-                userName: "经理",
-                passWord: 2
-            },
-            success: function (data) {
-                if (data > 0) {
-                    //把用户名存入JS缓存
-                    localStorage.uname = "经理";
-                    localStorage.ID = data;
-                
-                    location.href = "index.html";
-                }
-                else {
-                    alert(" 用户名或密码错误")
-                }
-            }
-
-        })
-    }
-    function login4() {
-
-
-        $.ajax({
-            url: "http://localhost:8066/Users/Login",
-            type: "get",
-            data:
-            {
-                userName: "主管",
-                passWord: 3
-            },
-            success: function (data) {
-                if (data > 0) {
-                    //把用户名存入JS缓存
-                    localStorage.uname = "主管";
-                    localStorage.ID = data;
-                
-                    location.href = "index.html";
-                }
-                else {
-                    alert(" 用户名或密码错误")
-                }
-            }
-
-        })
-    }
-    function login5() {
-
-
-        $.ajax({
-            url: "http://localhost:8066/Users/Login",
-            type: "get",
-            data:
-            {
-                userName: "董事长",
-                passWord: 4
-            },
-            success: function (data) {
-                if (data > 0) {
-                    //把用户名存入JS缓存
-                    localStorage.uname = "董事长";
-                    localStorage.ID = data;
-                   
-                    location.href = "index.html";
-                }
-                else {
-                    alert(" 用户名或密码错误")
-                }
-            }
-
-        })
-    }
-    $(document).keydown(function (event) {
-        if (event.keyCode == 13) {
-            $("#btn_Login").click();
+            })
         }
-    });
-</script>
+        function login1() {
+
+            $.ajax({
+                url: "http://localhost:8066/Users/Login",
+                type: "get",
+                data:
+                {
+                    userName: "admin",
+                    passWord: 123
+                },
+                success: function (data) {
+                    if (data > 0) {
+                        //把用户名存入JS缓存
+                        localStorage.uname = "admin";
+                        localStorage.ID = data;
+
+                        location.href = "index.html";
+                    }
+                    else {
+                        ShowMessageBox(false, "用户名或密码错误");
+                    }
+                }
+
+            })
+        }
+        function login2() {
+
+
+            $.ajax({
+                url: "http://localhost:8066/Users/Login",
+                type: "get",
+                data:
+                {
+                    userName: "组长",
+                    passWord: 1
+                },
+                success: function (data) {
+                    if (data > 0) {
+                        //把用户名存入JS缓存
+                        localStorage.uname = "组长";
+                        localStorage.ID = data;
+
+                        location.href = "index.html";
+                    }
+                    else {
+                        ShowMessageBox(false, "用户名或密码错误");
+                    }
+                }
+
+            })
+        }
+        function login3() {
+
+
+            $.ajax({
+                url: "http://localhost:8066/Users/Login",
+                type: "get",
+                data:
+                {
+                    userName: "经理",
+                    passWord: 2
+                },
+                success: function (data) {
+                    if (data > 0) {
+                        //把用户名存入JS缓存
+                        localStorage.uname = "经理";
+                        localStorage.ID = data;
+
+                        location.href = "index.html";
+                    }
+                    else {
+                        ShowMessageBox(false, "用户名或密码错误");
+                    }
+                }
+
+            })
+        }
+        function login4() {
+
+
+            $.ajax({
+                url: "http://localhost:8066/Users/Login",
+                type: "get",
+                data:
+                {
+                    userName: "主管",
+                    passWord: 3
+                },
+                success: function (data) {
+                    if (data > 0) {
+                        //把用户名存入JS缓存
+                        localStorage.uname = "主管";
+                        localStorage.ID = data;
+
+                        location.href = "index.html";
+                    }
+                    else {
+                        ShowMessageBox(false, "用户名或密码错误");
+                    }
+                }
+
+            })
+        }
+        function login5() {
+
+
+            $.ajax({
+                url: "http://localhost:8066/Users/Login",
+                type: "get",
+                data:
+                {
+                    userName: "董事长",
+                    passWord: 4
+                },
+                success: function (data) {
+                    if (data > 0) {
+                        //把用户名存入JS缓存
+                        localStorage.uname = "董事长";
+                        localStorage.ID = data;
+
+                        location.href = "index.html";
+                    }
+                    else {
+                        ShowMessageBox(false, "用户名或密码错误");
+                    }
+                }
+
+            })
+        }
+        $(document).keydown(function (event) {
+            if (event.keyCode == 13) {
+                $("#btn_Login").click();
+            }
+        });
+    </script>
 </body>
 </html>

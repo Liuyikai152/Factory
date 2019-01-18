@@ -9,30 +9,28 @@ using System.Web.Http.Controllers;
 using SmartFactory.Model;
 using SmartFactory.Cache;
 using System.Web.Http.Filters;
-using System.Web.Script.Serialization;
-using System.Web.Security;
 
 
-public   class RequestAuthorize: AuthorizeAttribute
+    public   class RequestAuthorize: AuthorizeAttribute
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             //从http请求的头里面获取身份验证信息，验证token值是否有效
-            var authorization = actionContext.Request.Headers;
+            var authorization = actionContext.Request.Headers.Authorization;
 
-            if (authorization != null)// && (authorization != null))
+            if ((authorization != null) && (authorization.Parameter != null))
             {
                 //验证token值是否有效
-                var encryptTicket = authorization;
-                var clientinfo = RedisHelper.Get<Users>(encryptTicket.ToString());
+                var encryptTicket = authorization.Parameter;
+                var clientinfo = RedisHelper.Get<Users>(encryptTicket);
                 if (clientinfo != null)
                 {
                     base.IsAuthorized(actionContext);
                 }
                 else
                 {
-                     base.HandleUnauthorizedRequest(actionContext);
-                 }
+                    base.HandleUnauthorizedRequest(actionContext);
+                }
             }
             else//如果取不到token值，并且不允许匿名访问，则返回未验证401
             {
@@ -48,8 +46,5 @@ public   class RequestAuthorize: AuthorizeAttribute
                 }
             }
         }
-}
-
-
-
+    }
 

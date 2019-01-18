@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
@@ -27,58 +28,7 @@
 
 </head>
 <body>
-    <style>
-        .page-bar {
-            margin: 40px;
-        }
-
-        ul, li {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        li {
-            list-style: none
-        }
-
-        .page-bar li:first-child > a {
-            margin-left: 0px
-        }
-
-        .page-bar a {
-            border: 1px solid #ddd;
-            text-decoration: none;
-            position: relative;
-            float: left;
-            padding: 6px 12px;
-            margin-left: -1px;
-            line-height: 1.42857143;
-            color: #337ab7;
-            cursor: pointer
-        }
-
-            .page-bar a:hover {
-                background-color: #eee;
-            }
-
-            .page-bar a.banclick {
-                cursor: not-allowed;
-            }
-
-        .page-bar .active a {
-            color: #fff;
-            cursor: default;
-            background-color: #337ab7;
-            border-color: #337ab7;
-        }
-
-        .page-bar i {
-            font-style: normal;
-            color: #d44950;
-            margin: 0px 4px;
-            font-size: 12px;
-        }
-    </style>
+ 
     <!--_header 作为公共模版分离出去-->
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
@@ -129,7 +79,7 @@
     <!--/_menu 作为公共模版分离出去-->
 
     <section class="Hui-article-box" style="background-color:azure">
-        
+        <div class="messageBox"></div>
         <div class="Hui-article" id="app" style="margin-top:50px; ">
             <article class="cl pd-20">
 
@@ -156,12 +106,11 @@
                             <span>机组负责人：</span>{{test.CrewLeader}}
 
                         </p>
-                        <p><span>功能描述： </span>{{test.Describe}}        </p>
+                        <p><span>功能描述： </span>{{test.Describe}}</p>
 
                     </div>
                     <div style="float:right;width:35%; margin-bottom:20px;">
                         <img src="http://localhost:8066/{{test.ChartImg}}" style="width:300px;height:200px;" />
-
                     </div>
 
                 </div>
@@ -253,32 +202,21 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.datatables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+
     <script src="../../Scripts/vue.min.js"></script>
     <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-
+    <script src="../../Scripts/message.js"></script>
     <script src="../../Scripts/GetParse.js"></script>
 
     <script type="text/javascript">
         $(function () {
-            $("#btnS").click(function () {
-               
-                $.ajax({
-                    url: "http://localhost:8066/Import/Imports",
-                    contentType: false,
-                    processData: false,
-                    cache: false,
-                    data: new FormData($("#formData")[0]),
-                    type: 'POST',
-                    success: function (data) {
-                        if (data > 0) {
-                            $("#alert").text("导入成功");
-                        }
-                    }
-                })
 
-            })
+            $("#uname").text(localStorage.uname);
+            //左侧栏
+            LeftMenu();
+
         });
 
         var vm = new Vue({
@@ -348,30 +286,6 @@
             }
         })
 
-        $(function () {
-            $("#uname").text(localStorage.uname);
-
-
-            $.ajax({
-                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
-                async: false,
-                type: 'get',
-                //data: { id:  },
-                success: function (data) {
-
-                    $(data).each(function (index, data) {
-                        if (data.Pid == 0) {
-                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
-                        }
-                    })
-                    $(data).each(function (index, data) {
-                        if (data.Pid != 0) {
-                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
-                        }
-                    })
-                }
-            })
-        })
 
     </script>
     <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>

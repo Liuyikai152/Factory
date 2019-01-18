@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
@@ -30,6 +31,7 @@
 <body>
     <div class="Hui-article" id="app">
         <article class="cl pd-20">
+            <div class="messageBox"></div>
             <form action="" method="post" class="form form-horizontal" id="form">
                 <!--<input type="hidden" name="ID" />-->
                 <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
@@ -84,7 +86,7 @@
 
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备位号：</label>
-                     <div class="formControls col-xs-8 col-sm-9">
+                    <div class="formControls col-xs-8 col-sm-9">
                         <select class="input-text" v-model="test.BitNumber">
                             <option selected="selected" value="请选择">--请选择--</option>
                             <option v-for="host in BitNumbers" v-bind:value="host.ID">{{host.BitNumbers}}</option>
@@ -130,10 +132,10 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 
+
+
     <script src="../../Scripts/GetParse.js"></script>
-
-
-
+    <script src="../../Scripts/message.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
     <script src="../../Scripts/axios.js"></script>
@@ -175,8 +177,9 @@
                     params.append('FacilityName', FacilityName);
                     axios.post('http://localhost:8066/Station/AddStation', params).then(
                         (response) => {
-                            alert(response)
-                            alert("添加成功")
+                            if (response.data > 0) {
+                                ShowMessageBox(true, "添加成功");
+                            }
                         },
                         (response) => {
                             alert(response.status);

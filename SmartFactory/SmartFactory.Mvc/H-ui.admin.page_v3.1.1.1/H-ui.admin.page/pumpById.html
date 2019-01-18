@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
@@ -27,58 +28,6 @@
 
 </head>
 <body>
-    <style>
-        .page-bar {
-            margin: 40px;
-        }
-
-        ul, li {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        li {
-            list-style: none
-        }
-
-        .page-bar li:first-child > a {
-            margin-left: 0px
-        }
-
-        .page-bar a {
-            border: 1px solid #ddd;
-            text-decoration: none;
-            position: relative;
-            float: left;
-            padding: 6px 12px;
-            margin-left: -1px;
-            line-height: 1.42857143;
-            color: #337ab7;
-            cursor: pointer
-        }
-
-            .page-bar a:hover {
-                background-color: #eee;
-            }
-
-            .page-bar a.banclick {
-                cursor: not-allowed;
-            }
-
-        .page-bar .active a {
-            color: #fff;
-            cursor: default;
-            background-color: #337ab7;
-            border-color: #337ab7;
-        }
-
-        .page-bar i {
-            font-style: normal;
-            color: #d44950;
-            margin: 0px 4px;
-            font-size: 12px;
-        }
-    </style>
     <!--_header 作为公共模版分离出去-->
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
@@ -133,9 +82,9 @@
        
         <div class="Hui-article" id="app" style="margin:20px 20px 100px 20px;">
             <article class="cl pd-20">
-
+                <div class="messageBox" style="padding-top:45px;"></div>
                 <br />
-                <h3 >查看机泵信息</h3>
+                <h3>查看机泵信息</h3>
 
 
                 <div style="width:80%;height:400px; font-size:20px;">
@@ -143,7 +92,7 @@
                         <input type="button" value="返回" onclick="location.href='pump.html'" class="btn btn-success" style="  width:100px;height:30px;" />
                     </div>
                     <br />
-                    <div style="float:left;width:65%;" >
+                    <div style="float:left;width:65%;">
 
                         <p>
                             <span>所属装置: </span> {{test.PumpNumber}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -165,7 +114,7 @@
 
                     </div>
                 </div>
-               
+
                 <div style="float:none;">
                     <h4>主机/附机列表</h4>
                     <table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -232,10 +181,7 @@
 
                 </div>
             </article>
-
         </div>
-
-
     </section>
 
 
@@ -251,15 +197,20 @@
     <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="lib/datatables/1.10.0/jquery.datatables.min.js"></script>
     <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+  
     <script src="../../Scripts/vue.min.js"></script>
     <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
-
+    <script src="../../Scripts/message.js"></script>
     <script src="../../Scripts/GetParse.js"></script>
 
     <script type="text/javascript">
-       
+        $(function () {
+            $("#uname").text(localStorage.uname);
+            //左侧栏
+            LeftMenu();
+        })
         var vm = new Vue({
             el: "#app",
             data: {
@@ -328,31 +279,6 @@
                 }
 
             }
-        })
-
-        $(function () {
-            $("#uname").text(localStorage.uname);
-
-
-            $.ajax({
-                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
-                async: false,
-                type: 'get',
-                //data: { id:  },
-                success: function (data) {
-
-                    $(data).each(function (index, data) {
-                        if (data.Pid == 0) {
-                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
-                        }
-                    })
-                    $(data).each(function (index, data) {
-                        if (data.Pid != 0) {
-                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
-                        }
-                    })
-                }
-            })
         })
 
     </script>

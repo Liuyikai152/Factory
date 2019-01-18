@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script><![endif]-->
@@ -30,6 +31,7 @@
 <body>
     <div class="Hui-article" id="app">
         <article class="cl pd-20">
+            <div class="messageBox"></div>
             <form action="" method="post" class="form form-horizontal" id="form">
                 <!--<input type="hidden" name="ID" />-->
                 <!--<input type="hidden" name="ID" value="Request.QueryString["id"]" />-->
@@ -107,13 +109,13 @@
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
     <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 
+
+
     <script src="../../Scripts/GetParse.js"></script>
-
-
-
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
     <script src="../../Scripts/axios.js"></script>
+    <script src="../../Scripts/message.js"></script>
 
     <script type="text/javascript">
 
@@ -133,8 +135,9 @@
                     params.append('UnitOrPump', UnitOrPump);
                     axios.post('http://localhost:8066/SubFamily/AddSubFamily', params).then(
                         (response) => {
-                            alert(response)
-                            alert("添加成功")
+                            if (response.data > 0) {
+                                ShowMessageBox(true, "添加成功");
+                            }
                         },
                         (response) => {
                             alert(response.status);
