@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <link href="../../Conntent/style.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -29,79 +30,7 @@
     <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
-    <style>
-        .messageBox {
-            height: 60px;
-            padding: 40px 78px 0px 78px;
-            line-height: 60px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            background: -441px -613px #ffffe7 no-repeat;
-            position: fixed;
-            top: -60px;
-            left: 50%;
-            border: 5px solid #ddd;
-            border-top: 0;
-            color: #444;
-            font-size: 18px;
-            z-index: 9999;
-        }
-
-        .messageError {
-            background-position: -441px -673px;
-        }
-
-        .page-bar {
-            margin: 40px;
-        }
-
-        ul, li {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        li {
-            list-style: none
-        }
-
-        .page-bar li:first-child > a {
-            margin-left: 0px
-        }
-
-        .page-bar a {
-            border: 1px solid #ddd;
-            text-decoration: none;
-            position: relative;
-            float: left;
-            padding: 6px 12px;
-            margin-left: -1px;
-            line-height: 1.42857143;
-            color: #337ab7;
-            cursor: pointer
-        }
-
-            .page-bar a:hover {
-                background-color: #eee;
-            }
-
-            .page-bar a.banclick {
-                cursor: not-allowed;
-            }
-
-        .page-bar .active a {
-            color: #fff;
-            cursor: default;
-            background-color: #337ab7;
-            border-color: #337ab7;
-        }
-
-        .page-bar i {
-            font-style: normal;
-            color: #d44950;
-            margin: 0px 4px;
-            font-size: 12px;
-        }
-    </style>
+ 
     <!--_header 作为公共模版分离出去-->
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
@@ -327,30 +256,14 @@
     <script src="../../Scripts/axios.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.7/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
+    <script src="../../Scripts/message.js"></script>
     <script type="text/javascript">
         $(function () {
             $("[name=CrewLeader]").val(localStorage.uname);
             $("#uname").text(localStorage.uname);
 
             //左侧栏
-            $.ajax({
-                url: 'http://localhost:8066/Users/GetPermissiomUrl?id=' + localStorage.ID,
-                async: false,
-                type: 'get',
-                //data: { id:  },
-                success: function (data) {
-                    $(data).each(function (index, data) {
-                        if (data.Pid == 0) {
-                            $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
-                        }
-                    })
-                    $(data).each(function (index, data) {
-                        if (data.Pid != 0) {
-                            $("#Permision" + data.Pid).append("<li><a href=" + data.PermissionUrl + "  data-title=\"" + data.PermissionName + "\" href=\"javascript:void(0)\">" + data.PermissionName + "</a></li>");
-                        }
-                    })
-                }
-            })
+            LeftMenu()
             //显示所属装置
             $.ajax({
                 url: 'http://localhost:8066/FacilityArea/GetFactoryAreas',
@@ -384,22 +297,22 @@
         })
         //添加
         function add() {
-            if ($("[name=Device]").val().val().trim().length == 0) {
-                $(".messageBox").removeClass("messageError").text("所属装置不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+            if ($("[name=Device]").val().trim().length == 0) {
+                ShowMessageBox(false,"所属装置不能为空")
                 return;
             }
-            if ($("[name=UnitNumber]").val().val().trim().length == 0) {
-                $(".messageBox").removeClass("messageError").text("机组编号不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+            if ($("[name=UnitNumber]").val()=="") {
+                ShowMessageBox(false, "机组编号不能为空")
                 return;
             }
 
             if ($("[name=UnitName]").val().trim().length == 0) {
-                $(".messageBox").removeClass("messageError").text("机组名称不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                ShowMessageBox(false, "机组名称不能为空")
                 return;
             }
 
             if ($("[name=ChartImg]").val().trim().length == 0) {
-                $(".messageBox").removeClass("messageError").text("图片路径不能为空").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                ShowMessageBox(false, "图片路径不能为空")
                 return;
             }
 
@@ -410,10 +323,10 @@
                 success: function (data) {
 
                     if (data > 0) {
-                        $(".messageBox").removeClass("messageError").text("添加成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                        ShowMessageBox(true, "添加成功");
                     }
                     else {
-                        $(".messageBox").removeClass("messageError").text("添加失败").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                        ShowMessageBox(false, "添加失败");
                     }
                 }
             })
@@ -433,7 +346,7 @@
 
         //添加主机附机
         function addhost() {
-            layer_show("添加主机附机", "host-add.html" , 700, 700);
+            layer_show("添加主机附机", "host-add.html", 700, 700);
         }
         //添加子系统
         function addsubfamily() {
@@ -504,9 +417,9 @@
                     axios.get('http://localhost:8066/Host/DeleteHost?id=' + id).then(
                         (response) => {
                             if (response.data > 0) {
-
+                                ShowMessageBox(true, "删除成功");
                                 this.getTests();
-                                $(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                             
                             }
                         },
                         (response) => {
@@ -522,9 +435,8 @@
                     axios.get('http://localhost:8066/SubFamily/DeleteSubfamily?id=' + id).then(
                         (response) => {
                             if (response.data > 0) {
-
-                                this.getTests();
-                                $(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                                ShowMessageBox(true, "删除成功");
+                                this.getTests();                               
                             }
                         },
                         (response) => {
@@ -543,8 +455,8 @@
                         (response) => {
                             if (response.data > 0) {
 
-                                this.getTests();
-                                $(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                                ShowMessageBox(true, "删除成功");
+                              this.getTests();
                             }
                         },
                         (response) => {
