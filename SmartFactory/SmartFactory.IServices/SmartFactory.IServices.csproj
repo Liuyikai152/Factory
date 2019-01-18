@@ -62,43 +62,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBitNumberServices.cs" />
-    <Compile Include="IConditionsServices.cs" />
-    <Compile Include="IConfigurationsServices.cs" />
-    <Compile Include="IFacilityGeneral.cs" />
-    <Compile Include="IFacilityManuFacturer.cs" />
-    <Compile Include="IFacilityServices.cs" />
-    <Compile Include="IFacilityDetailsServices.cs" />
-    <Compile Include="IFacilityGeneralServices.cs" />
-    <Compile Include="IFacilityLocaServices.cs" />
-    <Compile Include="IFacilityTypeServices.cs" />
-    <Compile Include="IHostServices.cs" />
-    <Compile Include="ILocalionServices.cs" />
-    <Compile Include="IMaintenanceOrderServices.cs" />
-    <Compile Include="IPermissionRoleServices.cs" />
-    <Compile Include="IPermissionServices.cs" />
-    <Compile Include="IProcessServices.cs" />
-    <Compile Include="IPumpServices.cs" />
-    <Compile Include="ISpecification.cs" />
-    <Compile Include="ISpecificationServices.cs" />
-    <Compile Include="IStationServices.cs" />
-    <Compile Include="IStatusServices.cs" />
-    <Compile Include="ISubfamilyServices.cs" />
-    <Compile Include="IUsersRoleServices.cs" />
-    <Compile Include="IUsersServices.cs" />
-    <Compile Include="IFacilityManuFacturerServices.cs" />
-    <Compile Include="IActivityServices.cs" />
-    <Compile Include="IApprovalNodeServices.cs" />
-    <Compile Include="IBusinesServices.cs" />
-    <Compile Include="ICompanyCodeServices.cs" />
-    <Compile Include="IFactoryAreaServices.cs" />
-    <Compile Include="ILocaTypeServices.cs" />
-    <Compile Include="IPlanfactoryServices.cs" />
-    <Compile Include="IPlangroupServices.cs" />
-    <Compile Include="IServiceGroupServices.cs" />
+    <Compile Include="设备零件\IBitNumberServices.cs" />
+    <Compile Include="审批\IConditionsServices.cs" />
+    <Compile Include="审批\IConfigurationsServices.cs" />
+    <Compile Include="设备零件\IFacilityGeneral.cs" />
+    <Compile Include="设备零件\IFacilityManuFacturer.cs" />
+    <Compile Include="设备零件\IFacilityServices.cs" />
+    <Compile Include="设备零件\IFacilityDetailsServices.cs" />
+    <Compile Include="设备零件\IFacilityGeneralServices.cs" />
+    <Compile Include="设备零件\IFacilityLocaServices.cs" />
+    <Compile Include="设备零件\IFacilityTypeServices.cs" />
+    <Compile Include="机组机泵\IHostServices.cs" />
+    <Compile Include="功能位置\ILocalionServices.cs" />
+    <Compile Include="维修工单\IMaintenanceOrderServices.cs" />
+    <Compile Include="权限管理\IPermissionRoleServices.cs" />
+    <Compile Include="权限管理\IPermissionServices.cs" />
+    <Compile Include="审批\IProcessServices.cs" />
+    <Compile Include="机组机泵\IPumpServices.cs" />
+    <Compile Include="设备零件\ISpecification.cs" />
+    <Compile Include="设备零件\ISpecificationServices.cs" />
+    <Compile Include="审批\IStationServices.cs" />
+    <Compile Include="机组机泵\IStatusServices.cs" />
+    <Compile Include="机组机泵\ISubfamilyServices.cs" />
+    <Compile Include="权限管理\IUsersRoleServices.cs" />
+    <Compile Include="权限管理\IUsersServices.cs" />
+    <Compile Include="设备零件\IFacilityManuFacturerServices.cs" />
+    <Compile Include="审批\IActivityServices.cs" />
+    <Compile Include="审批\IApprovalNodeServices.cs" />
+    <Compile Include="功能位置\IBusinesServices.cs" />
+    <Compile Include="功能位置\ICompanyCodeServices.cs" />
+    <Compile Include="功能位置\IFactoryAreaServices.cs" />
+    <Compile Include="功能位置\ILocaTypeServices.cs" />
+    <Compile Include="功能位置\IPlanfactoryServices.cs" />
+    <Compile Include="功能位置\IPlangroupServices.cs" />
+    <Compile Include="功能位置\IServiceGroupServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IRoleServices.cs" />
-    <Compile Include="IUnitServices.cs" />
+    <Compile Include="权限管理\IRoleServices.cs" />
+    <Compile Include="机组机泵\IUnitServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -110,5 +110,6 @@
       <Name>SmartFactory.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
