@@ -24,7 +24,7 @@ function LeftMenu(id,pid) {
             $(data).each(function (index, data) {
                 if (data.Pid == 0) {
                     if (data.ID == pid) {
-                        console.log(data.id)
+                        console.log(data.ID)
                         $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd style=\"display: block;\"><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
                     } else {
                         $("#Permision_List").append("<dl><dt>" + data.PermissionName + "<i class=\"Hui-iconfont menu_dropdown-arrow\">&#xe6d5;</i></dt><dd><ul id=\"Permision" + data.ID + "\"></ul></dd></dl>");
