@@ -171,7 +171,7 @@
         $(function () {
             $("#uname").text(localStorage.uname);
             //左侧栏
-            LeftMenu();
+            LeftMenu(7,11);
             //显示所属装置
             $.ajax({
                 url: 'http://localhost:8066/FacilityArea/GetFactoryAreas',

@@ -98,7 +98,6 @@
                         <tr v-for="item in list" class="text-c">
                             <td>{{item.ID}}</td>
                             <td>{{item.ProcessCode}}</td>
-
                             <td>{{item.Condition}}</td>
                             <td>{{item.NodeName}}</td>
                             <td>{{item.UserName}}</td>
@@ -176,7 +175,7 @@
         }
         $(function () {
             $("#uname").text(localStorage.uname);
-            LeftMenu()
+            LeftMenu(17,16)
 
 
         })
