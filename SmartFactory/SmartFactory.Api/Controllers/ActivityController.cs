@@ -55,6 +55,5 @@ namespace SmartFactory.Api.Controllers
             var i = activityServices.UpdateNoState(ID, trueState);
             return i;
         }
-
     }
 }

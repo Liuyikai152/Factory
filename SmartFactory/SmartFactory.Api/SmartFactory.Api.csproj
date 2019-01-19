@@ -145,7 +145,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\ApprovalNodeController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BitNumberController.cs" />
     <Compile Include="Controllers\CompanyCodeController.cs" />
     <Compile Include="Controllers\ConditionsController.cs" />
@@ -157,6 +156,7 @@
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Controllers\MaintenanceOrderController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
+    <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Controllers\PermissionController.cs" />
     <Compile Include="Controllers\PumpController.cs" />
     <Compile Include="Controllers\RequestAuthorize.cs" />
