@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Controllers;
+using SmartFactory.Cache;
 
 using SmartFactory.IServices;
 using SmartFactory.Model;
@@ -12,7 +14,8 @@ using SmartFactory.Services;
 
 namespace SmartFactory.Api.Controllers
 {
-   
+
+ 
     [RoutePrefix("Users")]
     public class UsersController : ApiController
     {
@@ -24,7 +27,7 @@ namespace SmartFactory.Api.Controllers
         /// 显示
         /// </summary>
         /// <returns></returns>
-      
+
         [Route("GetUsers")]
         [HttpGet]
         public List<UserInfo> GetUsers()
@@ -53,7 +56,7 @@ namespace SmartFactory.Api.Controllers
         /// <returns></returns>
         [Route("Login")]
         [HttpGet]
-     
+        [RequestAuthorize]
         public int Login(string userName, string passWord)
         {
             int result = usersServices.Login(userName, passWord);
@@ -136,4 +139,9 @@ namespace SmartFactory.Api.Controllers
             return result;
         }
     }
+
+
+
+
+
 }

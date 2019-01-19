@@ -9,7 +9,7 @@ namespace SmartFactory.Mvc.Controllers
     public class DefaultController : Controller
     {
         // GET: Default
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
