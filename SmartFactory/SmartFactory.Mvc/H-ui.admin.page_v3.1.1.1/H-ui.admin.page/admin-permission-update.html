@@ -48,9 +48,11 @@
                     <div class="formControls col-xs-8 col-sm-9">
                         <input type="text" class="input-text" placeholder="" id="url" name="PermissionUrl" v-model="test[0].PermissionUrl">
                     </div>
+
+                    <input type="hidden" v-model="test[0].Pid" />
                 </div>
 
-
+               
 
                 <div class="row cl">
                     <label class="form-label col-xs-4 col-sm-3">是否启用：</label>
@@ -66,7 +68,7 @@
                 </div>
                 <div class="row cl">
                     <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                        <input class="btn btn-primary radius" v-on:click="update(test[0].ID,test[0].PermissionName,test[0].PermissionUrl,test[0].IsUser)" type="button" value="提交">
+                        <input class="btn btn-primary radius" v-on:click="update(test[0].ID,test[0].PermissionName,test[0].PermissionUrl,test[0].Pid,test[0].IsUser)" type="button" value="提交">
                     </div>
 
                 </div>
@@ -113,12 +115,13 @@
 
                     })
                 },
-                update: function (ID, PermissionName, PermissionUrl, Isuser) {
+                update: function (ID, PermissionName, PermissionUrl,Pid,Isuser) {
 
                     var params = new URLSearchParams();
                     params.append('ID', ID);
                     params.append('PermissionName', PermissionName);
                     params.append('PermissionUrl', PermissionUrl);
+                    params.append('Pid', Pid);
                     params.append('Isuser', Isuser);
 
                     axios.post('http://localhost:8066/Permission/UpdatePermission', params).then(
