@@ -27,11 +27,11 @@
     <title>栏目管理</title>
 </head>
 <body>
-  
+
 
 
     <!--/_header 作为公共模版分离出去-->
-    <!--_menu 作为公共模版分离出去--> 
+    <!--_menu 作为公共模版分离出去-->
     <header class="navbar-wrapper">
         <div class="navbar navbar-fixed-top">
             <div class="container-fluid cl">
@@ -77,7 +77,7 @@
     <!--/_menu 作为公共模版分离出去-->
     <section class="Hui-article-box">
         <nav class="breadcrumb"><a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-        <div class="pd-20 text-c" id="app">s
+        <div class="pd-20 text-c" id="app">
 
             <div class="mt-20">
                 <span class="l">
@@ -139,8 +139,8 @@
     <script type="text/javascript">
         $(function () {
             $("#uname").text(localStorage.uname);
-         
-            LeftMenu(15,16);
+
+            LeftMenu(15, 16);
 
 
         })
@@ -156,29 +156,42 @@
                 this.getTests()
             },
             methods: {
-
                 getTests: function () {
                     this.$http.get('http://localhost:8066/Activity/GetActivities?name=' + localStorage.uname + '&&state=' + this.state, function (data) {
                         this.$set('list', data);
+
                     })
                 },
             }
         })
-     
 
         function UpdateState(ID, trueState) {
             if (confirm("是否要继续进行审核？")) {
                 $.ajax({
                     url: "http://localhost:8066/Activity/UpdateState",
+                    type: "get",
                     data: {
                         ID: ID,
                         trueState: trueState,
                         state: 2,
                     },
-                    type: "get",
                     success: function (data) {
                         if (data > 0) {
-                            ShowMessageBox(true,"审批完成,请刷新")
+                            $.ajax({
+                                url: "http://localhost:8066/Note/sendSmsTpl",
+                                type: "get",
+                                data: {
+                                    to: '17634483538',
+                                    template: 2,
+                                    param: '1,2,3,4'
+                                },
+                                success: function (data) {
+
+                                        ShowMessageBox(true, "审批完成,请刷新")
+                                    
+                                }
+                            });
+
                         }
                         else {
                             ShowMessageBox(false, "审批失败")
@@ -198,6 +211,7 @@
                     },
                     type: "get",
                     success: function (data) {
+
                         if (data > 0) {
                             ShowMessageBox(true, "审批完成,请刷新")
                         }

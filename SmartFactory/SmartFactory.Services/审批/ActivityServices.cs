@@ -73,7 +73,7 @@ namespace SmartFactory.Services
                 new MySqlParameter("@trueState",trueState),
             };
             factoryDBcontext.Database.ExecuteSqlCommand("CALL Pro_UpdateTrueState(@ids,@trueState)", parameters);
-
+          
             var i = factoryDBcontext.Activities.FirstOrDefault(n => n.ID.Equals(ID + 1));
             if (i != null)
             {
@@ -115,9 +115,7 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int UpdateActivity(string ActivityNumber, string State)
         {
-
             var i = factoryDBcontext.Database.ExecuteSqlCommand("");
-
             return factoryDBcontext.SaveChanges();
         }
     }
