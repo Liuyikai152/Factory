@@ -71,6 +71,13 @@ namespace SmartFactory.Services
         /// <returns></returns>
         public int DeleteUsers(int id)
         {
+            MySqlParameter[] parameter = new MySqlParameter[1]
+                    {
+                   new MySqlParameter("@uid", id)
+
+                    };
+            factoryDBcontext.Database.ExecuteSqlCommand("call Pro_DeleteUsersRole(@uid)", parameter);
+
             MySqlParameter[] parameters = new MySqlParameter[1]
                      {
                    new MySqlParameter("@ids", id)
